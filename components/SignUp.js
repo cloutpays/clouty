@@ -6,87 +6,103 @@ class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      FNAME: '',
-      EMAIL: '',
-      CITY: '',
-      HANDLE: '',
-      SONG: '',
-      SELECTED_SONG: '',
-      ARTIST: 'Not set yet',
-      SONGS: [],
+      name: '',
+      email: '',
+      city: '',
+      handle: '',
+      question: '',
+      answer: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {}
+  onChange = e => {
+    console.log(e.target.name, e.target.value);
+    this.setState({ [e.target.name]: e.target.value }, () =>
+      console.log(this.state),
+    );
+  };
 
-  renderSongs() {
-    var songRender = [];
-    for (var track in this.state.SONGS) {
-      var artist = this.state.SONGS[track]['artist'];
-      var song = this.state.SONGS[track]['song'];
-      songRender.push(artist + ' - ' + song);
+  renderQuestion() {
+    const { answer } = this.state;
+    const questionThree = (
+      <form>
+        <br></br>
+        <label for="game1">Choose an artist:</label>
+        <br></br>
+        <select onChange={this.onChange} value={answer} name="answer">
+          <option value="">--Please choose an artist--</option>
+          <option value="Fivio Foreign">Fivio Foreign</option>
+          <option value="Pop Smoke">Pop Smoke</option>
+        </select>
+      </form>
+    );
+    const questionOne = (
+      <form>
+        <br></br>
+        <label for="game1">Choose an artist:</label>
+        <br></br>
+        <select onChange={this.onChange} value={answer} name="answer">
+          <option value="">--Please choose an artist--</option>
+          <option value="The Game">The Game</option>
+          <option value="Fabolous">Fabolous</option>
+        </select>
+      </form>
+    );
+    const questionTwo = (
+      <form>
+        <br></br>
+        <label for="game1">Yes or No:</label>
+        <br></br>
+        <select onChange={this.onChange} value={answer} name="answer">
+          <option value="">--Yes or No--</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </form>
+    );
+    switch (this.state.question) {
+      case '1':
+        return questionOne;
+      case '2':
+        return questionTwo;
+      case '3':
+        return questionThree;
+      default:
+        return '';
     }
-    return songRender;
   }
-  handleChange(e) {
-    console.log(e);
-    if (e.target.name == 'FNAME')
-      this.setState({ FNAME: e.target.value }, () => {
-        console.log(this.state.FNAME);
-      });
-    if (e.target.name == 'CITY')
-      this.setState({ CITY: e.target.value }, () => {
-        console.log(this.state.CITY);
-      });
-    if (e.target.name == 'EMAIL')
-      this.setState({ EMAIL: e.target.value }, () => {
-        console.log(this.state.EMAIL);
-      });
-    if (e.target.name == 'HANDLE')
-      this.setState({ HANDLE: e.target.value }, () => {
-        console.log(this.state.HANDLE);
-      });
-    if (e.target.name == 'SONG')
-      this.setState(
-        {
-          SONG: e.target.value,
-          SELECTED_SONG: e.target.value.split(' - ')[1],
-          ARTIST: e.target.value.split(' - ')[0],
-        },
-        () => {
-          console.log(this.state.SONG);
-        },
-      );
-  }
+
   async handleSubmit(e) {
     e.preventDefault();
     await axios({
       method: 'post',
-      url: '/create',
+      url: '/api/game',
       data: {
-        artist: this.state.ARTIST,
-        song: this.state.SONG,
-        email: this.state.EMAIL,
-        song: this.state.SELECTED_SONG,
-        firstName: this.state.FNAME,
-        city: this.state.CITY,
+        question: this.state.question,
+        email: this.state.email,
+        answer: this.state.answer,
+        name: this.state.name,
+        city: this.state.city,
         handle: this.state.HANDLE,
       },
     })
       .then(res => {
         console.log('RESPONSE RECEIVED: ', res);
-        window.location.href = '/songconfirm';
+        // window.location.href = '/';
       })
       .catch(err => {
         console.log('AXIOS ERROR: ', err);
-        window.location.href = '/signup';
+        // window.location.href = '/signup';
       });
   }
 
   render() {
+    const { name, email, city, handle, question, answer } = this.state;
     return (
       <div>
+        <link href="/public/static/css/styles.css" rel="stylesheet" />
+
         <div className="row">
           <a className="card">
             <h3>Game #1 &rarr;</h3>
@@ -95,15 +111,9 @@ class SignUpForm extends Component {
               sell more in the first week?
             </p>
             <br />
-            <form>
-              {/* <label for="game1">Choose an artist:</label> */}
-              <select>
-                <option value="">--Please choose an artist--</option>
-                <option value="The Game">The Game</option>
-                <option value="Fabolous">Fabolous</option>
-              </select>
-            </form>
           </a>
+        </div>
+        <div className="row">
           <a className="card">
             <h3>Game #2 &rarr;</h3>
             <p>
@@ -111,156 +121,98 @@ class SignUpForm extends Component {
               2019 with a 6th?
             </p>
             <br />
-            <form>
-              {/* <label for="game1">Choose an artist:</label> */}
-              <select>
-                <option value="">--Yes or No--</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select>
-            </form>
           </a>
+        </div>
+        <div className="row">
           <a className="card">
             <h3>Game #3 &rarr;</h3>
             <p>Who gonna have the next banger? Pop Smoke or Fivio Foreign</p>
             <br />
-            <form>
-              {/* <label for="game1">Choose an artist:</label> */}
-              <select>
-                <option value="">--Please choose an artist--</option>
-                <option value="Fivio Foreign">Fivio Foreign</option>
-                <option value="Pop Smoke">Pop Smoke</option>
-              </select>
-            </form>
           </a>
         </div>
+        <div className="row">
+          <div className="card">
+            <h3>Sign up</h3>
 
-        <div className="about">
-          <form className="rsvp-form">
-            <div className="rsvp-form">
-              <label for="name">Name: </label>
+            <form className="rsvp-form">
+              <div className="rsvp-form">
+                <label for="name">Name: </label>
+                <br></br>
+                <input
+                  className="signup-input"
+                  type="text"
+                  value={name}
+                  onChange={this.onChange}
+                  name="name"
+                  required
+                />
+              </div>
               <br></br>
-              <input
-                className="signup-input"
-                type="text"
-                value={this.state.FNAME}
-                onChange={this.handleChange}
-                name="FNAME"
-                id="name"
-                required
-              />
-            </div>
-            <br></br>
-            <div className="rsvp-form">
-              <label for="email">Email Address: </label>
-              <br></br>
-              <input
-                className="signup-input"
-                type="email"
-                value={this.state.EMAIL}
-                onChange={this.handleChange}
-                name="EMAIL"
-                id="email"
-                required
-              />
-            </div>
+              <div className="rsvp-form">
+                <label for="email">Email Address: </label>
+                <br></br>
+                <input
+                  className="signup-input"
+                  type="email"
+                  value={email}
+                  onChange={this.onChange}
+                  name="email"
+                  required
+                />
+              </div>
 
-            <br></br>
-            <div className="rsvp-form">
-              <label for="name">Where You From?: </label>
               <br></br>
-              <input
-                className="signup-input"
-                type="text"
-                value={this.state.CITY}
-                onChange={this.handleChange}
-                name="CITY"
-                id="city"
-                required
-              />
-            </div>
-            <br></br>
-            <div className="rsvp-form">
-              <label for="email">IG or Twitter @: </label>
+              <div className="rsvp-form">
+                <label for="name">Where You From?: </label>
+                <br></br>
+                <input
+                  className="signup-input"
+                  type="text"
+                  value={city}
+                  onChange={this.onChange}
+                  name="city"
+                  required
+                />
+              </div>
               <br></br>
-              <input
-                className="signup-input"
-                type="text"
-                value={this.state.HANDLE}
-                onChange={this.handleChange}
-                name="HANDLE"
-                id="handle"
-              />
-            </div>
-            <br></br>
-            <div className="rsvp-form">
-              <label for="name">Place your bet </label>
+              <div className="rsvp-form">
+                <label for="email">IG or Twitter @: </label>
+                <br></br>
+                <input
+                  className="signup-input"
+                  type="text"
+                  value={handle}
+                  onChange={this.onChange}
+                  name="handle"
+                  id="handle"
+                />
+              </div>
               <br></br>
-              <select
-                value={this.state.SONG}
-                name="SONG"
-                id="name"
-                onChange={this.handleChange}
+              <div className="rsvp-form">
+                <label for="name">Place your bet </label>
+                <br></br>
+                <select
+                  value={question}
+                  name="question"
+                  onChange={this.onChange}
+                >
+                  <option>Select a Game</option>
+                  <option value={1}>Game #1</option>
+                  <option value={2}>Game #2</option>
+                  <option value={3}>Game #3</option>
+                </select>
+                {this.renderQuestion()}
+              </div>
+              <br></br>
+              <button
+                onClick={this.handleSubmit}
+                className="btn btn--right btn--tickets"
               >
-                <option value="idk">Select Song</option>
-              </select>
-              {/* <input className="signup-input" type="text" onChange={this.handleChange} name="SONG" id="name" required/> */}
-            </div>
-            <br></br>
-            <button
-              onClick={this.handleSubmit}
-              className="btn btn--right btn--tickets"
-            >
-              SIGN UP
-            </button>
-          </form>
+                SIGN UP
+              </button>
+            </form>
+          </div>
         </div>
-        <style jsx>{`
-          .hero {
-            width: 100%;
-            color: #333;
-          }
-          .title {
-            margin: 0;
-            width: 100%;
-            padding-top: 80px;
-            line-height: 1.15;
-            font-size: 48px;
-          }
-          .title,
-          .description {
-            text-align: center;
-          }
-          .row {
-            max-width: 880px;
-            margin: 80px auto 40px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-          }
-          .card {
-            padding: 18px 18px 24px;
-            width: 220px;
-            text-align: left;
-            text-decoration: none;
-            color: #434343;
-            border: 1px solid #9b9b9b;
-          }
-          .card:hover {
-            border-color: #067df7;
-          }
-          .card h3 {
-            margin: 0;
-            color: #067df7;
-            font-size: 18px;
-          }
-          .card p {
-            margin: 0;
-            padding: 12px 0 0;
-            font-size: 13px;
-            color: #333;
-          }
-        `}</style>
       </div>
     );
   }
