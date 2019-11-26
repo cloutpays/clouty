@@ -112,8 +112,8 @@ class SignUpForm extends Component {
             </p>
             <br />
           </a>
-        </div>
-        <div className="row">
+          {/* </div> */}
+          {/* <div className="row"> */}
           <a className="card">
             <h3>Game #2 &rarr;</h3>
             <p>
@@ -122,8 +122,8 @@ class SignUpForm extends Component {
             </p>
             <br />
           </a>
-        </div>
-        <div className="row">
+          {/* </div> */}
+          {/* // <div className="row"> */}
           <a className="card">
             <h3>Game #3 &rarr;</h3>
             <p>Who gonna have the next banger? Pop Smoke or Fivio Foreign</p>

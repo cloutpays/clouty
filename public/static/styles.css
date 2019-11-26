@@ -1,3 +1,27 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica,
+    sans-serif;
+}
+nav {
+  text-align: center;
+}
+ul {
+  display: flex;
+  justify-content: space-between;
+}
+nav > ul {
+  padding: 4px 16px;
+}
+li {
+  display: flex;
+  padding: 6px 8px;
+}
+a {
+  color: #067df7;
+  text-decoration: none;
+  font-size: 13px;
+}
 .hero {
   width: 100%;
   color: #333;
@@ -9,9 +33,12 @@
   line-height: 1.15;
   font-size: 48px;
 }
-.title,
-.description {
+.title {
   text-align: center;
+}
+.description {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 .row {
   max-width: 880px;
