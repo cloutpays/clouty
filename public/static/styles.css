@@ -1,10 +1,25 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica,
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif;
 }
 nav {
   text-align: center;
+}
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+
+  display: inline-block;
+  background-color: #067df7;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  padding: 1rem 1rem;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: bottom;
 }
 ul {
   display: flex;
