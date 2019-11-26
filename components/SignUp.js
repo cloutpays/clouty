@@ -13,6 +13,7 @@ class SignUpForm extends Component {
       question: '',
       answer: '',
       phoneNumber: '',
+      wager: 1,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -84,7 +85,8 @@ class SignUpForm extends Component {
         name: this.state.name,
         city: this.state.city,
         phoneNumber: this.state.phoneNumber,
-        handle: this.state.HANDLE,
+        handle: this.state.handle,
+        wager: this.state.wager,
       },
     })
       .then((res) => {
@@ -180,6 +182,18 @@ class SignUpForm extends Component {
                   name='handle'
                   id='handle'
                 />
+              </div>
+              <br></br>
+
+              <div className='rsvp-form'>
+                <label for='email'>Select Your Wager:</label>
+                <br></br>
+                <label>
+                  <input type='radio' onChange={this.onChange} value={1} name='wager' checked={true} />
+                  $1
+                </label>
+                <input type='radio' onChange={this.onChange} value={5} name='wager' />
+                $5
               </div>
               <br></br>
               <div className='rsvp-form'>

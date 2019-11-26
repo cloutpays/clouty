@@ -14,54 +14,41 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html lang="en">
+      <html lang='en'>
         <Head>
-          <link
-            rel="icon"
-            type="image/x-icon"
-            href="/static/img/clouty-04.png"
-          />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta charset="utf-8" />
+          <link rel='icon' type='image/x-icon' href='https://getclouty.com/static/img/clouty-04.png' />
+          <meta name='viewport' content='width=device-width, initial-scale=1' />
+          <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+          <meta charset='utf-8' />
+          <meta name='keywords' content='fantasy music, clouty, fantasy rap, music league'></meta>
+          <meta name='description' content='Clouty™: Rap, Reimagined' />
+          <meta name='viewport' content='width=device-width, initial-scale=1' />
+          <link rel='home' href='https://getclouty.com/' />
+          <meta property='og:type' content='website' />
+          <meta property='og:image' content='https://getclouty.com/static/img/clouty-04.png' />
+          <meta property='og:url' content='http://getclouty.com/' />
+          <meta property='og:site_name' content='Clouty' />
+          <meta property='og:title' content='Clouty™: Rap, Reimagined' />
           <meta
-            name="keywords"
-            content="fantasy music, clouty, fantasy rap, music league"
-          ></meta>
-          <meta name="description" content="Clouty™: Rap, Reimagined" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="home" href="https://getclouty.com/" />
-          <meta property="og:type" content="website" />
-          <meta
-            property="og:image"
-            content="/static/img/transparent_clouty-08.png"
+            property='og:description'
+            content='Bridging the gap between DC culture, music and tech thru events, experiences and service.'
           />
-          <meta property="og:url" content="http://getclouty.com/" />
-          <meta property="og:site_name" content="Clouty" />
-          <meta property="og:title" content="Clouty™: Rap, Reimagined" />
+          <meta name='twitter:card' content='summary' />
+          <meta name='twitter:image' content='https://getclouty.com/static/img/clouty-04.png' />
+          <meta name='twitter:site' content='@chickenNmumbo' />
+          <meta name='twitter:title' content='Clouty' />
           <meta
-            property="og:description"
-            content="Bridging the gap between DC culture, music and tech thru events, experiences and service."
+            name='twitter:description'
+            content='Bridging the gap between DC culture, music and tech thru events, experiences and service.'
           />
-          <meta name="twitter:card" content="summary" />
-          <meta
-            name="twitter:image"
-            content="https://getclouty.com/static/img/clouty-04.png"
-          />
-          <meta name="twitter:site" content="@chickenNmumbo" />
-          <meta name="twitter:title" content="Clouty" />
-          <meta
-            name="twitter:description"
-            content="Bridging the gap between DC culture, music and tech thru events, experiences and service."
-          />
-          <meta name="twitter:creator" content="@getclouty" />
-          <meta property="fb:app_id" content="1334983689990834" />
-          <meta name="apple-mobile-web-app-title" content="Clouty" />
-          <meta name="application-name" content="Clouty" />
-          <meta name="theme-color" content="#ffffff" />
+          <meta name='twitter:creator' content='@getclouty' />
+          <meta property='fb:app_id' content='1334983689990834' />
+          <meta name='apple-mobile-web-app-title' content='Clouty' />
+          <meta name='application-name' content='Clouty' />
+          <meta name='theme-color' content='#ffffff' />
 
-          <meta name="apple-mobile-web-app-title" content="Clouty" />
-          <meta name="application-name" content="Clouty" />
+          <meta name='apple-mobile-web-app-title' content='Clouty' />
+          <meta name='application-name' content='Clouty' />
         </Head>
         <body>
           <Main />
