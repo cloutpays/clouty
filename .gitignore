@@ -12,8 +12,6 @@
 /.next/
 /out/
 
-# now.sh
-now.json
 # production
 /build
 
