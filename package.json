@@ -22,6 +22,24 @@
     "twilio": "^3.37.1"
   },
   "devDependencies": {
+    "eslint": "^6.7.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "prettier": "1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
