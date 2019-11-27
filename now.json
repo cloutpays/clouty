@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "package.json", "use": "@now/next" },
+    {
+      "src": "server/helpers/game.js",
+      "use": "@now/node"
+    },
+    {
+      "src": "server/handlers/post.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/game",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    }
+  ],
+  "env": {
+    "TWILIO_SID": "@twilio-sid",
+    "TWILIO_TOKEN": "@twilio-token",
+    "MONGO": "@mongo"
+  }
+}

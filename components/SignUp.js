@@ -111,6 +111,20 @@ class SignUpForm extends Component {
 
         {selected === 1 ? (
           <>
+            <p className='description'>
+              This is how it works....
+              <br />
+              <br />
+              Every week, we will host contests with up to 3 questions about things happening currently in the rap game.{' '}
+              <br />
+              <br />
+              This is a chance for you and your friends to put your intuition on the line! These questions will be
+              regarding releases and predictions and we will use data and announcements to determine each weeks winners.{' '}
+              <br />
+              <br />
+              Weekly earnings can either be cashed out or converted into clout tokens for future gameplay. Every
+              contestant will be notified when the results are revealed.
+            </p>
             <div className='description'>
               <h2>Select your game</h2>
             </div>
@@ -141,117 +155,135 @@ class SignUpForm extends Component {
         )}
 
         {selected === 2 ? (
-          <div className='row'>
-            <div className='card'>
-              <h3>Sign up</h3>
-              <br></br>
-              <form onSubmit={this.handleSubmit} lassName='rsvp-form'>
-                <div className='rsvp-form'>
-                  <label for='name'>Name: </label>
-                  <br></br>
-                  <input
-                    placeholder='Name'
-                    className='signup-input'
-                    type='text'
-                    value={name}
-                    onChange={this.onChange}
-                    name='name'
-                    required
-                  />
-                </div>
+          <>
+            <p className='description'>
+              This is how it works....
+              <br />
+              <br />
+              Every week, we will host contests with up to 3 questions about things happening currently in the rap game.{' '}
+              <br />
+              <br />
+              This is a chance for you and your friends to put your intuition on the line! These questions will be
+              regarding releases and predictions and we will use data and announcements to determine each weeks winners.{' '}
+              <br />
+              <br />
+              Weekly earnings can either be cashed out or converted into clout tokens for future gameplay. Every
+              contestant will be notified when the results are revealed.
+            </p>
+            <div className='row'>
+              <div className='card'>
+                <h3>Sign up</h3>
                 <br></br>
-                <div className='rsvp-form'>
-                  <label for='email'>Email address: </label>
+                <form onSubmit={this.handleSubmit} lassName='rsvp-form'>
+                  <div className='rsvp-form'>
+                    <label for='name'>Name: </label>
+                    <br></br>
+                    <input
+                      placeholder='Name'
+                      className='signup-input'
+                      type='text'
+                      value={name}
+                      onChange={this.onChange}
+                      name='name'
+                      required
+                    />
+                  </div>
                   <br></br>
-                  <input
-                    className='signup-input'
-                    type='email'
-                    value={email}
-                    onChange={this.onChange}
-                    name='email'
-                    required
-                  />
-                </div>
+                  <div className='rsvp-form'>
+                    <label for='email'>Email address: </label>
+                    <br></br>
+                    <input
+                      className='signup-input'
+                      type='email'
+                      value={email}
+                      onChange={this.onChange}
+                      name='email'
+                      required
+                    />
+                  </div>
 
-                <br></br>
-                <div className='rsvp-form'>
-                  <label for='name'>Where you from?: </label>
                   <br></br>
-                  <input
-                    className='signup-input'
-                    type='text'
-                    value={city}
-                    onChange={this.onChange}
-                    name='city'
-                    required
-                  />
-                </div>
-                <br></br>
-                <div className='rsvp-form'>
-                  <label for='email'>IG or Twitter @: </label>
+                  <div className='rsvp-form'>
+                    <label for='name'>Where you from?: </label>
+                    <br></br>
+                    <input
+                      className='signup-input'
+                      type='text'
+                      value={city}
+                      onChange={this.onChange}
+                      name='city'
+                      required
+                    />
+                  </div>
                   <br></br>
-                  <input
-                    className='signup-input'
-                    type='text'
-                    value={handle}
-                    onChange={this.onChange}
-                    name='handle'
-                    id='handle'
-                  />
-                </div>
-                <br></br>
+                  <div className='rsvp-form'>
+                    <label for='email'>IG or Twitter @: </label>
+                    <br></br>
+                    <input
+                      className='signup-input'
+                      type='text'
+                      value={handle}
+                      onChange={this.onChange}
+                      name='handle'
+                      id='handle'
+                    />
+                  </div>
+                  <br></br>
 
-                <div className='rsvp-form'>
-                  <label for='email'>Select your wager:</label>
+                  <div className='rsvp-form'>
+                    <label for='email'>Select your wager:</label>
+                    <br></br>
+                    <label>
+                      <input type='radio' onChange={this.onChange} value={1} name='wager' checked={true} />
+                      $1
+                    </label>
+                    <input type='radio' onChange={this.onChange} value={5} name='wager' />
+                    $5
+                  </div>
                   <br></br>
-                  <label>
-                    <input type='radio' onChange={this.onChange} value={1} name='wager' checked={true} />
-                    $1
-                  </label>
-                  <input type='radio' onChange={this.onChange} value={5} name='wager' />
-                  $5
-                </div>
-                <br></br>
-                <div className='rsvp-form'>
-                  <label for='number'>Phone number: </label>
-                  <br></br>
-                  <input
-                    className='signup-input'
-                    type='text'
-                    value={phoneNumber}
-                    onChange={this.onChange}
-                    name='phoneNumber'
-                    id='phoneNumber'
-                  />
-                </div>
+                  <div className='rsvp-form'>
+                    <label for='number'>Phone number: </label>
+                    <br></br>
+                    <input
+                      className='signup-input'
+                      type='text'
+                      value={phoneNumber}
+                      onChange={this.onChange}
+                      name='phoneNumber'
+                      id='phoneNumber'
+                    />
+                  </div>
 
-                {this.renderQuestion()}
-                <br></br>
-                <br></br>
-                <button>Play</button>
-                <button onClick={this.restartGame}>Start-Over</button>
-              </form>
+                  {this.renderQuestion()}
+                  <br></br>
+                  <br></br>
+                  <button>Play</button>
+                  <button onClick={this.restartGame}>Reset</button>
+                </form>
+              </div>
             </div>
-          </div>
+          </>
         ) : (
           ''
         )}
         {selected === 3 ? (
           <div className='row'>
-            <p>
-              Your Submission been received and logged! The final entry date is <strong>Tuesday, December 3rd.</strong>{' '}
-              <br />
-              <br />
-              <strong>
-                Please note: your entry is not valid until we receive confirmation of your wager via Cash App.
-              </strong>
-              <br />
-              All pay outs will be dispersed through Cash App as well. Winnings can be used for future gameplay.
-              <br />
-              <br /> For all issues please email <a href='mailto: payments@clouty.io'> payments@clouty.io</a>. For all
-              media inquiries please email
-              <a href='mailto: breemz@clouty.io'> breemz@clouty.io</a>
-            </p>
+            <div className='description'>
+              <p>
+                Your Submission been received and logged! The final entry date is{' '}
+                <strong>Tuesday, December 3rd.</strong> <br />
+                <br />
+                <strong>
+                  Please note: your entry is not valid until we receive confirmation of your wager via Cash App.
+                </strong>
+                <br />
+                All pay outs will be dispersed through Cash App as well. Winnings can be used for future gameplay.
+                <br />
+                <br /> For all issues please email <a href='mailto: payments@clouty.io'> payments@clouty.io</a>. For all
+                media inquiries please email
+                <a href='mailto: breemz@clouty.io'> breemz@clouty.io</a>
+              </p>
+            </div>
           </div>
         ) : (
           ''
