@@ -14,55 +14,53 @@ class SignUpForm extends Component {
       answer: '',
       phoneNumber: '',
       wager: 1,
-      selected: false,
+      selected: 1,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {}
   onChange = (e) => {
-    console.log(e.target.name, e.target.value);
-    this.setState({ [e.target.name]: e.target.value }, () => console.log(this.state));
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   renderQuestion() {
     const { answer } = this.state;
     const questionThree = (
-      <form>
+      <>
         <br></br>
         <label for='game1'>Place your bet:</label>
         <br></br>
-        <select onChange={this.onChange} value={answer} name='answer'>
+        <select required onChange={this.onChange} value={answer} name='answer'>
           <option value=''>--Please choose an artist--</option>
           <option value='Fivio Foreign'>Fivio Foreign</option>
           <option value='Pop Smoke'>Pop Smoke</option>
         </select>
-      </form>
+      </>
     );
     const questionOne = (
-      <form>
+      <>
         <br></br>
         <label for='game1'>Place your bet:</label>
         <br></br>
-        <select onChange={this.onChange} value={answer} name='answer'>
+        <select required onChange={this.onChange} value={answer} name='answer'>
           <option value=''>--Please choose an artist--</option>
           <option value='The Game'>The Game</option>
           <option value='Fabolous'>Fabolous</option>
         </select>
-      </form>
+      </>
     );
     const questionTwo = (
-      <form>
+      <>
         <br></br>
         <label for='game1'>Place your bet:</label>
         <br></br>
-        <select onChange={this.onChange} value={answer} name='answer'>
+        <select required onChange={this.onChange} value={answer} name='answer'>
           <option value=''>--Yes or No--</option>
           <option value='Yes'>Yes</option>
           <option value='No'>No</option>
         </select>
-      </form>
+      </>
     );
-    console.log('go', this.state.question);
     switch (this.state.question) {
       case 1:
         return questionOne;
@@ -92,18 +90,14 @@ class SignUpForm extends Component {
       },
     })
       .then((res) => {
-        console.log('RESPONSE RECEIVED: ', res);
-        // window.location.href = '/';
+        this.setState({ selected: 3 });
       })
-      .catch((err) => {
-        console.log('AXIOS ERROR: ', err);
-        // window.location.href = '/signup';
-      });
+      .catch((err) => {});
   }
 
   selectGame(e, game) {
     e.preventDefault();
-    this.setState({ question: game, selected: true });
+    this.setState({ question: game, selected: 2 });
   }
   render() {
     const { name, email, city, handle, question, answer, phoneNumber, selected } = this.state;
@@ -133,16 +127,17 @@ class SignUpForm extends Component {
           </a>
         </div>
 
-        {selected ? (
+        {selected === 2 ? (
           <div className='row'>
             <div className='card'>
               <h3>Sign up</h3>
               <br></br>
-              <form className='rsvp-form'>
+              <form onSubmit={this.handleSubmit} lassName='rsvp-form'>
                 <div className='rsvp-form'>
                   <label for='name'>Name: </label>
                   <br></br>
                   <input
+                    placeholder='Name'
                     className='signup-input'
                     type='text'
                     value={name}
@@ -228,11 +223,23 @@ class SignUpForm extends Component {
                 {this.renderQuestion()}
                 {/* </div> */}
                 <br></br>
-                <button onClick={this.handleSubmit} className='btn btn--right btn--tickets'>
-                  SIGN UP
-                </button>
+                <br></br>
+                <button className='btn btn--right btn--tickets'>Play</button>
               </form>
             </div>
+          </div>
+        ) : (
+          ''
+        )}
+        {selected === 3 ? (
+          <div className='row'>
+            Confirmation:
+            <p>
+              Your Submission been received and logged. The final entry date is Tuesday, December 3rd. Please note: your
+              entry is not valid until we receive confirmation of your wager via Cash App. All pay outs will be
+              dispersed through Cash App as well. Winnings can be used for future gameplay. For all issues please email
+              payments@clouty.io. For all media inquiries please email breemz@clouty.io
+            </p>
           </div>
         ) : (
           ''
