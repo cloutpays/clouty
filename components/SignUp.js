@@ -17,6 +17,7 @@ class SignUpForm extends Component {
       selected: 1,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.restartGame = this.restartGame.bind(this);
   }
   componentDidMount() {}
   onChange = (e) => {
@@ -72,6 +73,9 @@ class SignUpForm extends Component {
         return '';
     }
   }
+  restartGame() {
+    this.setState({ selected: 1 });
+  }
 
   async handleSubmit(e) {
     e.preventDefault();
@@ -105,27 +109,36 @@ class SignUpForm extends Component {
       <div>
         <link href='/public/static/css/styles.css' rel='stylesheet' />
 
-        <div className='row'>
-          <a href='#' onClick={(e) => this.selectGame(e, 1)} className='card'>
-            <h3>Game #1 &rarr;</h3>
-            <p>The Game and Fab drop Nov.29th w/ 'Born 2 Rap and 'SS3'. Who will sell more in the first week?</p>
-            <br />
-          </a>
-          {/* </div> */}
-          {/* <div className="row"> */}
-          <a href='#' onClick={(e) => this.selectGame(e, 2)} className='card'>
-            <h3>Game #2 &rarr;</h3>
-            <p>Larry June has dropped five projects in 2019. Will he close out 2019 with a 6th?</p>
-            <br />
-          </a>
-          {/* </div> */}
-          {/* // <div className="row"> */}
-          <a href='#' onClick={(e) => this.selectGame(e, 3)} className='card'>
-            <h3>Game #3 &rarr;</h3>
-            <p>Who gonna have the next banger? Pop Smoke or Fivio Foreign</p>
-            <br />
-          </a>
-        </div>
+        {selected === 1 ? (
+          <>
+            <div className='description'>
+              <h2>Select your game</h2>
+            </div>
+            <div className='row'>
+              <a href='#' onClick={(e) => this.selectGame(e, 1)} className='card'>
+                <h3>Game #1 &rarr;</h3>
+                <p>The Game and Fab drop Nov.29th w/ 'Born 2 Rap and 'SS3'. Who will sell more in the first week?</p>
+                <br />
+              </a>
+              {/* </div> */}
+              {/* <div className="row"> */}
+              <a href='#' onClick={(e) => this.selectGame(e, 2)} className='card'>
+                <h3>Game #2 &rarr;</h3>
+                <p>Larry June has dropped five projects in 2019. Will he close out 2019 with a 6th?</p>
+                <br />
+              </a>
+              {/* </div> */}
+              {/* // <div className="row"> */}
+              <a href='#' onClick={(e) => this.selectGame(e, 3)} className='card'>
+                <h3>Game #3 &rarr;</h3>
+                <p>Who gonna have the next banger? Pop Smoke or Fivio Foreign</p>
+                <br />
+              </a>
+            </div>
+          </>
+        ) : (
+          ''
+        )}
 
         {selected === 2 ? (
           <div className='row'>
@@ -211,20 +224,12 @@ class SignUpForm extends Component {
                     id='phoneNumber'
                   />
                 </div>
-                {/* <div className='rsvp-form'>
-                  <label for='name'>Place your bet </label>
-                  <br></br>
-                  <select value={question} name='question' onChange={this.onChange}>
-                    <option>Select a Game</option>
-                    <option value={1}>Game #1</option>
-                    <option value={2}>Game #2</option>
-                    <option value={3}>Game #3</option>
-                  </select> */}
+
                 {this.renderQuestion()}
-                {/* </div> */}
                 <br></br>
                 <br></br>
-                <button className='btn btn--right btn--tickets'>Play</button>
+                <button>Play</button>
+                <button onClick={this.restartGame}>Start-Over</button>
               </form>
             </div>
           </div>
@@ -233,12 +238,19 @@ class SignUpForm extends Component {
         )}
         {selected === 3 ? (
           <div className='row'>
-            Confirmation:
             <p>
-              Your Submission been received and logged. The final entry date is Tuesday, December 3rd. Please note: your
-              entry is not valid until we receive confirmation of your wager via Cash App. All pay outs will be
-              dispersed through Cash App as well. Winnings can be used for future gameplay. For all issues please email
-              payments@clouty.io. For all media inquiries please email breemz@clouty.io
+              Your Submission been received and logged! The final entry date is <strong>Tuesday, December 3rd.</strong>{' '}
+              <br />
+              <br />
+              <strong>
+                Please note: your entry is not valid until we receive confirmation of your wager via Cash App.
+              </strong>
+              <br />
+              All pay outs will be dispersed through Cash App as well. Winnings can be used for future gameplay.
+              <br />
+              <br /> For all issues please email <a href='mailto: payments@clouty.io'> payments@clouty.io</a>. For all
+              media inquiries please email
+              <a href='mailto: breemz@clouty.io'> breemz@clouty.io</a>
             </p>
           </div>
         ) : (
