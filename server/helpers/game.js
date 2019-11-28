@@ -36,7 +36,7 @@ const gameApi = wrapAsync(async (req) => {
   const { name, phoneNumber, wager } = data;
   // Set caching headers to serve stale content (if over a second old)
   // while revalidating fresh content in the background
-  sendTextMessage(name, phoneNumber, wager);
+  await sendTextMessage(name, phoneNumber, wager);
   const database = await connect();
   const collection = await database.collection('cloutpays');
   const user = await collection.insertOne(data);
