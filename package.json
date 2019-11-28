@@ -36,7 +36,12 @@
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
     "prettier": "1.19.1",
+    "prettier-eslint": "^9.0.1",
+    "prettier-eslint-cli": "^5.0.0",
+    "prettier-tslint": "^0.4.2",
     "tslint": "^5.20.1",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-no-focused-test": "^0.5.0",
     "tslint-react": "^4.1.0",
     "typescript": "^3.7.2"
   },
@@ -46,12 +51,18 @@
     }
   },
   "lint-staged": {
-    "*.{js,css,json,md}": [
-      "prettier --write",
+    "*.{js,jsx}": [
+      "prettier-eslint --write",
+      "eslint",
       "git add"
     ],
-    "*.js": [
-      "eslint --fix",
+    "*.{ts,tsx}": [
+      "prettier-tslint fix",
+      "tslint",
+      "git add"
+    ],
+    "*.{scss, sass}": [
+      "prettier-eslint --write",
       "git add"
     ]
   }

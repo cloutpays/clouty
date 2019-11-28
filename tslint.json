@@ -1,5 +1,6 @@
 {
-  "extends": ["tslint:recommended", "tslint-react"],
+  "extends": ["tslint:recommended", "tslint-react", "tslint-eslint-rules"],
+  "rulesDirectory": ["tslint-no-focused-test"],
   "rules": {
     "comment-format": false,
     "max-line-length": [
