@@ -48,6 +48,8 @@ const mapQuestion = (question: number) => {
       return QUESTIONS[2];
     case 3:
       return QUESTIONS[3];
+    default:
+      return QUESTIONS[1];
   }
 };
 
@@ -56,7 +58,7 @@ const QuestionController: React.FC<QuestionControllerProps> = ({
   question,
   setAnswer,
 }) => {
-  const activeQuestion: any = mapQuestion(question);
+  const activeQuestion = mapQuestion(question);
   const { htmlFor, name, options, title } = activeQuestion;
   return (
     <Question
