@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import axios from 'axios';
-import 'react-phone-number-input/style.css';
+import React, { useState } from 'react';
 import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 import QuestionController from './QuestionController';
 
 const SignUpForm: React.FC = () => {
@@ -135,11 +135,11 @@ const SignUpForm: React.FC = () => {
           <div className='row'>
             <div className='card'>
               <h3>Sign up</h3>
-              <br></br>
+              <br />
               <form onSubmit={handleSubmit} className='rsvp-form'>
                 <div className='rsvp-form'>
                   <label htmlFor='name'>Name: </label>
-                  <br></br>
+                  <br />
                   <input
                     placeholder='Name'
                     className='signup-input'
@@ -147,40 +147,40 @@ const SignUpForm: React.FC = () => {
                     value={name}
                     onChange={(event) => setName(event.currentTarget.value)}
                     name='name'
-                    required
+                    required={true}
                   />
                 </div>
-                <br></br>
+                <br />
                 <div className='rsvp-form'>
                   <label htmlFor='email'>Email address: </label>
-                  <br></br>
+                  <br />
                   <input
                     className='signup-input'
                     type='email'
                     value={email}
                     onChange={(event) => setEmail(event.currentTarget.value)}
                     name='email'
-                    required
+                    required={true}
                   />
                 </div>
 
-                <br></br>
+                <br />
                 <div className='rsvp-form'>
                   <label htmlFor='name'>Where you from?: </label>
-                  <br></br>
+                  <br />
                   <input
                     className='signup-input'
                     type='text'
                     value={city}
                     onChange={(event) => setCity(event.currentTarget.value)}
                     name='city'
-                    required
+                    required={true}
                   />
                 </div>
-                <br></br>
+                <br />
                 <div className='rsvp-form'>
                   <label htmlFor='email'>IG or Twitter @: </label>
-                  <br></br>
+                  <br />
                   <input
                     className='signup-input'
                     type='text'
@@ -190,11 +190,11 @@ const SignUpForm: React.FC = () => {
                     id='handle'
                   />
                 </div>
-                <br></br>
+                <br />
 
                 <div className='rsvp-form'>
                   <label htmlFor='email'>Select your wager:</label>
-                  <br></br>
+                  <br />
                   <label>
                     <input
                       type='radio'
@@ -217,7 +217,7 @@ const SignUpForm: React.FC = () => {
                   />
                   $5
                 </div>
-                <br></br>
+                <br />
                 <div className='rsvp-form'>
                   <PhoneInput
                     country='US'
@@ -231,8 +231,8 @@ const SignUpForm: React.FC = () => {
                   question={question}
                   setAnswer={setAnswer}
                 />
-                <br></br>
-                <br></br>
+                <br />
+                <br />
                 <button>Play</button>
                 <button onClick={changeGame}>Change Game</button>
               </form>

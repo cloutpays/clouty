@@ -23,11 +23,11 @@ const Question: React.FC<QuestionProps> = ({
   title,
 }) => (
   <>
-    <br></br>
+    <br />
     <label htmlFor={htmlFor}>{title}</label>
-    <br></br>
+    <br />
     <select
-      required
+      required={true}
       onChange={(event) => setAnswer(event.currentTarget.value)}
       value={answer}
       name={name}>
