@@ -20,27 +20,25 @@ const SignUpForm: React.FC = () => {
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
+    const date = new Date();
     event.preventDefault();
     await axios({
       method: 'post',
       url: '/api/game',
       data: {
-        question: question,
-        email: email,
-        answer: answer,
-        name: name,
-        city: city,
-        phoneNumber: phoneNumber,
-        handle: handle,
-        wager: wager,
+        question,
+        email,
+        answer,
+        name,
+        city,
+        phoneNumber,
+        handle,
+        wager,
+        date,
       },
-    })
-      .then(() => {
-        setSelected(3);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(() => {
+      setSelected(3);
+    });
   };
 
   const selectGame = (
@@ -244,21 +242,38 @@ const SignUpForm: React.FC = () => {
         <div className='row'>
           <div className='description'>
             <p>
-              Your Submission been received and logged! The final entry date is{' '}
-              <strong>Tuesday, December 3rd.</strong> <br />
+              Your Submission been received!
+              <br />
               <br />
               <strong>
-                Please note: your entry is not valid until we receive
-                confirmation of your wager via Cash App.
+                Expect a text with instructions to complete your wager via CASH
+                APP. Your entry is not valid until we receive confirmation of
+                your wager via Cash App.
               </strong>
+              <br />
               <br />
               All pay outs will be dispersed through Cash App as well. Winnings
               can be used for future gameplay.
               <br />
-              <br /> For all issues please email{' '}
-              <a href='mailto: payments@clouty.io'> payments@clouty.io</a>. For
-              all media inquiries please email
-              <a href='mailto: breemz@clouty.io'> breemz@clouty.io</a>
+              <br />
+              If you did not receive a text, you can click below to pay as well
+              <br />
+              <br />
+              <a href={`https://cash.app/$Cloutyio/${wager}`}>
+                <img className='cashapp' src='/static/img/cashapp.png' />
+              </a>{' '}
+              <br />
+              <br />
+              The final entry date is <strong>Tuesday, December 3rd.</strong>
+              <br />
+              <br />
+              <br />
+              <i>
+                For all issues please email{' '}
+                <a href='mailto: payments@clouty.io'> payments@clouty.io</a>.
+                For all media inquiries please email
+                <a href='mailto: breemz@clouty.io'> breemz@clouty.io</a>
+              </i>
             </p>
           </div>
         </div>

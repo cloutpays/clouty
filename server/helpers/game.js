@@ -21,7 +21,7 @@ const wrapAsync = (handler) => (req, res) =>
 const sendTextMessage = async (name, phoneNumber, wager) => {
   try {
     const message = await client.messages.create({
-      body: `Thank you for signing up to Clouty ${name}! Here is the final step to secure your bet https://cash.app/$Cloutyio/${wager}`,
+      body: `Thank you for signing up to Clouty ${name}! Here is the final step to secure your bet https://cash.app/$getclouty/${wager}`,
       from: '+14154172439',
       to: phoneNumber,
     });
