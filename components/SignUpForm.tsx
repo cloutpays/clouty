@@ -14,14 +14,13 @@ const SignUpForm: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [wager, setWager] = useState<number>(1);
   const [selected, setSelected] = useState<number>(1);
-  const [date] = useState<Date>(new Date());
 
   const changeGame = () => {
-    const date = new Date();
     setSelected(1);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
+    const date = new Date();
     event.preventDefault();
     await axios({
       method: 'post',
