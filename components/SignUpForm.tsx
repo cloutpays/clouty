@@ -17,6 +17,7 @@ const SignUpForm: React.FC = () => {
   const [date] = useState<Date>(new Date());
 
   const changeGame = () => {
+    const date = new Date();
     setSelected(1);
   };
 
