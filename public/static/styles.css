@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica,
+    sans-serif;
 }
 nav {
   text-align: center;
@@ -83,4 +84,10 @@ a {
   padding: 12px 0 0;
   font-size: 13px;
   color: #333;
+}
+
+.cashapp {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
 }
