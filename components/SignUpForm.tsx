@@ -14,6 +14,7 @@ const SignUpForm: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [wager, setWager] = useState<number>(1);
   const [selected, setSelected] = useState<number>(1);
+  const [date] = useState<Date>(new Date());
 
   const changeGame = () => {
     setSelected(1);
@@ -25,14 +26,15 @@ const SignUpForm: React.FC = () => {
       method: 'post',
       url: '/api/game',
       data: {
-        question: question,
-        email: email,
-        answer: answer,
-        name: name,
-        city: city,
-        phoneNumber: phoneNumber,
-        handle: handle,
-        wager: wager,
+        question,
+        email,
+        answer,
+        name,
+        city,
+        phoneNumber,
+        handle,
+        wager,
+        date,
       },
     }).then(() => {
       setSelected(3);
