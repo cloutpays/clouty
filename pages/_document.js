@@ -51,7 +51,7 @@ export default class MyDocument extends Document {
           <meta name='twitter:title' content='Clouty' />
           <meta
             name='twitter:description'
-            content='Bridging the gap between DC culture, music and tech thru events, experiences and service.'
+            content='Fantasy gameplay at the intersection of data, music and finance.'
           />
           <meta name='twitter:creator' content='@getclouty' />
           <meta property='fb:app_id' content='1334983689990834' />
