@@ -4,19 +4,18 @@ const next = require('next');
 const api = require('./lib/api');
 
 const co = require('co');
-const url = require('url');
-const { MongoClient, ObjectId } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const PORT = parseInt(process.env.PORT, 10) || 8080;
 const dev = process.env.NODE_ENV !== 'production';
-const { MONGO_URL } = process.env;
+const { MONGO } = process.env;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
 co(function*() {
   // Initialize the Next.js app
   yield app.prepare();
-  console.log(`Connecting to ${MONGO_URL}`);
-  const db = yield MongoClient.connect(MONGO_URL, {
+  console.log(`Connecting to ${MONGO}`);
+  const db = yield MongoClient.connect(MONGO, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });
@@ -36,4 +35,4 @@ co(function*() {
 
   server.listen(PORT);
   console.log(`Listening on ${PORT}`);
-}).catch(error => console.error(error.stack));
+}).catch((error) => console.error(error.stack));
