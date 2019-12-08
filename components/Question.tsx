@@ -30,7 +30,7 @@ const Question: React.FC<QuestionProps> = ({
       onChange={(event) => setAnswer(event.currentTarget.value)}
       value={answer}
       name={name}>
-      {options.map((option: OptionProps, index: number) => (
+      {options.map((option: Option, index: number) => (
         <option key={index} value={option.value}>
           {option.key}
         </option>
