@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=dev node server.js",
-    "build": "next build",
-    "start": "next start"
+    "dev": "now dev",
+    "start": "now"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
