@@ -1,5 +1,5 @@
 import React from 'react';
-interface OptionProps {
+interface Option {
   value: string;
   key: string;
 }
