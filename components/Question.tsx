@@ -1,6 +1,4 @@
-// import { Select } from 'antd';
 import React from 'react';
-// const { Option } = Select;
 interface OptionProps {
   value: string;
   key: string;
@@ -37,8 +35,6 @@ const Question: React.FC<QuestionProps> = ({
           {option.key}
         </option>
       ))}
-
-      {/* </Select> */}
     </select>
   </>
 );
