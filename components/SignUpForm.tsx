@@ -1,7 +1,10 @@
+import { Input, Radio } from 'antd';
+import 'antd/dist/antd.css';
+import { RadioChangeEvent } from 'antd/lib/radio';
 import axios from 'axios';
+import 'cleave.js/dist/addons/cleave-phone.us';
+import Cleave from 'cleave.js/react';
 import React, { useState } from 'react';
-import PhoneInput from 'react-phone-number-input';
-import 'react-phone-number-input/style.css';
 import QuestionController from './QuestionController';
 
 const SignUpForm: React.FC = () => {
@@ -50,17 +53,20 @@ const SignUpForm: React.FC = () => {
     setSelected(2);
   };
 
+  const radioStyle = {
+    display: 'block',
+    height: '30px',
+    lineHeight: '30px',
+  };
   return (
     <>
-      <link href='/public/static/css/styles.css' rel='stylesheet' />
-
       {selected === 1 && (
         <>
           <p className='description'>
             This is how it works....
             <br />
             <br />
-            Every week, we will host contests with up to 3 questions about
+            Every week, we will host contests with up to three questions about
             things happening currently in the rap game. <br />
             <br />
             This is a chance for you and your friends to put your intuition on
@@ -72,20 +78,20 @@ const SignUpForm: React.FC = () => {
             tokens for future gameplay. Every contestant will be notified when
             the results are revealed.
           </p>
-          <div className='description'>
-            <h2>Select your game</h2>
-          </div>
+          <div className='header'>Select your game</div>
+
           <div className='row'>
             <a
               href='#'
               onClick={(event) => selectGame(event, 1)}
-              className='card'>
+              className='not-active'>
               <h3>Game #1 &rarr;</h3>
               <p>
                 The Game and Fab drop Nov.29th w/ 'Born 2 Rap and 'SS3'. Who
                 will sell more in the first week?
               </p>
               <br />
+              <div className='card-status'>Ended 12/6</div>
             </a>
 
             <a
@@ -99,13 +105,36 @@ const SignUpForm: React.FC = () => {
               </p>
               <br />
             </a>
-
+          </div>
+          <div className='row'>
             <a
               href='#'
               onClick={(event) => selectGame(event, 3)}
               className='card'>
               <h3>Game #3 &rarr;</h3>
               <p>Who gonna have the next banger? Pop Smoke or Fivio Foreign</p>
+              <br />
+            </a>
+            <a
+              href='#'
+              onClick={(event) => selectGame(event, 4)}
+              className='card'>
+              <h3>Game #4 &rarr;</h3>
+              <p>
+                Buddy is going on tour very soon. He recently asked his fans to
+                suggest his opening act. Who do you believe it will be?
+              </p>
+              <br />
+            </a>
+            <a
+              href='#'
+              onClick={(event) => selectGame(event, 5)}
+              className='card'>
+              <h3>Game #5 &rarr;</h3>
+              <p>
+                Friday December 6th the followingn albums drop. In which order
+                will these chart for the 1st week sales? Parlay winner wins x 3.
+              </p>
               <br />
             </a>
           </div>
@@ -138,9 +167,7 @@ const SignUpForm: React.FC = () => {
                 <div className='rsvp-form'>
                   <label htmlFor='name'>Name: </label>
                   <br />
-                  <input
-                    placeholder='Name'
-                    className='signup-input'
+                  <Input
                     type='text'
                     value={name}
                     onChange={(event) => setName(event.currentTarget.value)}
@@ -152,8 +179,7 @@ const SignUpForm: React.FC = () => {
                 <div className='rsvp-form'>
                   <label htmlFor='email'>Email address: </label>
                   <br />
-                  <input
-                    className='signup-input'
+                  <Input
                     type='email'
                     value={email}
                     onChange={(event) => setEmail(event.currentTarget.value)}
@@ -166,8 +192,7 @@ const SignUpForm: React.FC = () => {
                 <div className='rsvp-form'>
                   <label htmlFor='name'>Where you from?: </label>
                   <br />
-                  <input
-                    className='signup-input'
+                  <Input
                     type='text'
                     value={city}
                     onChange={(event) => setCity(event.currentTarget.value)}
@@ -179,8 +204,7 @@ const SignUpForm: React.FC = () => {
                 <div className='rsvp-form'>
                   <label htmlFor='email'>IG or Twitter @: </label>
                   <br />
-                  <input
-                    className='signup-input'
+                  <Input
                     type='text'
                     value={handle}
                     onChange={(event) => setHandle(event.currentTarget.value)}
@@ -193,35 +217,31 @@ const SignUpForm: React.FC = () => {
                 <div className='rsvp-form'>
                   <label htmlFor='email'>Select your wager:</label>
                   <br />
-                  <label>
-                    <input
-                      type='radio'
-                      onChange={(event) =>
-                        setWager(Number(event.currentTarget.value))
-                      }
-                      value={1}
-                      name='wager'
-                      checked={true}
-                    />
-                    $1
-                  </label>
-                  <input
-                    type='radio'
-                    onChange={(event) =>
-                      setWager(Number(event.currentTarget.value))
-                    }
-                    value={5}
-                    name='wager'
-                  />
-                  $5
+                  <Radio.Group
+                    onChange={(event: RadioChangeEvent) =>
+                      setWager(Number(event.target.value))
+                    }>
+                    <Radio style={radioStyle} value={1}>
+                      $1
+                    </Radio>
+                    <Radio style={radioStyle} value={5}>
+                      $5
+                    </Radio>
+                    <Radio style={radioStyle} value={10}>
+                      $10
+                    </Radio>
+                  </Radio.Group>
                 </div>
                 <br />
                 <div className='rsvp-form'>
-                  <PhoneInput
-                    country='US'
-                    onChange={setPhoneNumber}
-                    placeholder='Enter phone number'
-                    value={phoneNumber}
+                  <label htmlFor='phone-number'>Phone Number</label>
+
+                  <Cleave
+                    className='ant-input'
+                    onChange={(event) =>
+                      setPhoneNumber(event.currentTarget.value)
+                    }
+                    options={{ phone: true, phoneRegionCode: 'US' }}
                   />
                 </div>
                 <QuestionController

@@ -38,6 +38,31 @@ const QUESTIONS = {
     ],
     title: 'Place your bet:',
   },
+  4: {
+    htmlFor: 'game1',
+    name: 'answer',
+    options: [
+      { value: '', key: '--Please choose an artist--' },
+      { value: 'Azchike', key: 'Azchike' },
+      { value: 'Smino', key: 'Smino' },
+      { value: 'Malia', key: 'Malia' },
+      { value: 'Neither', key: 'Neither' },
+    ],
+    title: 'Place your bet:',
+  },
+  5: {
+    htmlFor: 'game1',
+    name: 'answer',
+    options: [
+      { value: '', key: '--Please choose an artist--' },
+      { value: 'Azchike', key: 'Azchike' },
+      { value: 'Smino', key: 'Smino' },
+      { value: 'Malia', key: 'Malia' },
+      { value: 'Neither', key: 'Neither' },
+    ],
+    title: 'Place your bet:',
+  },
+  // 6Roddy Rich "PEMFBA" Max B "House Money" XXXTENTACTION "Bad vibes FOREVER"
 };
 
 const mapQuestion = (question: number) => {
@@ -48,6 +73,8 @@ const mapQuestion = (question: number) => {
       return QUESTIONS[2];
     case 3:
       return QUESTIONS[3];
+    case 4:
+      return QUESTIONS[4];
     default:
       return QUESTIONS[1];
   }

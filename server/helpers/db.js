@@ -20,8 +20,8 @@ module.exports = async () => {
   try {
     client = await MongoClient.connect(process.env.MONGO, {
       useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
-    console.log('mongo', process.env.MONGO);
   } catch (err) {
     throw new Error('[MongoDB] Connection Error: ' + err);
   }
@@ -33,6 +33,7 @@ module.exports = async () => {
   );
 
   // Cache the database connection and return the connection
+  // eslint-disable-next-line require-atomic-updates
   cachedDb = database;
   return database;
 };
