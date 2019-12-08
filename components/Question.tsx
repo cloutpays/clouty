@@ -8,7 +8,7 @@ interface QuestionProps {
   answer: string;
   htmlFor: string;
   name: string;
-  options: OptionProps[];
+  options: Option[];
   setAnswer: React.Dispatch<React.SetStateAction<string>>;
   title: string;
 }
