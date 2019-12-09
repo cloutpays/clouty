@@ -1,4 +1,4 @@
-import { Input, Radio } from 'antd';
+import { Form, Input, message, Radio } from 'antd';
 import 'antd/dist/antd.css';
 import { RadioChangeEvent } from 'antd/lib/radio';
 import axios from 'axios';
@@ -17,28 +17,37 @@ const SignUpForm: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [wager, setWager] = useState<number>(1);
   const [selected, setSelected] = useState<number>(1);
-
   const changeGame = () => {
     setSelected(1);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
     const date = new Date();
+    const userSubmission = {
+      question,
+      email,
+      answer,
+      name,
+      city,
+      phoneNumber,
+      handle,
+      wager,
+      date,
+    };
+    const isEmpty = (val: string) => {
+      return val === '';
+    };
+
+    // temporary until i enabled required fields
+    if (isEmpty(userSubmission.phoneNumber) || isEmpty(userSubmission.answer)) {
+      message.warning('Please fill all fields');
+    }
     event.preventDefault();
+
     await axios({
       method: 'post',
       url: '/api/game',
-      data: {
-        question,
-        email,
-        answer,
-        name,
-        city,
-        phoneNumber,
-        handle,
-        wager,
-        date,
-      },
+      data: userSubmission,
     }).then(() => {
       setSelected(3);
     });
@@ -53,33 +62,10 @@ const SignUpForm: React.FC = () => {
     setSelected(2);
   };
 
-  const radioStyle = {
-    display: 'block',
-    height: '30px',
-    lineHeight: '30px',
-  };
   return (
     <>
       {selected === 1 && (
         <>
-          <p className='description'>
-            This is how it works....
-            <br />
-            <br />
-            Every week, we will host contests with up to three questions about
-            things happening currently in the rap game. <br />
-            <br />
-            This is a chance for you and your friends to put your intuition on
-            the line! These questions will be regarding releases and predictions
-            and we will use data and announcements to determine each weeks
-            winners. <br />
-            <br />
-            Weekly earnings can either be cashed out or converted into clout
-            tokens for future gameplay. Every contestant will be notified when
-            the results are revealed.
-          </p>
-          <div className='header'>Select your game</div>
-
           <div className='row'>
             <a
               href='#'
@@ -126,14 +112,29 @@ const SignUpForm: React.FC = () => {
               </p>
               <br />
             </a>
+          </div>
+          <div className='row'>
             <a
               href='#'
               onClick={(event) => selectGame(event, 5)}
               className='card'>
               <h3>Game #5 &rarr;</h3>
               <p>
-                Friday December 6th the followingn albums drop. In which order
+                Friday December 6th the following albums drop. In which order
                 will these chart for the 1st week sales? Parlay winner wins x 3.
+              </p>
+              <br />
+            </a>
+            <a
+              href='#'
+              onClick={(event) => selectGame(event, 6)}
+              className='card'>
+              <h3>Game #6 &rarr;</h3>
+              <p>
+                Our favorite songs usually aren’t the ones that make it to the
+                radio. The masses tend to eat whatever they're fed. What song
+                off Roddy Rich’s project is going to be the “Single Single”
+                (radio friendly smash) (post album drop)
               </p>
               <br />
             </a>
@@ -143,30 +144,12 @@ const SignUpForm: React.FC = () => {
 
       {selected === 2 && (
         <>
-          <p className='description'>
-            This is how it works....
-            <br />
-            <br />
-            Every week, we will host contests with up to 3 questions about
-            things happening currently in the rap game. <br />
-            <br />
-            This is a chance for you and your friends to put your intuition on
-            the line! These questions will be regarding releases and predictions
-            and we will use data and announcements to determine each weeks
-            winners. <br />
-            <br />
-            Weekly earnings can either be cashed out or converted into clout
-            tokens for future gameplay. Every contestant will be notified when
-            the results are revealed.
-          </p>
           <div className='row'>
-            <div className='card'>
+            <div className='form-card'>
               <h3>Sign up</h3>
               <br />
-              <form onSubmit={handleSubmit} className='rsvp-form'>
-                <div className='rsvp-form'>
-                  <label htmlFor='name'>Name: </label>
-                  <br />
+              <Form onSubmit={handleSubmit}>
+                <Form.Item label='Name' hasFeedback={true}>
                   <Input
                     type='text'
                     value={name}
@@ -174,9 +157,8 @@ const SignUpForm: React.FC = () => {
                     name='name'
                     required={true}
                   />
-                </div>
-                <br />
-                <div className='rsvp-form'>
+                </Form.Item>
+                <div>
                   <label htmlFor='email'>Email address: </label>
                   <br />
                   <Input
@@ -189,7 +171,7 @@ const SignUpForm: React.FC = () => {
                 </div>
 
                 <br />
-                <div className='rsvp-form'>
+                <div>
                   <label htmlFor='name'>Where you from?: </label>
                   <br />
                   <Input
@@ -201,7 +183,7 @@ const SignUpForm: React.FC = () => {
                   />
                 </div>
                 <br />
-                <div className='rsvp-form'>
+                <div>
                   <label htmlFor='email'>IG or Twitter @: </label>
                   <br />
                   <Input
@@ -214,26 +196,26 @@ const SignUpForm: React.FC = () => {
                 </div>
                 <br />
 
-                <div className='rsvp-form'>
+                <div>
                   <label htmlFor='email'>Select your wager:</label>
                   <br />
                   <Radio.Group
                     onChange={(event: RadioChangeEvent) =>
                       setWager(Number(event.target.value))
                     }>
-                    <Radio style={radioStyle} value={1}>
+                    <Radio className='radio' value={1}>
                       $1
                     </Radio>
-                    <Radio style={radioStyle} value={5}>
+                    <Radio className='radio' value={5}>
                       $5
                     </Radio>
-                    <Radio style={radioStyle} value={10}>
+                    <Radio className='radio' value={10}>
                       $10
                     </Radio>
                   </Radio.Group>
                 </div>
                 <br />
-                <div className='rsvp-form'>
+                <div>
                   <label htmlFor='phone-number'>Phone Number</label>
 
                   <Cleave
@@ -244,6 +226,7 @@ const SignUpForm: React.FC = () => {
                     options={{ phone: true, phoneRegionCode: 'US' }}
                   />
                 </div>
+
                 <QuestionController
                   answer={answer}
                   question={question}
@@ -253,7 +236,7 @@ const SignUpForm: React.FC = () => {
                 <br />
                 <button>Play</button>
                 <button onClick={changeGame}>Change Game</button>
-              </form>
+              </Form>
             </div>
           </div>
         </>

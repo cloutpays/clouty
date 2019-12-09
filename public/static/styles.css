@@ -71,6 +71,14 @@ a {
   color: #434343;
   border: 1px solid #9b9b9b;
 }
+.form-card {
+  padding: 18px 18px 24px;
+  width: 80%;
+  text-align: left;
+  text-decoration: none;
+  color: #434343;
+  border: 1px solid #9b9b9b;
+}
 .card:hover {
   border-color: #067df7;
 }
@@ -130,4 +138,10 @@ a {
   padding: 12px 0 0;
   font-size: 13px;
   color: #333;
+}
+
+.radio {
+  display: block;
+  height: 30px;
+  line-height: 30px;
 }
