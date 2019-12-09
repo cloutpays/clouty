@@ -1,3 +1,4 @@
+import { Input, Select } from 'antd';
 import React from 'react';
 
 interface Option {
@@ -6,38 +7,46 @@ interface Option {
 }
 
 interface QuestionProps {
-  answer: string;
-  htmlFor: string;
-  name: string;
+  type: string;
   options: Option[];
   setAnswer: React.Dispatch<React.SetStateAction<string>>;
   title: string;
 }
 
 const Question: React.FC<QuestionProps> = ({
-  answer,
-  htmlFor,
-  name,
   options,
+  type,
   setAnswer,
   title,
-}) => (
-  <>
-    <br />
-    <label htmlFor={htmlFor}>{title}</label>
-    <br />
-    <select
-      required={true}
-      onChange={(event) => setAnswer(event.currentTarget.value)}
-      value={answer}
-      name={name}>
-      {options.map((option: Option, index: number) => (
-        <option key={index} value={option.value}>
-          {option.key}
-        </option>
-      ))}
-    </select>
-  </>
-);
+}) => {
+  return type === 'select' ? (
+    <>
+      <br />
+      <label>{title}</label>
+      <br />
+      <Select onChange={(event) => setAnswer(event.toString())}>
+        {options.map((option: Option, index: number) => (
+          <Select.Option key={index} value={option.value}>
+            {option.key}
+          </Select.Option>
+        ))}
+      </Select>
+    </>
+  ) : (
+    <>
+      <br />
+      <label>Insert your order of songs:</label>
+      <br />
 
+      <br />
+
+      <Input
+        type='text'
+        name='answer'
+        id='answer'
+        onChange={(event) => setAnswer(event.currentTarget.value)}
+      />
+    </>
+  );
+};
 export default Question;
