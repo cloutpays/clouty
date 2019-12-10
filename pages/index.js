@@ -16,11 +16,11 @@ const Home = () => (
         <br />
         Make money while putting your intuition on the line! <br />
         <br />
-        Weekly contest about the altest releases and predictions in the rap
+        Weekly contest about the latest releases and predictions in the rap
         game.
         <br />
         <br />
-        Every contestent will be notified on the results and you can earn cash
+        Every contestant will be notified on the results and you can earn cash
         or tokens to use on future games.
       </p>
       <div className='header'>Select your game</div>
