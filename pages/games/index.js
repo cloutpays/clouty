@@ -16,12 +16,12 @@ const Games = () => {
           // const projectLink = game.case_study
           //   ? `${game.url}`
           //   : `${game.project_link}`;
-          const projectCta = game.case_study ? 'Read case study' : 'Play game';
+
           const externalLink = !game.case_study ? '_blank' : null;
           return (
             <div key={`work-${game.name}`} className='pv2 pa2-ns w-100 w-50-ns'>
               <a
-                href={`#`}
+                href={`/games/${game.slug}`}
                 target={externalLink}
                 className='no-underline white'>
                 <div
@@ -35,7 +35,7 @@ const Games = () => {
                   <p>{game.description}</p>
                   {/* <p>{game.role}</p> */}
                   <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                    {projectCta}
+                    Play Game
                     <span className='pl1 sans-serif'>→</span>
                   </span>
                 </div>
