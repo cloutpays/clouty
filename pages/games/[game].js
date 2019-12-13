@@ -11,7 +11,6 @@ const Games = ({ game: gameSlug }) => {
 
   const gameIndex = games.findIndex((item) => item.slug === gameSlug);
   const game = games[gameIndex];
-  console.log('slug', game);
 
   return (
     <Wrapper data={data}>
@@ -19,7 +18,7 @@ const Games = ({ game: gameSlug }) => {
         <div key={`work-${game.name}`} className='pv2 pa2-ns w-100 w-50-ns'>
           <a className='no-underline white'>
             <div
-              className={`white br2 shadow-4 grow pa3 pa4-ns h-100 ${game.class}`}>
+              className={`white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`}>
               <h1 className='f4 mt0 fw7'>
                 <span role='img' aria-label={game.emoji_name}>
                   {game.emoji}
@@ -27,18 +26,18 @@ const Games = ({ game: gameSlug }) => {
                 {game.title}
               </h1>
               <p>{game.description}</p>
+
+              <input type='name' placeholder='Name' />
+              <input type='email' placeholder='Email Address' />
+
+              <br />
+              <br />
               <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                <span className='pl1 sans-serif'>→</span>
+                <span className='pl1 sans-serif'>Submit</span>
               </span>
             </div>
           </a>
         </div>
-      </section>
-      <section className='flex flex-wrap'>
-        <form>
-          <label>Name</label>
-          <input />
-        </form>
       </section>
     </Wrapper>
   );

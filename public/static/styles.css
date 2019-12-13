@@ -114,6 +114,32 @@
   * 2. Remove the margin in Firefox and Safari.
   */
  button, input, optgroup, select, textarea { font-family: sans-serif; /* 1 */ font-size: 100%; /* 1 */ line-height: 1.15; /* 1 */ margin: 0; /* 2 */ }
+
+input{
+  background: transparent;
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 0px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  color: white;
+  border-right: none;
+ } 
+
+ ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
+}
+ 
  /**
   * Show the overflow in IE.
   * 1. Show the overflow in Edge.

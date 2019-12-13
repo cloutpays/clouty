@@ -37,15 +37,15 @@ const Navigation = () => (
         </Link>
       </li>
       <li className='mr2 mr4-ns'>
-        <Link href='/#'>
-          <a href='/#' className={`${styles.navigationLink}`}>
+        <Link href='/about'>
+          <a href='/about' className={`${styles.navigationLink}`}>
             About
           </a>
         </Link>
       </li>
       <li>
-        <Link href='/#'>
-          <a href='/#' className={`${styles.navigationLink}`}>
+        <Link href='/contact'>
+          <a href='/contact' className={`${styles.navigationLink}`}>
             Contact
           </a>
         </Link>
