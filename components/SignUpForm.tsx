@@ -1,5 +1,5 @@
 import { Form, Input, message, Radio } from 'antd';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import { RadioChangeEvent } from 'antd/lib/radio';
 import axios from 'axios';
 import 'cleave.js/dist/addons/cleave-phone.us';

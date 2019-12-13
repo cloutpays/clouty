@@ -16,6 +16,8 @@ export default class MyDocument extends Document {
     return (
       <html lang='en'>
         <Head>
+          <link rel='stylesheet' href='/static/styles.css' />
+
           <link
             rel='icon'
             type='image/x-icon'
@@ -62,7 +64,7 @@ export default class MyDocument extends Document {
           <meta name='apple-mobile-web-app-title' content='Clouty' />
           <meta name='application-name' content='Clouty' />
         </Head>
-        <body>
+        <body className='sans-serif near-black f5 f4-ns'>
           <Main />
 
           <NextScript />

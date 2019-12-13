@@ -34,11 +34,16 @@ const sendTextMessage = async (name, phoneNumber, wager) => {
 const gameApi = wrapAsync(async (req) => {
   const data = await json(req);
   const { name, phoneNumber, wager } = data;
+
   // Set caching headers to serve stale content (if over a second old)
   // while revalidating fresh content in the background
   await sendTextMessage(name, phoneNumber, wager);
   const database = await connect();
-  const collection = await database.collection('cloutpays');
+  const collection =
+    process.env.NODE_ENV !== 'development'
+      ? await database.collection('cloutpays')
+      : await database.collection('cloutpaysdev');
+  console.log('collection', collection);
   const user = await collection.insertOne(data);
   return user;
 });
