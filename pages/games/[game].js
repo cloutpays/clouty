@@ -15,7 +15,7 @@ const Games = ({ game: gameSlug }) => {
   return (
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
-        <div key={`work-${game.name}`} className='pv2 pa2-ns w-100 w-50-ns'>
+        <div key={`work-${game.name}`} className='pv2 pa2-ns w-100 w-100-ns'>
           <a className='no-underline white'>
             <div
               className={`white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`}>
@@ -26,7 +26,8 @@ const Games = ({ game: gameSlug }) => {
                 {game.title}
               </h1>
               <p>{game.description}</p>
-              Place your bet
+              <label>Place your bet</label>
+              <br />
               <input type='radio' id='huey' name='drone' value='huey' checked />
               <label htmlFor='huey'>Huey</label>
               <input type='radio' id='dewey' name='drone' value='dewey' />

@@ -4,9 +4,9 @@ import Wrapper from '../components/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
-  header: 'Fantasy gameplay at the intersection of data, music and finance',
+  header: 'Connect with the squad',
 };
-const Home = () => (
+const Contact = () => (
   <div>
     <Wrapper data={data} className='measure-wide'>
       <section>
@@ -42,4 +42,4 @@ const Home = () => (
   </div>
 );
 
-export default Home;
+export default Contact;

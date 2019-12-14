@@ -4,17 +4,18 @@ import Wrapper from '../components/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
-  header: 'Fantasy gameplay at the intersection of data, music and finance',
+  header: 'Clouty™ is a platform that was created from the love of music.',
 };
 const Home = () => (
   <div>
     <Wrapper data={data} className='measure-wide'>
       <section>
         <p className={`${styles.paragraph}`}>
-          Clouty™ is a platform that was created from the love of music. The
-          idea was initially birthed in December &apos;19, after our founder,
-          David Umeh discovered an artist from Maryland, named{' '}
+          The idea was initially birthed in December &apos;19, after our
+          founder, David Umeh discovered an artist from Maryland, named{' '}
           <a
+            target='_blank'
+            rel='noopener noreferrer'
             href='https://www.instagram.com/foggieraw'
             alt='Foggie Raw'
             title='Foggie Raw'
