@@ -26,38 +26,22 @@ const Games = ({ game: gameSlug }) => {
                 {game.title}
               </h1>
               <p>{game.description}</p>
-
+              Place your bet
+              <input type='radio' id='huey' name='drone' value='huey' checked />
+              <label htmlFor='huey'>Huey</label>
+              <input type='radio' id='dewey' name='drone' value='dewey' />
+              <label htmlFor='dewey'>Dewey</label>
+              <input type='radio' id='louie' name='drone' value='louie' />
+              <label htmlFor='louie'>Louie</label>
               <input type='name' placeholder='Name' />
+              <input type='phone' placeholder='Phone Number' />
               <input type='email' placeholder='Email Address' />
-
               <br />
               <br />
               <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
                 <span className='pl1 sans-serif'>Submit </span>
               </span>
             </div>
-          </a>
-        </div>
-        <div key='contact' className='pv2 pa2-ns w-100 w-50-ns'>
-          <a href='mailto:hello@laurendorman.io' className='no-underline'>
-            {/* <div className='white br2 shadow-4 pa3 pa4-ns h-100 contact-card'> */}
-            <h1 className='f4 mt0 fw7'>
-              <span role='img' aria-label='User Submission'>
-                🗳
-              </span>{' '}
-              Want to submit a bet?
-            </h1>
-            <p>If it&apos;s good, we will add it to our weekly games.</p>
-            <p>Sound good?</p>
-            <input type='name' placeholder='Name' />
-            <input type='email' placeholder='Email Address' />
-
-            <br />
-            <br />
-            <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-              Get in touch<span className='pl1 sans-serif'>→</span>
-            </span>
-            {/* </div> */}
           </a>
         </div>
       </section>

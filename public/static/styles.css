@@ -120,12 +120,14 @@ input{
   width: 100%;
   max-width: 500px;
   padding: 10px 0px;
-  border: 2px solid #fff;
   border-top: none;
   border-left: none;
   color: white;
   border-right: none;
  } 
+ input:focus {
+  outline: none;
+}
 
  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: white;
