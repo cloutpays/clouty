@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import SignUpForm from '../../components/SignUpForm';
 import Wrapper from '../../components/Wrapper';
 import games from '../../lib/games';
+
 const Games = ({ game: gameSlug }) => {
   const data = {
     title: 'Games',
@@ -9,8 +11,7 @@ const Games = ({ game: gameSlug }) => {
     description: 'Selected games and contests.',
   };
 
-  const gameIndex = games.findIndex((item) => item.slug === gameSlug);
-  const game = games[gameIndex];
+  const game = games.find((game) => game.slug === gameSlug);
 
   return (
     <Wrapper data={data}>
@@ -22,21 +23,12 @@ const Games = ({ game: gameSlug }) => {
               <h1 className='f4 mt0 fw7'>
                 <span role='img' aria-label={game.emoji_name}>
                   {game.emoji}
-                </span>{' '}
+                </span>
                 {game.title}
               </h1>
               <p>{game.description}</p>
-              <label>Place your bet</label>
-              <br />
-              <input type='radio' id='huey' name='drone' value='huey' checked />
-              <label htmlFor='huey'>Huey</label>
-              <input type='radio' id='dewey' name='drone' value='dewey' />
-              <label htmlFor='dewey'>Dewey</label>
-              <input type='radio' id='louie' name='drone' value='louie' />
-              <label htmlFor='louie'>Louie</label>
-              <input type='name' placeholder='Name' />
-              <input type='phone' placeholder='Phone Number' />
-              <input type='email' placeholder='Email Address' />
+              <SignUpForm gameID={game.slug} />
+
               <br />
               <br />
               <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
