@@ -26,14 +26,14 @@ const Home = () => (
           cadence and presence had a serious shot at making it into the big
           leagues. Being an avid listener and creator of music himself, David
           also was a member of a large iMessage Group chat where nothing but
-          music was discussed and debated.{' '}
+          music was discussed and debated.
         </p>
         <p className={`${styles.paragraph}`}>
           David recalls vividly sharing his sentiments for Foggie&apos;s music
           in the group chat and asking them to check him out.{' '}
           <span role='img' aria-label='Bulleye'>
             🎯‍
-          </span>{' '}
+          </span>
           He then went on to say, &quot;This guy is gonna blow....if I could put
           my money on it, I would.&quot;
         </p>
@@ -45,7 +45,7 @@ const Home = () => (
           person to properly execute a platform of this nature.
           <span role='img' aria-label='Sparkles'>
             ✨
-          </span>{' '}
+          </span>
         </p>
       </section>
     </Wrapper>

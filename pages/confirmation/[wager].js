@@ -21,7 +21,7 @@ const Confirmation = ({ wager }) => (
             here
           </a>{' '}
           via Cash App.
-        </p>{' '}
+        </p>
         <p className={`${styles.paragraph}`}>
           Your entry is not valid until we receive confirmation of your wager
           via Cash App. We will also send a SMS text due to Cash App only
@@ -32,14 +32,13 @@ const Confirmation = ({ wager }) => (
           be used for future gameplay.{' '}
           <span role='img' aria-label='Bulleye'>
             🎯‍
-          </span>{' '}
+          </span>
           Every contestant will be notified on the results and you can earn cash
           or tokens to use on future games.
         </p>
         <p className={`${styles.paragraph}`}>
           For all issues please email{' '}
           <a className={`${styles.link}`} href='mailto: payments@clouty.io'>
-            {' '}
             payments@clouty.io
           </a>
           .

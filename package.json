@@ -53,6 +53,9 @@
       "pre-commit": "lint-staged"
     }
   },
+  "engines": {
+    "node": "12.x"
+  },
   "lint-staged": {
     "*.{js,jsx}": [
       "prettier-eslint --write",

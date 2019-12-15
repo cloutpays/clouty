@@ -41,7 +41,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ gameID }) => {
       window.location.href = `/confirmation/${wager}`;
     });
   };
-
   return (
     <div className='row'>
       <div className='form-card'>
@@ -76,27 +75,28 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ gameID }) => {
               id='handle'
             />
           </div>
-          <br />
-          <div>
+          <div className='mt2'>
             <label htmlFor='email'>Select your wager:</label>
-            <Radio.Group
-              onChange={(event: RadioChangeEvent) =>
-                setWager(Number(event.target.value))
-              }>
-              <Radio className='radio' value={1}>
-                $1
-              </Radio>
-              <br />
-              <Radio className='radio' value={5}>
-                $5
-              </Radio>
-              <br />
-              <Radio className='radio' value={10}>
-                $10
-              </Radio>
-            </Radio.Group>
+            <br />
+            <div className='dib-ns'>
+              <Radio.Group
+                onChange={(event: RadioChangeEvent) =>
+                  setWager(Number(event.target.value))
+                }>
+                <Radio className='radio' value={1}>
+                  $1
+                </Radio>
+                <br />
+                <Radio className='radio' value={5}>
+                  $5
+                </Radio>
+                <br />
+                <Radio className='radio' value={10}>
+                  $10
+                </Radio>
+              </Radio.Group>
+            </div>
           </div>
-          <br />
           <div>
             <Cleave
               className='ant-input'
@@ -114,11 +114,13 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ gameID }) => {
           <br />
           <br />
           {phoneNumber && answer && wager && name && email && (
-            <span
-              onClick={handleSubmit}
-              className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b noselect'>
-              <span className='pl1 sans-serif'>Submit </span>
-            </span>
+            <>
+              <span
+                onClick={handleSubmit}
+                className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b noselect'>
+                <span className='pl1 sans-serif'>Submit </span>
+              </span>
+            </>
           )}
         </form>
       </div>
