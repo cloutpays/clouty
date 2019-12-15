@@ -1,6 +1,7 @@
-import { Form, Input, Radio } from 'antd';
+import { Radio } from 'antd';
 import { RadioChangeEvent } from 'antd/lib/radio';
-// import axios from 'axios';
+import axios from 'axios';
+
 import 'cleave.js/dist/addons/cleave-phone.us';
 import Cleave from 'cleave.js/react';
 import React, { useState } from 'react';
@@ -16,59 +17,46 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ gameID }) => {
   const [handle, setHandle] = useState<string>('');
   const [answer, setAnswer] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const [wager, setWager] = useState<number>(1);
+  const [wager, setWager] = useState<number>();
   const gameIndex = games.findIndex((game) => game.slug === gameID);
   const game = games[gameIndex];
-  console.log(game, phoneNumber, wager, answer);
-  // const [selected, setSelected] = useState<number>(2);
-  // const changeGame = () => {
-  //   setSelected(1);
-  // };
 
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
-    console.log(event);
-    // const date = new Date();
-    // const userSubmission = {
-    //   email,
-    //   // answer,
-    //   name,
-    //   phoneNumber,
-    //   handle,
-    //   wager,
-    //   date,
-    // };
-    // const isEmpty = (val: string) => {
-    //   return val === '';
-    // };
-    // temporary until i enabled required fields
-    //   if (isEmpty(userSubmission.phoneNumber) || isEmpty(userSubmission.answer)) {
-    //     message.warning('Please fill all fields');
-    //   }
-    //   event.preventDefault();
-    //   await axios({
-    //     method: 'post',
-    //     url: '/api/game',
-    //     data: userSubmission,
-    //   }).then(() => {});
+    const date = new Date();
+    const userSubmission = {
+      email,
+      answer,
+      name,
+      phoneNumber,
+      handle,
+      wager,
+      date,
+    };
+    event.preventDefault();
+    await axios({
+      method: 'post',
+      url: '/api/game',
+      data: userSubmission,
+    }).then(() => {
+      window.location.href = `/confirmation/${wager}`;
+    });
   };
 
   return (
     <div className='row'>
       <div className='form-card'>
         <br />
-        <Form onSubmit={handleSubmit}>
-          <Form.Item hasFeedback={true}>
-            <Input
-              type='text'
-              value={name}
-              placeholder='Name'
-              onChange={(event) => setName(event.currentTarget.value)}
-              name='name'
-              required={true}
-            />
-          </Form.Item>
+        <form onSubmit={handleSubmit}>
+          <input
+            type='text'
+            value={name}
+            placeholder='Name'
+            onChange={(event) => setName(event.currentTarget.value)}
+            name='name'
+            required={true}
+          />
           <div>
-            <Input
+            <input
               type='email'
               placeholder='Email address'
               value={email}
@@ -77,11 +65,12 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ gameID }) => {
               required={true}
             />
           </div>
+
           <div>
-            <Input
+            <input
               type='text'
               value={handle}
-              placeholder='IG or Twitter @: '
+              placeholder='IG/Twitter Handle'
               onChange={(event) => setHandle(event.currentTarget.value)}
               name='handle'
               id='handle'
@@ -97,9 +86,11 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ gameID }) => {
               <Radio className='radio' value={1}>
                 $1
               </Radio>
+              <br />
               <Radio className='radio' value={5}>
                 $5
               </Radio>
+              <br />
               <Radio className='radio' value={10}>
                 $10
               </Radio>
@@ -122,7 +113,14 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ gameID }) => {
           />
           <br />
           <br />
-        </Form>
+          {phoneNumber && answer && wager && name && email && (
+            <span
+              onClick={handleSubmit}
+              className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b noselect'>
+              <span className='pl1 sans-serif'>Submit </span>
+            </span>
+          )}
+        </form>
       </div>
     </div>
   );

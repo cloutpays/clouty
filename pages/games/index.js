@@ -40,7 +40,7 @@ const Games = () => {
         })}
 
         <div key='contact' className='pv2 pa2-ns w-100 w-50-ns'>
-          <a href='mailto:hello@laurendorman.io' className='no-underline'>
+          <a href='mailto:umeh@clouty.io' className='no-underline'>
             <div className='white br2 shadow-4 grow pa3 pa4-ns h-100 contact-card'>
               <h1 className='f4 mt0 fw7'>
                 <span role='img' aria-label='User Submission'>

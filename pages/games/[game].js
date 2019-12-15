@@ -31,9 +31,6 @@ const Games = ({ game: gameSlug }) => {
 
               <br />
               <br />
-              <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                <span className='pl1 sans-serif'>Submit </span>
-              </span>
             </div>
           </a>
         </div>

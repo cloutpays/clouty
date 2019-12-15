@@ -1,32 +1,31 @@
-import { styles } from '../constants/styles';
+import { styles } from '../../constants/styles';
+import PropTypes from 'prop-types';
 import React from 'react';
-import Wrapper from '../components/Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
   header: 'Your Submission been received!',
 };
-const Confirmation = () => (
+const Confirmation = ({ wager }) => (
   <div>
     <Wrapper data={data} className='measure-wide'>
-      If you did not receive a text, you can click below to pay as well
-      <br />
-      <br />
-      The final entry date is <strong>Tuesday, December 3rd.</strong>
-      <br />
       <section>
         <p className={`${styles.paragraph}`}>
-          Expect a text with instructions to complete your wager via CASH APP.
-          Your entry is not valid until we receive confirmation of your{' '}
+          Complete the final step to complete your wager{' '}
           <a
-            href={`https://cash.app/$Cloutyio/${'wager'}`}
+            href={`https://cash.app/$Cloutyio/${wager}`}
             alt='Cash App'
             title='Cash App'
             className={`${styles.link}`}>
-            Wager
-          </a>
-          via Cash App. Every week, we will host contest about the latest
-          releases and predictions in the rap game.{' '}
+            here
+          </a>{' '}
+          via Cash App.
+        </p>{' '}
+        <p className={`${styles.paragraph}`}>
+          Your entry is not valid until we receive confirmation of your wager
+          via Cash App. We will also send a SMS text due to Cash App only
+          accepting mobile payments.
         </p>
         <p className={`${styles.paragraph}`}>
           All pay outs will be dispersed through Cash App as well. Winnings can
@@ -43,15 +42,17 @@ const Confirmation = () => (
             {' '}
             payments@clouty.io
           </a>
-          . For all media inquiries please email
-          <a className={`${styles.link}`} href='mailto: breemz@clouty.io'>
-            {' '}
-            breemz@clouty.io
-          </a>
+          .
         </p>
       </section>
     </Wrapper>
   </div>
 );
-
+Confirmation.getInitialProps = async (context) => {
+  const { wager } = context.query;
+  return { wager };
+};
+Confirmation.propTypes = {
+  wager: PropTypes.string,
+};
 export default Confirmation;

@@ -4,7 +4,7 @@ import Wrapper from '../components/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
-  header: 'Clouty™ is a platform that was created from the love of music.',
+  header: 'Clouty is a platform that was created from the love of music.',
 };
 const Home = () => (
   <div>
@@ -34,8 +34,8 @@ const Home = () => (
           <span role='img' aria-label='Bulleye'>
             🎯‍
           </span>{' '}
-          He then went on to say, &quot;this guy is gonna blow....if i could put
-          my money on it, i would&quot;
+          He then went on to say, &quot;This guy is gonna blow....if I could put
+          my money on it, I would.&quot;
         </p>
         <p className={`${styles.paragraph}`}>
           It then dawned on him that there was no platform, where as in sports,
