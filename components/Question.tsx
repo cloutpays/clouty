@@ -1,4 +1,3 @@
-import { Input, Select } from 'antd';
 import React from 'react';
 
 interface Option {
@@ -13,35 +12,29 @@ interface QuestionProps {
   title: string;
 }
 
-const Question: React.FC<QuestionProps> = ({
-  options,
-  type,
-  setAnswer,
-  title,
-}) => {
+const Question: React.FC<QuestionProps> = ({ options, type, setAnswer }) => {
   return type === 'select' ? (
     <>
       <br />
-      <label>{title}</label>
+      <label>Place your bet</label>
       <br />
-      <Select onChange={(event) => setAnswer(event.toString())}>
+      <select onChange={(event) => setAnswer(event.currentTarget.value)}>
+        <option value='none' selected={true} disabled={true} hidden={true}>
+          Select an Option
+        </option>
         {options.map((option: Option, index: number) => (
-          <Select.Option key={index} value={option.value}>
+          <option key={index} value={option.value}>
             {option.key}
-          </Select.Option>
+          </option>
         ))}
-      </Select>
+      </select>
     </>
   ) : (
     <>
       <br />
-      <label>Insert your order of songs:</label>
-      <br />
-
-      <br />
-
-      <Input
+      <input
         type='text'
+        placeholder='Insert your order of songs'
         name='answer'
         id='answer'
         onChange={(event) => setAnswer(event.currentTarget.value)}
