@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import Wrapper from '../../components/Wrapper';
+import classNames from 'classnames';
 import games from '../../lib/games';
+
 const Games = () => {
   const data = {
     title: 'Games',
@@ -15,12 +16,17 @@ const Games = () => {
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
         {games.map((game) => {
+          const gameButtonText = game.active ? 'Play Game' : 'Game Over';
+          const activeLink = game.active ? `/games/${game.slug}` : '#';
           return (
             <div key={`work-${game.name}`} className='pv2 pa2-ns w-100 w-50-ns'>
-              <Link href={`/games/${game.slug}`}>
-                <a href={`/games/${game.slug}`} className='no-underline white'>
+              <Link href={activeLink}>
+                <a href={activeLink} className='no-underline white'>
                   <div
-                    className={`white br2 shadow-4 grow pa3 pa4-ns h-100 ${game.class}`}>
+                    className={classNames(
+                      `white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`,
+                      { grow: game.active },
+                    )}>
                     <h1 className='f4 mt0 fw7'>
                       <span role='img' aria-label={game.emoji_name}>
                         {game.emoji}
@@ -29,8 +35,8 @@ const Games = () => {
                     </h1>
                     <p>{game.description}</p>
                     <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                      Play Game
-                      <span className='pl1 sans-serif'>→</span>
+                      {gameButtonText}
+                      {game.active && <span className='pl1 sans-serif'>→</span>}
                     </span>
                   </div>
                 </a>
