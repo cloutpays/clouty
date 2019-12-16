@@ -18,15 +18,12 @@ const Games = () => {
         {games.map((game) => {
           const gameButtonText = game.active ? 'Play Game' : 'Game Over';
           const activeLink = game.active ? `/games/${game.slug}` : '#';
+          const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`;
           return (
             <div key={`work-${game.name}`} className='pv2 pa2-ns w-100 w-50-ns'>
               <Link href={activeLink}>
                 <a href={activeLink} className='no-underline white'>
-                  <div
-                    className={classNames(
-                      `white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`,
-                      { grow: game.active },
-                    )}>
+                  <div className={classNames(cardClass, { grow: game.active })}>
                     <h1 className='f4 mt0 fw7'>
                       <span role='img' aria-label={game.emoji_name}>
                         {game.emoji}
