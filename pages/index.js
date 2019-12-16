@@ -20,7 +20,7 @@ const Home = () => (
             className={`${styles.link}`}>
             Clouty
           </a>
-          . Every week, we will host contest about the latest releases and
+          . Every week, we will host contests about the latest releases and
           predictions in the rap game.{' '}
         </p>
         <p className={`${styles.paragraph}`}>

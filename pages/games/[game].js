@@ -27,10 +27,13 @@ const Games = ({ game: gameSlug }) => {
                 {game.title}
               </h1>
               <p>{game.description}</p>
-              <SignUpForm gameID={game.slug} />
-
-              <br />
-              <br />
+              {!game.answer && <SignUpForm gameID={game.slug} />}
+              {game.answer && (
+                <>
+                  <div className='f5 mt0 fw7'>Winning bet:</div>{' '}
+                  <div className='f4 mt0 fw7'>{game.answer}</div>
+                </>
+              )}
             </div>
           </a>
         </div>
