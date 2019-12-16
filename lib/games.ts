@@ -1,7 +1,7 @@
 const games = [
   {
-    active: false,
     class: 'trillectro',
+    answer: 'Fab',
     date: '2018-11-07',
     description:
       "The Game and Fab drop Nov.29th w/ 'Born 2 Rap and 'SS3'. Who will sell more in the first week?",
@@ -15,7 +15,6 @@ const games = [
     type: 'select',
   },
   {
-    active: true,
     class: 'apprentice-at',
     date: '2018-11-07',
     description:
@@ -31,7 +30,7 @@ const games = [
   },
 
   {
-    active: false,
+    answer: 'Fivio Foreign',
     class: 'hoist',
     date: '2018-11-07',
     description: 'Who gonna have the next banger? Pop Smoke or Fivio Foreign',
@@ -45,7 +44,6 @@ const games = [
     type: 'select',
   },
   {
-    active: true,
     class: 'kanye-wtf',
     date: '2018-11-07',
     description:
@@ -62,11 +60,11 @@ const games = [
     type: 'select',
   },
   {
-    active: false,
+    answer: 'Roddy, French Montana, Max B',
     class: 'apprentice-at',
     date: '2018-11-07',
     description:
-      'Friday December 6th the following albums drop. In which order will these chart for the 1st week sales? Parlay winner wins x 3.',
+      'Friday December 6th the following albums drop. In which order will these chart for the 1st week sales? Parlay winner wins x 3. Roddy Rich "PEMFBA", Max B "House Money", French Montana "MONTANA',
     emoji: '📚',
     options: [
       { value: 'Roddy Rich "PEMFBA"', key: 'Roddy Rich "PEMFBA"' },
@@ -81,7 +79,6 @@ const games = [
     type: 'select-multiple',
   },
   {
-    active: true,
     class: 'komputer-maschine',
     date: '2018-11-07',
     description: `Our favorite songs usually aren’t the ones that make it to the radio. The masses tend to eat whatever they're fed. What song off Roddy Rich’s project is going to be the “Radio friendly smash"`,
