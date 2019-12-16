@@ -1,5 +1,6 @@
 const games = [
   {
+    active: false,
     class: 'trillectro',
     date: '2018-11-07',
     description:
@@ -14,6 +15,7 @@ const games = [
     type: 'select',
   },
   {
+    active: true,
     class: 'apprentice-at',
     date: '2018-11-07',
     description:
@@ -29,6 +31,7 @@ const games = [
   },
 
   {
+    active: false,
     class: 'hoist',
     date: '2018-11-07',
     description: 'Who gonna have the next banger? Pop Smoke or Fivio Foreign',
@@ -42,6 +45,7 @@ const games = [
     type: 'select',
   },
   {
+    active: true,
     class: 'kanye-wtf',
     date: '2018-11-07',
     description:
@@ -58,6 +62,7 @@ const games = [
     type: 'select',
   },
   {
+    active: false,
     class: 'apprentice-at',
     date: '2018-11-07',
     description:
@@ -76,6 +81,7 @@ const games = [
     type: 'select-multiple',
   },
   {
+    active: true,
     class: 'komputer-maschine',
     date: '2018-11-07',
     description: `Our favorite songs usually aren’t the ones that make it to the radio. The masses tend to eat whatever they're fed. What song off Roddy Rich’s project is going to be the “Radio friendly smash"`,
