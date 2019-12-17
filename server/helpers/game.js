@@ -7,8 +7,9 @@ const client = require('twilio')(
   process.env.TWILIO_TOKEN,
 );
 
-const wrapAsync = (handler) => (req, res) =>
-  handler(req)
+const wrapAsync = (handler) => async (req, res) => {
+  const db = await connect();
+  return handler(req, db)
     .then((result) => {
       res.setHeader(
         'cache-control',
@@ -17,6 +18,7 @@ const wrapAsync = (handler) => (req, res) =>
       return res.json(result);
     })
     .catch((error) => res.status(500).json({ error: error.message }));
+};
 
 const sendTextMessage = async (name, phoneNumber, wager) => {
   try {
@@ -31,23 +33,29 @@ const sendTextMessage = async (name, phoneNumber, wager) => {
   }
 };
 
-const gameApi = wrapAsync(async (req) => {
+const gameSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   const { name, phoneNumber, wager } = data;
 
   // Set caching headers to serve stale content (if over a second old)
   // while revalidating fresh content in the background
   await sendTextMessage(name, phoneNumber, wager);
-  const database = await connect();
   const collection =
     process.env.NODE_ENV !== 'development'
-      ? await database.collection('cloutpays')
-      : await database.collection('cloutpaysdev');
+      ? await db.collection('cloutpays')
+      : await db.collection('cloutpaysdev');
   console.log('collection', collection);
   const user = await collection.insertOne(data);
   return user;
 });
 
+const gameRetrieveApi = wrapAsync(async (req, db) => {
+  return db
+    .collection('cloutpays')
+    .find()
+    .toArray();
+});
 module.exports = {
-  gameApi: cors(gameApi),
+  gameSubmitApi: cors(gameSubmitApi),
+  gameRetrieveApi: cors(gameRetrieveApi),
 };

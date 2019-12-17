@@ -5,8 +5,7 @@ import React, { Component } from 'react';
 import Footer from './Footer';
 import Navigation from './Navigation';
 
-import { formatDate } from '../lib/date';
-import { initGA, logPageView } from '../lib/analytics';
+import { initGA, logPageView } from '../lib/helpers';
 import { styles } from '../constants/styles';
 
 export default class Wrapper extends Component {
@@ -17,16 +16,6 @@ export default class Wrapper extends Component {
     }
     logPageView();
   }
-  renderDate() {
-    if (this.props.data.date) {
-      return (
-        <time className='mid-gray ttu f6 f5-ns'>
-          {formatDate(this.props.data.date)}
-        </time>
-      );
-    }
-    return null;
-  }
 
   renderHeader() {
     if (this.props.data.header) {
@@ -36,7 +25,6 @@ export default class Wrapper extends Component {
             <h2 className='f3 f2-ns mv0 near-black mb0'>
               {this.props.data.header}
             </h2>
-            {this.renderDate()}
           </div>
         </header>
       );
@@ -60,12 +48,12 @@ export default class Wrapper extends Component {
           <meta name='description' content={description} />
           <meta
             property='og:title'
-            content={`Clouty™ The world's first music betting platform`}
+            content={`The 🌎's first music betting platform`}
           />
           <meta property='og:description' content={description} />
           <meta
             name='twitter:title'
-            content={`Clouty™ The world's first music betting platform.`}
+            content={`The 🌎's first music betting platform.`}
           />
           <meta name='twitter:description' content={description} />
         </Head>
