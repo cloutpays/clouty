@@ -5,7 +5,7 @@ import Wrapper from '../components/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
-  header: `The world's first music betting platform.`,
+  header: `Clouty™ The world's first music betting platform.`,
 };
 const Home = () => (
   <div>

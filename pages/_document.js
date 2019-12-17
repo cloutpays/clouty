@@ -39,7 +39,6 @@ export default class MyDocument extends Document {
           />
           <meta property='og:url' content='http://getclouty.com/' />
           <meta property='og:site_name' content='Clouty' />
-          <meta property='og:title' content='Clouty™: Rap, Reimagined' />
           <meta
             property='og:description'
             content='Fantasy gameplay at the intersection of data, music and finance.'
