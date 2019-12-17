@@ -30,7 +30,7 @@ const games = [
   },
 
   {
-    answer: 'Fivio Foreign',
+    answer: 'Fivio Foreign - Richer Than Ever',
     class: 'hoist',
     date: '2018-11-07',
     description: 'Who gonna have the next banger? Pop Smoke or Fivio Foreign',

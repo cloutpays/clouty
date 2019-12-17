@@ -5,11 +5,11 @@
   "builds": [
     { "src": "package.json", "use": "@now/next" },
     {
-      "src": "server/helpers/game.js",
+      "src": "server/handlers/post.js",
       "use": "@now/node"
     },
     {
-      "src": "server/handlers/post.js",
+      "src": "server/handlers/get.js",
       "use": "@now/node"
     }
   ],
@@ -18,6 +18,11 @@
       "src": "/api/game",
       "methods": ["POST"],
       "dest": "server/handlers/post.js"
+    },
+    {
+      "src": "/api/game",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js"
     }
   ],
   "env": {

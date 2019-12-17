@@ -14,32 +14,41 @@ const Games = () => {
   return (
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
-        {games.map((game) => {
-          const gameButtonText = !game.answer ? 'Play Game' : 'See Results';
-          const activeLink = `/games/${game.slug}`;
-          const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
-          return (
-            <div key={`work-${game.name}`} className='pv2 pa2-ns w-100 w-50-ns'>
-              <Link href={activeLink}>
-                <a href={activeLink} className='no-underline white'>
-                  <div className={cardClass}>
-                    <h1 className='f4 mt0 fw7'>
-                      <span role='img' aria-label={game.emoji_name}>
-                        {game.emoji}
-                      </span>{' '}
-                      {game.title}
-                    </h1>
-                    <p>{game.description}</p>
-                    <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                      {gameButtonText}
-                      <span className='pl1 sans-serif'>→</span>
-                    </span>
-                  </div>
-                </a>
-              </Link>
-            </div>
-          );
-        })}
+        {games
+          .map((game) => {
+            const gameButtonText = !game.answer ? 'Play Game' : 'See Results';
+            const activeLink = `/games/${game.slug}`;
+            const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
+            return (
+              <div
+                key={`work-${game.name}`}
+                className='pv2 pa2-ns w-100 w-50-ns'>
+                <Link href={activeLink}>
+                  <a href={activeLink} className='no-underline white'>
+                    <div className={cardClass}>
+                      <h1 className='f4 mt0 fw7'>
+                        <span role='img' aria-label={game.emoji_name}>
+                          {game.emoji}
+                        </span>{' '}
+                        {game.title}
+                      </h1>
+                      <p>{game.description}</p>
+                      <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
+                        {gameButtonText}
+                        <span className='pl1 sans-serif'>→</span>
+                      </span>
+                      {game.endDate && (
+                        <span className='bg-white-30 fr pv1 ph2 f7 f6-ns br-pill b'>
+                          Ends {game.endDate}
+                        </span>
+                      )}
+                    </div>
+                  </a>
+                </Link>
+              </div>
+            );
+          })
+          .reverse()}
 
         <div key='contact' className='pv2 pa2-ns w-100 w-50-ns'>
           <a href='mailto:umeh@clouty.io' className='no-underline'>

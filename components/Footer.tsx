@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getCurrentYear } from '../lib/date';
+import { getCurrentYear } from '../lib/helpers';
 
 const Footer = () => (
   <footer className='mw8 center mv4 mh2 f6 f5-ns near-black fw7'>
