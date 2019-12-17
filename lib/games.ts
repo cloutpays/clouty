@@ -103,7 +103,7 @@ const games = [
     class: 'style-guide ',
     date: '2018-11-07',
     description:
-      'Controversial artist 6ix 9ine has been reportedly scheduled to be released from prison in 72 hours. Will he be released this week?',
+      'Controversial artist 6ix9ine has been reportedly scheduled to be released from prison in 72 hours. Will he be released this week?',
     emoji: '🧢',
     options: [
       { value: 'Happen', key: 'Happen' },
@@ -116,7 +116,7 @@ const games = [
   {
     class: 'mark-gierl',
     date: '2018-11-07',
-    description: `If 6ix 9ine does gets out, most people suspect that he will drop a record to break the silence. Theres no telling what the actual strategy will be. If you had to pick, do you think he’ll first drop a
+    description: `If 6ix9ine does gets out, most people suspect that he will drop a record to break the silence. Theres no telling what the actual strategy will be. What will he going to drop first?
     `,
     emoji: '🤡',
     options: [
