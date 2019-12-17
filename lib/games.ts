@@ -99,5 +99,55 @@ const games = [
     title: 'Game #6',
     type: 'select',
   },
+  {
+    class: 'style-guide ',
+    date: '2018-11-07',
+    description:
+      'Controversial artist 6ix 9ine has been reportedly scheduled to be released from prison in 72 hours. Will he be released this week?',
+    emoji: '🧢',
+    options: [
+      { value: 'Happen', key: 'Happen' },
+      { value: 'Not Happen', key: 'Not Happen' },
+    ],
+    slug: '6ix9nine-release',
+    title: 'Game #7',
+    type: 'select',
+  },
+  {
+    class: 'mark-gierl',
+    date: '2018-11-07',
+    description: `If 6ix 9ine does gets out, most people suspect that he will drop a record to break the silence. Theres no telling what the actual strategy will be. If you had to pick, do you think he’ll first drop a
+    `,
+    emoji: '🤡',
+    options: [
+      { value: 'Latin Record', key: 'Latin Record' },
+      { value: 'Hip Hop Record', key: 'Hip Hop Record' },
+      {
+        value: 'EP/Project',
+        key: 'EP/Project',
+      },
+      {
+        value: 'None of the above',
+        key: 'None of the above',
+      },
+    ],
+    slug: '6ix-9ine',
+    title: 'Game #8',
+    type: 'select',
+  },
+  {
+    class: 'mycumortgage',
+    date: '2018-11-07',
+    description:
+      'There is no slowing down with Atlanta’s own Mulatto, who dropped “Hit the Lotto on 12/12. Interscope artist, Smokepurpp dropped ‘DeathStarr 2’ on 12/13. Who do you think will chart higher for 1st week sales? ',
+    emoji: '💃🏽',
+    options: [
+      { value: 'Mulatoo', key: 'Mulatoo' },
+      { value: 'SmokePurpp', key: 'SmokePurpp' },
+    ],
+    slug: 'smoke-mulatoo',
+    title: 'Game #9',
+    type: 'select',
+  },
 ];
 export default games;
