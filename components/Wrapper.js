@@ -58,9 +58,15 @@ export default class Wrapper extends Component {
         <Head>
           <title>{title}</title>
           <meta name='description' content={description} />
-          <meta property='og:title' content='Clouty' />
+          <meta
+            property='og:title'
+            content={`The world's first music betting platform`}
+          />
           <meta property='og:description' content={description} />
-          <meta name='twitter:title' content={title} />
+          <meta
+            name='twitter:title'
+            content={`The world's first music betting platform.`}
+          />
           <meta name='twitter:description' content={description} />
         </Head>
         <Navigation />

@@ -5,7 +5,7 @@ import Wrapper from '../components/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
-  header: 'Fantasy gameplay at the intersection of data, music and finance',
+  header: `The world's first music betting platform.`,
 };
 const Home = () => (
   <div>
@@ -47,7 +47,6 @@ const Home = () => (
           Get Started
         </a>{' '}
       </section>
-      {/* <SignUpForm /> */}
     </Wrapper>
   </div>
 );
