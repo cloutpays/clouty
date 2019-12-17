@@ -63,7 +63,10 @@ export default class Wrapper extends Component {
             content={`Clouty™ The world's first music betting platform`}
           />
           <meta property='og:description' content={description} />
-          <meta name='twitter:title' content={title} />
+          <meta
+            name='twitter:title'
+            content={`Clouty™ The world's first music betting platform.`}
+          />
           <meta name='twitter:description' content={description} />
         </Head>
         <Navigation />
