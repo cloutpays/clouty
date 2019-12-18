@@ -16,6 +16,6 @@ Access to repo, clout and good hip hop acumen
 
 ## Authors
 
-- **David Umehe** - _Cultural Architect/Founder_ - [Hi-Speed](https://instagram.com/chiefumeh)
+- **David Umeh** - _Cultural Architect/Founder_ - [Hi-Speed](https://instagram.com/chiefumeh)
 - **Ebrima Jobe** - _Software Engineer_ - [TBA](https://github.com/freshlybreemed)
 - **Julius Buckley** - _Software Engineer_ - [GoodTime.io](https://github.com/juliusbuckley)
