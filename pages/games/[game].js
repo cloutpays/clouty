@@ -24,7 +24,7 @@ const Games = ({ game: gameSlug }) => {
                 <span role='img' aria-label={game.emoji_name}>
                   {game.emoji}
                 </span>
-                {game.title}
+                {`Game #${game.question}`}
               </h1>
               <p>{game.description}</p>
               {!game.answer && <SignUpForm gameID={game.slug} />}
