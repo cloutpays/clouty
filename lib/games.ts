@@ -117,7 +117,7 @@ const games = [
   {
     class: 'mark-gierl',
     date: '2018-11-07',
-    description: `If 6ix9ine does gets out, most people suspect that he will drop a record to break the silence. Theres no telling what the actual strategy will be. What will he going to drop first?
+    description: `If 6ix9ine does gets out, most people suspect that he will drop a record to break the silence. There's no telling what the actual strategy will be. What is he going to drop first?
     `,
     emoji: '🤡',
     options: [
