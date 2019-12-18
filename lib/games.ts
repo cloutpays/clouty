@@ -11,7 +11,7 @@ const games = [
       { value: 'Fabolous', key: 'Fabolous' },
     ],
     slug: 'game-and-fab',
-    title: 'Game #1',
+    question: '1',
     type: 'select',
   },
   {
@@ -25,7 +25,7 @@ const games = [
       { value: 'No', key: 'No' },
     ],
     slug: 'larry-june',
-    title: 'Game #2',
+    question: '2',
     type: 'select',
   },
 
@@ -40,7 +40,7 @@ const games = [
       { value: 'Pop Smoke', key: 'Pop Smoke' },
     ],
     slug: 'next-banger',
-    title: 'Game #3',
+    question: '3',
     type: 'select',
   },
   {
@@ -56,7 +56,7 @@ const games = [
       { value: 'Neither', key: 'Neither' },
     ],
     slug: 'buddy',
-    title: 'Game #4',
+    question: '4',
     type: 'select',
   },
   {
@@ -75,7 +75,7 @@ const games = [
       },
     ],
     slug: 'fri-dec-6',
-    title: 'Game #5',
+    question: '5',
     type: 'select-multiple',
   },
   {
@@ -96,7 +96,7 @@ const games = [
       },
     ],
     slug: 'roddy',
-    title: 'Game #6',
+    question: '6',
     type: 'select',
   },
   {
@@ -110,8 +110,9 @@ const games = [
       { value: 'Not Happen', key: 'Not Happen' },
     ],
     slug: '6ix9nine-release',
-    title: 'Game #7',
+    question: '7',
     type: 'select',
+    answer: 'Not Happening',
   },
   {
     class: 'mark-gierl',
@@ -131,8 +132,9 @@ const games = [
         key: 'None of the above',
       },
     ],
+    answer: 'None of the above',
     slug: '6ix-9ine',
-    title: 'Game #8',
+    question: '8',
     type: 'select',
   },
   {
@@ -146,7 +148,7 @@ const games = [
       { value: 'SmokePurpp', key: 'SmokePurpp' },
     ],
     slug: 'smoke-mulatoo',
-    title: 'Game #9',
+    question: '9',
     type: 'select',
   },
 ];

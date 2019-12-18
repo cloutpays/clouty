@@ -31,6 +31,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ gameID }) => {
       handle,
       wager,
       date,
+      question: game.question,
     };
     event.preventDefault();
     await axios({
@@ -108,7 +109,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ gameID }) => {
           <Question
             type={game.type}
             options={game.options}
-            title={game.title}
+            title={game.question}
             setAnswer={setAnswer}
           />
           <br />
