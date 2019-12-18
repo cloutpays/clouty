@@ -112,6 +112,7 @@ const games = [
     slug: '6ix9nine-release',
     question: '7',
     type: 'select',
+    answer: 'Not Happening',
   },
   {
     class: 'mark-gierl',
@@ -131,6 +132,7 @@ const games = [
         key: 'None of the above',
       },
     ],
+    answer: 'None of the above',
     slug: '6ix-9ine',
     question: '8',
     type: 'select',
