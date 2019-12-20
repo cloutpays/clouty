@@ -37,11 +37,6 @@ const Games = () => {
                         {gameButtonText}
                         <span className='pl1 sans-serif'>→</span>
                       </span>
-                      {game.endDate && (
-                        <span className='bg-white-30 fr pv1 ph2 f7 f6-ns br-pill b'>
-                          Ends {game.endDate}
-                        </span>
-                      )}
                     </div>
                   </a>
                 </Link>
