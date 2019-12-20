@@ -164,7 +164,7 @@ const games = [
     class: 'trillectro',
     date: '2018-11-07',
     description:
-      'Cam’ron and Curren$y drop December 20th with ‘Purple Haze 2’ and ‘Back at Bernies’. Who will sell more in the first week?',
+      'Cam’ron and Curren$y drop December 20th with ‘Purple Haze 2’ and ‘Back at Burnies’. Who will sell more in the first week?',
     emoji: '☔️',
     options: [
       { value: 'Cam’ron', key: 'Cam’ron' },
