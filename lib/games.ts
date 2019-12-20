@@ -3,6 +3,7 @@ const games = [
     class: 'trillectro',
     answer: 'Fab',
     date: '2018-11-07',
+    endDate: '2018-12-06',
     description:
       "The Game and Fab drop Nov.29th w/ 'Born 2 Rap and 'SS3'. Who will sell more in the first week?",
     emoji: '📚',
@@ -33,6 +34,8 @@ const games = [
     answer: 'Fivio Foreign - Richer Than Ever',
     class: 'hoist',
     date: '2018-11-07',
+    endDate: '2018-12-12',
+
     description: 'Who gonna have the next banger? Pop Smoke or Fivio Foreign',
     emoji: '📚',
     options: [
@@ -75,6 +78,8 @@ const games = [
       },
     ],
     slug: 'fri-dec-6',
+    endDate: '2018-12-13',
+
     question: '5',
     type: 'select-multiple',
   },
@@ -102,6 +107,8 @@ const games = [
   {
     class: 'style-guide ',
     date: '2018-11-07',
+    endDate: '2018-12-18',
+
     description:
       'Controversial artist 6ix9ine has been reportedly scheduled to be released from prison in 72 hours. Will he be released this week?',
     emoji: '🧢',
@@ -117,6 +124,8 @@ const games = [
   {
     class: 'mark-gierl',
     date: '2018-11-07',
+    endDate: '2018-12-18',
+
     description: `If 6ix9ine does gets out, most people suspect that he will drop a record to break the silence. There's no telling what the actual strategy will be. What is he going to drop first?
     `,
     emoji: '🤡',
@@ -149,6 +158,20 @@ const games = [
     ],
     slug: 'smoke-mulatoo',
     question: '9',
+    type: 'select',
+  },
+  {
+    class: 'trillectro',
+    date: '2018-11-07',
+    description:
+      'Cam’ron and Curren$y drop December 20th with ‘Purple Haze 2’ and ‘Back at Bernies’. Who will sell more in the first week?',
+    emoji: '☔️',
+    options: [
+      { value: 'Cam’ron', key: 'Cam’ron' },
+      { value: 'Curren$y', key: 'Curren$y' },
+    ],
+    slug: 'camron-vs-currensy',
+    question: '10',
     type: 'select',
   },
 ];
