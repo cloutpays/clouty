@@ -174,5 +174,19 @@ const games = [
     question: '10',
     type: 'select',
   },
+  {
+    class: 'hoist',
+    date: '2018-11-07',
+    description:
+      'Dipset icons Jim Jones & Cam’ron both dropped projects this year. Jones in the summer, with “Capo” did a total of 21k copies first week. Will Cam top that with “Purple Haze 2”?',
+    emoji: '🗳',
+    options: [
+      { value: 'Yes', key: 'Yes' },
+      { value: 'No', key: 'No' },
+    ],
+    slug: 'dipset',
+    question: '11',
+    type: 'select',
+  },
 ];
 export default games;
