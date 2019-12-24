@@ -115,6 +115,7 @@
   */
  button, input, optgroup, select, textarea { font-family: sans-serif; /* 1 */ font-size: 100%; /* 1 */ line-height: 1.15; /* 1 */ margin: 0; /* 2 */ }
 
+ 
 input{
   background: transparent;
   width: 100%;
@@ -151,6 +152,19 @@ input:-webkit-autofill:active {
 
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: white;
+}
+ 
+ input.black::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+input.black:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: black;
+}
+
+input.black::-ms-input-placeholder { /* Microsoft Edge */
+  color: black;
 }
  
 .noselect {

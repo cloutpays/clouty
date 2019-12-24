@@ -1,7 +1,8 @@
-import { formatDate } from '../lib/helpers';
+import { formatDate } from '../../lib/helpers';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Wrapper from '../components/Wrapper';
+import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
@@ -13,6 +14,13 @@ const Dashboard = ({ entries }) => {
   };
   return (
     <Wrapper data={data}>
+      <Link to='/dashboard/create'>
+        <a
+          href='/dashboard/create'
+          className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
+          Create Game
+        </a>
+      </Link>
       <table className='f6 w-100 mw8 center' cellSpacing='0'>
         <thead>
           <tr>
@@ -62,7 +70,7 @@ const Dashboard = ({ entries }) => {
 Dashboard.getInitialProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
-  const res = await axios.get(`${apiURL}/api/game`);
+  const res = await axios.get(`${apiURL}/api/submissions`);
   const entries = res.data;
   return { entries };
 };

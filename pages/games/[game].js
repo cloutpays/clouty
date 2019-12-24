@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import SignUpForm from '../../components/SignUpForm';
 import Wrapper from '../../components/Wrapper';
-import games from '../../lib/games';
-
-const Games = ({ game: gameSlug }) => {
+import absoluteUrl from 'next-absolute-url';
+import axios from 'axios';
+const Games = ({ game }) => {
   const data = {
     title: 'Games',
     header: 'Play',
     description: 'Selected games and contests.',
   };
 
-  const game = games.find((game) => game.slug === gameSlug);
+  // const game = games.find((game) => game.slug === gameSlug);
 
   return (
     <Wrapper data={data}>
@@ -27,7 +27,7 @@ const Games = ({ game: gameSlug }) => {
                 {`Game #${game.question}`}
               </h1>
               <p>{game.description}</p>
-              {!game.answer && <SignUpForm gameID={game.slug} />}
+              {!game.answer && <SignUpForm game={game} />}
               {game.answer && (
                 <>
                   <div className='f5 mt0 fw7'>Winning bet:</div>{' '}
@@ -42,9 +42,13 @@ const Games = ({ game: gameSlug }) => {
   );
 };
 
-Games.getInitialProps = async (context) => {
-  const { game } = context.query;
-  return { game };
+Games.getInitialProps = async ({ query, req }) => {
+  const { game } = query;
+  const { origin } = absoluteUrl(req);
+  const apiURL = `${origin}`;
+  const res = await axios.get(`${apiURL}/api/question/${game}`);
+  const question = res.data;
+  return { game: question[0] };
 };
 
 Games.propTypes = {

@@ -1,22 +1,14 @@
 // Local dependencies
 const { handleErrors } = require('../helpers/error');
-const {
-  submissionsRetrieveApi,
-  questionsRetrieveApi,
-  questionRetrieveApi,
-} = require('../helpers/game');
+const { questonRemoveApi } = require('../helpers/game');
 const { send } = require('micro');
 
-const getApi = (fn) => async (req, res) => {
+const postApi = (fn) => async (req, res) => {
   try {
     const parse = req.url.split('/');
     switch (`api/${parse[2]}`) {
-      case 'api/submissions':
-        return await fn(submissionsRetrieveApi(req, res));
-      case 'api/questions':
-        return await fn(questionsRetrieveApi(req, res));
-      case 'api/question':
-        return await fn(questionRetrieveApi(req, res));
+      case 'api/ques':
+        return await fn(questonRemoveApi(req, res));
       default:
         return send(res, 200, { err: 'invalid route' });
     }
@@ -27,4 +19,5 @@ const getApi = (fn) => async (req, res) => {
     return send(res, statusCode, message);
   }
 };
-module.exports = getApi(handleErrors);
+
+module.exports = postApi(handleErrors);
