@@ -2,19 +2,19 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../../components/Wrapper';
-import games from '../../lib/games';
+import absoluteUrl from 'next-absolute-url';
+import axios from 'axios';
 
-const Games = () => {
+const Games = ({ questions }) => {
   const data = {
     title: 'Games',
     header: 'Selected games and contests.',
     description: 'Selected games and contests.',
   };
-
   return (
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
-        {games
+        {questions
           .map((game) => {
             const gameButtonText = !game.answer ? 'Play Game' : 'See Results';
             const activeLink = `/games/${game.slug}`;
@@ -67,8 +67,15 @@ const Games = () => {
   );
 };
 
+Games.getInitialProps = async ({ req }) => {
+  const { origin } = absoluteUrl(req);
+  const apiURL = `${origin}`;
+  const res = await axios.get(`${apiURL}/api/questions`);
+  const questions = res.data;
+  return { questions };
+};
 Games.propTypes = {
-  games: PropTypes.array,
+  questions: PropTypes.array,
 };
 
 export default Games;

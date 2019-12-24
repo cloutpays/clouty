@@ -1,5 +1,6 @@
 import { json } from 'micro';
 import connect from './db';
+const { parse } = require('url');
 
 const cors = require('micro-cors')();
 const client = require('twilio')(
@@ -44,18 +45,47 @@ const gameSubmitApi = wrapAsync(async (req, db) => {
     process.env.NODE_ENV !== 'development'
       ? await db.collection('cloutpays')
       : await db.collection('cloutpaysdev');
-  console.log('collection', collection);
   const user = await collection.insertOne(data);
   return user;
 });
 
-const gameRetrieveApi = wrapAsync(async (req, db) => {
-  return db
+const submissionsRetrieveApi = wrapAsync(async (req, db) => {
+  return await db
     .collection('cloutpays')
     .find()
     .toArray();
 });
+const questionSubmitApi = wrapAsync(async (req, db) => {
+  const data = await json(req);
+  const collection = db.collection('question');
+  const question = await collection.insertOne(data);
+  return question;
+});
+const questionsRetrieveApi = wrapAsync(async (req, db) => {
+  return await db
+    .collection('question')
+    .find()
+    .toArray();
+});
+const questionRetrieveApi = wrapAsync(async (req, db) => {
+  const { query } = parse(req.url, true);
+  const id = query.id;
+  return await db
+    .collection('question')
+    .find({ slug: id })
+    .toArray();
+});
+const questionRemoveApi = wrapAsync(async (req, db) => {
+  const { query } = parse(req.url, true);
+  console.log('id', query);
+  const id = query.id;
+  return await db.collection('question').remove({ slug: id });
+});
 module.exports = {
   gameSubmitApi: cors(gameSubmitApi),
-  gameRetrieveApi: cors(gameRetrieveApi),
+  submissionsRetrieveApi: cors(submissionsRetrieveApi),
+  questionsRetrieveApi: cors(questionsRetrieveApi),
+  questionRetrieveApi: cors(questionRetrieveApi),
+  questionSubmitApi: cors(questionSubmitApi),
+  questionRemoveApi: cors(questionRemoveApi),
 };

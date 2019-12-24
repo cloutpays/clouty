@@ -15,14 +15,34 @@
   ],
   "routes": [
     {
-      "src": "/api/game",
+      "src": "/api/submission",
       "methods": ["POST"],
       "dest": "server/handlers/post.js"
     },
     {
-      "src": "/api/game",
+      "src": "/api/submissions",
       "methods": ["GET"],
       "dest": "server/handlers/get.js"
+    },
+    {
+      "src": "/api/questions",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js"
+    },
+    {
+      "src": "/api/question",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
+      "src": "/api/question/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1"
+    },
+    {
+      "src": "/api/question/(.*)",
+      "methods": ["DELETE"],
+      "dest": "server/handlers/delete.js?id=$1"
     }
   ],
   "env": {

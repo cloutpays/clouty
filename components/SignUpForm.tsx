@@ -5,21 +5,18 @@ import axios from 'axios';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import Cleave from 'cleave.js/react';
 import React, { useState } from 'react';
-import games from '../lib/games';
 import Question from './Question';
 interface SignUpFormProps {
-  gameID: string;
+  game: any;
 }
 
-const SignUpForm: React.FC<SignUpFormProps> = ({ gameID }) => {
+const SignUpForm: React.FC<SignUpFormProps> = ({ game }) => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [handle, setHandle] = useState<string>('');
   const [answer, setAnswer] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [wager, setWager] = useState<number>();
-  const gameIndex = games.findIndex((game) => game.slug === gameID);
-  const game = games[gameIndex];
 
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
     const date = new Date();
@@ -36,7 +33,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ gameID }) => {
     event.preventDefault();
     await axios({
       method: 'post',
-      url: '/api/game',
+      url: '/api/submission',
       data: userSubmission,
     }).then(() => {
       window.location.href = `/confirmation/${wager}`;
