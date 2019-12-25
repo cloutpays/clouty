@@ -45,6 +45,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game }) => {
         <br />
         <form onSubmit={handleSubmit}>
           <input
+            className='game-input'
             type='text'
             value={name}
             placeholder='Name'
@@ -55,6 +56,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game }) => {
           <div>
             <input
               type='email'
+              className='game-input'
               placeholder='Email address'
               value={email}
               onChange={(event) => setEmail(event.currentTarget.value)}
@@ -67,6 +69,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game }) => {
             <input
               type='text'
               value={handle}
+              className='game-input'
               placeholder='IG/Twitter Handle'
               onChange={(event) => setHandle(event.currentTarget.value)}
               name='handle'
@@ -97,7 +100,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game }) => {
           </div>
           <div>
             <Cleave
-              className='ant-input'
+              className='game-input'
               placeholder='Phone Number'
               onChange={(event) => setPhoneNumber(event.currentTarget.value)}
               options={{ phone: true, phoneRegionCode: 'US' }}

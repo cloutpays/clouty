@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import SignUpForm from '../../components/SignUpForm';
-import Wrapper from '../../components/Wrapper';
+import SignUpForm from '../../../components/SignUpForm';
+import Wrapper from '../../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 const Games = ({ game }) => {

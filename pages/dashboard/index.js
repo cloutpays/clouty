@@ -14,9 +14,16 @@ const Dashboard = ({ entries }) => {
   };
   return (
     <Wrapper data={data}>
-      <Link to='/dashboard/create'>
+      <Link href='/dashboard/edit'>
         <a
-          href='/dashboard/create'
+          href='/dashboard/edit'
+          className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
+          Edit Game
+        </a>
+      </Link>{' '}
+      <Link href='/create'>
+        <a
+          href='/create'
           className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
           Create Game
         </a>
