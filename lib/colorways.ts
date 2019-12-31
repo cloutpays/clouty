@@ -9,5 +9,6 @@ const colorways = [
   'mycumortgage ',
   'style-guide',
   'contact-card',
+  'grammy',
 ];
 export default colorways;

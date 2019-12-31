@@ -14,20 +14,24 @@ const Dashboard = ({ entries }) => {
   };
   return (
     <Wrapper data={data}>
-      <Link href='/dashboard/edit'>
-        <a
-          href='/dashboard/edit'
-          className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
-          Edit Game
-        </a>
-      </Link>{' '}
-      <Link href='/create'>
-        <a
-          href='/create'
-          className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
-          Create Game
-        </a>
-      </Link>
+      <div>
+        <Link href='/dashboard/edit'>
+          <a
+            href='/dashboard/edit'
+            className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
+            Edit Game
+          </a>
+        </Link>{' '}
+      </div>
+      <div>
+        <Link href='/create'>
+          <a
+            href='/create'
+            className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
+            Create Game
+          </a>
+        </Link>
+      </div>
       <table className='f6 w-100 mw8 center' cellSpacing='0'>
         <thead>
           <tr>
