@@ -36,13 +36,7 @@ const Navigation = () => (
           </a>
         </Link>
       </li>
-      <li className='mr2 mr4-ns'>
-        <Link href='/games/grammys'>
-          <a href='/games/grammys' className={`${styles.navigationLink}`}>
-            Grammy's
-          </a>
-        </Link>
-      </li>
+
       <li className='mr2 mr4-ns'>
         <Link href='/about'>
           <a href='/about' className={`${styles.navigationLink}`}>

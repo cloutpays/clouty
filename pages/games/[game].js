@@ -10,7 +10,18 @@ const Games = ({ game }) => {
     header: 'Play',
     description: 'Selected games and contests.',
   };
-
+  const description =
+    game.gameType === 'grammy'
+      ? game.description.split('+').map((curr, i) => {
+          return (
+            <div key={i} className='mv2'>
+              {curr.split('-')[0]} -<strong>{curr.split('-')[1]}</strong>{' '}
+            </div>
+          );
+        })
+      : game.description;
+  const title =
+    game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
   return (
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
@@ -22,9 +33,9 @@ const Games = ({ game }) => {
                 <span role='img' aria-label={game.emoji_name}>
                   {game.emoji}
                 </span>
-                {`Game #${game.question}`}
+                {title}
               </h1>
-              <p>{game.description}</p>
+              <p>{description}</p>
               {!game.answer && <SignUpForm game={game} />}
               {game.answer && (
                 <>

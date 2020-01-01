@@ -1,5 +1,4 @@
 import { formatDate } from '../../lib/helpers';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../../components/Wrapper';
@@ -15,22 +14,11 @@ const Dashboard = ({ entries }) => {
   return (
     <Wrapper data={data}>
       <div>
-        <Link href='/dashboard/edit'>
-          <a
-            href='/dashboard/edit'
-            className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
-            Edit Game
-          </a>
-        </Link>{' '}
-      </div>
-      <div>
-        <Link href='/create'>
-          <a
-            href='/create'
-            className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
-            Create Game
-          </a>
-        </Link>
+        <a
+          href='/create'
+          className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
+          Create Game
+        </a>
       </div>
       <table className='f6 w-100 mw8 center' cellSpacing='0'>
         <thead>

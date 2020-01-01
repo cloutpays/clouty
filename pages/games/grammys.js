@@ -16,9 +16,11 @@ const Grammys = ({ questions }) => {
       <section className='flex flex-wrap'>
         <div className='mb2'>
           This is our first Live Event Gaming section. Here we will announce
-          winners and disperse earnings in real time. Tune in and place your
-          bet(s) as winners are announced.{' '}
-          <strong>Last day to play is Jan 26th</strong>
+          winners and disperse earnings in real time. Tune in and place your bet
+          before winners are announced.{' '}
+          <p>
+            <strong>Last day to play is Jan 26th 6pm CST.</strong>
+          </p>
         </div>
         {questions
           .map((game) => {
