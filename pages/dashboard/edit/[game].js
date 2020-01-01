@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import SignUpForm from '../../components/SignUpForm';
-import Wrapper from '../../components/Wrapper';
+import SignUpForm from '../../../components/SignUpForm';
+import Wrapper from '../../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 const Games = ({ game }) => {
@@ -10,18 +10,7 @@ const Games = ({ game }) => {
     header: 'Play',
     description: 'Selected games and contests.',
   };
-  const description =
-    game.gameType === 'grammy'
-      ? game.description.split('+').map((curr, i) => {
-          return (
-            <div key={i} className='mv2'>
-              {curr.split('-')[0]} -<strong>{curr.split('-')[1]}</strong>{' '}
-            </div>
-          );
-        })
-      : game.description;
-  const title =
-    game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
+
   return (
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
@@ -33,9 +22,9 @@ const Games = ({ game }) => {
                 <span role='img' aria-label={game.emoji_name}>
                   {game.emoji}
                 </span>
-                {title}
+                {`Game #${game.question}`}
               </h1>
-              <p>{description}</p>
+              <p>{game.description}</p>
               {!game.answer && <SignUpForm game={game} />}
               {game.answer && (
                 <>

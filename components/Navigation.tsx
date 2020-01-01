@@ -36,17 +36,11 @@ const Navigation = () => (
           </a>
         </Link>
       </li>
+
       <li className='mr2 mr4-ns'>
         <Link href='/about'>
           <a href='/about' className={`${styles.navigationLink}`}>
             About
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href='/contact'>
-          <a href='/contact' className={`${styles.navigationLink}`}>
-            Contact
           </a>
         </Link>
       </li>
