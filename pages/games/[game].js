@@ -12,10 +12,10 @@ const Games = ({ game }) => {
   };
   const description =
     game.gameType === 'grammy'
-      ? game.description.split('+').map((curr, i) => {
+      ? game.description.split('/').map((curr, i) => {
           return (
             <div key={i} className='mv2'>
-              {curr.split('-')[0]} -<strong>{curr.split('-')[1]}</strong>{' '}
+              {curr.split(',')[0]} - <strong>{curr.split(',')[1]}</strong>{' '}
             </div>
           );
         })
