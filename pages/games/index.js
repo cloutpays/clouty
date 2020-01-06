@@ -39,7 +39,7 @@ const Games = ({ questions }) => {
                   <span role='img' aria-label='User Submission'>
                     🏆
                   </span>{' '}
-                  Grammy Awards
+                  2020 Grammy Awards
                 </h1>
                 <p>Check out our bets for the 62nd Grammy’s!</p>
                 <p>Click to enter and place your wager </p>

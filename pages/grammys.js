@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const Grammys = ({ questions }) => {
   const data = {
-    title: 'Games',
+    title: '🏆 2020 Grammys 🏆',
     header: '🏆 2020 Grammys 🏆',
     description: 'Selected games and contests.',
   };

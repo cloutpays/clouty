@@ -5,8 +5,10 @@ import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 const Games = ({ game }) => {
+  const title =
+    game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
   const data = {
-    title: 'Games',
+    title,
     header: 'Play',
     description: 'Selected games and contests.',
   };
@@ -20,8 +22,6 @@ const Games = ({ game }) => {
           );
         })
       : game.description;
-  const title =
-    game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
   return (
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
