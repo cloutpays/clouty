@@ -35,7 +35,9 @@ export default class Wrapper extends Component {
   render() {
     const { data, className, children: content } = this.props;
 
-    const title = data.title ? `${data.title}` : 'Clouty';
+    const title = data.title
+      ? `Clouty | ${data.title}`
+      : `The 🌎's first music betting platform`;
     const cls = className ? `${className}` : '';
     const description = data.description
       ? data.description
@@ -46,10 +48,7 @@ export default class Wrapper extends Component {
         <Head>
           <title>{title}</title>
           <meta name='description' content={description} />
-          <meta
-            property='og:title'
-            content={`The 🌎's first music betting platform`}
-          />
+          <meta property='og:title' content={title} />
           <meta property='og:description' content={description} />
           <meta
             name='twitter:title'
