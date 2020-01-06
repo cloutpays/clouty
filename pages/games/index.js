@@ -32,8 +32,8 @@ const Games = ({ questions }) => {
           </a>
         </div>
         <div key='contact' className='pv2 pa2-ns w-100 w-50-ns'>
-          <Link href='/games/grammys'>
-            <a href='/games/grammys' className='no-underline'>
+          <Link href='/grammys'>
+            <a href='/grammys' className='no-underline'>
               <div className='white br2 shadow-4 grow pa3 pa4-ns h-100 grammy'>
                 <h1 className='f4 mt0 fw7'>
                   <span role='img' aria-label='User Submission'>
