@@ -48,6 +48,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
       emoji: emoji.native,
       options,
       type: 'select',
+      gameType: 'game',
       slug: (questions.length + 1).toString(),
       class: colorways[Math.floor(Math.random() * colorways.length)],
       question: number,
