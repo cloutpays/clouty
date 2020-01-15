@@ -15,7 +15,7 @@ const Dashboard = ({ entries }) => {
     <Wrapper data={data}>
       <div>
         <a
-          href='/create'
+          href='/dashboard/create'
           className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
           Create Game
         </a>

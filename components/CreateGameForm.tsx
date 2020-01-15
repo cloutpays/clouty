@@ -9,28 +9,40 @@ interface Option {
   value: string;
   key: string;
 }
+interface Question {
+  class: string;
+}
 interface CreateGameFormProps {
   title: string;
   options: Option[];
   description: string;
   emoji: string;
+  visible: boolean;
   slug: string;
-  questions: string[];
+  number: string;
+  colorway: string;
+  questions: Question[];
 }
 const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
   const [description, setDescription] = useState<string>('');
   const [emoji, setEmoji] = useState<any>('smiley');
   const [option, setOption] = useState<string>('');
   const [options, setOptions] = useState<any[]>([]);
+  const [visible, setVisible] = useState<boolean>(false);
+  const [colorway, setColorway] = useState<string>('trillectro');
+  const [number] = useState<string>(
+    (questions.filter((curr) => curr.class !== 'grammy').length + 1).toString(),
+  );
+
   const game = {
     description,
     emoji: emoji.native,
     options,
     type: 'select',
     answer: null,
-    slug: (questions.length + 1).toString(),
-    class: colorways[Math.floor(Math.random() * colorways.length)],
-    question: questions.length + 1,
+    slug: number,
+    class: colorway,
+    question: number,
   };
   const handleSubmit = async () => {
     const submission = {
@@ -38,13 +50,18 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
       emoji: emoji.native,
       options,
       type: 'select',
+      gameType: 'game',
       slug: (questions.length + 1).toString(),
-      class: colorways[Math.floor(Math.random() * colorways.length)],
-      question: questions.length + 1,
+      class: colorway,
+      question: number,
     };
     axios.post('/api/question', submission).then(() => {
       Router.push('/games');
     });
+  };
+  const changeColor = () => {
+    const color = colorways[Math.floor(Math.random() * colorways.length)];
+    setColorway(color);
   };
   const addOption = () => {
     const updatedOptions = [
@@ -55,6 +72,14 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
     setOptions(updatedOptions);
     setOption('');
   };
+  const emojiSet = (e: any) => {
+    setEmoji(e);
+    renderEmoji();
+  };
+  const renderEmoji = () => {
+    setVisible(!visible);
+  };
+
   const removeOption = (event: React.MouseEvent<HTMLElement>) => {
     const deleteIndex = event.currentTarget.getAttribute('data-option-index');
     const updatedOptions = [...options];
@@ -94,29 +119,47 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
             </div>
           </fieldset>
           <div className='mt3'>
-            <span
-              className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6'
-              onClick={addOption}>
-              Add Option
-            </span>
-          </div>
-          <div>
             {options.map((opt, index) => {
               return (
                 <div
                   data-option-index={index}
                   onClick={removeOption}
                   key={index}>
-                  <h1 className='f4 mt0 fw7'>{opt.key}</h1>
+                  <h1 className='f4 mt0 fw7'>{`${opt.key}      X`}</h1>
                 </div>
               );
             })}
           </div>
-          <div className='dt mw9 center pv4 pv5-m '>
-            <div className='dtc v-top'>
-              <Picker onSelect={(e) => setEmoji(e)} />
-            </div>
+          <div className='mt3'>
+            <span
+              className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6'
+              onClick={changeColor}>
+              Change Color
+            </span>
           </div>
+          <div className='mt3'>
+            <span
+              className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6'
+              onClick={addOption}>
+              Add Option
+            </span>
+          </div>
+          <div className='mt3'>
+            <span
+              className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6'
+              onClick={renderEmoji}>
+              Add Emoji
+            </span>
+          </div>
+          {visible ? (
+            <div className='dt mw9 center pv4 pv5-m '>
+              <div className='dtc v-top'>
+                <Picker onSelect={emojiSet} />
+              </div>
+            </div>
+          ) : (
+            ''
+          )}
           <div className='mt3'>
             <span
               className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6'
@@ -133,7 +176,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
               className={`white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`}>
               <h1 className='f4 mt0 fw7'>
                 <span role='img'>{game.emoji}</span>
-                {`Game #${game.question}`}
+                {`Game #${number}`}
               </h1>
               <p>{game.description}</p>
               {!game.answer && <SignUpForm game={game} />}

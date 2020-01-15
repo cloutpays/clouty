@@ -1,7 +1,7 @@
-import CreateGameForm from '../components/CreateGameForm';
+import CreateGameForm from '../../components/CreateGameForm';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Wrapper from '../components/Wrapper';
+import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
