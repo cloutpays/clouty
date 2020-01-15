@@ -40,7 +40,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
     answer: null,
     slug: number,
     class: colorways[Math.floor(Math.random() * colorways.length)],
-    number,
+    question: number,
   };
   const handleSubmit = async () => {
     const submission = {
@@ -50,7 +50,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
       type: 'select',
       slug: (questions.length + 1).toString(),
       class: colorways[Math.floor(Math.random() * colorways.length)],
-      number,
+      question: number,
     };
     axios.post('/api/question', submission).then(() => {
       Router.push('/games');
