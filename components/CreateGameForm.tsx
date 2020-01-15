@@ -20,6 +20,7 @@ interface CreateGameFormProps {
   visible: boolean;
   slug: string;
   number: string;
+  colorway: string;
   questions: Question[];
 }
 const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
@@ -28,6 +29,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
   const [option, setOption] = useState<string>('');
   const [options, setOptions] = useState<any[]>([]);
   const [visible, setVisible] = useState<boolean>(false);
+  const [colorway, setColorway] = useState<string>('trillectro');
   const [number] = useState<string>(
     (questions.filter((curr) => curr.class !== 'grammy').length + 1).toString(),
   );
@@ -39,7 +41,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
     type: 'select',
     answer: null,
     slug: number,
-    class: colorways[Math.floor(Math.random() * colorways.length)],
+    class: colorway,
     question: number,
   };
   const handleSubmit = async () => {
@@ -50,12 +52,16 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
       type: 'select',
       gameType: 'game',
       slug: (questions.length + 1).toString(),
-      class: colorways[Math.floor(Math.random() * colorways.length)],
+      class: colorway,
       question: number,
     };
     axios.post('/api/question', submission).then(() => {
       Router.push('/games');
     });
+  };
+  const changeColor = () => {
+    const color = colorways[Math.floor(Math.random() * colorways.length)];
+    setColorway(color);
   };
   const addOption = () => {
     const updatedOptions = [
@@ -123,6 +129,13 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ questions }) => {
                 </div>
               );
             })}
+          </div>
+          <div className='mt3'>
+            <span
+              className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6'
+              onClick={changeColor}>
+              Change Color
+            </span>
           </div>
           <div className='mt3'>
             <span
