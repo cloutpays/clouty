@@ -1,13 +1,16 @@
 import { json } from 'micro';
 import connect from './db';
-const { parse } = require('url');
 
+const { parse } = require('url');
 const cors = require('micro-cors')();
 const client = require('twilio')(
   process.env.TWILIO_SID,
   process.env.TWILIO_TOKEN,
 );
-
+const dev = process.env.NODE_ENV === 'development';
+console.log('dev?', dev);
+const question = dev ? 'questiondev' : 'question';
+const cloutpays = dev ? 'cloutpaysdev' : 'cloutpays';
 const wrapAsync = (handler) => async (req, res) => {
   const db = await connect();
   return handler(req, db)
@@ -37,50 +40,44 @@ const sendTextMessage = async (name, phoneNumber, wager) => {
 const gameSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   const { name, phoneNumber, wager } = data;
-
-  // Set caching headers to serve stale content (if over a second old)
-  // while revalidating fresh content in the background
   await sendTextMessage(name, phoneNumber, wager);
-  const collection =
-    process.env.NODE_ENV !== 'development'
-      ? await db.collection('cloutpays')
-      : await db.collection('cloutpaysdev');
-  const user = await collection.insertOne(data);
-  return user;
+  return await db.collection(cloutpays).insertOne(data);
 });
 
 const submissionsRetrieveApi = wrapAsync(async (req, db) => {
   return await db
-    .collection('cloutpays')
+    .collection(cloutpays)
     .find()
     .toArray();
 });
+
 const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  const collection = db.collection('question');
-  const question = await collection.insertOne(data);
-  return question;
+  return await db.collection(question).insertOne(data);
 });
+
 const questionsRetrieveApi = wrapAsync(async (req, db) => {
   return await db
-    .collection('question')
+    .collection(question)
     .find()
     .toArray();
 });
+
 const questionRetrieveApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
   const id = query.id;
   return await db
-    .collection('question')
+    .collection(question)
     .find({ slug: id })
     .toArray();
 });
+
 const questionRemoveApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
-  console.log('id', query);
   const id = query.id;
-  return await db.collection('question').remove({ slug: id });
+  return await db.collection(question).remove({ slug: id });
 });
+
 module.exports = {
   gameSubmitApi: cors(gameSubmitApi),
   submissionsRetrieveApi: cors(submissionsRetrieveApi),
