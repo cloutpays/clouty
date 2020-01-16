@@ -80,6 +80,9 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
       class: colorway,
       question: number,
     };
+    if (answer === '') {
+      delete submission.answer;
+    }
     axios.post('/api/question', submission).then(() => {
       Router.push('/dashboard/edit');
     });
