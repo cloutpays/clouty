@@ -49,6 +49,8 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
   const [colorway, setColorway] = useState<string>(
     game ? game.class : 'trillectro',
   );
+  const grammy = game.gameType === 'grammy';
+
   const number = !game
     ? (
         questions.filter((curr) => curr.gameType !== 'grammy').length + 1
@@ -230,11 +232,22 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
                 </span>
                 {`${
                   currentGame.gameType === 'game'
-                    ? 'Game #'
+                    ? `Game #${currentGame.question}`
                     : currentGame.gameType
-                }${currentGame.question}`}
+                }`}
               </h1>
-              <p>{currentGame.description}</p>
+              <p>
+                {grammy
+                  ? game.description.split('/').map((curr, i) => {
+                      return (
+                        <div key={i} className='mv2'>
+                          {curr.split(',')[0]} -{' '}
+                          <strong>{curr.split(',')[1]}</strong>{' '}
+                        </div>
+                      );
+                    })
+                  : currentGame.description}
+              </p>
               {currentGame.answer && (
                 <>
                   <div className='f5 mt0 fw7'>Winning bet:</div>{' '}
