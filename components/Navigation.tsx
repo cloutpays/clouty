@@ -33,11 +33,9 @@ const Navigation = () => (
     <ul className='list pl0 flex mv0'>
       {dev ? (
         <li className='mr2 mr4-ns'>
-          <Link href='/dashboard'>
-            <a href='/dashboard' className={`${styles.navigationLink}`}>
-              Dashboard
-            </a>
-          </Link>
+          <a href='/dashboard' className={`${styles.navigationLink}`}>
+            Dashboard
+          </a>
         </li>
       ) : (
         ''
