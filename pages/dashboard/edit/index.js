@@ -11,6 +11,7 @@ const Games = ({ questions }) => {
     header: 'Edit games and contests.',
     description: 'Edit games and contests.',
   };
+
   return (
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
@@ -18,6 +19,7 @@ const Games = ({ questions }) => {
           ? questions
               .map((game) => {
                 const gameButtonText = 'Edit Game';
+                const grammy = game.gameType === 'grammy';
                 const activeLink = `/dashboard/edit/${game.slug}`;
                 const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
                 return (
@@ -31,9 +33,24 @@ const Games = ({ questions }) => {
                             <span role='img' aria-label={game.emoji_name}>
                               {game.emoji}
                             </span>{' '}
-                            {`Game #${game.question}`}
+                            {`${
+                              game.gameType === 'game'
+                                ? `Game #${game.question}`
+                                : game.question
+                            }`}
                           </h1>
-                          <p>{game.description}</p>
+                          <p>
+                            {grammy
+                              ? game.description.split('/').map((curr, i) => {
+                                  return (
+                                    <div key={i} className='mv2'>
+                                      {curr.split(',')[0]} -{' '}
+                                      <strong>{curr.split(',')[1]}</strong>{' '}
+                                    </div>
+                                  );
+                                })
+                              : game.description}
+                          </p>
                           <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
                             {gameButtonText}
                             <span className='pl1 sans-serif'>→</span>

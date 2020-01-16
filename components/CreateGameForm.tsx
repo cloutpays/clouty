@@ -49,7 +49,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
   const [colorway, setColorway] = useState<string>(
     game ? game.class : 'trillectro',
   );
-  const grammy = game.gameType === 'grammy';
+  const grammy = game && game.gameType === 'grammy';
 
   const number = !game
     ? (
