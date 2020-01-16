@@ -57,7 +57,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
         }
         // console.log(result);
         setCookie('id_token', result.user.uid);
-        Router.push('/');
+        Router.push('/dashboard');
         if (!result || result.message) {
           // const message =
           //   result && result.message
