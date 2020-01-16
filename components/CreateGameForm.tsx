@@ -49,6 +49,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
   const [colorway, setColorway] = useState<string>(
     game ? game.class : 'trillectro',
   );
+  const newGame = game ? true : false;
   const grammy = game && game.gameType === 'grammy';
 
   const number = !game
@@ -211,13 +212,17 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
                 Set Emoji
               </span>
             </div>
-            <div className='mt3'>
-              <span
-                className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
-                onClick={removeGame}>
-                Remove Game
-              </span>
-            </div>
+            {newGame ? (
+              <div className='mt3'>
+                <span
+                  className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
+                  onClick={removeGame}>
+                  Remove Game
+                </span>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         </form>
       </article>
