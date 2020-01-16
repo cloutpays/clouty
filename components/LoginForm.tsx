@@ -44,9 +44,9 @@ const LoginForm: React.FC<LoginFormProps> = () => {
 
     let isError = false;
     Firebase.login(Firebase.EMAIL, { email, password })
-      .catch((result: { message: any }) => {
-        const message =
-          result && result.message ? result.message : 'Sorry Some error occurs';
+      .catch(() => {
+        // const message =
+        //   result && result.message ? result.message : 'Sorry Some error occurs';
         // console.log('error', message);
 
         isError = true;
@@ -59,13 +59,13 @@ const LoginForm: React.FC<LoginFormProps> = () => {
         setCookie('id_token', result.user.uid);
         Router.push('/');
         if (!result || result.message) {
-          const message =
-            result && result.message
-              ? result.message
-              : 'Sorry Some error occurs';
+          // const message =
+          //   result && result.message
+          //     ? result.message
+          //     : 'Sorry Some error occurs';
           // console.log('error', message);
         } else {
-          axios.post('/api/user', { data: result.user }).then((res) => {
+          axios.post('/api/user', { data: result.user }).then(() => {
             // console.log(res);
           });
         }
