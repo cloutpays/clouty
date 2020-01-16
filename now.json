@@ -54,6 +54,12 @@
       "dest": "server/handlers/delete.js?id=$1"
     }
   ],
+  "build": {
+    "env": {
+      "FIREBASE_API_KEY": "@firebase-api-key",
+      "FIREBASE_APP_ID": "@firebase-app-id"
+    }
+  },
   "env": {
     "TWILIO_SID": "@twilio-sid",
     "TWILIO_TOKEN": "@twilio-token",

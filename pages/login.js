@@ -15,7 +15,6 @@ const Login = () => (
 );
 
 Login.getInitialProps = ({ isLoggedIn }) => {
-  console.log('isLoggedIn', isLoggedIn);
   return { isLoggedIn };
 };
 
