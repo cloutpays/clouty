@@ -9,6 +9,10 @@
       "use": "@now/node"
     },
     {
+      "src": "server/handlers/delete.js",
+      "use": "@now/node"
+    },
+    {
       "src": "server/handlers/get.js",
       "use": "@now/node"
     }

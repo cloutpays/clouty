@@ -8,7 +8,6 @@ const client = require('twilio')(
   process.env.TWILIO_TOKEN,
 );
 const dev = process.env.NODE_ENV === 'development';
-console.log('dev?', dev);
 const question = dev ? 'questiondev' : 'question';
 const cloutpays = dev ? 'cloutpaysdev' : 'cloutpays';
 const wrapAsync = (handler) => async (req, res) => {
@@ -53,7 +52,9 @@ const submissionsRetrieveApi = wrapAsync(async (req, db) => {
 
 const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  return await db.collection(question).insertOne(data);
+  return await db
+    .collection(question)
+    .findOneAndUpdate({ slug: data.slug }, { $set: data }, { upsert: true });
 });
 
 const questionsRetrieveApi = wrapAsync(async (req, db) => {

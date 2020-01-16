@@ -3,6 +3,8 @@ import React from 'react';
 
 import { styles } from '../constants/styles';
 
+const dev = process.env.NODE_ENV === 'development';
+
 const Navigation = () => (
   <nav className='mw8 center flex items-center mb5'>
     <Link href='/'>
@@ -29,6 +31,15 @@ const Navigation = () => (
       </a>
     </Link>
     <ul className='list pl0 flex mv0'>
+      {dev ? (
+        <li className='mr2 mr4-ns'>
+          <a href='/dashboard' className={`${styles.navigationLink}`}>
+            Dashboard
+          </a>
+        </li>
+      ) : (
+        ''
+      )}
       <li className='mr2 mr4-ns'>
         <Link href='/games'>
           <a href='/games' className={`${styles.navigationLink}`}>

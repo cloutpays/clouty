@@ -1,14 +1,14 @@
 // Local dependencies
 const { handleErrors } = require('../helpers/error');
-const { questonRemoveApi } = require('../helpers/game');
+const { questionRemoveApi } = require('../helpers/game');
 const { send } = require('micro');
 
 const postApi = (fn) => async (req, res) => {
   try {
     const parse = req.url.split('/');
-    switch (`api/${parse[2]}`) {
-      case 'api/ques':
-        return await fn(questonRemoveApi(req, res));
+    switch (`${parse[2]}`) {
+      case 'question':
+        return await fn(questionRemoveApi(req, res));
       default:
         return send(res, 200, { err: 'invalid route' });
     }
