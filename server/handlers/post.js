@@ -1,6 +1,7 @@
 // Local dependencies
 const { handleErrors } = require('../helpers/error');
 const { gameSubmitApi, questionSubmitApi } = require('../helpers/game');
+const { userApi } = require('../helpers/user');
 const { send } = require('micro');
 
 const postApi = (fn) => async (req, res) => {
@@ -11,6 +12,8 @@ const postApi = (fn) => async (req, res) => {
         return await fn(gameSubmitApi(req, res));
       case 'api/question':
         return await fn(questionSubmitApi(req, res));
+      case 'api/user':
+        return await fn(userApi(req, res));
       default:
         return send(res, 200, { err: 'invalid route' });
     }

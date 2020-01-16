@@ -18,6 +18,8 @@
     "dotenv": "^8.2.0",
     "emoji-mart": "^2.11.1",
     "express": "^4.17.1",
+    "firebase": "^7.6.2",
+    "js-cookie": "^2.2.1",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
     "mongodb": "^3.3.4",

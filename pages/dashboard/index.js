@@ -2,6 +2,7 @@ import { formatDate } from '../../lib/helpers';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
+import SecuredPage from '../../hoc/securedPage';
 import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
@@ -86,4 +87,4 @@ Dashboard.propTypes = {
   entries: PropTypes.array,
 };
 
-export default Dashboard;
+export default SecuredPage(Dashboard);

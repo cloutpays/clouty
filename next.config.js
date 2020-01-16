@@ -7,5 +7,7 @@ module.exports = withCSS({
   env: {
     // Reference a variable that was defined in the .env file and make it available at Build Time
     MONGO: process.env.MONGO,
+    FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
+    FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
   },
 });

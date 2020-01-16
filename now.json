@@ -39,6 +39,11 @@
       "dest": "server/handlers/post.js"
     },
     {
+      "src": "/api/user",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
       "src": "/api/question/(.*)",
       "methods": ["GET"],
       "dest": "server/handlers/get.js?id=$1"
@@ -49,9 +54,17 @@
       "dest": "server/handlers/delete.js?id=$1"
     }
   ],
+  "build": {
+    "env": {
+      "FIREBASE_API_KEY": "@firebase-api-key",
+      "FIREBASE_APP_ID": "@firebase-app-id"
+    }
+  },
   "env": {
     "TWILIO_SID": "@twilio-sid",
     "TWILIO_TOKEN": "@twilio-token",
-    "MONGO": "@mongo"
+    "MONGO": "@mongo",
+    "FIREBASE_API_KEY": "@firebase-api-key",
+    "FIREBASE_APP_ID": "@firebase-app-id"
   }
 }
