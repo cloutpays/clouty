@@ -70,11 +70,7 @@ const Navigation = () => {
             </a>
           </li>
         ) : (
-          <li className='mr2 mr4-ns'>
-            <a href='/login' className={`${styles.navigationLink}`}>
-              Login
-            </a>
-          </li>
+          ''
         )}
       </ul>
     </nav>
