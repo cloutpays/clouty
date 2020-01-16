@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Router from 'next/router';
 import React from 'react';
 import { styles } from '../constants/styles';
 import { getCookieFromBrowser, removeCookie } from '../lib/session';
@@ -8,7 +9,8 @@ const dev = process.env.NODE_ENV === 'development';
 const Navigation = () => {
   const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;
   const handleLogout = () => {
-    removeCookie('id_token ');
+    removeCookie('id_token');
+    Router.push('/');
   };
   return (
     <nav className='mw8 center flex items-center mb5'>
@@ -63,10 +65,7 @@ const Navigation = () => {
 
         {isLoggedIn ? (
           <li className='mr2 mr4-ns'>
-            <a
-              href='#'
-              onClick={handleLogout}
-              className={`${styles.navigationLink}`}>
+            <a onClick={handleLogout} className={`${styles.navigationLink}`}>
               Logout
             </a>
           </li>
