@@ -21,6 +21,7 @@ interface GameProps {
   answer: string;
   class: string;
   gameType: string;
+  question: string;
   game: GameProps;
 }
 interface CreateGameFormProps {
@@ -59,7 +60,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
     ? (
         questions.filter((curr) => curr.gameType !== 'grammy').length + 1
       ).toString()
-    : game.slug;
+    : game.question;
 
   const currentGame = {
     description,
