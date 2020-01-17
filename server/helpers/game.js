@@ -69,12 +69,13 @@ const questionSubmitApi = wrapAsync(async (req, db) => {
     .findOneAndReplace({ slug: data.slug }, data, { upsert: true });
 });
 
-const questionsRetrieveApi = wrapAsync(async (req, db) => {
-  return await db
-    .collection(question)
-    .find()
-    .toArray();
-});
+const questionsRetrieveApi = wrapAsync(
+  async (req, db) =>
+    await db
+      .collection(question)
+      .find()
+      .toArray(),
+);
 
 const questionRetrieveApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
