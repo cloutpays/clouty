@@ -18,7 +18,7 @@ const Games = ({ questions }) => {
         {questions.length > 0
           ? questions
               .map((game) => {
-                const gameButtonText = 'Edit Game';
+                const gameButtonText = 'Manage';
                 const grammy = game.gameType === 'grammy';
                 const activeLink = `/dashboard/edit/${game.slug}`;
                 const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
@@ -51,6 +51,14 @@ const Games = ({ questions }) => {
                                 })
                               : game.description}
                           </p>
+                          {game.answer && (
+                            <>
+                              <div className='f6 mt0 fw7'>Winning bet:</div>{' '}
+                              <div className='f5 mb2 mt0 fw7'>
+                                {game.answer}
+                              </div>
+                            </>
+                          )}
                           <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
                             {gameButtonText}
                             <span className='pl1 sans-serif'>→</span>
