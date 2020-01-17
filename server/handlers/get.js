@@ -4,6 +4,7 @@ const {
   submissionsRetrieveApi,
   questionsRetrieveApi,
   questionRetrieveApi,
+  userSubmissionsRetrieveApi,
 } = require('../helpers/game');
 const { send } = require('micro');
 
@@ -13,6 +14,8 @@ const getApi = (fn) => async (req, res) => {
     switch (`api/${parse[2]}`) {
       case 'api/submissions':
         return await fn(submissionsRetrieveApi(req, res));
+      case 'api/userSubmissions':
+        return await fn(userSubmissionsRetrieveApi(req, res));
       case 'api/questions':
         return await fn(questionsRetrieveApi(req, res));
       case 'api/question':

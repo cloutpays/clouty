@@ -39,14 +39,25 @@ const sendTextMessage = async (name, phoneNumber, wager) => {
 const gameSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   const { name, phoneNumber, wager } = data;
-  await sendTextMessage(name, phoneNumber, wager);
+  if (!dev) {
+    await sendTextMessage(name, phoneNumber, wager);
+  }
   return await db.collection(cloutpays).insertOne(data);
 });
 
-const submissionsRetrieveApi = wrapAsync(async (req, db) => {
+const submissionsRetrieveApi = wrapAsync(
+  async (req, db) =>
+    await db
+      .collection(cloutpays)
+      .find()
+      .toArray(),
+);
+const userSubmissionsRetrieveApi = wrapAsync(async (req, db) => {
+  const { query } = parse(req.url, true);
+  const { id } = query;
   return await db
     .collection(cloutpays)
-    .find()
+    .find({ userId: id })
     .toArray();
 });
 
@@ -87,4 +98,5 @@ module.exports = {
   questionRetrieveApi: cors(questionRetrieveApi),
   questionSubmitApi: cors(questionSubmitApi),
   questionRemoveApi: cors(questionRemoveApi),
+  userSubmissionsRetrieveApi: cors(userSubmissionsRetrieveApi),
 };
