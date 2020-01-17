@@ -8,9 +8,10 @@ import React, { useState } from 'react';
 import Question from './Question';
 interface SignUpFormProps {
   game: any;
+  userId: string;
 }
 
-const SignUpForm: React.FC<SignUpFormProps> = ({ game }) => {
+const SignUpForm: React.FC<SignUpFormProps> = ({ game, userId }) => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [handle, setHandle] = useState<string>('');
@@ -26,6 +27,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game }) => {
       name,
       phoneNumber,
       handle,
+      userId,
       wager,
       date,
       question: game.question,

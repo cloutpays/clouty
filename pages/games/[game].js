@@ -1,10 +1,12 @@
+import { getCookie } from '../../lib/session';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SignUpForm from '../../components/SignUpForm';
 import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
-const Games = ({ game }) => {
+
+const Games = ({ game, userId }) => {
   const title =
     game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
   const data = {
@@ -36,7 +38,7 @@ const Games = ({ game }) => {
                 {title}
               </h1>
               <p>{description}</p>
-              {!game.answer && <SignUpForm game={game} />}
+              {!game.answer && <SignUpForm userId={userId} game={game} />}
               {game.answer && (
                 <>
                   <div className='f5 mt0 fw7'>Winning bet:</div>{' '}
@@ -51,18 +53,20 @@ const Games = ({ game }) => {
   );
 };
 
-Games.getInitialProps = async ({ query, req }) => {
+Games.getInitialProps = async (ctx) => {
+  const { query, req } = ctx;
   const { game } = query;
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
-  const res = await axios.get(`${apiURL}/api/question/${game}`);
-  const question = res.data;
-  return { game: question[0] };
+  const question = (await axios.get(`${apiURL}/api/question/${game}`)).data;
+  const userId = getCookie('id_token', ctx.req);
+  return { game: question[0], userId };
 };
 
 Games.propTypes = {
   games: PropTypes.array,
   game: PropTypes.string,
+  userId: PropTypes.string,
 };
 
 export default Games;
