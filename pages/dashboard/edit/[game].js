@@ -33,7 +33,7 @@ Games.getInitialProps = async ({ query, req }) => {
 Games.propTypes = {
   games: PropTypes.array,
   questions: PropTypes.array,
-  game: PropTypes.string,
+  game: PropTypes.object,
 };
 
 export default SecuredPage(Games);
