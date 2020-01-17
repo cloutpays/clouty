@@ -46,6 +46,9 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
   const [options, setOptions] = useState<any[]>(game ? game.options : []);
   const [gameType] = useState<string>(game ? game.gameType : 'game');
   const [visible, setVisible] = useState<boolean>(false);
+  const [answerVisible, setAnswerVisible] = useState<boolean>(
+    game && game.answer ? true : false,
+  );
   const [colorway, setColorway] = useState<string>(
     game ? game.class : 'trillectro',
   );
@@ -80,9 +83,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
       class: colorway,
       question: number,
     };
-    if (answer === '') {
-      delete submission.answer;
-    }
+
     axios.post('/api/question', submission).then(() => {
       Router.push('/dashboard/edit');
     });
@@ -112,6 +113,13 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
   const renderEmoji = () => {
     setVisible(!visible);
   };
+  const addAnswer = () => {
+    setAnswerVisible(!answerVisible);
+  };
+  const removeAnswer = () => {
+    setAnswer(undefined);
+    setAnswerVisible(!answerVisible);
+  };
 
   const removeOption = (event: React.MouseEvent<HTMLElement>) => {
     const deleteIndex = event.currentTarget.getAttribute('data-option-index');
@@ -140,7 +148,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
                 <textarea
                   id='comment'
                   name='comment'
-                  className='db border-box hover-black w-100 measure ba b--black pa2 br2 mb2'
+                  className='db h5-ns border-box hover-black w-100 measure ba b--black pa2 br2 mb2'
                   aria-describedby='comment-desc'
                   value={description}
                   onChange={(event) =>
@@ -166,17 +174,21 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
                   </span>
                 </div>
               </div>
-              <div className='mt3'>
-                <label className='db fw4 lh-copy f6' htmlFor='password'>
-                  Answer
-                </label>
-                <input
-                  className='b pa2 input-reset ba bg-transparent'
-                  type='text'
-                  value={answer}
-                  onChange={(event) => setAnswer(event.currentTarget.value)}
-                />
-              </div>
+              {answerVisible ? (
+                <div className='mt3'>
+                  <label className='db fw4 lh-copy f6' htmlFor='password'>
+                    Answer
+                  </label>
+                  <input
+                    className='b pa2 input-reset ba bg-transparent'
+                    type='text'
+                    value={answer}
+                    onChange={(event) => setAnswer(event.currentTarget.value)}
+                  />
+                </div>
+              ) : (
+                ''
+              )}
               <div className='mt3'>
                 <strong>Options:</strong>
                 {options.map((opt, index) => {
@@ -204,7 +216,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
               <span
                 className='b mr2 ph2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
                 onClick={changeColor}>
-                Change Color
+                Color
               </span>
             </div>
 
@@ -212,19 +224,25 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
               <span
                 className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
                 onClick={renderEmoji}>
-                Set Emoji
+                Emoji
               </span>
             </div>
-            {newGame ? (
+            {answerVisible ? (
               <div className='mt3'>
                 <span
                   className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
-                  onClick={removeGame}>
-                  Remove Game
+                  onClick={removeAnswer}>
+                  Remove Answer
                 </span>
               </div>
             ) : (
-              ''
+              <div className='mt3'>
+                <span
+                  className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
+                  onClick={addAnswer}>
+                  Add Answer
+                </span>
+              </div>
             )}
           </div>
         </form>
@@ -265,13 +283,26 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
             </div>
           </a>
         </div>
-        <div className='mt3'>
-          <span
-            className='f6 link dim ph3 pv2 mb2 dib white bg-black'
-            onClick={handleSubmit}>
-            {' '}
-            Submit
-          </span>
+        <div className='flex'>
+          <div className='mt3'>
+            <span
+              className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'
+              onClick={handleSubmit}>
+              {' '}
+              Submit
+            </span>
+          </div>
+          {newGame ? (
+            <div className='mt3'>
+              <span
+                className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'
+                onClick={removeGame}>
+                Remove Game
+              </span>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       </section>
     </>
