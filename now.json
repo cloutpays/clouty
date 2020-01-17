@@ -29,6 +29,11 @@
       "dest": "server/handlers/get.js"
     },
     {
+      "src": "/api/userSubmissions/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1"
+    },
+    {
       "src": "/api/questions",
       "methods": ["GET"],
       "dest": "server/handlers/get.js"
