@@ -52,9 +52,10 @@ const submissionsRetrieveApi = wrapAsync(async (req, db) => {
 
 const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
+  console.log(data);
   return await db
     .collection(question)
-    .findOneAndUpdate({ slug: data.slug }, { $set: data }, { upsert: true });
+    .findOneAndReplace({ slug: data.slug }, data, { upsert: true });
 });
 
 const questionsRetrieveApi = wrapAsync(async (req, db) => {
