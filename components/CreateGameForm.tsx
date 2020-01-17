@@ -149,7 +149,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
                 <textarea
                   id='comment'
                   name='comment'
-                  className='db h4-ns border-box hover-black w-100 measure ba b--black pa2 br2 mb2'
+                  className='db h4 border-box hover-black w-100 measure ba b--black pa2 br2 mb2'
                   aria-describedby='comment-desc'
                   value={description}
                   onChange={(event) =>
