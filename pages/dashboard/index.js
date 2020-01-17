@@ -15,16 +15,16 @@ const Dashboard = ({ entries }) => {
   };
   return (
     <Wrapper data={data}>
-      <div className='mr2'>
+      <div className='flex'>
         <a
           href='/dashboard/create'
-          className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
+          className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
           Create Game
         </a>
         <Link href='/dashboard/edit'>
           <a
             href='/dashboard/edit'
-            className='f6 link dim ph3 pv2 mb2 dib white bg-black'>
+            className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
             Edit Game
           </a>
         </Link>
