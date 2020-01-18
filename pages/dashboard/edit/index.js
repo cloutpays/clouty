@@ -1,3 +1,4 @@
+import { grammyRender } from '../../../lib/helpers';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -24,7 +25,7 @@ const Games = ({ questions }) => {
                 const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
                 return (
                   <div
-                    key={`work-${game.name}`}
+                    key={`work-${game.slug}`}
                     className='pv2 pa2-ns w-100 w-50-ns'>
                     <Link href={activeLink}>
                       <a href={activeLink} className='no-underline white'>
@@ -39,18 +40,7 @@ const Games = ({ questions }) => {
                                 : game.question
                             }`}
                           </h1>
-                          <p>
-                            {grammy
-                              ? game.description.split('/').map((curr, i) => {
-                                  return (
-                                    <div key={i} className='mv2'>
-                                      {curr.split(',')[0]} -{' '}
-                                      <strong>{curr.split(',')[1]}</strong>{' '}
-                                    </div>
-                                  );
-                                })
-                              : game.description}
-                          </p>
+                          {grammy ? grammyRender(game) : game.description}
                           {game.answer && (
                             <>
                               <div className='f6 mt0 fw7'>Winning bet:</div>{' '}
