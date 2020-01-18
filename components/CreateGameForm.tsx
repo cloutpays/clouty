@@ -20,6 +20,7 @@ interface GameProps {
   number: string;
   answer: string;
   class: string;
+  extendedAnswer: string;
   gameType: string;
   question: string;
   game: GameProps;
@@ -32,6 +33,7 @@ interface CreateGameFormProps {
   visible: boolean;
   gameType: string;
   slug: string;
+  extendedAnswer: string;
   number: string;
   colorway: string;
   questions: Question[];
@@ -43,6 +45,9 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
   );
   const [emoji, setEmoji] = useState<any>(game ? game.emoji : '😘');
   const [answer, setAnswer] = useState<any>(game ? game.answer : '');
+  const [extendedAnswer, setExtendedAnswer] = useState<any>(
+    game ? game.answer : '',
+  );
   const [option, setOption] = useState<string>('');
   const [options, setOptions] = useState<any[]>(game ? game.options : []);
   const [gameType] = useState<string>(game ? game.gameType : 'game');
@@ -69,9 +74,11 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
     slug: number,
     class: colorway,
     answer,
+    extendedAnswer,
     gameType,
     question: number,
   };
+
   const handleSubmit = async () => {
     const submission = {
       description,
@@ -81,6 +88,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
       type: 'select',
       gameType: 'game',
       slug: number,
+      extendedAnswer: answer,
       class: colorway,
       question: number,
     };
@@ -175,40 +183,63 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
                   </span>
                 </div>
               </div>
-              {answerVisible ? (
+              {!answerVisible ? (
                 <div className='mt3'>
-                  <label className='db fw4 lh-copy f6' htmlFor='password'>
-                    Answer
-                  </label>
-                  <input
-                    className='b pa2 input-reset ba bg-transparent'
-                    type='text'
-                    value={answer}
-                    onChange={(event) => setAnswer(event.currentTarget.value)}
-                  />
+                  <strong>Options:</strong>
+                  {options.map((opt, index) => {
+                    return (
+                      <div
+                        data-option-index={index}
+                        onClick={removeOption}
+                        key={index}>
+                        <div className='flex'>
+                          <div className='f6 link dim ph2 pv2 mb2 dib white bg-red'>
+                            X
+                          </div>
+                          <div className={'ma2'}>{opt.key}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               ) : (
-                ''
-              )}
-              <div className='mt3'>
-                <strong>Options:</strong>
-                {options.map((opt, index) => {
-                  return (
-                    <div
-                      data-option-index={index}
-                      onClick={removeOption}
-                      key={index}>
-                      <div className='flex'>
-                        <div className='f6 link dim ph2 pv2 mb2 dib white bg-black'>
-                          X
+                <div className='mt3'>
+                  <strong>Select Answer:</strong>
+                  {options.map((opt, index) => {
+                    return (
+                      <div
+                        data-option-index={index}
+                        onClick={() => setAnswer(opt.key)}
+                        key={index}>
+                        <div className='flex'>
+                          {opt.key !== answer ? (
+                            <div className='f6 link dim ph2 pv2 mb2 dib white bg-blue'>
+                              +
+                            </div>
+                          ) : (
+                            <div className='f6 link dim ph2 pv2 mb2 dib white bg-green'>
+                              :)
+                            </div>
+                          )}
+                          <div className={'ma2'}>{opt.key}</div>
                         </div>
-                        <div className={'ma2'}>{opt.key}</div>
                       </div>
-                      {/* <div className={'ma2'}>{opt.key}</div> */}
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                  <div className='mt3'>
+                    <label className='db fw4 lh-copy f6' htmlFor='password'>
+                      Extended Answer
+                    </label>
+                    <input
+                      className='b pa2 input-reset ba bg-transparent'
+                      value={extendedAnswer}
+                      onChange={(event) =>
+                        setExtendedAnswer(event.currentTarget.value)
+                      }
+                    />
+                  </div>
+                </div>
+              )}
             </fieldset>
           )}
 
@@ -241,7 +272,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
                 <span
                   className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
                   onClick={addAnswer}>
-                  Add Answer
+                  Set Answer
                 </span>
               </div>
             )}
