@@ -1,4 +1,5 @@
 import { getCookie } from '../../lib/session';
+import { grammyRender } from '../../lib/helpers';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SignUpForm from '../../components/SignUpForm';
@@ -15,15 +16,7 @@ const Games = ({ game, userId }) => {
     description: 'Selected games and contests.',
   };
   const description =
-    game.gameType === 'grammy'
-      ? game.description.split('/').map((curr, i) => {
-          return (
-            <div key={i} className='mv2'>
-              {curr.split(',')[0]} - <strong>{curr.split(',')[1]}</strong>{' '}
-            </div>
-          );
-        })
-      : game.description;
+    game.gameType === 'grammy' ? grammyRender(game) : game.description;
   return (
     <Wrapper data={data}>
       <section className='flex flex-wrap'>

@@ -1,3 +1,4 @@
+import { grammyRender } from '../lib/helpers';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -37,14 +38,7 @@ const Grammys = ({ questions }) => {
                       </span>{' '}
                       {`${game.question}`}
                     </h1>
-                    {game.description.split('/').map((curr, i) => {
-                      return (
-                        <div key={i} className='mv2'>
-                          {curr.split(',')[0]} -{' '}
-                          <strong>{curr.split(',')[1]}</strong>{' '}
-                        </div>
-                      );
-                    })}
+                    {grammyRender(game)}
                     <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
                       {gameButtonText}
                       <span className='pl1 sans-serif'>→</span>
