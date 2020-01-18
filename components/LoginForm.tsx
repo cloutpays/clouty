@@ -8,32 +8,41 @@ import { setCookie } from '../lib/session';
 interface LoginFormProps {
   email: string;
   password: string;
+  mode: string;
+  firstName: string;
+  lastName: string;
 }
-const LoginForm: React.FC<LoginFormProps> = () => {
+const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const signUp = mode === 'signup';
+  const handleSignUp = async (event: React.FormEvent<HTMLElement>) => {
+    event.preventDefault();
 
-  // const handleSignUp = () => {
-  //   if (!(email && password)) {
-  //     console.log('error', 'Please fill in email. and password');
-  //     return;
-  //   }
-  //   let isError = false;
-  //   Firebase.signup({ email, password })
-  //     .catch((result) => {
-  //       const message =
-  //         result && result.message ? result.message : 'Sorry Some error occurs';
-  //       console.log('error', message);
-  //       isError = true;
-  //     })
-  //     .then((result) => {
-  //       if (isError) {
-  //         return;
-  //       }
-
-  //       console.log(result);
-  //     });
-  // };
+    if (!(email && password)) {
+      // console.log('error', 'Please fill in email. and password');
+      return;
+    }
+    let isError = false;
+    Firebase.signup({ email, password })
+      .catch(() => {
+        // const message =
+        //   result && result.message ? result.message : 'Sorry Some error occurs';
+        // console.log('error', message);
+        isError = true;
+      })
+      .then(() => {
+        if (isError) {
+          return;
+        }
+        // axios.post('/api/user', { data: result.user }).then(() => {
+        //   // console.log(res);
+        // });
+        // console.log(result);
+      });
+  };
   const handleLogin = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
 
@@ -71,28 +80,43 @@ const LoginForm: React.FC<LoginFormProps> = () => {
         }
       });
   };
-  //   const handleSubmit = async () => {
-  // const submission = {
-  //   description,
-  //   emoji: emoji.native ? emoji.native : emoji,
-  //   options,
-  //   answer,
-  //   type: 'select',
-  //   gameType: 'game',
-  //   slug: number,
-  //   class: colorway,
-  //   question: number,
-  // };
-  // axios.post('/api/question', submission).then(() => {
-  //   Router.push('/dashboard/edit');
-  // });
-  //   };
 
   return (
     <>
       <main className='pa4 black-80'>
         <form className='measure center'>
           <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
+            {signUp ? (
+              <>
+                {' '}
+                <div className='mt1'>
+                  <label className='db fw6 lh-copy f6' htmlFor='first-name'>
+                    First Name
+                  </label>
+                  <input
+                    className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                    type='name'
+                    value={firstName}
+                    onChange={(event) =>
+                      setFirstName(event.currentTarget.value)
+                    }
+                  />
+                </div>
+                <div className='mv3'>
+                  <label className='db fw6 lh-copy f6' htmlFor='last-name'>
+                    Last Name
+                  </label>
+                  <input
+                    className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                    type='name'
+                    value={lastName}
+                    onChange={(event) => setLastName(event.currentTarget.value)}
+                  />
+                </div>
+              </>
+            ) : (
+              ''
+            )}
             <div className='mt1'>
               <label className='db fw6 lh-copy f6' htmlFor='email-address'>
                 Email
@@ -115,22 +139,32 @@ const LoginForm: React.FC<LoginFormProps> = () => {
                 onChange={(event) => setPassword(event.currentTarget.value)}
               />
             </div>
-            <label className='pa0 ma0 lh-copy f6 pointer'>
-              <input type='checkbox' /> Remember me
-            </label>
+            {!signUp ? (
+              <label className='pa0 ma0 lh-copy f6 pointer'>
+                <input type='checkbox' /> Remember me
+              </label>
+            ) : (
+              ''
+            )}
           </fieldset>
           <div className=''>
             <input
               className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
               type='submit'
-              value='Sign in'
-              onClick={handleLogin}
+              value={signUp ? 'Sign up' : 'Sign in'}
+              onClick={signUp ? handleSignUp : handleLogin}
             />
           </div>
           <div className='lh-copy mt3'>
-            <a href='#0' className='f6 link dim black db'>
-              Sign up
-            </a>
+            {signUp ? (
+              <a href='/login' className='f6 link dim black db'>
+                Already have an account? Sign in
+              </a>
+            ) : (
+              <a href='/signup' className='f6 link dim black db'>
+                Sign up
+              </a>
+            )}
             <a href='#0' className='f6 link dim black db'>
               Forgot your password?
             </a>

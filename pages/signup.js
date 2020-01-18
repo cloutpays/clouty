@@ -9,7 +9,7 @@ const data = {
 const Login = () => (
   <div>
     <Wrapper data={data} className='measure-wide'>
-      <LoginForm mode={'login'} />
+      <LoginForm mode={'signup'} />
     </Wrapper>
   </div>
 );
