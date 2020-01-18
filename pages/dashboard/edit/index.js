@@ -25,7 +25,7 @@ const Games = ({ questions }) => {
                 const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
                 return (
                   <div
-                    key={`work-${game.name}`}
+                    key={`work-${game.slug}`}
                     className='pv2 pa2-ns w-100 w-50-ns'>
                     <Link href={activeLink}>
                       <a href={activeLink} className='no-underline white'>
