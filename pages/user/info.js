@@ -1,7 +1,7 @@
 import { getCookie } from '../../lib/session';
-// import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
+import SecuredPage from '../../hoc/securedPage';
 import UserDashNavigation from '../../components/UserDashNavigation';
 import UserInfoForm from '../../components/UserInfoForm';
 import Wrapper from '../../components/Wrapper';
@@ -55,4 +55,4 @@ Terms.propTypes = {
   submissions: PropTypes.array,
   questions: PropTypes.array,
 };
-export default Terms;
+export default SecuredPage(Terms);
