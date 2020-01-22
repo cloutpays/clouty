@@ -17,6 +17,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   const [password, setPassword] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
+  const [error, setError] = useState<string>('');
   const signUp = mode === 'signup';
   const handleSignUp = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
@@ -53,10 +54,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
 
     let isError = false;
     Firebase.login(Firebase.EMAIL, { email, password })
-      .catch(() => {
-        // const message =
-        //   result && result.message ? result.message : 'Sorry Some error occurs';
-        // console.log('error', message);
+      .catch((result: any) => {
+        const message =
+          result && result.code.split('/')[1] === 'user-not-found'
+            ? "Sorry, we couldn't find an account with that username. Please try again."
+            : "Sorry, that passowrd isn't right. Please try again.";
+        setError(message);
 
         isError = true;
       })
@@ -64,20 +67,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
         if (isError) {
           return;
         }
-        // console.log(result);
         setCookie('id_token', result.user.uid);
         Router.push('/dashboard');
-        if (!result || result.message) {
-          // const message =
-          //   result && result.message
-          //     ? result.message
-          //     : 'Sorry Some error occurs';
-          // console.log('error', message);
-        } else {
-          axios.post('/api/user', { data: result.user }).then(() => {
-            // console.log(res);
-          });
-        }
+        axios.post('/api/user', { data: result.user }).then(() => {});
       });
   };
 
@@ -125,8 +117,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                 className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
                 type='email'
                 value={email}
-                onChange={(event) => setEmail(event.currentTarget.value)}
+                onChange={(event) => {
+                  setEmail(event.currentTarget.value);
+                  setError('');
+                }}
               />
+              <small id='name-desc' className='hljs-strong f6 red db mb2'>
+                {error}
+              </small>
             </div>
             <div className='mv3'>
               <label className='db fw6 lh-copy f6' htmlFor='password'>
@@ -149,7 +147,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           </fieldset>
           <div className=''>
             <input
-              className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
+              className='b ph3 pv2 link input-reset ba b--black bg-transparent grow pointer f6 dib'
               type='submit'
               value={signUp ? 'Sign up' : 'Sign in'}
               onClick={signUp ? handleSignUp : handleLogin}
