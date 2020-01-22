@@ -7,7 +7,7 @@ const Navigation = () => {
         <h2 className='ttu mt0 mb2 f6 fw5 silver'>Manage</h2>
         <ul className='list pl0 mt0 mb4'>
           <li className='mb2'>
-            <a href='#' className='block link dim blue'>
+            <a href='/info' className='block link dim blue'>
               Account Information
             </a>
           </li>
@@ -37,11 +37,6 @@ const Navigation = () => {
           <li className='mb2'>
             <a href='#' className='block link dim blue'>
               Refer a Friend
-            </a>
-          </li>
-          <li>
-            <a href='#' className='block link dim blue'>
-              Sign out
             </a>
           </li>
         </ul>
