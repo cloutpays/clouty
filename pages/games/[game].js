@@ -58,7 +58,7 @@ Games.getInitialProps = async (ctx) => {
 
 Games.propTypes = {
   games: PropTypes.array,
-  game: PropTypes.string,
+  game: PropTypes.object,
   userId: PropTypes.string,
 };
 
