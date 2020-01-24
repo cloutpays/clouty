@@ -2,6 +2,7 @@ import React from 'react';
 import Wrapper from '../components/Wrapper';
 
 const data = {
+  title: `Frequently Asked Questions`,
   description: 'Make money while putting your intuition on the line.',
   header: `Frequently Asked Questions`,
 };
