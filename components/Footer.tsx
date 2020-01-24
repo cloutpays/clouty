@@ -14,6 +14,11 @@ const Footer = () => (
         </a>
       </li>
       <li className='mr2 mr4-ns'>
+        <a href='/faq' className={`${styles.navigationLink}`}>
+          FAQ
+        </a>
+      </li>
+      <li className='mr2 mr4-ns'>
         <a href='/terms' className={`${styles.navigationLink}`}>
           Terms
         </a>
