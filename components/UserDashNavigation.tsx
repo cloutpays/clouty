@@ -46,7 +46,7 @@ const Navigation = () => {
           <h2 className='ttu mt0 mb1 f6 fw5 silver'>Balance: </h2>
           <h1 className='fw3 dark-gray mt0 mb0'>$0.00</h1>
           <a
-            href='#'
+            href='/user/balance'
             className=' f6 no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
             Add to Balance
           </a>
