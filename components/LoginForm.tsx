@@ -1,4 +1,6 @@
 import axios from 'axios';
+import 'cleave.js/dist/addons/cleave-phone.us';
+import Cleave from 'cleave.js/react';
 import 'emoji-mart/css/emoji-mart.css';
 import Router from 'next/router';
 import React, { useState } from 'react';
@@ -11,44 +13,50 @@ interface LoginFormProps {
   mode: string;
   firstName: string;
   lastName: string;
+  redirect: string;
 }
 const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+
   const [error, setError] = useState<string>('');
   const signUp = mode === 'signup';
   const handleSignUp = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
 
     if (!(email && password)) {
-      // console.log('error', 'Please fill in email. and password');
+      setError('Please fill in email. and password');
       return;
     }
     let isError = false;
     Firebase.signup({ email, password })
-      .catch(() => {
-        // const message =
-        //   result && result.message ? result.message : 'Sorry Some error occurs';
-        // console.log('error', message);
+      .catch((result) => {
+        const message =
+          result && result.message ? result.message : 'Sorry Some error occurs';
         isError = true;
+        setError(message);
       })
-      .then(() => {
+      .then((result: any) => {
         if (isError) {
           return;
         }
-        // axios.post('/api/user', { data: result.user }).then(() => {
-        //   // console.log(res);
-        // });
-        // console.log(result);
+        axios
+          .post('/api/user', {
+            data: result.user,
+          })
+          .then(() => {
+            Router.push('/dashboard');
+          });
       });
   };
   const handleLogin = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
 
     if (!(email && password)) {
-      // console.log('error', 'Please fill in email. and password');
+      setError('Please fill in email. and password');
       return;
     }
 
@@ -103,6 +111,19 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                     type='name'
                     value={lastName}
                     onChange={(event) => setLastName(event.currentTarget.value)}
+                  />
+                </div>
+                <div className='mv3'>
+                  <label className='db fw6 lh-copy f6' htmlFor='last-name'>
+                    Phone Number
+                  </label>
+                  <Cleave
+                    className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                    onChange={(event) =>
+                      setPhoneNumber(event.currentTarget.value)
+                    }
+                    value={phoneNumber}
+                    options={{ phone: true, phoneRegionCode: 'US' }}
                   />
                 </div>
               </>
