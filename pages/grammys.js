@@ -41,7 +41,7 @@ const Grammys = ({ questions }) => {
                     {grammyRender(game)}
                     {game.answer && (
                       <>
-                        <div className='f5 mt0 fw7'>
+                        <div className='f5 mt0 fw7 pt2'>
                           <span className='bg-white-30 mr2 pv1 ph2 f7 f6-ns br-pill b'>
                             Winning bet
                             <span className='pl1  sans-serif'>→</span>
