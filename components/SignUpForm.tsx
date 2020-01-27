@@ -18,28 +18,32 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, userId }) => {
   const [answer, setAnswer] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [wager, setWager] = useState<number>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
-    const date = new Date();
-    const userSubmission = {
-      email,
-      answer,
-      name,
-      phoneNumber,
-      handle,
-      userId,
-      wager,
-      date,
-      question: game.question,
-    };
-    event.preventDefault();
-    await axios({
-      method: 'post',
-      url: '/api/submission',
-      data: userSubmission,
-    }).then(() => {
-      window.location.href = `/confirmation/${wager}`;
-    });
+    if (!loading) {
+      setLoading(true);
+      const date = new Date();
+      const userSubmission = {
+        email,
+        answer,
+        name,
+        phoneNumber,
+        handle,
+        userId,
+        wager,
+        date,
+        question: game.question,
+      };
+      event.preventDefault();
+      await axios({
+        method: 'post',
+        url: '/api/submission',
+        data: userSubmission,
+      }).then(() => {
+        window.location.href = `/confirmation/${wager}`;
+      });
+    }
   };
   return (
     <div className='row'>
@@ -120,8 +124,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, userId }) => {
             <>
               <span
                 onClick={handleSubmit}
-                className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b noselect'>
-                <span className='pl1 sans-serif'>Submit </span>
+                className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
+                <span className='pl1 sans-serif'>Submit</span>
               </span>
             </>
           )}
