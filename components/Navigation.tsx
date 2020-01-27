@@ -39,11 +39,23 @@ const Navigation = () => {
       </Link>
       <ul className='list pl0 flex mv0'>
         {dev ? (
-          <li className='mr2 mr4-ns'>
-            <a href='/dashboard' className={`${styles.navigationLink}`}>
-              Dashboard
-            </a>
-          </li>
+          <>
+            <li className='mr2 mr4-ns'>
+              <Link href='/dashboard'>
+                <a href='/dashboard' className={`${styles.navigationLink}`}>
+                  Admin
+                </a>
+              </Link>
+            </li>
+            <li className='mr2 mr4-ns'>
+              {' '}
+              <Link href='/user'>
+                <a href='/user' className={`${styles.navigationLink}`}>
+                  Profile
+                </a>
+              </Link>
+            </li>
+          </>
         ) : (
           ''
         )}
