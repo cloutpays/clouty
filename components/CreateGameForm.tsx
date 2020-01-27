@@ -86,7 +86,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
       options,
       answer,
       type: 'select',
-      gameType: 'game',
+      gameType,
       slug: number,
       extendedAnswer: answer,
       class: colorway,
