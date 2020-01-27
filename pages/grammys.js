@@ -39,10 +39,24 @@ const Grammys = ({ questions }) => {
                       {`${game.question}`}
                     </h1>
                     {grammyRender(game)}
-                    <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                      {gameButtonText}
-                      <span className='pl1 sans-serif'>→</span>
-                    </span>
+                    {game.answer && (
+                      <>
+                        <div className='f5 mt0 fw7'>
+                          <span className='bg-white-30 mr2 pv1 ph2 f7 f6-ns br-pill b'>
+                            Winning bet
+                            <span className='pl1  sans-serif'>→</span>
+                          </span>
+                          {game.answer}
+                        </div>
+                      </>
+                    )}
+                    {!game.answer && (
+                      <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
+                        {gameButtonText}
+                        <span className='pl1 sans-serif'>→</span>
+                      </span>
+                    )}
+
                     {/* <span className='bg-white-30 fr pv1 ph2 f7 f6-ns br-pill b'>
                         {`Ends 01/26`}
                       </span> */}
