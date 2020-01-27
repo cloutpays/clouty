@@ -124,8 +124,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, userId }) => {
             <>
               <span
                 onClick={handleSubmit}
-                className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b noselect'>
-                <span className='pl1 sans-serif'>Submit </span>
+                className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
+                <span className='pl1 sans-serif'>Submit</span>
               </span>
             </>
           )}
