@@ -1,6 +1,7 @@
 import { Radio } from 'antd';
 import { RadioChangeEvent } from 'antd/lib/radio';
 import axios from 'axios';
+import Router from 'next/router';
 
 import 'cleave.js/dist/addons/cleave-phone.us';
 import Cleave from 'cleave.js/react';
@@ -41,7 +42,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, userId }) => {
         url: '/api/submission',
         data: userSubmission,
       }).then(() => {
-        window.location.href = `/confirmation/${wager}`;
+        Router.push(`/confirmation/${wager}`);
       });
     }
   };
