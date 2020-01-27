@@ -25,7 +25,7 @@ const Dashboard = ({ entries }) => {
           <a
             href='/dashboard/edit'
             className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
-            Edit Game
+            Manage Game
           </a>
         </Link>
       </div>

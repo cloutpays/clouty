@@ -321,7 +321,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
               className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'
               onClick={handleSubmit}>
               {' '}
-              Submit
+              Update
             </span>
           </div>
           {newGame ? (
