@@ -1,9 +1,9 @@
 import { getCookie } from '../../lib/session';
-import AddToBalance from '../../components/AddToBalance';
+import CardSection from '../../components/CardSection';
+import Head from 'next/head';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SecuredPage from '../../hoc/securedPage';
-import UserDashNavigation from '../../components/UserDashNavigation';
 import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
@@ -12,22 +12,26 @@ const data = {
   description: 'Make money while putting your intuition on the line.',
   header: 'Welcome, Breemz!',
 };
-const Terms = () => {
+const Terms = (ctx) => {
+  const { user } = ctx;
   return (
-    <Wrapper data={data} className='measure-wide'>
-      <main>
-        <UserDashNavigation />
-        <div className='mw8 center pv4 ph3' id='dashboard'>
-          <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>
-            <article className='w-100 w-75-m w-75-l ph3-m ph3-l'>
-              <div className='flex-m flex-l flex-wrap items-center justify-between nl3 nr3 pt4 mb4'>
-                <AddToBalance />
-              </div>
-            </article>
-          </section>
-        </div>
-      </main>
-    </Wrapper>
+    <>
+      <Head>
+        <script src='https://js.stripe.com/v3/'></script>
+      </Head>
+      <Wrapper data={data} className='measure-wide'>
+        <main className='black-80'>
+          {/* <UserDashNavigation /> */}
+          <div className='mw8 center pv3 ph3' id='dashboard'>
+            <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>
+              <article className='w-100 w-75-m w-75-l ph3-m ph3-l'>
+                <CardSection user={user} />
+              </article>
+            </section>
+          </div>
+        </main>
+      </Wrapper>
+    </>
   );
 };
 Terms.getInitialProps = async (ctx) => {
@@ -37,7 +41,9 @@ Terms.getInitialProps = async (ctx) => {
   const submissionsRes = await axios.get(
     `${apiURL}/api/userSubmissions/${user}`,
   );
+  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
   const questionsRes = await axios.get(`${apiURL}/api/questions`);
+  const userObj = userRes.data;
   const questions = questionsRes.data;
   const submissions = submissionsRes.data.map((sub) => {
     return {
@@ -48,11 +54,12 @@ Terms.getInitialProps = async (ctx) => {
     };
   });
 
-  return { submissions, questions };
+  return { submissions, questions, userId: userRes._id, user: userObj };
 };
 
 Terms.propTypes = {
   submissions: PropTypes.array,
   questions: PropTypes.array,
+  sessionId: PropTypes.string,
 };
 export default SecuredPage(Terms);

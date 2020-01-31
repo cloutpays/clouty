@@ -12,14 +12,15 @@ const data = {
   description: 'Make money while putting your intuition on the line.',
   header: 'Welcome, Breemz!',
 };
-const Terms = ({ submissions }) => (
+const Terms = ({ submissions, user }) => (
   <Wrapper data={data} className='measure-wide'>
     <main>
-      <UserDashNavigation />
+      <UserDashNavigation user={user} />
       <div className='mw8 center pv4 ph3' id='dashboard'>
         <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>
           <article className='w-100 w-75-m w-75-l ph3-m ph3-l'>
-            <div className='flex-m flex-l flex-wrap items-center justify-between nl3 nr3 pt4 mb4'>
+            <div className='flex-m flex-l flex-wrap items-center justify-between nl3 nr3 pt1 mb4'>
+              <p>Submissions</p>
               {submissions.length > 0 ? (
                 submissions
                   .map((game) => {
@@ -28,7 +29,7 @@ const Terms = ({ submissions }) => (
                       : game.question.answer === game.answer
                       ? 'Won'
                       : 'Lost';
-                    const activeLink = `/games/${game.slug}`;
+                    const activeLink = `/games/${game.question.slug}`;
                     const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow grammy`;
                     return (
                       <div
@@ -43,9 +44,16 @@ const Terms = ({ submissions }) => (
                                   aria-label={game.question.emoji_name}>
                                   {game.question.emoji}
                                 </span>{' '}
-                                {`Game #${game.question.question}`}
+                                {`${
+                                  game.question.gameType === 'game'
+                                    ? `Game #${game.question.question}`
+                                    : game.question.question
+                                }`}{' '}
                               </h1>
-                              {game.question.description}
+                              {/* {grammy
+                                ? grammyRender(game.question)
+                                : game.question.description} */}
+
                               <p>{`Wager: $${game.wager}`}</p>
                               <p>{`Submission: ${game.answer}`}</p>
                               <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
@@ -154,6 +162,8 @@ Terms.getInitialProps = async (ctx) => {
   );
   const questionsRes = await axios.get(`${apiURL}/api/questions`);
   const questions = questionsRes.data;
+  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userObj = userRes.data;
   const submissions = submissionsRes.data.map((sub) => {
     return {
       ...sub,
@@ -163,11 +173,12 @@ Terms.getInitialProps = async (ctx) => {
     };
   });
 
-  return { submissions, questions };
+  return { submissions, questions, user: userObj };
 };
 
 Terms.propTypes = {
   submissions: PropTypes.array,
   questions: PropTypes.array,
+  user: PropTypes.object,
 };
 export default SecuredPage(Terms);
