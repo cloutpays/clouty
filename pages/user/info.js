@@ -12,11 +12,13 @@ const data = {
   description: 'Make money while putting your intuition on the line.',
   header: 'Welcome, Breemz!',
 };
-const Terms = () => {
+const Terms = (ctx) => {
+  const { user } = ctx;
+
   return (
     <Wrapper data={data} className='measure-wide'>
       <main>
-        <UserDashNavigation />
+        <UserDashNavigation user={user} />
         <div className='mw8 center pv4 ph3' id='dashboard'>
           <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>
             <article className='w-100 w-75-m w-75-l ph3-m ph3-l'>
@@ -34,21 +36,9 @@ Terms.getInitialProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
   const apiURL = `${origin}`;
   const user = getCookie('id_token', ctx.req);
-  const submissionsRes = await axios.get(
-    `${apiURL}/api/userSubmissions/${user}`,
-  );
-  const questionsRes = await axios.get(`${apiURL}/api/questions`);
-  const questions = questionsRes.data;
-  const submissions = submissionsRes.data.map((sub) => {
-    return {
-      ...sub,
-      question: questions.filter((question) => {
-        return sub.question === question.question;
-      })[0],
-    };
-  });
-
-  return { submissions, questions };
+  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userObj = userRes.data;
+  return { userId: userRes._id, user: userObj };
 };
 
 Terms.propTypes = {

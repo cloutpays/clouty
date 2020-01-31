@@ -38,28 +38,13 @@ Terms.getInitialProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
   const apiURL = `${origin}`;
   const user = getCookie('id_token', ctx.req);
-  const submissionsRes = await axios.get(
-    `${apiURL}/api/userSubmissions/${user}`,
-  );
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
-  const questionsRes = await axios.get(`${apiURL}/api/questions`);
   const userObj = userRes.data;
-  const questions = questionsRes.data;
-  const submissions = submissionsRes.data.map((sub) => {
-    return {
-      ...sub,
-      question: questions.filter((question) => {
-        return sub.question === question.question;
-      })[0],
-    };
-  });
-
-  return { submissions, questions, userId: userRes._id, user: userObj };
+  return { userId: userRes._id, user: userObj };
 };
 
 Terms.propTypes = {
   submissions: PropTypes.array,
-  questions: PropTypes.array,
   sessionId: PropTypes.string,
 };
 export default SecuredPage(Terms);
