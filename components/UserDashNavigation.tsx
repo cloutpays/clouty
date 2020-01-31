@@ -1,6 +1,7 @@
 import React from 'react';
-
-const Navigation = () => {
+import { formatPrice } from '../lib/helpers';
+const Navigation = (props: any) => {
+  const { user } = props;
   return (
     <>
       <nav className='w-100 w-25-m w-25-l mb4 mb0-l ph3-m ph3-l'>
@@ -44,7 +45,9 @@ const Navigation = () => {
       <article className='w-100 w-75-m w-75-l ph3-m ph3-l'>
         <header className='mb3'>
           <h2 className='ttu mt0 mb1 f6 fw5 silver'>Balance: </h2>
-          <h1 className='fw3 dark-gray mt0 mb0'>$0.00</h1>
+          <h1 className='fw3 dark-gray mt0 mb0'>
+            {formatPrice(user.stripe.user.balance / 100)}
+          </h1>
           <a
             href='/user/balance'
             className=' f6 no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
