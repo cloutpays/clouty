@@ -6,11 +6,14 @@ const {
   questionRetrieveApi,
   userSubmissionsRetrieveApi,
 } = require('../helpers/game');
+const { userRetrieveApi } = require('../helpers/user');
+const { stripeApi } = require('../helpers/stripe');
 const { send } = require('micro');
 
 const getApi = (fn) => async (req, res) => {
   try {
     const parse = req.url.split('/');
+    console.log(`get api/${parse[2]}`);
     switch (`api/${parse[2]}`) {
       case 'api/submissions':
         return await fn(submissionsRetrieveApi(req, res));
@@ -20,6 +23,11 @@ const getApi = (fn) => async (req, res) => {
         return await fn(questionsRetrieveApi(req, res));
       case 'api/question':
         return await fn(questionRetrieveApi(req, res));
+      case 'api/user':
+        return await fn(userRetrieveApi(req, res));
+      case 'api/checkout':
+        return await fn(stripeApi(req, res));
+
       default:
         return send(res, 200, { err: 'invalid route' });
     }
