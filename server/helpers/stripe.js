@@ -20,25 +20,24 @@ const wrapAsync = (handler) => async (req, res) => {
 const getUser = async (userId, db) => {
   return await db.collection(user).findOne({ _id: userId });
 };
-const updateStripeUser = async (userId, stripeUser, db) => {
+const updateStripeUser = async (paymentIntent, db) => {
   const newUser = await db.collection(user).findOneAndUpdate(
-    { _id: userId },
+    { _id: paymentIntent.metadata.userId },
     {
-      $set: {
-        'stripe.user': stripeUser,
-        updatedAt: Math.floor(new Date() / 1000),
+      $inc: {
+        'stripe.user.balance': paymentIntent.amount,
       },
     },
     { returnOriginal: false },
   );
   return newUser.value;
 };
-const updateStripePayment = async (userId, stripeCard, db) => {
+const updateStripePayment = async (paymentMethod, db) => {
   const newUser = await db.collection(user).findOneAndUpdate(
-    { _id: userId },
+    { _id: paymentMethod.metadata.userId },
     {
       $set: {
-        'stripe.card': stripeCard,
+        'stripe.card': paymentMethod,
         updatedAt: Math.floor(new Date() / 1000),
       },
     },
@@ -78,12 +77,9 @@ const stripeApi = wrapAsync(async (req, db) => {
 });
 const hookApi = wrapAsync(async (req, db) => {
   const data = await json(req);
+
   if (data.type === 'payment_method.attached') {
-    return updateStripePayment(
-      data.data.object.metadata.userId,
-      data.data.object,
-      db,
-    );
+    return updateStripePayment(data.data.object, db);
   }
   if (data.type === 'payment_intent.succeeded') {
     await stripe.customers.update(
@@ -91,9 +87,9 @@ const hookApi = wrapAsync(async (req, db) => {
       {
         balance: data.data.object.amount,
       },
-      (err, customer) => {
+      (err) => {
         if (err) return err;
-        return updateStripeUser(data.data.object.metadata.userId, customer, db);
+        return updateStripeUser(data.data.object, db);
       },
     );
   }
