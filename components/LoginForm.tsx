@@ -43,13 +43,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
         if (isError) {
           return;
         }
-        axios
-          .post('/api/user', {
-            data: result.user,
-          })
-          .then(() => {
-            Router.push('/dashboard');
-          });
+        if (typeof result !== 'undefined') {
+          setCookie('id_token', result.user.uid);
+          Router.push('/dashboard');
+          axios
+            .post('/api/user', {
+              data: result.user,
+            })
+            .then(() => {});
+        }
       });
   };
   const handleLogin = async (event: React.FormEvent<HTMLElement>) => {
@@ -83,7 +85,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
 
   return (
     <>
-      <main className='pa4 black-80'>
+      <main className='black-80'>
         <form className='measure center'>
           <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
             {signUp ? (
