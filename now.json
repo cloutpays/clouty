@@ -54,9 +54,24 @@
       "dest": "server/handlers/post.js"
     },
     {
+      "src": "/api/user/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1"
+    },
+    {
       "src": "/api/question/(.*)",
       "methods": ["GET"],
       "dest": "server/handlers/get.js?id=$1"
+    },
+    {
+      "src": "/api/checkout/(.*)/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1&userId=$2"
+    },
+    {
+      "src": "/api/hooks",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
     },
     {
       "src": "/api/question/(.*)",
