@@ -53,7 +53,7 @@ const stripeApi = wrapAsync(async (req, db) => {
 
   const customer = await getUser(userId, db);
   const session = await stripe.checkout.sessions.create({
-    customer: customer.stripe.id,
+    customer: customer.stripe.user.id,
     payment_method_types: ['card'],
     payment_intent_data: {
       metadata: {
@@ -77,9 +77,7 @@ const stripeApi = wrapAsync(async (req, db) => {
   return session;
 });
 const hookApi = wrapAsync(async (req, db) => {
-  //   const { query } = parse(req.url, true);
   const data = await json(req);
-  console.log(data.type, data, data.data.object.metadata);
   if (data.type === 'payment_method.attached') {
     return updateStripePayment(
       data.data.object.metadata.userId,
