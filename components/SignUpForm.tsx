@@ -9,15 +9,17 @@ import React, { useState } from 'react';
 import Question from './Question';
 interface SignUpFormProps {
   game: any;
-  userId: string;
+  user: any;
 }
 
-const SignUpForm: React.FC<SignUpFormProps> = ({ game, userId }) => {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [handle, setHandle] = useState<string>('');
+const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
+  const [name, setName] = useState<string>(user ? user.info.firstName : '');
+  const [email, setEmail] = useState<string>(user ? user.firebase.email : '');
+  const [handle, setHandle] = useState<string>(user ? user.info.firstName : '');
   const [answer, setAnswer] = useState<string>('');
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<string>(
+    user ? user.info.phoneNumber : '',
+  );
   const [wager, setWager] = useState<number>();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -31,7 +33,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, userId }) => {
         name,
         phoneNumber,
         handle,
-        userId,
+        userId: user._id,
         wager,
         date,
         question: game.question,
@@ -49,40 +51,45 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, userId }) => {
   return (
     <div className='row'>
       <div className='form-card'>
-        <br />
         <form onSubmit={handleSubmit}>
-          <input
-            className='game-input'
-            type='text'
-            value={name}
-            placeholder='Name'
-            onChange={(event) => setName(event.currentTarget.value)}
-            name='name'
-            required={true}
-          />
-          <div>
-            <input
-              type='email'
-              className='game-input'
-              placeholder='Email address'
-              value={email}
-              onChange={(event) => setEmail(event.currentTarget.value)}
-              name='email'
-              required={true}
-            />
-          </div>
+          {!user && (
+            <>
+              <div>
+                <input
+                  className='game-input'
+                  type='text'
+                  value={name}
+                  placeholder='Name'
+                  onChange={(event) => setName(event.currentTarget.value)}
+                  name='name'
+                  required={true}
+                />
+              </div>
+              <div>
+                <input
+                  type='email'
+                  className='game-input'
+                  placeholder='Email address'
+                  value={email}
+                  onChange={(event) => setEmail(event.currentTarget.value)}
+                  name='email'
+                  required={true}
+                />
+              </div>
 
-          <div>
-            <input
-              type='text'
-              value={handle}
-              className='game-input'
-              placeholder='IG/Twitter Handle'
-              onChange={(event) => setHandle(event.currentTarget.value)}
-              name='handle'
-              id='handle'
-            />
-          </div>
+              <div>
+                <input
+                  type='text'
+                  value={handle}
+                  className='game-input'
+                  placeholder='IG/Twitter Handle'
+                  onChange={(event) => setHandle(event.currentTarget.value)}
+                  name='handle'
+                  id='handle'
+                />
+              </div>
+            </>
+          )}
           <div className='mt2'>
             <label htmlFor='email'>Select your wager:</label>
             <br />
@@ -105,14 +112,20 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, userId }) => {
               </Radio.Group>
             </div>
           </div>
-          <div>
-            <Cleave
-              className='game-input'
-              placeholder='Phone Number'
-              onChange={(event) => setPhoneNumber(event.currentTarget.value)}
-              options={{ phone: true, phoneRegionCode: 'US' }}
-            />
-          </div>
+          {!user && (
+            <>
+              <div>
+                <Cleave
+                  className='game-input'
+                  placeholder='Phone Number'
+                  onChange={(event) =>
+                    setPhoneNumber(event.currentTarget.value)
+                  }
+                  options={{ phone: true, phoneRegionCode: 'US' }}
+                />
+              </div>
+            </>
+          )}
           <Question
             type={game.type}
             options={game.options}

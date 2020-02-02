@@ -7,7 +7,7 @@ import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const Games = ({ game, userId }) => {
+const Games = ({ game, user }) => {
   const title =
     game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
   const data = {
@@ -31,7 +31,7 @@ const Games = ({ game, userId }) => {
                 {title}
               </h1>
               <p>{description}</p>
-              {!game.answer && <SignUpForm userId={userId} game={game} />}
+              {!game.answer && <SignUpForm user={user} game={game} />}
               {game.answer && (
                 <>
                   <div className='f5 mt0 fw7'>Winning bet:</div>{' '}
@@ -52,14 +52,16 @@ Games.getInitialProps = async (ctx) => {
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
   const question = (await axios.get(`${apiURL}/api/question/${game}`)).data;
-  const userId = getCookie('id_token', ctx.req);
-  return { game: question[0], userId };
+  const user = getCookie('id_token', ctx.req);
+  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userObj = userRes.data;
+  return { game: question[0], user: userObj };
 };
 
 Games.propTypes = {
   games: PropTypes.array,
   game: PropTypes.object,
-  userId: PropTypes.string,
+  user: PropTypes.object,
 };
 
 export default Games;

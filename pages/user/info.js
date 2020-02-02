@@ -2,7 +2,6 @@ import { getCookie } from '../../lib/session';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SecuredPage from '../../hoc/securedPage';
-import UserDashNavigation from '../../components/UserDashNavigation';
 import UserInfoForm from '../../components/UserInfoForm';
 import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
@@ -18,12 +17,11 @@ const Terms = (ctx) => {
   return (
     <Wrapper data={data} className='measure-wide'>
       <main>
-        <UserDashNavigation user={user} />
         <div className='mw8 center pv4 ph3' id='dashboard'>
           <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>
             <article className='w-100 w-75-m w-75-l ph3-m ph3-l'>
               <div className='flex-m flex-l flex-wrap items-center justify-between nl3 nr3 pt4 mb4'>
-                <UserInfoForm />
+                <UserInfoForm user={user} />
               </div>
             </article>
           </section>

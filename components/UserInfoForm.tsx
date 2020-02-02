@@ -7,14 +7,21 @@ interface UserInfoProps {
   lastName: string;
   email: string;
   phoneNumber: string;
+  user: any;
 }
 
-const UserInfoForm: React.FC<UserInfoProps> = () => {
-  const [firstName, setFirstName] = useState<string>('');
-  const [lastName, setLastName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+const UserInfoForm: React.FC<UserInfoProps> = ({ user }) => {
+  const [firstName, setFirstName] = useState<string>(
+    user ? user.info.firstName : '',
+  );
+  const [lastName, setLastName] = useState<string>(
+    user ? user.info.lastName : '',
+  );
+  const [email, setEmail] = useState<string>(user ? user.firebase.email : '');
   // const [handle, setHandle] = useState<string>('');
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<string>(
+    user ? user.info.phoneNumber : '',
+  );
   return (
     <form className='measure center'>
       <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
