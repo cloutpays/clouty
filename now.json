@@ -83,6 +83,8 @@
     "env": {
       "FIREBASE_API_KEY": "@firebase-api-key",
       "FIREBASE_APP_ID": "@firebase-app-id",
+      "FIREBASE_API_KEY_DEV": "@firebase-api-key-dev",
+      "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
       "STRIPE_CLIENT_DEV": "@stripe-client-dev",
       "STRIPE_SECRET_DEV": "@stripe-secret-dev"
     }
@@ -92,7 +94,9 @@
     "TWILIO_TOKEN": "@twilio-token",
     "MONGO": "@mongo",
     "FIREBASE_API_KEY": "@firebase-api-key",
+    "FIREBASE_API_KEY_DEV": "@firebase-api-key-dev",
     "FIREBASE_APP_ID": "@firebase-app-id",
+    "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
     "STRIPE_CLIENT_DEV": "@stripe-client-dev",
     "STRIPE_SECRET_DEV": "@stripe-secret-dev"
   }
