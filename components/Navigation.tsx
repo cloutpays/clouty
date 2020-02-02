@@ -38,7 +38,7 @@ const Navigation = () => {
         </a>
       </Link>
       <ul className='list pl0 flex mv0'>
-        {dev && (
+        {isLoggedIn && (
           <li className='mr2 mr4-ns'>
             <Link href='/dashboard'>
               <a href='/dashboard' className={`${styles.navigationLink}`}>
