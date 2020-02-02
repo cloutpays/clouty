@@ -38,26 +38,14 @@ const Navigation = () => {
         </a>
       </Link>
       <ul className='list pl0 flex mv0'>
-        {dev ? (
-          <>
-            <li className='mr2 mr4-ns'>
-              <Link href='/dashboard'>
-                <a href='/dashboard' className={`${styles.navigationLink}`}>
-                  Admin
-                </a>
-              </Link>
-            </li>
-            <li className='mr2 mr4-ns'>
-              {' '}
-              <Link href='/user'>
-                <a href='/user' className={`${styles.navigationLink}`}>
-                  Profile
-                </a>
-              </Link>
-            </li>
-          </>
-        ) : (
-          ''
+        {dev && (
+          <li className='mr2 mr4-ns'>
+            <Link href='/dashboard'>
+              <a href='/dashboard' className={`${styles.navigationLink}`}>
+                Admin
+              </a>
+            </Link>
+          </li>
         )}
         <li className='mr2 mr4-ns'>
           <Link href='/games'>
@@ -75,14 +63,28 @@ const Navigation = () => {
           </Link>
         </li>
 
-        {isLoggedIn ? (
+        {!isLoggedIn && (
           <li className='mr2 mr4-ns'>
-            <a onClick={handleLogout} className={`${styles.navigationLink}`}>
-              Logout
+            <a href='/login' className={`${styles.navigationLink}`}>
+              Login
             </a>
           </li>
-        ) : (
-          ''
+        )}
+        {isLoggedIn && (
+          <>
+            <li className='mr2 mr4-ns'>
+              <Link href='/user'>
+                <a href='/user' className={`${styles.navigationLink}`}>
+                  Profile
+                </a>
+              </Link>
+            </li>
+            <li className='mr2 mr4-ns'>
+              <a onClick={handleLogout} className={`${styles.navigationLink}`}>
+                Logout
+              </a>
+            </li>
+          </>
         )}
       </ul>
     </nav>
