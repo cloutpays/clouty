@@ -1,5 +1,7 @@
+import axios from 'axios';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import Cleave from 'cleave.js/react';
+import Router from 'next/router';
 import React, { useState } from 'react';
 
 interface UserInfoProps {
@@ -22,6 +24,27 @@ const UserInfoForm: React.FC<UserInfoProps> = ({ user }) => {
   const [phoneNumber, setPhoneNumber] = useState<string>(
     user ? user.info.phoneNumber : '',
   );
+  const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
+    const date = new Date();
+    const userSubmission = {
+      ...user,
+      info: {
+        email,
+        firstName,
+        phoneNumber,
+        lastName,
+        updatedAt: date,
+      },
+    };
+    event.preventDefault();
+    await axios
+      .post('/api/user', {
+        data: userSubmission,
+      })
+      .then(() => {
+        Router.push('/user');
+      });
+  };
   return (
     <form className='measure center'>
       <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
@@ -75,7 +98,7 @@ const UserInfoForm: React.FC<UserInfoProps> = ({ user }) => {
           className=' f6 no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'
           type='submit'
           value='Update'
-          //   onClick={handleLogin}
+          onClick={handleSubmit}
         />
       </div>
     </form>
