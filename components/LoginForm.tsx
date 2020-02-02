@@ -48,7 +48,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           Router.push('/dashboard');
           axios
             .post('/api/user', {
-              data: result.user,
+              data: {
+                firebase: result.user,
+                email: result.user.email,
+                info: { firstName, lastName, phoneNumber },
+              },
             })
             .then(() => {});
         }
@@ -79,7 +83,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
         }
         setCookie('id_token', result.user.uid);
         Router.push('/dashboard');
-        axios.post('/api/user', { data: result.user }).then(() => {});
+        axios
+          .post('/api/user', { data: { firebase: result.user } })
+          .then(() => {});
       });
   };
 
