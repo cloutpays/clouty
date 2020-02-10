@@ -40,7 +40,7 @@ const userApi = wrapAsync(async function(req, db) {
   const user = (await json(req)).data;
   if (!user.stripe) {
     const stripeUser = await stripe.customers.create({
-      email: user.email,
+      email: user.firebase.email,
     });
     user.stripe = {
       user: stripeUser,

@@ -4,7 +4,7 @@ import React from 'react';
 import { styles } from '../constants/styles';
 import { getCookieFromBrowser, removeCookie } from '../lib/session';
 
-const dev = process.env.NODE_ENV === 'development';
+// const dev = process.env.NODE_ENV === 'development';
 
 const Navigation = () => {
   const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;
