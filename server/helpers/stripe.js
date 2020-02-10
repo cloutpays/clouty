@@ -31,7 +31,7 @@ const updateStripeUser = async (paymentIntent, db) => {
     },
     { returnOriginal: false },
   );
-  return newUser.value;
+  return newUser;
 };
 
 const stripeApi = wrapAsync(async (req, db) => {
@@ -78,6 +78,5 @@ const hookApi = wrapAsync(async (req, db) => {
       },
     );
   }
-  return '';
 });
 module.exports = { stripeApi, hookApi };
