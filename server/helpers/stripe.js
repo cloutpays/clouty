@@ -65,18 +65,20 @@ const stripeApi = wrapAsync(async (req, db) => {
 });
 const hookApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-
-  if (data.type === 'payment_intent.succeeded') {
-    await stripe.customers.update(
-      data.data.object.customer,
-      {
-        balance: data.data.object.amount,
-      },
-      (err) => {
-        if (err) return err;
-        return updateStripeUser(data.data.object, db);
-      },
-    );
+  switch (data.type) {
+    case 'payment_intent.succeeded':
+      await stripe.customers.update(
+        data.data.object.customer,
+        {
+          balance: data.data.object.amount,
+        },
+        (err) => {
+          if (err) return err;
+        },
+      );
+      return updateStripeUser(data.data.object, db);
+    default:
+      return true;
   }
 });
 module.exports = { stripeApi, hookApi };
