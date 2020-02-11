@@ -22,7 +22,7 @@ const getUser = async (userId, db) => {
 };
 
 const updateStripeUser = async (paymentIntent, db) => {
-  const newUser = await db.collection(user).findOneAndUpdate(
+  const newUser = await db.collection(user).updateOne(
     { _id: paymentIntent.metadata.userId },
     {
       $inc: {
@@ -31,7 +31,7 @@ const updateStripeUser = async (paymentIntent, db) => {
     },
     { returnOriginal: false },
   );
-  return newUser;
+  return newUser.value;
 };
 
 const stripeApi = wrapAsync(async (req, db) => {
