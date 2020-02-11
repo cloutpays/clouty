@@ -8,7 +8,7 @@ const Footer = () => (
     <ul className='list pl0 flex mv0'>
       <li className='mr2 mr4-ns'>
         <a
-          href='https://clouty.substack.com/subscribe'
+          href='https://clouty.substack.com/'
           className={`${styles.navigationLink}`}>
           Newsletter
         </a>
