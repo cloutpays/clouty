@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
 const Checkout = (props) => {
   const [stripe, setStripe] = useState(null);
   const [amount, setAmount] = useState(0);
@@ -37,25 +38,21 @@ const Checkout = (props) => {
           onClick={() => updateAmount(10)}
           className='noselect grow outline dim pa3 mr2'>
           <strong>$10</strong>
-          {/* <p>1</p> */}
         </a>
         <a
           onClick={() => updateAmount(15)}
           className='noselect grow outline dim pa3 mr2'>
           <strong>$15</strong>
-          {/* <p>2</p> */}
         </a>
         <a
           onClick={() => updateAmount(20)}
           className='noselect grow outline dim pa3 mr2'>
           <strong>$20</strong>
-          {/* <p>3</p> */}
         </a>
         <a
           onClick={() => updateAmount(25)}
           className='noselect grow outline dim pa3 mr2'>
           <strong>$25</strong>
-          {/* <p>4</p> */}
         </a>
       </div>
       <div className='near-black pt3 fw7 pb3'>Total: ${amount}</div>
