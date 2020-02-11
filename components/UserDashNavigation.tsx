@@ -44,7 +44,7 @@ const Navigation = (props: any) => {
       </nav>
       <article className='w-100 w-75-m w-75-l ph3-m ph3-l'>
         <header className='mb3'>
-          <h2 className='ttu mt0 mb1 f6 fw5 silver'>Balance: </h2>
+          <h2 className='ttu mt0 mb1 f6 fw5 silver'>Balance</h2>
           <h1 className='fw3 dark-gray mt0 mb0'>
             {formatPrice(user.stripe.user.balance / 100)}
           </h1>
