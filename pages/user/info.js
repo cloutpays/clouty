@@ -7,11 +7,11 @@ import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const data = {
-  description: 'Make money while putting your intuition on the line.',
-  header: 'Welcome, Breemz!',
-};
 const Terms = (ctx) => {
+  const data = {
+    description: 'Make money while putting your intuition on the line.',
+    header: `Welcome, ${user.info.firstName}!`,
+  };
   const { user } = ctx;
 
   return (
