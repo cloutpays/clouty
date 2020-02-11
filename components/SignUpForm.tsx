@@ -1,5 +1,3 @@
-import { Radio } from 'antd';
-import { RadioChangeEvent } from 'antd/lib/radio';
 import axios from 'axios';
 import Router from 'next/router';
 
@@ -91,25 +89,28 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
             </>
           )}
           <div className='mt2'>
-            <label htmlFor='email'>Select your wager:</label>
+            <label className='fw6' htmlFor='email'>
+              Select your wager:
+            </label>
             <br />
             <div className='dib-ns'>
-              <Radio.Group
-                onChange={(event: RadioChangeEvent) =>
-                  setWager(Number(event.target.value))
-                }>
-                <Radio className='radio' value={1}>
-                  $1
-                </Radio>
-                <br />
-                <Radio className='radio' value={5}>
-                  $5
-                </Radio>
-                <br />
-                <Radio className='radio' value={10}>
-                  $10
-                </Radio>
-              </Radio.Group>
+              <div className='flex flex-wrap'>
+                <div
+                  onClick={() => setWager(Number(1))}
+                  className='noselect grow outline dim pa2 mr2 mt2'>
+                  <strong>$1</strong>
+                </div>
+                <div
+                  onClick={() => setWager(Number(5))}
+                  className='noselect grow outline dim pa2 mr2 mt2'>
+                  <strong>$5</strong>
+                </div>
+                <div
+                  onClick={() => setWager(Number(10))}
+                  className='noselect grow outline dim pa2 mr2 mt2'>
+                  <strong>$10</strong>
+                </div>
+              </div>
             </div>
           </div>
           {!user && (
@@ -132,7 +133,9 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
             title={game.question}
             setAnswer={setAnswer}
           />
-          <br />
+          <div className='mt2'>
+            <label className='fw6'>Checkout:</label>
+          </div>
           <br />
           {phoneNumber && answer && wager && name && email && (
             <>

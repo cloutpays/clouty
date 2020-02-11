@@ -16,7 +16,7 @@ const Question: React.FC<QuestionProps> = ({ options, type, setAnswer }) => {
   return type === 'select' ? (
     <>
       <br />
-      <label>Place your bet</label>
+      <label className='fw6'>Place your bet:</label>
       <br />
       <select onChange={(event) => setAnswer(event.currentTarget.value)}>
         <option value='none' selected={true} disabled={true} hidden={true}>
