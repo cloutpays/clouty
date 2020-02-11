@@ -25,7 +25,6 @@ const userRetrieveApi = wrapAsync(async function(req, db) {
   return await db.collection(user).findOne({ _id: id });
 });
 const updateUser = async (firebaseUser, db) => {
-  console.log('user', firebaseUser);
   const newUser = await db.collection(user).findOneAndUpdate(
     { _id: firebaseUser.firebase.uid },
     {
