@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
           <link
             rel='icon'
             type='image/x-icon'
-            href='https://getclouty.com/static/img/clouty-04.png'
+            href='https://getclouty.com/static/img/transparent_clouty-umbrella.png'
           />
           <meta name='viewport' content='width=device-width, initial-scale=1' />
           <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
