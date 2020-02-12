@@ -88,32 +88,6 @@ const Terms = ({ submissions, user }) => {
                     Play A Game
                   </a>
                 </div>
-                <div className='w-100 w-50-l ph3 mb3 mb0-l'>
-                  <div className='bt bl br b--black-10 br2'>
-                    <div className='pa3 bb b--black-10'>
-                      <h4 className='mv0'>Most Visited Pages</h4>
-                    </div>
-                  </div>
-                  <a
-                    href='#'
-                    className='no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
-                    All Pages
-                  </a>
-                </div>
-              </div>
-              <div className='mt4'>
-                <div className='w-100 mb3 mb0-l'>
-                  <div className='bt bl br b--black-10 br2'>
-                    <div className='pa3 bb b--black-10'>
-                      <h4 className='mv0'>Devices and Resolutions</h4>
-                    </div>
-                  </div>
-                  <a
-                    href='#'
-                    className='no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
-                    All Devices
-                  </a>
-                </div>
               </div>
             </article>
           </section>
