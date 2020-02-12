@@ -133,9 +133,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
             title={game.question}
             setAnswer={setAnswer}
           />
-          <div className='mt2'>
-            <label className='fw6'>Checkout:</label>
-          </div>
           <br />
           {phoneNumber && answer && wager && name && email && (
             <>
