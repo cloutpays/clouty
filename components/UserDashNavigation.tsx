@@ -22,11 +22,6 @@ const Navigation = (props: any) => {
               Game History
             </a>
           </li>
-          <li>
-            <a href='#' className='block link dim blue'>
-              Payment Settings
-            </a>
-          </li>
         </ul>
         <h2 className='ttu mt0 mb2 f6 fw5 silver'>More</h2>
         <ul className='list pl0 mt0 mb2'>
