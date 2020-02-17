@@ -38,8 +38,14 @@ interface CreateGameFormProps {
   colorway: string;
   questions: Question[];
   game: GameProps;
+  isUserSubmission: boolean;
 }
-const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
+
+const CreateGameForm: React.FC<CreateGameFormProps> = ({
+  game,
+  questions,
+  isUserSubmission,
+}) => {
   const [description, setDescription] = useState<string>(
     game ? game.description : '',
   );
@@ -61,11 +67,14 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
   const newGame = game ? false : true;
   const grammy = game && game.gameType === 'grammy';
 
-  const number = !game
-    ? (
-        questions.filter((curr) => curr.gameType !== 'grammy').length + 1
-      ).toString()
-    : game.question;
+  let number = '1';
+  if (!isUserSubmission) {
+    number = !game
+      ? (
+          questions.filter((curr) => curr.gameType !== 'grammy').length + 1
+        ).toString()
+      : game.question;
+  }
 
   const slug = !newGame ? game.slug : number;
   const currentGame = {
@@ -93,10 +102,15 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
       class: colorway,
       question: number,
     };
-
-    axios.post('/api/question', submission).then(() => {
-      Router.push('/dashboard/edit');
-    });
+    if (isUserSubmission) {
+      axios.post('/api/userquestion', submission).then(() => {
+        Router.push('/games');
+      });
+    } else {
+      axios.post('/api/question', submission).then(() => {
+        Router.push('/dashboard/edit');
+      });
+    }
   };
   const changeColor = () => {
     const color = colorways[Math.floor(Math.random() * colorways.length)];
@@ -138,6 +152,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
     setOptions(updatedOptions);
   };
 
+  const submitAction = isUserSubmission ? 'Submit Game' : 'Update';
   return (
     <>
       <article className='pa4 black-80'>
@@ -260,7 +275,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
                 Emoji
               </span>
             </div>
-            {answerVisible ? (
+            {answerVisible && (
               <div className='mt3'>
                 <span
                   className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
@@ -268,7 +283,8 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
                   Remove Answer
                 </span>
               </div>
-            ) : (
+            )}
+            {!isUserSubmission && !answerVisible && (
               <div className='mt3'>
                 <span
                   className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
@@ -322,7 +338,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
               className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'
               onClick={handleSubmit}>
               {' '}
-              Update
+              {submitAction}
             </span>
           </div>
           {!newGame ? (
@@ -341,4 +357,9 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ game, questions }) => {
     </>
   );
 };
+
+CreateGameForm.defaultProps = {
+  isUserSubmission: false,
+};
+
 export default CreateGameForm;
