@@ -67,14 +67,11 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   const newGame = game ? false : true;
   const grammy = game && game.gameType === 'grammy';
 
-  let number = '1';
-  if (!isUserSubmission) {
-    number = !game
-      ? (
-          questions.filter((curr) => curr.gameType !== 'grammy').length + 1
-        ).toString()
-      : game.question;
-  }
+  const number = !game
+    ? (
+        questions.filter((curr) => curr.gameType !== 'grammy').length + 1
+      ).toString()
+    : game.question;
 
   const slug = !newGame ? game.slug : number;
   const currentGame = {
@@ -264,7 +261,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
               <span
                 className='b mr2 ph2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
                 onClick={changeColor}>
-                Color
+                Set Color
               </span>
             </div>
 
@@ -272,7 +269,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
               <span
                 className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
                 onClick={renderEmoji}>
-                Emoji
+                Set Emoji
               </span>
             </div>
             {answerVisible && (
