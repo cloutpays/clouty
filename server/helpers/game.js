@@ -69,6 +69,14 @@ const questionSubmitApi = wrapAsync(async (req, db) => {
     .findOneAndReplace({ slug: data.slug }, data, { upsert: true });
 });
 
+const userQuestionSubmitApi = wrapAsync(async (req, db) => {
+  const data = await json(req);
+  console.log(data);
+  return await db
+    .collection('userquestion')
+    .findOneAndReplace({ slug: data.slug }, data, { upsert: true });
+});
+
 const questionsRetrieveApi = wrapAsync(
   async (req, db) =>
     await db
@@ -100,4 +108,5 @@ module.exports = {
   questionSubmitApi: cors(questionSubmitApi),
   questionRemoveApi: cors(questionRemoveApi),
   userSubmissionsRetrieveApi: cors(userSubmissionsRetrieveApi),
+  userQuestionSubmitApi: cors(userQuestionSubmitApi),
 };
