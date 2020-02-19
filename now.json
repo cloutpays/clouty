@@ -44,6 +44,11 @@
       "dest": "server/handlers/post.js"
     },
     {
+      "src": "/api/userquestion",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
       "src": "/api/user",
       "methods": ["POST"],
       "dest": "server/handlers/post.js"
