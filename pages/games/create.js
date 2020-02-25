@@ -1,7 +1,6 @@
 import CreateGameForm from '../../components/CreateGameForm';
 import PropTypes from 'prop-types';
 import React from 'react';
-import SecuredPage from '../../hoc/securedPage';
 import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
@@ -30,4 +29,4 @@ CreateUserGame.propTypes = {
   questions: PropTypes.array,
 };
 
-export default SecuredPage(CreateUserGame);
+export default CreateUserGame;
