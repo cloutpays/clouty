@@ -49,7 +49,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   const [description, setDescription] = useState<string>(
     game ? game.description : '',
   );
-  const [emoji, setEmoji] = useState<any>(game ? game.emoji : '😘');
+  const [emoji, setEmoji] = useState<any>(game ? game.emoji : '🏆');
   const [answer, setAnswer] = useState<any>(game ? game.answer : '');
   const [extendedAnswer, setExtendedAnswer] = useState<any>(
     game ? game.answer : '',
