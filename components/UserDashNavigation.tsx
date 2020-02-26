@@ -1,7 +1,14 @@
+import Router from 'next/router';
 import React from 'react';
 import { formatPrice } from '../lib/helpers';
+import { removeCookie } from '../lib/session';
+
 const Navigation = (props: any) => {
   const { user } = props;
+  const handleLogout = () => {
+    removeCookie('id_token');
+    Router.push('/');
+  };
   return (
     <>
       <nav className='w-100 w-25-m w-25-l mb4 mb0-l ph3-m ph3-l'>
@@ -33,6 +40,11 @@ const Navigation = (props: any) => {
           <li className='mb2'>
             <a href='#' className='block link dim blue'>
               Refer a Friend
+            </a>
+          </li>
+          <li className='mb2'>
+            <a onClick={handleLogout} className='block link dim blue'>
+              Logout
             </a>
           </li>
         </ul>
