@@ -66,7 +66,7 @@ const Navigation = ({ user }: any) => {
             <li className='mr2 mr4-ns'>
               <Link href='/user'>
                 <a href='/user' className={`${styles.navigationLink}`}>
-                  {user.info.firstName}
+                  {user ? user.info.firstName : 'Profile'}
                 </a>
               </Link>
             </li>
