@@ -1,8 +1,8 @@
+import Link from 'next/link';
 import Router from 'next/router';
 import React from 'react';
 import { formatPrice } from '../lib/helpers';
 import { removeCookie } from '../lib/session';
-
 const Navigation = (props: any) => {
   const { user } = props;
   const handleLogout = () => {
@@ -55,11 +55,11 @@ const Navigation = (props: any) => {
           <h1 className='fw3 dark-gray mt0 mb0'>
             {formatPrice(user.stripe.user.balance / 100)}
           </h1>
-          <a
-            href='/user/balance'
-            className=' f6 no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
-            Add to Balance
-          </a>
+          <Link href='/user/balance'>
+            <a className=' f6 no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
+              Add to Balance
+            </a>
+          </Link>
         </header>
         <hr className='o-20' />
       </article>
