@@ -24,7 +24,7 @@ const Terms = (ctx) => {
           {/* <UserDashNavigation /> */}
           <div className='mw8 center pv3 ph3' id='dashboard'>
             <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>
-              <article className='w-100 w-75-m w-75-l ph3-m ph3-l'>
+              <article className='w-100 w-75-l ph3-m ph3-l'>
                 <CardSection user={user} />
               </article>
             </section>

@@ -38,59 +38,61 @@ const Terms = ({ submissions, user }) => {
                             const activeLink = `/games/${game.question.slug}`;
                             return (
                               <Link key={activeLink} href={activeLink}>
-                                <li className='flex  items-center lh-copy pa3 ph0-l bb b--black-10'>
-                                  <span
-                                    className='w2 h2 w3-ns  br-100'
-                                    role='img'
-                                    aria-label={game.question.emoji_name}>
-                                    {game.question.emoji}
-                                  </span>
-                                  <div className='pl3 flex-auto'>
-                                    <span className='f6 db black-70'>
-                                      {`${
-                                        game.question.gameType === 'game'
-                                          ? `Game #${game.question.question}`
-                                          : game.question.question
-                                      }`}
+                                <a className='no-underline'>
+                                  <li className='flex  items-center lh-copy pa3 ph0-l bb b--black-10'>
+                                    <span
+                                      className='w2 h2 w3-ns  br-100'
+                                      role='img'
+                                      aria-label={game.question.emoji_name}>
+                                      {game.question.emoji}
                                     </span>
-                                    <span className='f6 db black-70'>
-                                      {`Bet: ${game.answer}`}{' '}
-                                    </span>
-                                  </div>
-                                  <div className='flex flex-wrap'>
-                                    {gameButtonText === 'W' && (
-                                      <>
-                                        <div className='bg-green ph1 fw8 f6 white'>
-                                          W
-                                        </div>
-                                        <div className='f5 fw5 ml1 silver'>
-                                          +${game.wager * 2}
-                                        </div>
-                                      </>
-                                    )}
-                                    {gameButtonText === 'L' && (
-                                      <>
-                                        <div className='bg-red ph1 fw8 f6 white'>
-                                          L
-                                        </div>
-                                        <div className='f5 fw5 ml1 silver'>
-                                          -${game.wager}
-                                        </div>
-                                      </>
-                                    )}
-                                    {gameButtonText === 'Pending' && (
-                                      <>
-                                        <div className='bg-gold ph1 fw8 f6 white'>
-                                          P
-                                        </div>
-                                        <div className='f5 fw5 ml1 silver'>
-                                          ${game.wager}
-                                        </div>
-                                      </>
-                                    )}
-                                    {/* <div className='f6'>+$5</div> */}
-                                  </div>
-                                </li>
+                                    <div className='pl3 flex-auto'>
+                                      <span className='f6 db black-70'>
+                                        {`${
+                                          game.question.gameType === 'game'
+                                            ? `Game #${game.question.question}`
+                                            : game.question.question
+                                        }`}
+                                      </span>
+                                      <span className='f6 db black-70'>
+                                        {`Bet: ${game.answer}`}{' '}
+                                      </span>
+                                    </div>
+                                    <div className='flex flex-wrap'>
+                                      {gameButtonText === 'W' && (
+                                        <>
+                                          <div className='bg-green ph1 fw8 f6 white'>
+                                            W
+                                          </div>
+                                          <div className='f5 fw5 ml1 silver'>
+                                            +${game.wager * 2}
+                                          </div>
+                                        </>
+                                      )}
+                                      {gameButtonText === 'L' && (
+                                        <>
+                                          <div className='bg-red ph1 fw8 f6 white'>
+                                            L
+                                          </div>
+                                          <div className='f5 fw5 ml1 silver'>
+                                            -${game.wager}
+                                          </div>
+                                        </>
+                                      )}
+                                      {gameButtonText === 'Pending' && (
+                                        <>
+                                          <div className='bg-gold ph1 fw8 f6 white'>
+                                            P
+                                          </div>
+                                          <div className='f5 fw5 ml1 silver'>
+                                            ${game.wager}
+                                          </div>
+                                        </>
+                                      )}
+                                      {/* <div className='f6'>+$5</div> */}
+                                    </div>
+                                  </li>
+                                </a>
                               </Link>
                             );
                           })
