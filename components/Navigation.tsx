@@ -1,17 +1,12 @@
 import Link from 'next/link';
-import Router from 'next/router';
 import React from 'react';
 import { styles } from '../constants/styles';
-import { getCookieFromBrowser, removeCookie } from '../lib/session';
+import { getCookieFromBrowser } from '../lib/session';
 
 // const dev = process.env.NODE_ENV === 'development';
 
-const Navigation = () => {
+const Navigation = ({ user }: any) => {
   const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;
-  const handleLogout = () => {
-    removeCookie('id_token');
-    Router.push('/');
-  };
   return (
     <nav className='mw8 center flex items-center mb5'>
       <Link href='/'>
@@ -49,25 +44,21 @@ const Navigation = () => {
         )}
         <li className='mr2 mr4-ns'>
           <Link href='/games'>
-            <a href='/games' className={`${styles.navigationLink}`}>
-              Games
-            </a>
+            <a className={`${styles.navigationLink}`}>Games</a>
           </Link>
         </li>
 
         <li className='mr2 mr4-ns'>
           <Link href='/about'>
-            <a href='/about' className={`${styles.navigationLink}`}>
-              About
-            </a>
+            <a className={`${styles.navigationLink}`}>About</a>
           </Link>
         </li>
 
         {!isLoggedIn && (
           <li className='mr2 mr4-ns'>
-            <a href='/login' className={`${styles.navigationLink}`}>
-              Login
-            </a>
+            <Link href='/login'>
+              <a className={`${styles.navigationLink}`}>Login</a>
+            </Link>
           </li>
         )}
         {isLoggedIn && (
@@ -75,14 +66,9 @@ const Navigation = () => {
             <li className='mr2 mr4-ns'>
               <Link href='/user'>
                 <a href='/user' className={`${styles.navigationLink}`}>
-                  Profile
+                  {user.info.firstName}
                 </a>
               </Link>
-            </li>
-            <li className='mr2 mr4-ns'>
-              <a onClick={handleLogout} className={`${styles.navigationLink}`}>
-                Logout
-              </a>
             </li>
           </>
         )}

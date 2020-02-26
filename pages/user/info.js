@@ -8,14 +8,14 @@ import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
 const Terms = (ctx) => {
+  const { user } = ctx;
   const data = {
     description: 'Make money while putting your intuition on the line.',
     header: `Welcome, ${user.info.firstName}!`,
   };
-  const { user } = ctx;
 
   return (
-    <Wrapper data={data} className='measure-wide'>
+    <Wrapper data={data} user={user} className='measure-wide'>
       <main>
         <div className='mw8 center pv4 ph3' id='dashboard'>
           <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>

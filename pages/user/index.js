@@ -14,7 +14,7 @@ const Terms = ({ submissions, user }) => {
     header: `Welcome, ${user.info.firstName}!`,
   };
   return (
-    <Wrapper data={data} className='measure-wide'>
+    <Wrapper data={data} user={user} className='measure-wide'>
       <main>
         <UserDashNavigation user={user} />
         <div className='mw8 center ph3' id='dashboard'>

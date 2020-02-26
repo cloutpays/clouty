@@ -33,7 +33,7 @@ export default class Wrapper extends Component {
   }
 
   render() {
-    const { data, className, children: content } = this.props;
+    const { data, user, className, children: content } = this.props;
 
     const title = data.title
       ? `Clouty | ${data.title}`
@@ -56,7 +56,7 @@ export default class Wrapper extends Component {
           />
           <meta name='twitter:description' content={description} />
         </Head>
-        <Navigation />
+        <Navigation user={user} />
         {this.renderHeader()}
         <div className='mw8 center flex'>
           <main className={`mb5 w-100 ${cls}`}>{content}</main>
@@ -70,5 +70,6 @@ export default class Wrapper extends Component {
 Wrapper.propTypes = {
   className: PropTypes.string,
   data: PropTypes.object,
+  user: PropTypes.object,
   children: PropTypes.node,
 };
