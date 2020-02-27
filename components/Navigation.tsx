@@ -47,14 +47,7 @@ const Navigation = ({ user }: any) => {
             <a className={`${styles.navigationLink}`}>Games</a>
           </Link>
         </li>
-
-        <li className='mr2 mr4-ns'>
-          <Link href='/about'>
-            <a className={`${styles.navigationLink}`}>About</a>
-          </Link>
-        </li>
-
-        {!isLoggedIn && (
+        {isLoggedIn && (
           <li className='mr2 mr4-ns'>
             <Link href='/login'>
               <a className={`${styles.navigationLink}`}>Login</a>
@@ -71,6 +64,13 @@ const Navigation = ({ user }: any) => {
               </Link>
             </li>
           </>
+        )}
+        {!isLoggedIn && (
+          <li className='mr2 mr4-ns'>
+            <Link href='/login'>
+              <a className={`${styles.navigationLink}`}>Login</a>
+            </Link>
+          </li>
         )}
       </ul>
     </nav>
