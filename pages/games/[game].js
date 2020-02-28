@@ -1,5 +1,5 @@
+import { formatPrice, grammyRender } from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
-import { grammyRender } from '../../lib/helpers';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SignUpForm from '../../components/SignUpForm';
@@ -7,7 +7,7 @@ import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const Games = ({ game, user }) => {
+const Games = ({ game, user, previousBet }) => {
   const title =
     game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
   const data = {
@@ -20,6 +20,9 @@ const Games = ({ game, user }) => {
   return (
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
+        <div className='dtc f6 b ma0 v-mid w-100 tr'>
+          Current Balance: {formatPrice(user.stripe.user.balance / 100)}
+        </div>
         <div key={`work-${game.name}`} className='pv2 pa2-ns w-100 w-100-ns'>
           <a className='no-underline white'>
             <div
@@ -31,7 +34,9 @@ const Games = ({ game, user }) => {
                 {title}
               </h1>
               <p>{description}</p>
-              {!game.answer && <SignUpForm user={user} game={game} />}
+              {!game.answer && (
+                <SignUpForm user={user} game={game} previousBet={previousBet} />
+              )}
               {game.answer && (
                 <>
                   <div className='f5 mt0 fw7'>Winning bet:</div>{' '}
@@ -54,14 +59,21 @@ Games.getInitialProps = async (ctx) => {
   const question = (await axios.get(`${apiURL}/api/question/${game}`)).data;
   const user = getCookie('id_token', ctx.req);
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const submissionsRes = await axios.get(
+    `${apiURL}/api/userSubmissions/${user}`,
+  );
+  const previousBet = submissionsRes.data.filter((sub) => {
+    return (sub.question = question[0].question);
+  });
   const userObj = userRes.data;
-  return { game: question[0], user: userObj };
+  return { game: question[0], user: userObj, previousBet };
 };
 
 Games.propTypes = {
   games: PropTypes.array,
   game: PropTypes.object,
   user: PropTypes.object,
+  previousBet: PropTypes.array,
 };
 
 export default Games;

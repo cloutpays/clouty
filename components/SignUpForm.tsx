@@ -8,9 +8,10 @@ import Question from './Question';
 interface SignUpFormProps {
   game: any;
   user: any;
+  previousBet: any;
 }
 
-const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
+const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
   const [name, setName] = useState<string>(user ? user.info.firstName : '');
   const [email, setEmail] = useState<string>(user ? user.firebase.email : '');
   const [handle, setHandle] = useState<string>(user ? user.info.firstName : '');
@@ -50,6 +51,27 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
     <div className='row'>
       <div className='form-card'>
         <form onSubmit={handleSubmit}>
+          {previousBet.length !== 0 && (
+            <div>
+              <p className='b'>
+                You have a hand in this bet. Do you want to double down?
+              </p>
+              <div className='dib-ns'>
+                <div className='flex flex-wrap'>
+                  <div
+                    // onClick={() => setWager(Number(1))}
+                    className='noselect grow outline dim pa2 mr2 mt2'>
+                    <strong>Yes</strong>
+                  </div>
+                  <div
+                    // onClick={() => setWager(Number(5))}
+                    className='noselect grow outline dim pa2 mr2 mt2'>
+                    <strong>No</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
           {!user && (
             <>
               <div>
