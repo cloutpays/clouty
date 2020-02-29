@@ -35,42 +35,27 @@ const Navigation = ({ user }: any) => {
       <ul className='list pl0 flex mv0'>
         {isLoggedIn && (
           <li className='mr2 mr4-ns'>
-            <Link href='/dashboard'>
-              <a href='/dashboard' className={`${styles.navigationLink}`}>
-                Admin
-              </a>
-            </Link>
+            <a href='/dashboard' className={`${styles.navigationLink}`}>
+              Admin
+            </a>
           </li>
         )}
         <li className='mr2 mr4-ns'>
-          <Link href='/games'>
-            <a className={`${styles.navigationLink}`}>Games</a>
-          </Link>
+          <a href='/games' className={`${styles.navigationLink}`}>
+            Games
+          </a>
         </li>
         {isLoggedIn && (
           <li className='mr2 mr4-ns'>
-            <Link href='/login'>
-              <a className={`${styles.navigationLink}`}>Login</a>
-            </Link>
+            <a href='/user' className={`${styles.navigationLink}`}>
+              {user ? user.info.firstName : 'Profile'}
+            </a>
           </li>
-        )}
-        {isLoggedIn && (
-          <>
-            <li className='mr2 mr4-ns'>
-              <Link href='/user'>
-                <a href='/user' className={`${styles.navigationLink}`}>
-                  {user ? user.info.firstName : 'Profile'}
-                </a>
-              </Link>
-            </li>
-          </>
         )}
         {!isLoggedIn && (
-          <li className='mr2 mr4-ns'>
-            <Link href='/login'>
-              <a className={`${styles.navigationLink}`}>Login</a>
-            </Link>
-          </li>
+          <a href='/login' className={`${styles.navigationLink}`}>
+            <li className='mr2 mr4-ns'>Login</li>
+          </a>
         )}
       </ul>
     </nav>
