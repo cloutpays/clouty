@@ -63,7 +63,7 @@ Games.getInitialProps = async (ctx) => {
     `${apiURL}/api/userSubmissions/${user}`,
   );
   const previousBet = submissionsRes.data.filter((sub) => {
-    return (sub.question = question[0].question);
+    return sub.question === question[0].question;
   });
   const userObj = userRes.data;
   return { game: question[0], user: userObj, previousBet };
