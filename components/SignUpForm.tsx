@@ -19,7 +19,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
   const [phoneNumber, setPhoneNumber] = useState<string>(
     user ? user.info.phoneNumber : '',
   );
-  const [wager, setWager] = useState<number>();
+  const [wager, setWager] = useState<number[]>([1, 5, 10]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
@@ -33,7 +33,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
         phoneNumber,
         handle,
         userId: user._id,
-        wager,
+        wager: wager[0],
         date,
         question: game.question,
       };
@@ -41,7 +41,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
       await axios({
         method: 'post',
         url: '/api/submission',
-        data: userSubmission,
+        data: { userSubmission, user },
       }).then(() => {
         Router.push(`/confirmation/${wager}`);
       });
@@ -51,118 +51,110 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
     <div className='row'>
       <div className='form-card'>
         <form onSubmit={handleSubmit}>
-          {previousBet.length !== 0 && (
+          {!previousBet ? (
+            // {previousBet.length !== 0 ? (
             <div>
-              <p className='b'>
-                You have a hand in this bet. Do you want to double down?
-              </p>
-              <div className='dib-ns'>
-                <div className='flex flex-wrap'>
-                  <div
-                    // onClick={() => setWager(Number(1))}
-                    className='noselect grow outline dim pa2 mr2 mt2'>
-                    <strong>Yes</strong>
-                  </div>
-                  <div
-                    // onClick={() => setWager(Number(5))}
-                    className='noselect grow outline dim pa2 mr2 mt2'>
-                    <strong>No</strong>
-                  </div>
-                </div>
-              </div>
+              <p className='b'>You have a hand in this bet.</p>
             </div>
-          )}
-          {!user && (
+          ) : (
             <>
-              <div>
-                <input
-                  className='game-input'
-                  type='text'
-                  value={name}
-                  placeholder='Name'
-                  onChange={(event) => setName(event.currentTarget.value)}
-                  name='name'
-                  required={true}
-                />
-              </div>
-              <div>
-                <input
-                  type='email'
-                  className='game-input'
-                  placeholder='Email address'
-                  value={email}
-                  onChange={(event) => setEmail(event.currentTarget.value)}
-                  name='email'
-                  required={true}
-                />
-              </div>
+              {!user && (
+                <>
+                  <div>
+                    <input
+                      className='game-input'
+                      type='text'
+                      value={name}
+                      placeholder='Name'
+                      onChange={(event) => setName(event.currentTarget.value)}
+                      name='name'
+                      required={true}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type='email'
+                      className='game-input'
+                      placeholder='Email address'
+                      value={email}
+                      onChange={(event) => setEmail(event.currentTarget.value)}
+                      name='email'
+                      required={true}
+                    />
+                  </div>
 
-              <div>
-                <input
-                  type='text'
-                  value={handle}
-                  className='game-input'
-                  placeholder='IG/Twitter Handle'
-                  onChange={(event) => setHandle(event.currentTarget.value)}
-                  name='handle'
-                  id='handle'
-                />
-              </div>
-            </>
-          )}
-          <div className='mt2'>
-            <label className='fw6' htmlFor='email'>
-              Select your wager:
-            </label>
-            <br />
-            <div className='dib-ns'>
-              <div className='flex flex-wrap'>
-                <div
-                  onClick={() => setWager(Number(1))}
-                  className='noselect grow outline dim pa2 mr2 mt2'>
-                  <strong>$1</strong>
+                  <div>
+                    <input
+                      type='text'
+                      value={handle}
+                      className='game-input'
+                      placeholder='IG/Twitter Handle'
+                      onChange={(event) => setHandle(event.currentTarget.value)}
+                      name='handle'
+                      id='handle'
+                    />
+                  </div>
+                </>
+              )}
+              <div className='mt2'>
+                <label className='fw6' htmlFor='email'>
+                  Select your wager:
+                </label>
+                <br />
+                <div className='dib-ns'>
+                  <div className='flex flex-wrap'>
+                    {wager.map((wage, ind) => {
+                      return (
+                        <div
+                          onClick={() => setWager([Number(wage)])}
+                          key={ind}
+                          className='noselect grow outline dim pa2 mr2 mt2'>
+                          <strong>${wage}</strong>
+                        </div>
+                      );
+                    })}
+                    {wager.length === 1 && (
+                      <div
+                        onClick={() =>
+                          setWager([Number(1), Number(5), Number(10)])
+                        }
+                        className='noselect grow outline dim pa2 mr2 mt2'>
+                        <strong>Reset</strong>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div
-                  onClick={() => setWager(Number(5))}
-                  className='noselect grow outline dim pa2 mr2 mt2'>
-                  <strong>$5</strong>
-                </div>
-                <div
-                  onClick={() => setWager(Number(10))}
-                  className='noselect grow outline dim pa2 mr2 mt2'>
-                  <strong>$10</strong>
-                </div>
               </div>
-            </div>
-          </div>
-          {!user && (
-            <>
-              <div>
-                <Cleave
-                  className='game-input'
-                  placeholder='Phone Number'
-                  onChange={(event) =>
-                    setPhoneNumber(event.currentTarget.value)
-                  }
-                  options={{ phone: true, phoneRegionCode: 'US' }}
-                />
-              </div>
-            </>
-          )}
-          <Question
-            type={game.type}
-            options={game.options}
-            title={game.question}
-            setAnswer={setAnswer}
-          />
-          <br />
-          {phoneNumber && answer && wager && name && email && (
-            <>
-              <span
-                onClick={handleSubmit}
-                className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
-                <span className='pl1 sans-serif'>Submit</span>
-              </span>
+              {!user && (
+                <>
+                  <div>
+                    <Cleave
+                      className='game-input'
+                      placeholder='Phone Number'
+                      onChange={(event) =>
+                        setPhoneNumber(event.currentTarget.value)
+                      }
+                      options={{ phone: true, phoneRegionCode: 'US' }}
+                    />
+                  </div>
+                </>
+              )}
+              <Question
+                type={game.type}
+                options={game.options}
+                title={game.question}
+                setAnswer={setAnswer}
+              />
+              <br />
+              {phoneNumber && answer && wager && name && email && (
+                <>
+                  <span
+                    onClick={handleSubmit}
+                    className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
+                    <span className='pl1 sans-serif'>Submit</span>
+                  </span>
+                </>
+              )}
             </>
           )}
         </form>
