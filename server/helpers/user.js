@@ -52,4 +52,5 @@ const userApi = wrapAsync(async function(req, db) {
 module.exports = {
   userApi: cors(userApi),
   userRetrieveApi: cors(userRetrieveApi),
+  updateUser,
 };
