@@ -11,43 +11,48 @@ const Navigation = (props: any) => {
   };
   return (
     <>
-      <nav className='w-100 w-25-m w-25-l mb4 mb0-l ph3-m ph3-l'>
-        <h2 className='ttu mt0 mb2 f6 fw5 silver'>Manage</h2>
-        <ul className='list pl0 mt0 mb4'>
-          <li className='mb2'>
-            <a href='/user/info' className='block link dim blue'>
-              Account Information
-            </a>
-          </li>
-          <li className='mb2'>
-            <a href='#' className='block link dim blue'>
-              Payouts
-            </a>
-          </li>
-          <li className='mb2'>
-            <a href='#' className='block link dim blue'>
-              Game History
-            </a>
-          </li>
-        </ul>
-        <h2 className='ttu mt0 mb2 f6 fw5 silver'>More</h2>
-        <ul className='list pl0 mt0 mb2'>
-          <li className='mb2'>
-            <a href='#' className='block link dim blue'>
-              Help
-            </a>
-          </li>
-          <li className='mb2'>
-            <a href='#' className='block link dim blue'>
-              Refer a Friend
-            </a>
-          </li>
-          <li className='mb2'>
-            <a onClick={handleLogout} className='block link dim blue'>
-              Logout
-            </a>
-          </li>
-        </ul>
+      <nav className='w-100 mb0-l ph3-m ph3-l flex center'>
+        <div className='mr5'>
+          <h2 className='ttu mt0 mb2 f6 fw5 silver'>Manage</h2>
+          {process.env.NODE_ENV}
+          <ul className='list pl0 mt0 mb4'>
+            <li className='mb2'>
+              <a href='/user/info' className='block link dim blue'>
+                Account Information
+              </a>
+            </li>
+            <li className='mb2'>
+              <a href='#' className='block link dim blue'>
+                Payouts
+              </a>
+            </li>
+            <li className='mb2'>
+              <a href='#' className='block link dim blue'>
+                Game History
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 className='ttu mt0 mb2 f6 fw5 silver'>More</h2>
+          <ul className='list pl0 mt0 mb2'>
+            <li className='mb2'>
+              <a href='#' className='block link dim blue'>
+                Help
+              </a>
+            </li>
+            <li className='mb2'>
+              <a href='#' className='block link dim blue'>
+                Refer a Friend
+              </a>
+            </li>
+            <li className='mb2'>
+              <a onClick={handleLogout} className='block link dim blue'>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
       </nav>
       <article className='w-100 w-75-m w-75-l ph3-m ph3-l'>
         <header className='mb3'>
