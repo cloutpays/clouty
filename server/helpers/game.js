@@ -1,12 +1,12 @@
 import { json } from 'micro';
+import { updateUser } from './user';
 import connect from './db';
-
 const { parse } = require('url');
 const cors = require('micro-cors')();
-const client = require('twilio')(
-  process.env.TWILIO_SID,
-  process.env.TWILIO_TOKEN,
-);
+// const client = require('twilio')(
+//   process.env.TWILIO_SID,
+//   process.env.TWILIO_TOKEN,
+// );
 const dev = process.env.NODE_ENV === 'development';
 const question = dev ? 'questiondev' : 'question';
 const cloutpays = dev ? 'cloutpaysdev' : 'cloutpays';
@@ -23,26 +23,26 @@ const wrapAsync = (handler) => async (req, res) => {
     .catch((error) => res.status(500).json({ error: error.message }));
 };
 
-const sendTextMessage = async (name, phoneNumber, wager) => {
-  try {
-    const message = await client.messages.create({
-      body: `Thank you for signing up to Clouty ${name}! Here is the final step to secure your bet https://cash.app/$getclouty/${wager}`,
-      from: '+14154172439',
-      to: phoneNumber,
-    });
-    console.log(`Request sent: ${message.sid} - ${name}`);
-  } catch (error) {
-    console.error(error);
-  }
-};
+// const sendTextMessage = async (name, phoneNumber, wager) => {
+//   try {
+//     const message = await client.messages.create({
+//       body: `Thank you for signing up to Clouty ${name}! Here is the final step to secure your bet https://cash.app/$getclouty/${wager}`,
+//       from: '+14154172439',
+//       to: phoneNumber,
+//     });
+//     console.log(`Request sent: ${message.sid} - ${name}`);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 const gameSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  const { name, phoneNumber, wager } = data;
-  if (!dev) {
-    await sendTextMessage(name, phoneNumber, wager);
-  }
-  return await db.collection(cloutpays).insertOne(data);
+  const { wager } = data.userSubmission;
+  const { user } = data;
+  user.stripe.user.balance = user.stripe.user.balance - wager * 100;
+  await updateUser(user, db);
+  return await db.collection(cloutpays).insertOne(data.userSubmission);
 });
 
 const submissionsRetrieveApi = wrapAsync(
@@ -64,6 +64,7 @@ const userSubmissionsRetrieveApi = wrapAsync(async (req, db) => {
 const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   console.log(data);
+
   return await db
     .collection(question)
     .findOneAndReplace({ slug: data.slug }, data, { upsert: true });
