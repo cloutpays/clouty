@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 import colorways from '../lib/colorways';
 interface Option {
   value: string;
-  key: string;
 }
 interface Question {
   gameType: string;
@@ -209,7 +208,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                           <div className='f6 link dim ph2 pv2 mb2 dib white bg-red'>
                             X
                           </div>
-                          <div className={'ma2'}>{opt.key}</div>
+                          <div className={'ma2'}>{opt.value}</div>
                         </div>
                       </div>
                     );
@@ -222,10 +221,10 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                     return (
                       <div
                         data-option-index={index}
-                        onClick={() => setAnswer(opt.key)}
+                        onClick={() => setAnswer(opt.value)}
                         key={index}>
                         <div className='flex'>
-                          {opt.key !== answer ? (
+                          {opt.value !== answer ? (
                             <div className='f6 link dim ph2 pv2 mb2 dib white bg-blue'>
                               +
                             </div>
@@ -234,7 +233,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                               :)
                             </div>
                           )}
-                          <div className={'ma2'}>{opt.key}</div>
+                          <div className={'ma2'}>{opt.value}</div>
                         </div>
                       </div>
                     );
