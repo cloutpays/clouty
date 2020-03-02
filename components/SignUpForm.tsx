@@ -147,13 +147,19 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
               />
               <br />
               {phoneNumber && answer && wager && name && email && (
-                <>
-                  <span
-                    onClick={handleSubmit}
-                    className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
-                    <span className='pl1 sans-serif'>Submit</span>
-                  </span>
-                </>
+                <div>
+                  {wager[0] > user.stripe.user.balance / 100 ? (
+                    <div className='mb2 f7 fw6 '>
+                      You have insufficient credits. Reload your balance.
+                    </div>
+                  ) : (
+                    <span
+                      onClick={handleSubmit}
+                      className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
+                      <span className='pl1 sans-serif'>Play</span>
+                    </span>
+                  )}
+                </div>
               )}
             </>
           )}
