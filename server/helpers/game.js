@@ -10,6 +10,8 @@ const cors = require('micro-cors')();
 const dev = process.env.NODE_ENV === 'development';
 const question = dev ? 'questiondev' : 'question';
 const cloutpays = dev ? 'cloutpaysdev' : 'cloutpays';
+const user = dev ? 'userdev' : 'user';
+
 const wrapAsync = (handler) => async (req, res) => {
   const db = await connect();
   return handler(req, db)
@@ -40,7 +42,8 @@ const gameSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   const { wager } = data.userSubmission;
   const { user } = data;
-  user.stripe.user.balance = user.stripe.user.balance - wager * 100;
+  const { balance } = user.stripe.user;
+  user.stripe.user.balance = balance - wager * 100;
   await updateUser(user, db);
   return await db.collection(cloutpays).insertOne(data.userSubmission);
 });
@@ -61,10 +64,63 @@ const userSubmissionsRetrieveApi = wrapAsync(async (req, db) => {
     .toArray();
 });
 
+const handlePayouts = async (data, db) => {
+  const entries = await db
+    .collection(cloutpays)
+    .find({ question: data.question, answer: data.answer })
+    .toArray();
+
+  const modifiedUsers = entries.map((entry) => {
+    console.log(entry);
+    return {
+      _id: entry.userId,
+      amount: entry.wager * 200,
+    };
+  });
+  let users = await db
+    .collection(user)
+    .find({
+      _id: {
+        $in: entries.map((entry) => {
+          return entry.userId;
+        }),
+      },
+    })
+    .toArray();
+  users = users.map((user) => {
+    return {
+      ...user,
+      stripe: {
+        ...user.stripe,
+        user: {
+          ...user.stripe.user,
+          balance:
+            user.stripe.user.balance +
+            modifiedUsers.filter((modUser) => {
+              return user._id === modUser._id;
+            })[0].amount,
+        },
+      },
+    };
+  });
+  let ops = [];
+  users.forEach((user) => {
+    ops.push({
+      updateOne: {
+        filter: { _id: user._id },
+        update: {
+          $set: user,
+        },
+      },
+    });
+  });
+  await db.collection(user).bulkWrite(ops);
+};
 const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  console.log(data);
-
+  if (data.answer) {
+    await handlePayouts(data, db);
+  }
   return await db
     .collection(question)
     .findOneAndReplace({ slug: data.slug }, data, { upsert: true });
@@ -72,7 +128,6 @@ const questionSubmitApi = wrapAsync(async (req, db) => {
 
 const userQuestionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  console.log(data);
   return await db
     .collection('userquestion')
     .findOneAndReplace({ slug: data.slug }, data, { upsert: true });
