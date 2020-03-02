@@ -49,7 +49,7 @@ const Terms = ({ submissions, user }) => {
                                         }`}
                                       </h1>
                                       <div className='f5 fw4 pt1 black-60'>
-                                        {`Bet: ${game.answer}`}{' '}
+                                        {`Your Bet: ${game.answer}`}{' '}
                                       </div>
                                       {gameButtonText === 'W' && (
                                         <div>
