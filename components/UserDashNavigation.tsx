@@ -14,7 +14,6 @@ const Navigation = (props: any) => {
       <nav className='w-100 mb0-l ph3-m ph3-l flex center'>
         <div className='mr5'>
           <h2 className='ttu mt0 mb2 f6 fw5 silver'>Manage</h2>
-          {process.env.NODE_ENV}
           <ul className='list pl0 mt0 mb4'>
             <li className='mb2'>
               <a href='/user/info' className='block link dim blue'>
