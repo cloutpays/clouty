@@ -36,17 +36,23 @@ const updateUser = async (firebaseUser, db) => {
 };
 
 const userApi = wrapAsync(async function(req, db) {
-  const user = (await json(req)).data;
-  if (!user.stripe) {
+  let userData = (await json(req)).data;
+  const queryUser = await db
+    .collection(user)
+    .find({ _id: userData.firebase.uid })
+    .toArray();
+  if (queryUser.length === 1) {
+    userData = { ...queryUser[0], ...userData };
+  }
+  if (!userData.stripe) {
     const stripeUser = await stripe.customers.create({
-      email: user.firebase.email,
+      email: userData.firebase.email,
     });
-    user.stripe = {
+    userData.stripe = {
       user: stripeUser,
     };
   }
-
-  return updateUser(user, db);
+  return updateUser(userData, db);
 });
 
 module.exports = {
