@@ -21,7 +21,7 @@ const Navigation = (props: any) => {
               </a>
             </li>
             <li className='mb2'>
-              <a href='#' className='block link dim blue'>
+              <a href='/user/payouts' className='block link dim blue'>
                 Payouts
               </a>
             </li>
