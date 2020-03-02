@@ -35,9 +35,9 @@ const Navigation = ({ user }: any) => {
       <ul className='list pl0 flex mv0'>
         {isLoggedIn && (
           <li className='mr2 mr4-ns'>
-            <a href='/dashboard' className={`${styles.navigationLink}`}>
-              Admin
-            </a>
+            <Link href='/dashboard'>
+              <a className={`${styles.navigationLink}`}>Admin</a>
+            </Link>
           </li>
         )}
         <li className='mr2 mr4-ns'>
