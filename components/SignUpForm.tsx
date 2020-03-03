@@ -41,7 +41,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
       await axios({
         method: 'post',
         url: '/api/submission',
-        data: { userSubmission, user },
+        data: { userSubmission: { ...userSubmission, user } },
       }).then(() => {
         Router.push(`/confirmation/${wager}`);
       });
