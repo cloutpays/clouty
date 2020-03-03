@@ -44,7 +44,9 @@ const gameSubmitApi = wrapAsync(async (req, db) => {
   const { balance } = user.stripe.user;
   user.stripe.user.balance = balance - wager * 100;
   await updateUser(user, db);
-  await sendTextMessage(name, phoneNumber);
+  if (!dev) {
+    await sendTextMessage(name, phoneNumber);
+  }
   return await db.collection(cloutpays).insertOne(data.userSubmission);
 });
 
