@@ -7,7 +7,7 @@ import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const Dashboard = ({ entries, questions }) => {
+const Dashboard = ({ entries, questions, users }) => {
   const data = {
     title: 'Dashboard',
     header: 'Clouty By The Numbers',
@@ -29,16 +29,20 @@ const Dashboard = ({ entries, questions }) => {
           <dd className='f3 f2-ns b ml0'>{entries.length}</dd>
         </dl>
         <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>24-Hour Sales</dd>
+          <dd className='f6 f5-ns b ml0'>24-Hour Wagers</dd>
           <dd className='f3 f2-ns b ml0'>$14.00</dd>
         </dl>
         <dl className='dib mr5'>
           <dd className='f6 f5-ns b ml0'>House Balance</dd>
           <dd className='f3 f2-ns b ml0'>$37.00</dd>
         </dl>
+        <dl className='dib mr5'>
+          <dd className='f6 f5-ns b ml0'>Total Payouts</dd>
+          <dd className='f3 f2-ns b ml0'>$37.00</dd>
+        </dl>
         <dl className='dib'>
           <dd className='f6 f5-ns b ml0'>Users</dd>
-          <dd className='f3 f2-ns b ml0'>4</dd>
+          <dd className='f3 f2-ns b ml0'>{users.length}</dd>
         </dl>
       </article>
       <div className='flex'>
@@ -66,13 +70,16 @@ Dashboard.getInitialProps = async ({ req }) => {
   const res = await axios.get(`${apiURL}/api/submissions`);
   const questionsRes = await axios.get(`${apiURL}/api/questions`);
   const questions = questionsRes.data;
+  const usersRes = await axios.get(`${apiURL}/api/users`);
+  const users = usersRes.data;
   const entries = res.data;
-  return { entries, questions };
+  return { entries, questions, users };
 };
 
 Dashboard.propTypes = {
   entries: PropTypes.array,
   questions: PropTypes.array,
+  users: PropTypes.array,
 };
 
 export default SecuredPage(Dashboard);

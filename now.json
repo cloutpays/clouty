@@ -39,6 +39,11 @@
       "dest": "server/handlers/get.js"
     },
     {
+      "src": "/api/users",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js"
+    },
+    {
       "src": "/api/question",
       "methods": ["POST"],
       "dest": "server/handlers/post.js"

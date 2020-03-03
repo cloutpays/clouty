@@ -31,6 +31,13 @@ const updateUser = async (firebaseUser, db) => {
   return newUser.value;
 };
 
+const usersApi = wrapAsync(async function(req, db) {
+  return await db
+    .collection(user)
+    .find({})
+    .toArray();
+});
+
 const userApi = wrapAsync(async function(req, db) {
   let userData = (await json(req)).data;
   const queryUser = await db
@@ -55,4 +62,5 @@ module.exports = {
   userApi: cors(userApi),
   userRetrieveApi: cors(userRetrieveApi),
   updateUser,
+  usersApi,
 };

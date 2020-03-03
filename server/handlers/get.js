@@ -6,7 +6,7 @@ const {
   questionRetrieveApi,
   userSubmissionsRetrieveApi,
 } = require('../helpers/game');
-const { userRetrieveApi } = require('../helpers/user');
+const { userRetrieveApi, usersApi } = require('../helpers/user');
 const { stripeApi } = require('../helpers/stripe');
 const { send } = require('micro');
 
@@ -25,6 +25,8 @@ const getApi = (fn) => async (req, res) => {
         return await fn(questionRetrieveApi(req, res));
       case 'api/user':
         return await fn(userRetrieveApi(req, res));
+      case 'api/users':
+        return await fn(usersApi(req, res));
       case 'api/checkout':
         return await fn(stripeApi(req, res));
 
