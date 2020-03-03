@@ -30,11 +30,12 @@ const Terms = ({ submissions, user }) => {
                         {submissions.length > 0 &&
                           submissions
                             .map((game, ind) => {
-                              const gameButtonText = !game.question.answer
-                                ? 'Pending'
-                                : game.question.answer === game.answer
-                                ? 'W'
-                                : 'L';
+                              const gameButtonText =
+                                typeof game.won === 'undefined'
+                                  ? 'P'
+                                  : game.won
+                                  ? 'W'
+                                  : 'L';
                               return (
                                 <article key={ind}>
                                   <a
@@ -71,7 +72,7 @@ const Terms = ({ submissions, user }) => {
                                           </span>
                                         </>
                                       )}
-                                      {gameButtonText === 'Pending' && (
+                                      {gameButtonText === 'P' && (
                                         <>
                                           <span className='bg-gold ph1 mt2 fw8 f5 white'>
                                             P
