@@ -64,24 +64,20 @@ const userSubmissionsRetrieveApi = wrapAsync(async (req, db) => {
     .toArray();
 });
 
-const handlePayouts = async (data, db) => {
-  const entries = await db
-    .collection(cloutpays)
-    .find({ question: data.question, answer: data.answer })
-    .toArray();
-
+const handlePayouts = async (entries, db) => {
   const modifiedUsers = entries.map((entry) => {
-    console.log(entry);
     return {
       _id: entry.userId,
       amount: entry.wager * 200,
     };
   });
+
   let users = await db
     .collection(user)
     .find({
       _id: {
         $in: entries.map((entry) => {
+          console.log('yo', entry.userId);
           return entry.userId;
         }),
       },
@@ -114,12 +110,51 @@ const handlePayouts = async (data, db) => {
       },
     });
   });
-  await db.collection(user).bulkWrite(ops);
+  return await db.collection(user).bulkWrite(ops);
 };
+
+const updateSubmissions = async (entries, answer, db) => {
+  try {
+    let ops = [];
+    entries.forEach((entry) => {
+      if (!answer) {
+        ops.push({
+          updateOne: {
+            filter: { _id: entry._id },
+            update: { $unset: { won: '' } },
+          },
+        });
+      } else {
+        ops.push({
+          updateOne: {
+            filter: { _id: entry._id },
+            update: { $set: { won: entry.answer === answer } },
+          },
+        });
+      }
+    });
+    return await db.collection(cloutpays).bulkWrite(ops);
+  } catch (err) {
+    return console.log(err);
+  }
+};
+
 const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
+  const entries = await db
+    .collection(cloutpays)
+    .find({ question: data.question })
+    .toArray();
   if (data.answer) {
-    await handlePayouts(data, db);
+    const payoutUsers = entries.filter((entry) => {
+      return entry.answer === data.answer;
+    });
+    if (payoutUsers.length > 0) {
+      await handlePayouts(payoutUsers, db);
+    }
+  }
+  if (entries.length > 0) {
+    await updateSubmissions(entries, data.answer, db);
   }
   return await db
     .collection(question)
