@@ -40,7 +40,9 @@ const Games = ({ questions }) => {
                                 : game.question
                             }`}
                           </h1>
-                          {grammy ? grammyRender(game) : game.description}
+                          <p>
+                            {grammy ? grammyRender(game) : game.description}
+                          </p>
                           {game.answer && (
                             <>
                               <div className='f6 mt0 fw7'>Winning bet:</div>{' '}
