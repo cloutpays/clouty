@@ -19,7 +19,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
   const [phoneNumber, setPhoneNumber] = useState<string>(
     user ? user.info.phoneNumber : '',
   );
-  const [wager, setWager] = useState<number[]>([1, 5, 10]);
+  const [wager, setWager] = useState<number[]>([1, 5, 10, 20, 50]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
@@ -116,7 +116,13 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
                     {wager.length === 1 && (
                       <div
                         onClick={() =>
-                          setWager([Number(1), Number(5), Number(10)])
+                          setWager([
+                            Number(1),
+                            Number(5),
+                            Number(10),
+                            Number(20),
+                            Number(50),
+                          ])
                         }
                         className='noselect grow outline dim pa2 mr2 mt2'>
                         <strong>Reset</strong>
