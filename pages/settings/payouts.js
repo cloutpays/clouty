@@ -8,7 +8,7 @@ import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const Terms = ({ user }) => {
+const PayoutSettings = ({ user }) => {
   const data = {
     description: 'Make money while putting your intuition on the line.',
     header: `Welcome, ${user.info.firstName}!`,
@@ -45,10 +45,9 @@ const Terms = ({ user }) => {
     </Wrapper>
   );
 };
-Terms.getInitialProps = async (ctx) => {
+PayoutSettings.getInitialProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
   const apiURL = `${origin}`;
-
   const user = getCookie('id_token', ctx.req);
 
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
@@ -57,9 +56,9 @@ Terms.getInitialProps = async (ctx) => {
   return { user: userObj };
 };
 
-Terms.propTypes = {
+PayoutSettings.propTypes = {
   submissions: PropTypes.array,
   questions: PropTypes.array,
   user: PropTypes.object,
 };
-export default SecuredPage(Terms);
+export default SecuredPage(PayoutSettings);
