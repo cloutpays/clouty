@@ -23,7 +23,7 @@ const Terms = ({ submissions, user }) => {
                 <div className='w-100 ph1 mb3 mb0-l'>
                   <div className='bt bl br b--black-10 br2'>
                     <div className='pa3 bb b--black-10'>
-                      <h4 className='mv0'>Submissions</h4>
+                      <h4 className='mv0'>Payouts</h4>
                     </div>
                     <ul className='list pl0 mt0 measure center'>
                       <main className=' center'>
