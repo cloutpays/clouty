@@ -40,7 +40,8 @@ const sendTextMessage = async (name, phoneNumber) => {
 
 const gameSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  const { wager, phoneNumber, name, user } = data.userSubmission;
+  const { wager, phoneNumber, name } = data.userSubmission;
+  const { user } = data;
   const { balance } = user.stripe.user;
   user.stripe.user.balance = balance - wager * 100;
   await updateUser(user, db);
