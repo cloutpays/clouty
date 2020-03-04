@@ -16,6 +16,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({ submissions }) => {
           <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Game #</th>
           <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Answer</th>
           <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Wager</th>
+          <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Result</th>
         </tr>
       </thead>
       <tbody className='lh-copy'>
@@ -38,6 +39,15 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({ submissions }) => {
                 <td
                   className='pv3 pr3 bb b--black-20'
                   key='wager'>{`$${curr.wager}`}</td>
+                <td className='pv3 pr3 bb b--black-20' key='paid'>
+                  {curr.won === 'undefined' ? (
+                    <span className='bg-gold ph1 mt2 fw8 f5 white'>P</span>
+                  ) : curr.won ? (
+                    <span className='bg-green ph1 mt2 fw8 f5 white'>W</span>
+                  ) : (
+                    <span className='bg-red ph1 mt2 fw8 f5 white'>L</span>
+                  )}
+                </td>
               </tr>
             );
           })
