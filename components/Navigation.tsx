@@ -11,25 +11,11 @@ const Navigation = ({ user }: any) => {
     <nav className='mw8 center flex items-center mb5'>
       <Link href='/'>
         <a href='/' className='white flex-grow-1 no-underline'>
-          <svg width='40px' height='40px' viewBox='0 0 500 500'>
-            <title>Clouty</title>
-            <defs>
-              <linearGradient
-                x1='0%'
-                y1='42.4558081%'
-                x2='100%'
-                y2='42.4558073%'
-                id='linearGradient'>
-                <stop stopColor='#5B3C70' offset='0%' />
-                <stop stopColor='#E57B5D' offset='100%' />
-              </linearGradient>
-            </defs>
-            <polygon
-              id='Fill-1'
-              fill='url(#linearGradient)'
-              points='0 499.321464 499.321464 499.321464 499.321464 0 0 0'
-            />
-          </svg>
+          <img
+            width='40px'
+            height='40px'
+            src='/static/img/transparent_clouty-umbrella.png'
+          />
         </a>
       </Link>
       <ul className='list pl0 flex mv0'>
