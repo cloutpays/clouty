@@ -84,14 +84,15 @@ const handlePayouts = async (entries, db) => {
     })
     .toArray();
   users = users.map((user) => {
+    const { stripe } = user;
     return {
       ...user,
       stripe: {
-        ...user.stripe,
+        ...stripe,
         user: {
-          ...user.stripe.user,
+          ...stripe.user,
           balance:
-            user.stripe.user.balance +
+            stripe.user.balance +
             modifiedUsers.filter((modUser) => {
               return user._id === modUser._id;
             })[0].amount,
