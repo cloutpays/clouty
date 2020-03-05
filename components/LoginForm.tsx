@@ -45,7 +45,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
         }
         if (typeof result !== 'undefined') {
           setCookie('id_token', result.user.uid);
-          Router.push('/dashboard');
+          Router.push('/user');
           axios
             .post('/api/user', {
               data: {
@@ -82,7 +82,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           return;
         }
         setCookie('id_token', result.user.uid);
-        Router.push('/dashboard');
+        Router.push('/user');
         axios
           .post('/api/user', { data: { firebase: result.user } })
           .then(() => {});
