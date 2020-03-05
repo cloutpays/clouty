@@ -11,7 +11,7 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
-  const [userBalance, setUserBalance] = useState(balance || 0);
+  const [userBalance, setUserBalance] = useState(balance);
   const handleLogout = () => {
     removeCookie('id_token');
     Router.push('/');
