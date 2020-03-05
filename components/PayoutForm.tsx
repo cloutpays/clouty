@@ -22,30 +22,46 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
   const [handle, setHandle] = useState<string>(
     user ? (user.info.payout ? user.info.payout.handle : '') : '',
   );
-  const [amount, setAmount] = useState<string>('');
-
+  const [amount, setAmount] = useState<string>('0');
+  const [appleID, setAppleID] = useState<string>('');
+  const [payoutError, setPayoutError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
     if (!loading) {
       setLoading(true);
       const date = new Date();
       const userSubmission = {
-        ...user,
-        info: {
-          ...user.info,
-          payout: {
-            email,
-            handle,
-            preferred,
-            date,
+        user: {
+          ...user,
+          info: {
+            ...user.info,
+            payout: {
+              email,
+              handle,
+              appleID,
+              preferred,
+              lastUpdated: date,
+            },
           },
+        },
+        payoutRequest: {
+          userId: user._id,
+          preferred,
+          appleID,
+          handle,
+          email,
+          amount: amount.substring(2),
+          previousBalance: user.stripe.user.balance,
+          newBalance:
+            user.stripe.user.balance -
+            parseInt(amount.substring(2), undefined) * 100,
+          date,
         },
       };
       await axios({
         method: 'post',
-        url: '/api/user',
+        url: '/api/payout',
         data: { data: userSubmission },
       });
       setLoading(false);
@@ -81,6 +97,18 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
                   Paypal
                 </label>
               </div>
+              <div className='flex items-center mb2'>
+                <input
+                  checked={preferred === 'applepay'}
+                  type='radio'
+                  name='payout'
+                  onClick={() => setPreferred('applepay')}
+                  value='applepay'
+                />
+                <label htmlFor='spacejam' className='db fw6 lh-copy f6'>
+                  Apple Pay
+                </label>
+              </div>
             </div>
             <div className='mt3' />
             {preferred === 'paypal' && (
@@ -112,6 +140,20 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
                 />
               </div>
             )}
+            {preferred === 'applepay' && (
+              <div className='mt3'>
+                <label className='db fw6 lh-copy f6' htmlFor='phone-number'>
+                  Phone Number or Apple ID
+                </label>
+                <input
+                  className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                  value={appleID}
+                  onChange={(event) => setAppleID(event.currentTarget.value)}
+                  name='phone-number'
+                  required={true}
+                />
+              </div>
+            )}
             <div className='mt3'>
               <label className='db fw6 lh-copy f6' htmlFor='cash-app'>
                 Payout Amount
@@ -120,19 +162,45 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
                 className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
                 placeholder='$ '
                 value={amount}
-                onChange={(event) => setAmount(event.currentTarget.value)}
-                options={{ prefix: '$', numeral: true }}
+                onChange={(event) => {
+                  setAmount(event.currentTarget.value);
+                  setPayoutError(
+                    parseInt(
+                      event.currentTarget.value
+                        .substring(2)
+                        .split(',')
+                        .join(''),
+                      undefined,
+                    ) *
+                      100 >
+                      user.stripe.user.balance,
+                  );
+                }}
+                options={{ prefix: '$ ', numeral: true }}
               />
+              <small id='name-desc' className='hljs-strong f6 red db mv2'>
+                {payoutError &&
+                  'Insuffient funds. Please enter a smaller amount'}
+              </small>
             </div>
           </fieldset>
-          <div className=''>
-            <input
-              className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
-              type='submit'
-              value='Update'
-              onClick={handleSubmit}
-            />
-          </div>
+          {!payoutError &&
+            parseInt(
+              amount
+                .substring(2)
+                .split(',')
+                .join(''),
+              undefined,
+            ) > 0 && (
+              <div>
+                <input
+                  className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
+                  type='submit'
+                  value='Submit'
+                  onClick={handleSubmit}
+                />
+              </div>
+            )}
         </form>
       </div>
     </div>
