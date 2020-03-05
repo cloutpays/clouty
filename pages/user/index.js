@@ -7,7 +7,7 @@ import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const Terms = ({ submissions, user }) => {
+const Terms = ({ balance, submissions, user }) => {
   const data = {
     description: 'Make money while putting your intuition on the line.',
     header: `Welcome, ${user.info.firstName}!`,
@@ -15,7 +15,7 @@ const Terms = ({ submissions, user }) => {
   return (
     <Wrapper data={data} user={user} className='measure-wide'>
       <main>
-        <UserDashNavigation user={user} />
+        <UserDashNavigation balance={balance} user={user} />
         <div className='mw8 center ph3' id='dashboard'>
           <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>
             <article className='w-100 w-75-m  ph3-m ph3-l'>
@@ -125,13 +125,16 @@ Terms.getInitialProps = async (ctx) => {
       })[0],
     };
   });
-
-  return { submissions, questions, user: userObj };
+  return {
+    balance: userObj?.stripe?.user?.balance ?? 0,
+    submissions,
+    user: userObj,
+  };
 };
 
 Terms.propTypes = {
+  balance: PropTypes.number,
   submissions: PropTypes.array,
-  questions: PropTypes.array,
   user: PropTypes.object,
 };
 export default SecuredPage(Terms);
