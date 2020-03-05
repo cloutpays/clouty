@@ -1,3 +1,4 @@
+import { formatDate } from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -7,7 +8,7 @@ import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const Terms = ({ balance, submissions, user }) => {
+const Terms = ({ balance, payouts, user }) => {
   const data = {
     description: 'Make money while putting your intuition on the line.',
     header: `Welcome, ${user.info.firstName}!`,
@@ -27,33 +28,36 @@ const Terms = ({ balance, submissions, user }) => {
                     </div>
                     <ul className='list pl0 mt0 measure center'>
                       <main className=' center'>
-                        {submissions.length > 0 &&
-                          submissions
-                            .map((game, ind) => {
-                              return (
-                                <article key={ind}>
-                                  <div className='link dt w-100 bb b--black-10 pa3 dim blue'>
-                                    <div className='dtc v-top' key={ind}>
-                                      <h1 className='f6 f5-ns fw6 lh-title black mv0'>
-                                        Cash App Deposit - $25
-                                      </h1>
-                                      <div className='f5 fw4 pt1 black-60'>
-                                        2/19/2020
-                                      </div>
-                                      <div>
-                                        <span className='bg-green pa1 mt2 fw8 f5 white'>
-                                          Processing
-                                        </span>
-                                        {/* <span className='f5 fw5 ml1 silver'>
-                                          Cash App
-                                        </span> */}
-                                      </div>
+                        {payouts
+                          .map((game, ind) => {
+                            let methodOfPayment = '';
+                            if (game.preferred === 'cashapp')
+                              methodOfPayment = 'Cash App';
+                            if (game.preferred === 'applepay')
+                              methodOfPayment = 'Apple Pay';
+                            if (game.preferred === 'paypal')
+                              methodOfPayment = 'Paypal';
+                            return (
+                              <article key={ind}>
+                                <div className='link dt w-100 bb b--black-10 pa3 dim blue'>
+                                  <div className='dtc v-top' key={ind}>
+                                    <h1 className='f6 f5-ns fw6 lh-title black mv0'>
+                                      {methodOfPayment} Deposit - ${game.amount}
+                                    </h1>
+                                    <div className='f5 fw4 pt1 black-60'>
+                                      {formatDate(new Date(game.date))}
+                                    </div>
+                                    <div>
+                                      <span className='bg-green pa1 mt2 fw8 f5 white'>
+                                        Processing
+                                      </span>
                                     </div>
                                   </div>
-                                </article>
-                              );
-                            })
-                            .reverse()}
+                                </div>
+                              </article>
+                            );
+                          })
+                          .reverse()}
                       </main>
                     </ul>
                   </div>
@@ -76,32 +80,21 @@ Terms.getInitialProps = async (ctx) => {
   const apiURL = `${origin}`;
 
   const user = getCookie('id_token', ctx.req);
-  const submissionsRes = await axios.get(
-    `${apiURL}/api/userSubmissions/${user}`,
-  );
-  const questionsRes = await axios.get(`${apiURL}/api/questions`);
-  const questions = questionsRes.data;
+  const payoutsRes = await axios.get(`${apiURL}/api/userPayouts/${user}`);
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
-  const submissions = submissionsRes.data.map((sub) => {
-    return {
-      ...sub,
-      question: questions.filter((question) => {
-        return sub.question === question.question;
-      })[0],
-    };
-  });
+  const payouts = payoutsRes.data;
 
   return {
     balance: userObj?.stripe?.user?.balance ?? 0,
-    submissions,
     user: userObj,
+    payouts,
   };
 };
 
 Terms.propTypes = {
   balance: PropTypes.number,
-  submissions: PropTypes.array,
+  payouts: PropTypes.array,
   user: PropTypes.object,
 };
 export default SecuredPage(Terms);
