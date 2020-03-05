@@ -1,0 +1,120 @@
+{
+  "version": 2,
+  "scope": "clouty",
+
+  "builds": [
+    { "src": "package.json", "use": "@now/next" },
+    {
+      "src": "server/handlers/post.js",
+      "use": "@now/node"
+    },
+    {
+      "src": "server/handlers/delete.js",
+      "use": "@now/node"
+    },
+    {
+      "src": "server/handlers/get.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/submission",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
+      "src": "/api/submissions",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js"
+    },
+    {
+      "src": "/api/userSubmissions/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1"
+    },
+    {
+      "src": "/api/questions",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js"
+    },
+    {
+      "src": "/api/users",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js"
+    },
+    {
+      "src": "/api/question",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
+      "src": "/api/userquestion",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
+      "src": "/api/payout",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
+      "src": "/api/user",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
+      "src": "/api/user/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1"
+    },
+    {
+      "src": "/api/question/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1"
+    },
+    {
+      "src": "/api/userPayouts/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1"
+    },
+    {
+      "src": "/api/checkout/(.*)/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1&userId=$2"
+    },
+    {
+      "src": "/api/hooks",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
+      "src": "/api/question/(.*)",
+      "methods": ["DELETE"],
+      "dest": "server/handlers/delete.js?id=$1"
+    }
+  ],
+  "build": {
+    "env": {
+      "FIREBASE_API_KEY": "@firebase-api-key",
+      "FIREBASE_APP_ID": "@firebase-app-id",
+      "ENV": "development",
+      "FIREBASE_API_KEY_DEV": "@firebase-api-key-dev",
+      "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
+      "STRIPE_CLIENT_DEV": "@stripe-client-dev",
+      "STRIPE_SECRET_DEV": "@stripe-secret-dev"
+    }
+  },
+  "env": {
+    "TWILIO_SID": "@twilio-sid",
+    "ENV": "development",
+    "TWILIO_TOKEN": "@twilio-token",
+    "MONGO": "@mongo",
+    "FIREBASE_API_KEY": "@firebase-api-key",
+    "FIREBASE_API_KEY_DEV": "@firebase-api-key-dev",
+    "FIREBASE_APP_ID": "@firebase-app-id",
+    "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
+    "STRIPE_CLIENT_DEV": "@stripe-client-dev",
+    "STRIPE_SECRET_DEV": "@stripe-secret-dev"
+  }
+}

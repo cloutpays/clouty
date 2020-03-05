@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "now dev",
-    "start": "now"
+    "start": "now --local-config now.staging.json"
   },
   "dependencies": {
     "@types/cleave.js": "^1.4.1",
