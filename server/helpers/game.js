@@ -7,10 +7,7 @@ const client = require('twilio')(
   process.env.TWILIO_SID,
   process.env.TWILIO_TOKEN,
 );
-const dev = process.env.NODE_ENV === 'development';
-const question = dev ? 'questiondev' : 'question';
-const cloutpays = dev ? 'cloutpaysdev' : 'cloutpays';
-const user = dev ? 'userdev' : 'user';
+import { cloutpays, dev, question, user } from '../helpers';
 
 const wrapAsync = (handler) => async (req, res) => {
   const db = await connect();

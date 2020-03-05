@@ -3,9 +3,7 @@ const { parse } = require('url');
 const cors = require('micro-cors')();
 const connect = require('./db');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_DEV);
-
-const dev = process.env.NODE_ENV === 'development';
-const user = dev ? 'userdev' : 'user';
+import { user } from '../helpers';
 
 const wrapAsync = (handler) => async (req, res) => {
   const db = await connect();

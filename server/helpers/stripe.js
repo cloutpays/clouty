@@ -2,8 +2,9 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_DEV);
 const { parse } = require('url');
 const { json } = require('micro');
 const connect = require('./db');
-const dev = process.env.NODE_ENV === 'development';
-const user = dev ? 'userdev' : 'user';
+import { payout, user } from '../helpers';
+import { updateUser } from './user';
+
 const wrapAsync = (handler) => async (req, res) => {
   const db = await connect();
   return handler(req, db)
@@ -33,6 +34,22 @@ const updateStripeUser = async (paymentIntent, db) => {
   );
   return newUser.value;
 };
+const payoutApi = wrapAsync(async (req, db) => {
+  const data = (await json(req)).data;
+  let { user, payoutRequest } = data;
+  console.log(data);
+  user.stripe.user.balance = payoutRequest.newBalance;
+  await updateUser(user, db);
+  return await db.collection(payout).insertOne(payoutRequest);
+});
+const payoutsByUserApi = wrapAsync(async (req, db) => {
+  const { query } = parse(req.url, true);
+  const { id } = query;
+  return await db
+    .collection(payout)
+    .find({ userId: id })
+    .toArray();
+});
 
 const stripeApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
@@ -81,4 +98,4 @@ const hookApi = wrapAsync(async (req, db) => {
       return true;
   }
 });
-module.exports = { stripeApi, hookApi };
+module.exports = { stripeApi, hookApi, payoutApi, payoutsByUserApi };

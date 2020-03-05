@@ -54,6 +54,11 @@
       "dest": "server/handlers/post.js"
     },
     {
+      "src": "/api/payout",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
       "src": "/api/user",
       "methods": ["POST"],
       "dest": "server/handlers/post.js"
@@ -65,6 +70,11 @@
     },
     {
       "src": "/api/question/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1"
+    },
+    {
+      "src": "/api/userPayouts/(.*)",
       "methods": ["GET"],
       "dest": "server/handlers/get.js?id=$1"
     },
