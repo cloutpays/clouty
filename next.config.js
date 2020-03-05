@@ -13,5 +13,6 @@ module.exports = withCSS({
     FIREBASE_APP_ID_DEV: process.env.FIREBASE_APP_ID_DEV,
     STRIPE_CLIENT_DEV: process.env.STRIPE_CLIENT_DEV,
     STRIPE_SECRET_DEV: process.env.STRIPE_SECRET_DEV,
+    ENV: process.env.ENV,
   },
 });
