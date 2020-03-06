@@ -29,7 +29,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
     event.preventDefault();
 
     if (!(email && password)) {
-      setError('Please fill in email. and password');
+      setError('Please fill in email and password');
       return;
     }
     let isError = false;
@@ -64,7 +64,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
     event.preventDefault();
 
     if (!(email && password)) {
-      setError('Please fill in email. and password');
+      setError('Please fill in email and password');
       return;
     }
 
