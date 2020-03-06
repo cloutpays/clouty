@@ -51,6 +51,7 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
           appleID,
           handle,
           email,
+          cleared: false,
           amount: amount.substring(2),
           previousBalance: user.stripe.user.balance,
           newBalance:
@@ -75,23 +76,23 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
             <div className='mt3'>
               <div className='flex items-center mb2'>
                 <input
-                  onClick={() => setPreferred('cashapp')}
+                  onClick={() => setPreferred('Cash App')}
                   type='radio'
                   name='payout'
-                  value='cashapp'
-                  checked={preferred === 'cashapp'}
+                  value='Cash App'
+                  checked={preferred === 'Cash App'}
                 />
-                <label htmlFor='cashapp' className='db fw6 lh-copy f6'>
+                <label htmlFor='Cash App' className='db fw6 lh-copy f6'>
                   Cashapp
                 </label>
               </div>
               <div className='flex items-center mb2'>
                 <input
-                  checked={preferred === 'paypal'}
+                  checked={preferred === 'PayPal'}
                   type='radio'
                   name='payout'
-                  onClick={() => setPreferred('paypal')}
-                  value='paypal'
+                  onClick={() => setPreferred('PayPal')}
+                  value='PayPal'
                 />
                 <label htmlFor='spacejam' className='db fw6 lh-copy f6'>
                   Paypal
@@ -99,11 +100,11 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
               </div>
               <div className='flex items-center mb2'>
                 <input
-                  checked={preferred === 'applepay'}
+                  checked={preferred === 'Apple Pay'}
                   type='radio'
                   name='payout'
-                  onClick={() => setPreferred('applepay')}
-                  value='applepay'
+                  onClick={() => setPreferred('Apple Pay')}
+                  value='Apple Pay'
                 />
                 <label htmlFor='spacejam' className='db fw6 lh-copy f6'>
                   Apple Pay
@@ -111,7 +112,7 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
               </div>
             </div>
             <div className='mt3' />
-            {preferred === 'paypal' && (
+            {preferred === 'PayPal' && (
               <div className='mt3'>
                 <label className='db fw6 lh-copy f6' htmlFor='email-address'>
                   Paypal Email
@@ -126,7 +127,7 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
                 />
               </div>
             )}{' '}
-            {preferred === 'cashapp' && (
+            {preferred === 'Cash App' && (
               <div className='mt3'>
                 <label className='db fw6 lh-copy f6' htmlFor='cash-app'>
                   Cash App Handle
@@ -140,7 +141,7 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
                 />
               </div>
             )}
-            {preferred === 'applepay' && (
+            {preferred === 'Apple Pay' && (
               <div className='mt3'>
                 <label className='db fw6 lh-copy f6' htmlFor='phone-number'>
                   Phone Number or Apple ID

@@ -11,6 +11,7 @@ import axios from 'axios';
 const Dashboard = ({
   entries,
   questions,
+  payouts,
   users,
   totalWager,
   lostBets,
@@ -69,7 +70,7 @@ const Dashboard = ({
           </a>
         </Link>
       </div>
-      <AdminDashboard submissions={entries} />
+      <AdminDashboard payouts={payouts} submissions={entries} />
     </Wrapper>
   );
 };
@@ -78,6 +79,8 @@ Dashboard.getInitialProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
   const res = await axios.get(`${apiURL}/api/submissions`);
+  const payoutsRes = await axios.get(`${apiURL}/api/allUserPayouts`);
+  const payouts = payoutsRes.data;
   const questionsRes = await axios.get(`${apiURL}/api/questions`);
   const questions = questionsRes.data;
   const usersRes = await axios.get(`${apiURL}/api/users`);
@@ -92,6 +95,7 @@ Dashboard.getInitialProps = async ({ req }) => {
     entries,
     questions,
     users,
+    payouts,
     lostBets: entries.reduce((acc, curr) => {
       return acc + !curr.won ? 1 : 0;
     }),
@@ -107,6 +111,7 @@ Dashboard.getInitialProps = async ({ req }) => {
 Dashboard.propTypes = {
   entries: PropTypes.array,
   questions: PropTypes.array,
+  payouts: PropTypes.array,
   users: PropTypes.array,
   totalWager: PropTypes.number,
   lostBets: PropTypes.number,

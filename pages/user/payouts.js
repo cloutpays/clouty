@@ -30,13 +30,7 @@ const Terms = ({ balance, payouts, user }) => {
                       <main className=' center'>
                         {payouts
                           .map((game, ind) => {
-                            let methodOfPayment = '';
-                            if (game.preferred === 'cashapp')
-                              methodOfPayment = 'Cash App';
-                            if (game.preferred === 'applepay')
-                              methodOfPayment = 'Apple Pay';
-                            if (game.preferred === 'paypal')
-                              methodOfPayment = 'Paypal';
+                            let methodOfPayment = game.preferred;
                             return (
                               <article key={ind}>
                                 <div className='link dt w-100 bb b--black-10 pa3 dim blue'>
@@ -80,10 +74,10 @@ Terms.getInitialProps = async (ctx) => {
   const apiURL = `${origin}`;
 
   const user = getCookie('id_token', ctx.req);
-  const payoutsRes = await axios.get(`${apiURL}/api/userPayouts/${user}`);
+  const payoutsRes = await axios.get(`${apiURL}/api/allUserPayouts`);
+  const payouts = payoutsRes.data;
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
-  const payouts = payoutsRes.data;
 
   return {
     balance: userObj?.stripe?.user?.balance ?? 0,

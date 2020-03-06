@@ -3,4 +3,4 @@ export const dev =
 export const question = dev ? 'questiondev' : 'question';
 export const cloutpays = dev ? 'cloutpaysdev' : 'cloutpays';
 export const user = dev ? 'userdev' : 'user';
-export const payout = dev ? 'payoutdev' : 'user';
+export const payout = dev ? 'payoutdev' : 'payout';

@@ -50,6 +50,12 @@ const payoutsByUserApi = wrapAsync(async (req, db) => {
     .find({ userId: id })
     .toArray();
 });
+const allPayoutsApi = wrapAsync(async (req, db) => {
+  return await db
+    .collection(payout)
+    .find()
+    .toArray();
+});
 
 const stripeApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
@@ -80,6 +86,7 @@ const stripeApi = wrapAsync(async (req, db) => {
 
   return session;
 });
+
 const hookApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   switch (data.type) {
@@ -98,4 +105,10 @@ const hookApi = wrapAsync(async (req, db) => {
       return true;
   }
 });
-module.exports = { stripeApi, hookApi, payoutApi, payoutsByUserApi };
+module.exports = {
+  stripeApi,
+  hookApi,
+  payoutApi,
+  payoutsByUserApi,
+  allPayoutsApi,
+};
