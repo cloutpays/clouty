@@ -49,7 +49,8 @@ const userApi = wrapAsync(async function(req, db) {
     const stripeUser = await stripe.customers.create({
       email: userData.firebase.email,
     });
-    stripeUser.user.balance = 5;
+
+    stripeUser.balance = 500;
     userData.stripe = {
       user: stripeUser,
     };
