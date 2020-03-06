@@ -21,6 +21,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
 
   const [error, setError] = useState<string>('');
   const signUp = mode === 'signup';
@@ -44,17 +45,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           return;
         }
         if (typeof result !== 'undefined') {
-          setCookie('id_token', result.user.uid);
-          Router.push('/user');
           axios
             .post('/api/user', {
               data: {
                 firebase: result.user,
                 email: result.user.email,
-                info: { firstName, lastName, phoneNumber },
+                info: { firstName, lastName, phoneNumber, userName },
               },
             })
-            .then(() => {});
+            .then(() => {
+              setCookie('id_token', result.user.uid);
+              Router.push('/user');
+            });
         }
       });
   };
@@ -119,6 +121,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                     type='name'
                     value={lastName}
                     onChange={(event) => setLastName(event.currentTarget.value)}
+                  />
+                </div>
+                <div className='mv3'>
+                  <label className='db fw6 lh-copy f6' htmlFor='user-name'>
+                    User Name
+                  </label>
+                  <Cleave
+                    className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                    onChange={(event) => setUserName(event.currentTarget.value)}
+                    value={userName}
+                    placeholder='@'
+                    options={{ prefix: '@ ' }}
                   />
                 </div>
                 <div className='mv3'>
