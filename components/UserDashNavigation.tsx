@@ -1,3 +1,5 @@
+import { Spin } from 'antd';
+import 'antd/dist/antd.css';
 import axios from 'axios';
 import Link from 'next/link';
 import Router from 'next/router';
@@ -12,6 +14,8 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
   const [userBalance, setUserBalance] = useState(balance);
+  const [isLoading, setIsLoading] = useState(true);
+
   const handleLogout = () => {
     removeCookie('id_token');
     Router.push('/');
@@ -20,6 +24,7 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
     const getBalance = async () => {
       const currentUser = await axios.get(`/api/user/${user._id}`);
       const updateBalance = currentUser?.data?.stripe?.user?.balance ?? 0;
+      setIsLoading(false);
       setUserBalance(updateBalance);
     };
     getBalance();
@@ -72,7 +77,7 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
         <header className='mb3'>
           <h2 className='ttu mt0 mb1 f6 fw5 silver'>Balance</h2>
           <h1 className='fw3 dark-gray mt0 mb0'>
-            {formatPrice(userBalance / 100)}
+            {isLoading ? <Spin size='large' /> : formatPrice(userBalance / 100)}
           </h1>
           <Link href='/user/balance'>
             <a className=' f6 no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
