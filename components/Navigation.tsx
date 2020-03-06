@@ -40,7 +40,7 @@ const Navigation = ({ user }: any) => {
         )}
         {!isLoggedIn && (
           <a href='/login' className={`${styles.navigationLink}`}>
-            <li className='mr2 mr4-ns'>Login</li>
+            <li className='mr2 mr4-ns'>Sign-up/Login</li>
           </a>
         )}
       </ul>
