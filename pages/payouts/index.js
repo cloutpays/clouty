@@ -74,7 +74,7 @@ Terms.getInitialProps = async (ctx) => {
   const apiURL = `${origin}`;
 
   const user = getCookie('id_token', ctx.req);
-  const payoutsRes = await axios.get(`${apiURL}/api/allUserPayouts`);
+  const payoutsRes = await axios.get(`${apiURL}/api/userPayouts/${user}`);
   const payouts = payoutsRes.data;
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;

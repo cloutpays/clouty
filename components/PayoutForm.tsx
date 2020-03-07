@@ -1,7 +1,7 @@
 import axios from 'axios';
-// import Router from 'next/router';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import Cleave from 'cleave.js/react';
+import Router from 'next/router';
 
 import React, { useState } from 'react';
 interface PayoutFormProps {
@@ -64,8 +64,10 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
         method: 'post',
         url: '/api/payout',
         data: { data: userSubmission },
+      }).then(() => {
+        Router.push('/payouts/confirm');
+        setLoading(false);
       });
-      setLoading(false);
     }
   };
   return (

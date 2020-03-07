@@ -41,7 +41,7 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
               </a>
             </li>
             <li className='mb2'>
-              <a href='/user/payouts' className='block link dim blue'>
+              <a href='/payouts' className='block link dim blue'>
                 Payouts
               </a>
             </li>
