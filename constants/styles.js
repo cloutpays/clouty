@@ -1,6 +1,7 @@
 const styles = {
   wrapper: 'mw8 center',
   link: 'near-black fw7 link no-underline bb bw1 b--orange dim',
+  linkNormalWeight: 'near-black link no-underline bb bw1 b--orange dim',
   navigationLink: 'near-black fw7 link no-underline',
   unorderedList: 'list unordered-list lh-copy',
   paragraph: 'lh-copy',
