@@ -16,12 +16,21 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
   const [email, setEmail] = useState<string>(user ? user.firebase.email : '');
   const [handle, setHandle] = useState<string>(user ? user.info.firstName : '');
   const [answer, setAnswer] = useState<string>('');
+  const [options, setOptions] = useState<any>(game.options);
   const [phoneNumber, setPhoneNumber] = useState<string>(
     user ? user.info.phoneNumber : '',
   );
   const [wager, setWager] = useState<number[]>([1, 5, 10, 20, 50]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const confirmAnswer = (answer: any) => {
+    setOptions([{ value: answer }]);
+    setAnswer(answer);
+  };
+  const resetGame = () => {
+    setWager([Number(1), Number(5), Number(10), Number(20), Number(50)]);
+    setOptions(game.options);
+  };
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
     if (!loading) {
       setLoading(true);
@@ -113,21 +122,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
                         </div>
                       );
                     })}
-                    {wager.length === 1 && (
-                      <div
-                        onClick={() =>
-                          setWager([
-                            Number(1),
-                            Number(5),
-                            Number(10),
-                            Number(20),
-                            Number(50),
-                          ])
-                        }
-                        className='noselect grow outline dim pa2 mr2 mt2'>
-                        <strong>Reset</strong>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
@@ -147,26 +141,47 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user, previousBet }) => {
               )}
               <Question
                 type={game.type}
-                options={game.options}
+                options={options}
                 title={game.question}
-                setAnswer={setAnswer}
+                setAnswer={confirmAnswer}
               />
               <br />
-              {phoneNumber && answer && wager && name && email && (
-                <div>
-                  {wager[0] > user.stripe.user.balance / 100 ? (
-                    <div className='mb2 f7 fw6 '>
-                      You have insufficient credits. Reload your balance.
-                    </div>
-                  ) : (
+              {phoneNumber &&
+                options.length === 1 &&
+                wager.length === 1 &&
+                name &&
+                email && (
+                  <div>
+                    {wager[0] > user.stripe.user.balance / 100 ? (
+                      <div className='mb2 f7 fw6 '>
+                        You have insufficient credits. Reload your balance.
+                      </div>
+                    ) : (
+                      <div>
+                        <span
+                          onClick={resetGame}
+                          className='bg-white-30 pv1 mr2 pl2 pr3 f7 f6-ns br-pill b noselect'>
+                          <span className='pl1 sans-serif'>Reset</span>
+                        </span>
+                        <span
+                          onClick={handleSubmit}
+                          className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
+                          <span className='pl1 sans-serif'>Play</span>
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
+              {options.length !== 1 ||
+                (wager.length !== 1 && (
+                  <div>
                     <span
-                      onClick={handleSubmit}
+                      onClick={resetGame}
                       className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
-                      <span className='pl1 sans-serif'>Play</span>
+                      <span className='pl1 sans-serif'>Reset</span>
                     </span>
-                  )}
-                </div>
-              )}
+                  </div>
+                ))}
             </>
           )}
         </form>
