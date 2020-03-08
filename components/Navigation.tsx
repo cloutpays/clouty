@@ -3,9 +3,7 @@ import React from 'react';
 import { styles } from '../constants/styles';
 import { getCookieFromBrowser } from '../lib/session';
 
-// const dev = process.env.NODE_ENV === 'development';
-
-const Navigation = ({ user }: any) => {
+const Navigation = () => {
   const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;
   return (
     <nav className='mw8 center flex items-center mb5'>
@@ -19,13 +17,13 @@ const Navigation = ({ user }: any) => {
         </a>
       </Link>
       <ul className='list pl0 flex mv0'>
-        {isLoggedIn && (
+        {/* {isLoggedIn && (
           <li className='mr2 mr4-ns'>
             <Link href='/dashboard'>
               <a className={`${styles.navigationLink}`}>Admin</a>
             </Link>
           </li>
-        )}
+        )} */}
         <li className='mr2 mr4-ns'>
           <a href='/games' className={`${styles.navigationLink}`}>
             Games
@@ -34,7 +32,7 @@ const Navigation = ({ user }: any) => {
         {isLoggedIn && (
           <li className='mr2 mr4-ns'>
             <a href='/user' className={`${styles.navigationLink}`}>
-              {user ? user.info.firstName : 'Profile'}
+              Profile
             </a>
           </li>
         )}
