@@ -1,4 +1,4 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_DEV);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_PROD);
 const { parse } = require('url');
 const { json } = require('micro');
 import { ObjectId } from 'mongodb';
@@ -24,7 +24,7 @@ const updateStripeUser = async (paymentIntent, db) => {
 const payoutApi = wrapAsync(async (req, db) => {
   const data = (await json(req)).data;
   let { user, payoutRequest } = data;
-  console.log(data);
+  console.log(payoutRequest, 'd');
   if (user) {
     user.stripe.user.balance = payoutRequest.newBalance;
     await updateUser(user, db);
