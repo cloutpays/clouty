@@ -45,11 +45,11 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
                 Payouts
               </a>
             </li>
-            <li className='mb2'>
+            {/* <li className='mb2'>
               <a href='#' className='block link dim blue'>
                 Game History
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div>
@@ -60,11 +60,11 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
                 Help
               </a>
             </li>
-            <li className='mb2'>
+            {/* <li className='mb2'>
               <a href='#' className='block link dim blue'>
                 Refer a Friend
               </a>
-            </li>
+            </li> */}
             <li className='mb2'>
               <a onClick={handleLogout} className='block link dim blue'>
                 Logout
