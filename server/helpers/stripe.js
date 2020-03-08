@@ -1,22 +1,9 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_DEV);
 const { parse } = require('url');
 const { json } = require('micro');
-const connect = require('./db');
-import { payout, user } from '../helpers';
+import { ObjectId } from 'mongodb';
+import { payout, user, wrapAsync } from '../helpers';
 import { updateUser } from './user';
-
-const wrapAsync = (handler) => async (req, res) => {
-  const db = await connect();
-  return handler(req, db)
-    .then((result) => {
-      res.setHeader(
-        'cache-control',
-        's-maxage=1 maxage=0, stale-while-revalidate',
-      );
-      return res.json(result);
-    })
-    .catch((error) => res.status(500).json({ error: error.message }));
-};
 
 const getUser = async (userId, db) => {
   return await db.collection(user).findOne({ _id: userId });
@@ -38,9 +25,19 @@ const payoutApi = wrapAsync(async (req, db) => {
   const data = (await json(req)).data;
   let { user, payoutRequest } = data;
   console.log(data);
-  user.stripe.user.balance = payoutRequest.newBalance;
-  await updateUser(user, db);
-  return await db.collection(payout).insertOne(payoutRequest);
+  if (user) {
+    user.stripe.user.balance = payoutRequest.newBalance;
+    await updateUser(user, db);
+  }
+  if (payoutRequest._id) {
+    const _id = payoutRequest._id;
+    delete payoutRequest._id;
+    return await db
+      .collection(payout)
+      .update({ _id: ObjectId(_id) }, payoutRequest);
+  } else {
+    return await db.collection(payout).insertOne(payoutRequest);
+  }
 });
 const payoutsByUserApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);

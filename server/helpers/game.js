@@ -1,26 +1,12 @@
 import { json } from 'micro';
 import { updateUser } from './user';
-import connect from './db';
 const { parse } = require('url');
 const cors = require('micro-cors')();
 const client = require('twilio')(
   process.env.TWILIO_SID,
   process.env.TWILIO_TOKEN,
 );
-import { cloutpays, dev, question, user } from '../helpers';
-
-const wrapAsync = (handler) => async (req, res) => {
-  const db = await connect();
-  return handler(req, db)
-    .then((result) => {
-      res.setHeader(
-        'cache-control',
-        's-maxage=1 maxage=0, stale-while-revalidate',
-      );
-      return res.json(result);
-    })
-    .catch((error) => res.status(500).json({ error: error.message }));
-};
+import { cloutpays, dev, question, user, wrapAsync } from '../helpers';
 
 const sendTextMessage = async (name, phoneNumber) => {
   try {
