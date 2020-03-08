@@ -42,9 +42,16 @@ const Terms = ({ balance, payouts, user }) => {
                                       {formatDate(new Date(game.date))}
                                     </div>
                                     <div>
-                                      <span className='bg-green pa1 mt2 fw8 f5 white'>
-                                        Processing
-                                      </span>
+                                      {!game.cleared && (
+                                        <span className='bg-yellow pa1 mt2 fw8 f5 white'>
+                                          Processing
+                                        </span>
+                                      )}
+                                      {game.cleared && (
+                                        <span className='bg-green pa1 mt2 fw8 f5 white'>
+                                          Cleared
+                                        </span>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -56,9 +63,9 @@ const Terms = ({ balance, payouts, user }) => {
                     </ul>
                   </div>
                   <a
-                    href='/settings/payouts'
+                    href='/payouts/setup'
                     className='no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
-                    Setup Payouts
+                    Setup a Payout
                   </a>
                 </div>
               </div>
