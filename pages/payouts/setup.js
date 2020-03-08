@@ -8,7 +8,7 @@ import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const PayoutSettings = ({ user }) => {
+const PayoutSettings = ({ user, submissions }) => {
   const data = {
     description: 'Make money while putting your intuition on the line.',
     header: `Welcome, ${user.info.firstName}!`,
@@ -32,7 +32,7 @@ const PayoutSettings = ({ user }) => {
                         <div className='f5'>
                           Please select your preferred payout method.
                         </div>
-                        <PayoutForm user={user} />
+                        <PayoutForm submissions={submissions} user={user} />
                       </main>
                     </main>
                   </div>
@@ -52,8 +52,11 @@ PayoutSettings.getInitialProps = async (ctx) => {
 
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
-
-  return { user: userObj };
+  const submissionsRes = await axios.get(
+    `${apiURL}/api/userSubmissions/${user}`,
+  );
+  const submissions = submissionsRes.data;
+  return { user: userObj, submissions };
 };
 
 PayoutSettings.propTypes = {

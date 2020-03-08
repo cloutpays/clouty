@@ -6,9 +6,10 @@ import Router from 'next/router';
 import React, { useState } from 'react';
 interface PayoutFormProps {
   user: any;
+  submissions: any;
 }
 
-const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
+const PayoutForm: React.FC<PayoutFormProps> = ({ user, submissions }) => {
   const [email, setEmail] = useState<string>(
     user
       ? user.info.payout
@@ -25,7 +26,9 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
   const [amount, setAmount] = useState<string>('0');
   const [appleID, setAppleID] = useState<string>('');
   const [payoutError, setPayoutError] = useState<boolean>(false);
+  const [noGameError, setNoGameError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
     if (!loading) {
@@ -70,6 +73,7 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
       });
     }
   };
+
   return (
     <div className='row'>
       <div className='form-card'>
@@ -178,12 +182,14 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user }) => {
                       100 >
                       user.stripe.user.balance,
                   );
+                  setNoGameError(!submissions.length);
                 }}
                 options={{ prefix: '$ ', numeral: true }}
               />
               <small id='name-desc' className='hljs-strong f6 red db mv2'>
                 {payoutError &&
                   'Insuffient funds. Please enter a smaller amount'}
+                {noGameError && 'You can only cash out once you win.'}
               </small>
             </div>
           </fieldset>
