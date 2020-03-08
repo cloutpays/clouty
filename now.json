@@ -106,7 +106,8 @@
       "FIREBASE_API_KEY_DEV": "@firebase-api-key-dev",
       "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
       "STRIPE_CLIENT_DEV": "@stripe-client-dev",
-      "STRIPE_SECRET_DEV": "@stripe-secret-dev"
+      "STRIPE_SECRET_DEV": "@stripe-secret-dev",
+      "NODEMAILER": "@nodemailer"
     }
   },
   "env": {
@@ -118,6 +119,7 @@
     "FIREBASE_APP_ID": "@firebase-app-id",
     "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
     "STRIPE_CLIENT_DEV": "@stripe-client-dev",
-    "STRIPE_SECRET_DEV": "@stripe-secret-dev"
+    "STRIPE_SECRET_DEV": "@stripe-secret-dev",
+    "NODEMAILER": "@nodemailer"
   }
 }
