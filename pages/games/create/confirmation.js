@@ -23,9 +23,9 @@ const ConfirmSubmission = () => {
             <p className={`${styles.paragraph} f4`}>
               For all questions please email:{' '}
               <a
-                href='mailto:payments@clouty.io '
+                href='mailto:julius@clouty.io '
                 className={`${styles.linkNormalWeight}`}>
-                payments@clouty.io{' '}
+                julius@clouty.io{' '}
               </a>
               <span role='img' aria-label='Bulleye'>
                 🎯‍
