@@ -33,6 +33,18 @@ const Games = ({ questions }) => {
         </div>
 
         {questions
+          .sort((a, b) => {
+            console.log(a, b);
+            const aname = typeof a.answer === 'undefined';
+            const bname = typeof b.answer === 'undefined';
+            if (aname && !bname) {
+              return -1;
+            }
+            if (!aname && bname) {
+              return 1;
+            }
+            return 0;
+          })
           .map((game, ind) => {
             const gameButtonText = !game.answer ? 'Play Game' : 'See Results';
             const activeLink = `/games/${game.slug}`;
@@ -84,8 +96,7 @@ const Games = ({ questions }) => {
                 )}
               </>
             );
-          })
-          .reverse()}
+          })}
       </section>
     </Wrapper>
   );
