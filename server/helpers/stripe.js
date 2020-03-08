@@ -78,7 +78,7 @@ const stripeApi = wrapAsync(async (req, db) => {
       },
     ],
     success_url: `http://${req.headers.host}/user`,
-    cancel_url: 'https://example.com/cancel',
+    cancel_url: `http://${req.headers.host}/user/balance`,
   });
 
   return session;
