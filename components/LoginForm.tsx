@@ -50,6 +50,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
               data: {
                 firebase: result.user,
                 email: result.user.email,
+                new: true,
                 info: { firstName, lastName, phoneNumber, userName },
               },
             })
@@ -127,12 +128,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                   <label className='db fw6 lh-copy f6' htmlFor='user-name'>
                     User Name
                   </label>
-                  <Cleave
+                  <input
                     className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
                     onChange={(event) => setUserName(event.currentTarget.value)}
                     value={userName}
-                    placeholder='@'
-                    options={{ prefix: '@ ' }}
+                    placeholder='@ '
                   />
                 </div>
                 <div className='mv3'>
