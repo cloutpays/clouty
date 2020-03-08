@@ -1,7 +1,7 @@
 const { json } = require('micro');
 const { parse } = require('url');
 const cors = require('micro-cors')();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_DEV);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_PROD);
 const nodemailer = require('nodemailer');
 import { emailContent, user, wrapAsync } from '../helpers';
 
