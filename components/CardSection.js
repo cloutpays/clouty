@@ -7,7 +7,7 @@ const Checkout = (props) => {
   const [amount, setAmount] = useState(0);
   const [sessionId, setSessionId] = useState(0);
 
-  useEffect(() => setStripe(window.Stripe(process.env.STRIPE_CLIENT_DEV)), []);
+  useEffect(() => setStripe(window.Stripe(process.env.STRIPE_CLIENT_PROD)), []);
 
   const getSession = async (amount) => {
     const sessionId = await axios.get(
