@@ -22,12 +22,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   const [lastName, setLastName] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
+  const [signUpText, setSignUpText] = useState<string>('Sign Up');
+  const [signInText, setSignInText] = useState<string>('Sign In');
 
   const [error, setError] = useState<string>('');
   const signUp = mode === 'signup';
+
   const handleSignUp = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-
+    setSignUpText('Signing Up...');
     if (!(email && password)) {
       setError('Please fill in email and password');
       return;
@@ -63,7 +66,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   };
   const handleLogin = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-
+    setSignInText('Logging In...');
     if (!(email && password)) {
       setError('Please fill in email and password');
       return;
@@ -192,7 +195,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             <input
               className='b ph3 pv2 link input-reset ba b--black bg-transparent grow pointer f6 dib'
               type='submit'
-              value={signUp ? 'Sign up' : 'Sign in'}
+              value={signUp ? signUpText : signInText}
               onClick={signUp ? handleSignUp : handleLogin}
             />
           </div>
