@@ -1,3 +1,4 @@
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { formatDate, formatPrice } from '../lib/helpers';
@@ -11,6 +12,15 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
   submissions,
   payouts,
 }) => {
+  const clearRequest = async (request: any) => {
+    request.cleared = true;
+    await axios({
+      method: 'post',
+      url: '/api/payout',
+      data: { data: { payoutRequest: { ...request, cleared: true } } },
+    });
+  };
+
   return (
     <div>
       <div className='mv3'>
@@ -23,7 +33,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                 Preferred
               </th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Amount</th>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Paid?</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Amount</th>
             </tr>
           </thead>
           <tbody className='lh-copy'>
@@ -41,10 +51,14 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                   </td>
                   <td className='pv3 pr3 bb b--black-20' key='date'>
                     {curr.cleared ? (
-                      'Cleared'
-                    ) : (
-                      <div className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
+                      <div className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-green'>
                         Cleared
+                      </div>
+                    ) : (
+                      <div
+                        className='f6 noselect mr2 link dim ph3 pv2 mb2 dib white bg-yellow'
+                        onClick={() => clearRequest(curr)}>
+                        Clear
                       </div>
                     )}
                   </td>
