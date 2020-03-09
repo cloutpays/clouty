@@ -86,8 +86,15 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
           {options.length === 1 && wager.length === 1 && (
             <div>
               {wager[0] > user.stripe.user.balance / 100 ? (
-                <div className='mb2 f7 fw6 '>
-                  You have insufficient credits. Reload your balance.
+                <div>
+                  <div className='mb2 f7 fw6 '>
+                    You have insufficient credits. Reload your balance.
+                  </div>
+                  <span
+                    onClick={resetGame}
+                    className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
+                    <span className='pl1 sans-serif'>Reset</span>
+                  </span>
                 </div>
               ) : (
                 <div>
