@@ -33,6 +33,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
     setSignUpText('Signing Up...');
     if (!(email && password)) {
       setError('Please fill in email and password');
+      setSignUpText('Sign Up');
       return;
     }
     let isError = false;
@@ -42,6 +43,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           result && result.message ? result.message : 'Sorry Some error occurs';
         isError = true;
         setError(message);
+        setSignUpText('Sign Up');
       })
       .then((result: any) => {
         if (isError) {
@@ -66,9 +68,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   };
   const handleLogin = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-    setSignInText('Logging In...');
+    setSignInText('Signing In...');
     if (!(email && password)) {
       setError('Please fill in email and password');
+      setSignInText('Sign In');
       return;
     }
 
@@ -80,7 +83,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             ? "Sorry, we couldn't find an account with that username. Please try again."
             : "Sorry, that passowrd isn't right. Please try again.";
         setError(message);
-
+        setSignInText('Sign In');
         isError = true;
       })
       .then((result: { message: any; user: { uid: string } }) => {
