@@ -67,27 +67,23 @@ const usersApi = wrapAsync(async function(req, db) {
 
 const userApi = wrapAsync(async function(req, db) {
   let userData = (await json(req)).data;
-  if (userData.new) {
-    await sendEmail(userData.firebase.email);
-    userData.new = false;
-  }
   const queryUser = await db
     .collection(user)
     .find({ _id: userData.firebase.uid })
     .toArray();
-  if (queryUser.length === 1) {
-    userData = { ...queryUser[0], ...userData };
-  }
-  if (!userData.stripe) {
+
+  if (userData.new) {
+    await sendEmail(userData.firebase.email);
     const stripeUser = await stripe.customers.create({
       email: userData.firebase.email,
     });
 
-    stripeUser.balance = 500;
     userData.stripe = {
-      user: stripeUser,
+      user: { ...stripeUser, balance: 500 },
     };
+    userData.new = false;
   }
+  userData = { ...queryUser[0], ...userData };
   return await updateUser(userData, db);
 });
 
