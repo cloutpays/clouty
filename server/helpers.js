@@ -19,227 +19,389 @@ export const wrapAsync = (handler) => async (req, res) => {
     .catch((error) => res.status(500).json({ error: error.message }));
 };
 
-export const emailContent = `<td align="center" valign="top" id="m_-1396599709566700233templateBody"
-  style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:27px;padding-bottom:54px">
-  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
-    class="m_-1396599709566700233templateContainer" style="border-collapse:collapse;max-width:600px!important">
-    <tbody>
+export const emailContent = `<div
+  valign="top"
+  class="headerContainer"
+  style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+>
+  <table
+    border="0"
+    cellpadding="0"
+    cellspacing="0"
+    width="100%"
+    class="mcnImageBlock"
+    style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+  >
+    <tbody class="mcnImageBlockOuter">
       <tr>
-        <td valign="top" class="m_-1396599709566700233bodyContainer"
-          style="background:transparent none no-repeat center/cover;background-color:transparent;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0;padding-bottom:0">
-          <font color="#550055">
-            <table border="0" cellpadding="0" cellspacing="0" width="100%"
-              style="min-width:100%;border-collapse:collapse">
-              <tbody>
-                <tr>
-                  <td valign="top" style="padding-top:9px">
-                    <table align="left" border="0" cellpadding="0" cellspacing="0"
-                      style="max-width:100%;min-width:100%;border-collapse:collapse" width="100%"
-                      class="m_-1396599709566700233mcnTextContentContainer">
-                      <tbody>
-                        <tr>
-                          <td valign="top" class="m_-1396599709566700233mcnTextContent"
-                            style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left">
-                            <h1
-                              style="display:block;margin:0;padding:0;color:#222222;font-family:Helvetica;font-size:40px;font-style:normal;font-weight:bold;line-height:150%;letter-spacing:normal;text-align:center">
-                              Welcome to
-                              Clouty.
-                            </h1>
-                            <p
-                              style="text-align:center!important;margin:10px 0;padding:0;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%">
-                              The world's
-                              first music
-                              betting
-                              platform.
-                            </p>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-1396599709566700233mcnDividerBlock"
-              style="min-width:100%;border-collapse:collapse;table-layout:fixed!important">
-              <tbody>
-                <tr>
-                  <td style="min-width:100%;padding:18px 18px 0px">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%"
-                      style="min-width:100%;border-collapse:collapse">
-                      <tbody>
-                        <tr>
-                          <td>
-                            <span></span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table border="0" cellpadding="0" cellspacing="0" width="100%"
-              style="min-width:100%;border-collapse:collapse">
-              <tbody>
-                <tr>
-                  <td valign="top" style="padding:9px">
-                    <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0"
-                      style="min-width:100%;border-collapse:collapse">
-                      <tbody>
-                        <tr>
-                          <td valign="top"
-                            style="padding-right:9px;padding-left:9px;padding-top:0;padding-bottom:0;text-align:center">
-                            <img align="center" alt=""
-                              src="https://ci5.googleusercontent.com/proxy/L_OPcuoQM20ydtbMZSzQAioa0hjT0qnQqVEoGlsLGMZAFwpWdHu_ybAKiMPj20oD-ZSu9V5zwjQg3qauum2gAIHdQwRL-3f3zTKLfer2yznXy-poRa3RaBhQfKMaF_IPtVGoqdbFh0ln102LOjG_Co7DaqawUQ=s0-d-e1-ft#https://mcusercontent.com/b930e7c77036dd2a9685eb47e/images/a9c44b37-6aa2-4e3c-bdda-fdfa53fe955e.jpg"
-                              width="564"
-                              style="max-width:648px;padding-bottom:0;display:inline!important;vertical-align:bottom;border:0;height:auto;outline:none;text-decoration:none"
-                              class="m_-1396599709566700233mcnImage">
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-1396599709566700233mcnDividerBlock"
-              style="min-width:100%;border-collapse:collapse;table-layout:fixed!important">
-              <tbody>
-                <tr>
-                  <td style="min-width:100%;padding:18px">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%"
-                      style="min-width:100%;border-collapse:collapse">
-                      <tbody>
-                        <tr>
-                          <td>
-                            <span></span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </font>
-          <font color="#550055">
-            <table border="0" cellpadding="0" cellspacing="0" width="100%"
-              style="min-width:100%;border-collapse:collapse">
-              <tbody>
-                <tr>
-                  <td valign="top" style="padding-top:9px">
-                    <table align="left" border="0" cellpadding="0" cellspacing="0"
-                      style="max-width:100%;min-width:100%;border-collapse:collapse" width="100%"
-                      class="m_-1396599709566700233mcnTextContentContainer">
-                      <tbody>
-                        <tr>
-                          <td valign="top" class="m_-1396599709566700233mcnTextContent"
-                            style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left">
-                            <h3
-                              style="display:block;margin:0;padding:0;color:#444444;font-family:Helvetica;font-size:22px;font-style:normal;font-weight:bold;line-height:150%;letter-spacing:normal;text-align:left">
-                              Submit your
-                              own
-                              questions
-                              for betting
-                            </h3>
-                            <p
-                              style="margin:10px 0;padding:0;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left">
-                              At Clouty we
-                              encourage
-                              the notion
-                              of
-                              engagement
-                              and
-                              creativity
-                              which is why
-                              we allowed
-                              the "create
-                              a game"
-                              feature.
-                              There are a
-                              lot of
-                              artists in
-                              the universe
-                              and we want
-                              to encourage
-                              new music
-                              discovery
-                              through
-                              music bets.
-                            </p>
-                            <p
-                              style="margin:10px 0;padding:0;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left">
-                              Every
-                              question
-                              that is
-                              approved to
-                              be placed on
-                              our leader
-                              board will
-                              kick back a
-                              percentage
-                              of the
-                              contest back
-                              to the game
-                              creator.
-                            </p>
-                            <p
-                              style="margin:10px 0;padding:0;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left">
-                              As we begin
-                              to roll out
-                              engagement
-                              between user
-                              accounts,
-                              game players
-                              globally
-                              will begin
-                              to interact
-                              with each
-                              other.
-                            </p>
-                            <p
-                              style="margin:10px 0;padding:0;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left">
-                              For all
-                              questions
-                              email
-                              <strong><a href="mailto:info@clouty.io" target="_blank">info@clouty.io</a></strong>
-                            </p>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </font>
-          <table border="0" cellpadding="0" cellspacing="0" width="100%"
-            style="min-width:100%;border-collapse:collapse">
+        <div
+          valign="top"
+          style="padding: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+          class="mcnImageBlockInner"
+        >
+          <table
+            align="left"
+            width="100%"
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            class="mcnImageContentContainer"
+            style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+          >
             <tbody>
               <tr>
-                <td valign="top" style="padding:9px">
-                  <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0"
-                    style="min-width:100%;border-collapse:collapse">
-                    <tbody>
-                      <tr>
-                        <td valign="top"
-                          style="padding-right:9px;padding-left:9px;padding-top:0;padding-bottom:0;text-align:center">
-                          <img align="center" alt=""
-                            src="https://ci6.googleusercontent.com/proxy/-gtEfYy1LDZ6zfyq7mpLCBgCehTKY_pONiiAmNFNxhGdNU49KYp9d8vtJzYGlsbFivETHU2-ypI436r-wVDhvMZOFUQ8kTX906bQBQlnnKvkyaks5Tt_UF7bSOaoDATstw1n30S14DHZmbRogs-kvbQBTtnsHQ=s0-d-e1-ft#https://mcusercontent.com/b930e7c77036dd2a9685eb47e/images/d1dcd907-8dfe-4115-84e3-bfb4900eb561.png"
-                            width="564"
-                            style="max-width:1205px;padding-bottom:0;display:inline!important;vertical-align:bottom;border:0;height:auto;outline:none;text-decoration:none"
-                            class="m_-1396599709566700233mcnImage">
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
+                <div
+                  class="mcnImageContent"
+                  valign="top"
+                  style="padding-right: 9px;padding-left: 9px;padding-top: 0;padding-bottom: 0;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+                >
+                  <img
+                    align="center"
+                    alt=""
+                    src="https://mcusercontent.com/9bf69911ae198f52f3648150a/images/3c1517cf-3710-4238-99a9-2d105195542e.png"
+                    width="564"
+                    style="max-width: 3196px;padding-bottom: 0;display: inline !important;vertical-align: bottom;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;"
+                    class="mcnImage"
+                  />
+                </div>
               </tr>
             </tbody>
           </table>
-        </td>
+        </div>
       </tr>
     </tbody>
   </table>
-</td>`;
+</div>
+<div
+  valign="top"
+  class="mcnTextContent"
+  style="padding-top: 0;padding-right: 18px;padding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;"
+>
+  <h1
+    style="text-align: center;display: block;margin: 0;padding: 0;color: #202020;font-family: Helvetica;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;"
+  >
+    The 🌎's 1st Music Betting Platform&nbsp;
+  </h1>
+
+  <h1
+    style="text-align: center;display: block;margin: 0;padding: 0;color: #202020;font-family: Helvetica;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;"
+  >
+    <br />
+    <span style="color:#660099"
+      ><span style="font-size:25px">Whats Next?&nbsp;</span></span
+    >
+  </h1>
+</div>
+<div
+  valign="top"
+  class="columnContainer"
+  style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+>
+  <table
+    border="0"
+    cellpadding="0"
+    cellspacing="0"
+    width="100%"
+    class="mcnTextBlock"
+    style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+  >
+    <tbody class="mcnTextBlockOuter">
+      <tr>
+        <div
+          valign="top"
+          class="mcnTextBlockInner"
+          style="padding-top: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+        >
+          <!--[if mso]>
+				<table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+				<tr>
+				<![endif]-->
+
+          <!--[if mso]>
+				<div valign="top" width="300" style="width:300px;">
+				<![endif]-->
+          <table
+            align="left"
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            style="max-width: 100%;min-width: 100%;/* border-collapse: collapse; */mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+            width="100%"
+            class="mcnTextContentContainer"
+          >
+            <tbody>
+              <tr>
+                <div
+                  valign="top"
+                  class="mcnTextContent"
+                  style="padding-top: 0;padding-right: 18px;padding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;"
+                >
+                  <div style="text-align: center;">
+                    <strong>Submit Your Own Questions for Betting&nbsp;</strong>
+                  </div>
+                  &nbsp;
+
+                  <p
+                    style="text-align: center;margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;"
+                  >
+                    At Clouty we encourage the notion of engagement and
+                    creativity&nbsp; which is why we allowed the "create a game"
+                    feature. There are a lot of artists in the universe and we
+                    want to encourage new music discovery through music bets.
+                  </p>
+
+                  <p
+                    style="text-align: center;margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;"
+                  >
+                    Every question that is approved to be placed on our leader
+                    board will kickback a percentage of the contest back to the
+                    game creator. As we begin to rollout engagement between user
+                    accounts, game players globally will begin to interact with
+                    each other.
+                  </p>
+
+                  <p
+                    style="margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;"
+                  >
+                    &nbsp;
+                  </p>
+
+                  <p
+                    style="text-align: center;margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;"
+                  >
+                    <strong>For all questions email help@clouty.io</strong>
+                  </p>
+
+                  <p
+                    style="margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;"
+                  >
+                    &nbsp;
+                  </p>
+                </div>
+              </tr>
+            </tbody>
+          </table>
+          <!--[if mso]>
+				</div>
+				<![endif]-->
+
+          <!--[if mso]>
+				</tr>
+				</table>
+				<![endif]-->
+        </div>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div
+  class="mcnTextContent"
+  valign="top"
+  style="padding: 18px 18px 0px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;line-height: 150%;"
+  width="246"
+>
+  <h1
+    class="null"
+    style="text-align: center;display: block;margin: 0;padding: 0;color: #202020;font-family: Helvetica;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;"
+  >
+    <strong>Step 1: Collect your free $5 for signing up&nbsp;</strong>
+  </h1>
+  &nbsp;
+
+  <hr />
+  <div style="text-align: center;">
+    &nbsp;
+  </div>
+
+  <div style="text-align: center;">
+    &nbsp;
+  </div>
+
+  <h1
+    class="null"
+    style="text-align: center;display: block;margin: 0;padding: 0;color: #202020;font-family: Helvetica;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;"
+  >
+    <strong
+      >Step 2: Check the Site for New Bets and Place your Wager&nbsp;</strong
+    >
+  </h1>
+  &nbsp;
+
+  <hr />
+  <div style="text-align: center;">
+    <br />
+    &nbsp;
+  </div>
+
+  <h1
+    class="null"
+    style="text-align: center;display: block;margin: 0;padding: 0;color: #202020;font-family: Helvetica;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;"
+  >
+    <strong>Step 3: Win, Get Paid, Repeat!&nbsp;</strong>
+  </h1>
+
+  <div style="text-align: center;">
+    &nbsp;
+  </div>
+
+  <div style="text-align: center;">
+    &nbsp;
+  </div>
+</div>
+
+<div
+  valign="top"
+  class="headerContainer"
+  style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+>
+  <table
+    border="0"
+    cellpadding="0"
+    cellspacing="0"
+    width="100%"
+    class="mcnImageBlock"
+    style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+  >
+    <tbody class="mcnImageBlockOuter">
+      <tr>
+        <div
+          valign="top"
+          style="padding: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+          class="mcnImageBlockInner"
+        >
+          <table
+            align="left"
+            width="100%"
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            class="mcnImageContentContainer"
+            style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+          >
+            <tbody>
+              <tr>
+                <div
+                  class="mcnImageContent"
+                  valign="top"
+                  style="padding-right: 9px;padding-left: 9px;padding-top: 0;padding-bottom: 0;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+                >
+                  <img
+                    align="center"
+                    alt=""
+                    src="https://mcusercontent.com/9bf69911ae198f52f3648150a/images/aaa4c726-eb29-4184-af65-4e88dc164a96.png"
+                    width="564"
+                    style="max-width: 3196px;padding-bottom: 0;display: inline !important;vertical-align: bottom;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;"
+                    class="mcnImage"
+                  />
+                </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div
+  valign="top"
+  class="headerContainer"
+  style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+>
+  <table
+    border="0"
+    cellpadding="0"
+    cellspacing="0"
+    width="100%"
+    class="mcnImageBlock"
+    style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+  >
+    <tbody class="mcnImageBlockOuter">
+      <tr>
+        <div
+          valign="top"
+          style="padding: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+          class="mcnImageBlockInner"
+        >
+          <table
+            align="left"
+            width="100%"
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            class="mcnImageContentContainer"
+            style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+          >
+            <tbody>
+              <tr>
+                <div
+                  class="mcnTextContent"
+                  valign="top"
+                  style="padding: 0 9px 0 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;color: #656565;font-family: Helvetica;font-size: 12px;line-height: 150%;text-align: center;"
+                  width="564"
+                >
+                  Umbrella's are our thing. Send us pictures of people (you
+                  included) in pictures of an umbrella to add to our collage!
+                </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div
+  valign="top"
+  class="headerContainer"
+  style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+>
+  <table
+    border="0"
+    cellpadding="0"
+    cellspacing="0"
+    width="100%"
+    class="mcnImageBlock"
+    style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+  >
+    <tbody class="mcnImageBlockOuter">
+      <tr>
+        <div
+          valign="top"
+          style="padding: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+          class="mcnImageBlockInner"
+        >
+          <table
+            align="left"
+            width="100%"
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            class="mcnImageContentContainer"
+            style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+          >
+            <tbody>
+              <tr>
+                <div
+                  class="mcnImageContent"
+                  valign="top"
+                  style="padding-right: 9px;padding-left: 9px;padding-top: 0;padding-bottom: 0;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
+                >
+                  <img
+                    align="center"
+                    alt=""
+                    src="https://mcusercontent.com/9bf69911ae198f52f3648150a/images/fd608654-fafa-4989-8d7f-49f53da5411d.png"
+                    width="564"
+                    style="max-width: 3196px;padding-bottom: 0;display: inline !important;vertical-align: bottom;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;"
+                    class="mcnImage"
+                  />
+                </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+`;
