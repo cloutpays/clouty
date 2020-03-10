@@ -57,7 +57,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             .post('/api/user', {
               data: {
                 firebase: result.user,
-                email: result.user.email,
+                email: result?.user?.email,
                 new: true,
                 info: { firstName, lastName, phoneNumber, userName },
               },
