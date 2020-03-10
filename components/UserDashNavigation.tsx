@@ -1,5 +1,3 @@
-import { Spin } from 'antd';
-import 'antd/dist/antd.css';
 import axios from 'axios';
 import Link from 'next/link';
 import Router from 'next/router';
@@ -31,6 +29,10 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
   }, [balance]);
   return (
     <>
+      <link
+        rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+      />
       <nav className='w-100 mb0-l ph3-m ph3-l flex center'>
         <div className='mr5'>
           <h2 className='ttu mt0 mb2 f6 fw5 silver'>Manage</h2>
@@ -77,7 +79,11 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
         <header className='mb3'>
           <h2 className='ttu mt0 mb1 f6 fw5 silver'>Balance</h2>
           <h1 className='fw3 dark-gray mt0 mb0'>
-            {isLoading ? <Spin size='large' /> : formatPrice(userBalance / 100)}
+            {isLoading ? (
+              <i className='fa fa-spinner fa-spin' />
+            ) : (
+              formatPrice(userBalance / 100)
+            )}
           </h1>
           <Link href='/user/balance'>
             <a className=' f6 no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>

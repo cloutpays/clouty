@@ -22,6 +22,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   const [lastName, setLastName] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const [signUpText, setSignUpText] = useState<string>('Sign Up');
   const [signInText, setSignInText] = useState<string>('Sign In');
 
@@ -31,6 +32,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   const handleSignUp = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
     setSignUpText('Signing Up...');
+    setLoading(true);
     if (!(email && password)) {
       setError('Please fill in email and password');
       setSignUpText('Sign Up');
@@ -44,6 +46,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
         isError = true;
         setError(message);
         setSignUpText('Sign Up');
+        setLoading(false);
       })
       .then((result: any) => {
         if (isError) {
@@ -69,9 +72,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   const handleLogin = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
     setSignInText('Signing In...');
+    setLoading(true);
     if (!(email && password)) {
       setError('Please fill in email and password');
       setSignInText('Sign In');
+      setLoading(false);
       return;
     }
 
@@ -100,6 +105,16 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
 
   return (
     <>
+      <link
+        rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+      />
+      <style jsx={true}>{`
+        .fa {
+          margin-left: -12px;
+          margin-right: 8px;
+        }
+      `}</style>
       <main className='black-80'>
         <form className='measure center'>
           <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
@@ -194,13 +209,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
               ''
             )}
           </fieldset>
-          <div className=''>
-            <input
-              className='b ph3 pv2 link input-reset ba b--black bg-transparent grow pointer f6 dib'
-              type='submit'
-              value={signUp ? signUpText : signInText}
-              onClick={signUp ? handleSignUp : handleLogin}
-            />
+          <div>
+            <button
+              className='b ph3 pv2 link input-reset ba b--black bg-transparent grow pointer f6 dib '
+              onClick={signUp ? handleSignUp : handleLogin}>
+              {loading && <i className='fa fa-spinner fa-spin' />}
+              {signUp ? signUpText : signInText}
+            </button>
           </div>
           <div className='lh-copy mt3'>
             {signUp ? (
