@@ -86,9 +86,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
         const message =
           result && result.code.split('/')[1] === 'user-not-found'
             ? "Sorry, we couldn't find an account with that username. Please try again."
-            : "Sorry, that passowrd isn't right. Please try again.";
+            : "Sorry, that password isn't right. Please try again.";
         setError(message);
         setSignInText('Sign In');
+        setLoading(false);
         isError = true;
       })
       .then((result: { message: any; user: { uid: string } }) => {
