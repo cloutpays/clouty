@@ -33,10 +33,10 @@ const Games = ({ questions }) => {
         </div>
 
         {questions
+          .reverse()
           .sort((a, b) => {
-            console.log(a, b);
-            const aname = typeof a.answer === 'undefined';
-            const bname = typeof b.answer === 'undefined';
+            const aname = a.answer.length === 0;
+            const bname = b.answer.length === 0;
             if (aname && !bname) {
               return -1;
             }
