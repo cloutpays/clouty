@@ -28,6 +28,17 @@ const Terms = ({ balance, payouts, user }) => {
                     </div>
                     <ul className='list pl0 mt0 measure center'>
                       <main className=' center'>
+                        {payouts.length === 0 && (
+                          <article>
+                            <div className='link dt w-100 bb b--black-10 pa3 dim blue'>
+                              <div className='dtc v-top' key='no'>
+                                <h1 className='f6 f5-ns fw6 lh-title black mv0 pa4 center '>
+                                  No Payouts Yet 💸{' '}
+                                </h1>
+                              </div>
+                            </div>
+                          </article>
+                        )}
                         {payouts
                           .map((game, ind) => {
                             let methodOfPayment = game.preferred;

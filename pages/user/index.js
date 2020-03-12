@@ -27,6 +27,17 @@ const Terms = ({ balance, submissions, user }) => {
                     </div>
                     <ul className='list pl0 mt0 measure center'>
                       <main className=' center'>
+                        {submissions.length === 0 && (
+                          <article>
+                            <div className='link dt w-100 bb b--black-10 pa3 dim blue'>
+                              <div className='dtc v-top' key='no'>
+                                <h1 className='f6 f5-ns fw6 lh-title black mv0 pa4 center '>
+                                  No Games Yet 🕹{' '}
+                                </h1>
+                              </div>
+                            </div>
+                          </article>
+                        )}
                         {submissions.length > 0 &&
                           submissions
                             .map((game, ind) => {
