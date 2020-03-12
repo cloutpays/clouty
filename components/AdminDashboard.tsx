@@ -37,34 +37,36 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
             </tr>
           </thead>
           <tbody className='lh-copy'>
-            {payouts.map((curr: any, ind: number) => {
-              return (
-                <tr key={ind}>
-                  <td className='pv3 pr3 bb b--black-20' key='date'>
-                    {formatDate(new Date(curr.date))}
-                  </td>
-                  <td className='pv3 pr3 bb b--black-20' key='date'>
-                    {curr.preferred}
-                  </td>
-                  <td className='pv3 pr3 bb b--black-20' key='date'>
-                    {formatPrice(curr.amount)}
-                  </td>
-                  <td className='pv3 pr3 bb b--black-20' key='date'>
-                    {curr.cleared ? (
-                      <div className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-green'>
-                        Cleared
-                      </div>
-                    ) : (
-                      <div
-                        className='f6 noselect mr2 link dim ph3 pv2 mb2 dib white bg-yellow'
-                        onClick={() => clearRequest(curr)}>
-                        Clear
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
+            {payouts
+              .map((curr: any, ind: number) => {
+                return (
+                  <tr key={ind}>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      {formatDate(new Date(curr.date))}
+                    </td>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      {curr.preferred}
+                    </td>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      {formatPrice(curr.amount)}
+                    </td>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      {curr.cleared ? (
+                        <div className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-green'>
+                          Cleared
+                        </div>
+                      ) : (
+                        <div
+                          className='f6 noselect mr2 link dim ph3 pv2 mb2 dib white bg-yellow'
+                          onClick={() => clearRequest(curr)}>
+                          Clear
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })
+              .reverse()}
           </tbody>
         </table>
       </div>
