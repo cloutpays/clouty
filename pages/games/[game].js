@@ -1,5 +1,6 @@
 import { formatPrice, grammyRender } from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SecuredPage from '../../hoc/securedPage';
@@ -23,6 +24,13 @@ const Games = ({ game, user, previousBet }) => {
       <section className='flex flex-wrap'>
         <div className='dtc f6 b ma0 v-mid w-100 tr'>
           Current Balance: {formatPrice(user.stripe.user.balance / 100)}
+        </div>
+        <div className='dtc f6 b ma0 v-mid w-100 tr'>
+          <div className='noselect grow outline dim pv2 ph3 mr2 fr mt2'>
+            <Link href='/user/balance'>
+              <strong>RELOAD</strong>
+            </Link>
+          </div>
         </div>
         <div key={`work-${game.name}`} className='pv2 pa2-ns w-100 w-100-ns'>
           <a className='no-underline white'>
