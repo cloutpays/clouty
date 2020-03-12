@@ -23,8 +23,8 @@ const Confirmation = () => (
 
         <p className={`${styles.paragraph}`}>
           For all issues please email{' '}
-          <a className={`${styles.link}`} href='mailto: julius@clouty.io'>
-            julius@clouty.io
+          <a className={`${styles.link}`} href='mailto: info@clouty.io'>
+            info@clouty.io
           </a>
           .
         </p>
