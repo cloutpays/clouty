@@ -13,10 +13,11 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
   const [email] = useState<string>(user ? user.firebase.email : '');
   const [handle] = useState<string>(user ? user.info.firstName : '');
   const [answer, setAnswer] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [playText, setPlayText] = useState<string>('Play');
   const [options, setOptions] = useState<any>(game.options);
   const [phoneNumber] = useState<string>(user ? user.info.phoneNumber : '');
   const [wager, setWager] = useState<number[]>([1, 5, 10, 20, 50]);
-  const [loading, setLoading] = useState<boolean>(false);
 
   const wageSelected = wager.length === 1;
   const canAffordWager = wager[0] < user.stripe.user.balance / 100;
@@ -33,6 +34,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
     if (!loading) {
       setLoading(true);
+      setPlayText('Playing...');
       const date = new Date();
       const userSubmission = {
         email,
@@ -57,6 +59,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
   };
   return (
     <div className='row'>
+      <link
+        rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+      />
       <div className='form-card'>
         <form onSubmit={handleSubmit}>
           <div className='mt2'>
@@ -97,7 +103,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
               <span
                 onClick={handleSubmit}
                 className='bg-white-30 pv1 pl2 pr3 ml2 f7 f6-ns br-pill b noselect'>
-                <span className='pl1 sans-serif'>Play</span>
+                <span className='pl1 sans-serif'>
+                  {loading && <i className='fa fa-spinner fa-spin mr1' />}
+                  {playText}
+                </span>
               </span>
             )}{' '}
             {!canAffordWager && wageSelected && (
