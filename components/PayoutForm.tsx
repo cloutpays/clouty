@@ -28,9 +28,11 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user, submissions }) => {
   const [payoutError, setPayoutError] = useState<boolean>(false);
   const [noGameError, setNoGameError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [submitText, setSubmitText] = useState<string>('Submit');
 
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
+    setSubmitText('Submitting...');
     if (!loading) {
       setLoading(true);
       const date = new Date();
@@ -76,6 +78,16 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user, submissions }) => {
 
   return (
     <div className='row'>
+      <link
+        rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+      />
+      <style jsx={true}>{`
+        .fa {
+          margin-left: -12px;
+          margin-right: 8px;
+        }
+      `}</style>
       <div className='form-card'>
         <form onSubmit={handleSubmit} className='measure center'>
           <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
@@ -202,12 +214,13 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user, submissions }) => {
               undefined,
             ) > 0 && (
               <div>
-                <input
+                <button
                   className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
-                  type='submit'
-                  value='Submit'
-                  onClick={handleSubmit}
-                />
+                  onClick={handleSubmit}>
+                  {loading && <i className='fa fa-spinner fa-spin' />}
+
+                  {submitText}
+                </button>
               </div>
             )}
         </form>
