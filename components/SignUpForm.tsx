@@ -18,6 +18,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
   const [wager, setWager] = useState<number[]>([1, 5, 10, 20, 50]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const wageSelected = wager.length === 1;
+  const canAffordWager = wager[0] < user.stripe.user.balance / 100;
+  const readyToPlay = wager.length + options.length === 2;
+
   const confirmAnswer = (answer: any) => {
     setOptions([{ value: answer }]);
     setAnswer(answer);
@@ -83,44 +87,27 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
             setAnswer={confirmAnswer}
           />
           <br />
-          {options.length === 1 && wager.length === 1 && (
-            <div>
-              {wager[0] > user.stripe.user.balance / 100 ? (
-                <div>
-                  <div className='mb2 f7 fw6 '>
-                    You have insufficient credits. Reload your balance.
-                  </div>
-                  <span
-                    onClick={resetGame}
-                    className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
-                    <span className='pl1 sans-serif'>Reset</span>
-                  </span>
-                </div>
-              ) : (
-                <div>
-                  <span
-                    onClick={resetGame}
-                    className='bg-white-30 pv1 pl2 pr3 mr2 f7 f6-ns br-pill b noselect'>
-                    <span className='pl1 sans-serif'>Reset</span>
-                  </span>
-                  <span
-                    onClick={handleSubmit}
-                    className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
-                    <span className='pl1 sans-serif'>Play</span>
-                  </span>
-                </div>
-              )}
-            </div>
-          )}
-          {options.length + wager.length > 2 && (
-            <div>
+          <div>
+            <span
+              onClick={resetGame}
+              className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
+              <span className='pl1 sans-serif'>Reset</span>
+            </span>
+            {readyToPlay && canAffordWager && wageSelected && (
               <span
-                onClick={resetGame}
-                className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
-                <span className='pl1 sans-serif'>Reset</span>
+                onClick={handleSubmit}
+                className='bg-white-30 pv1 pl2 pr3 ml2 f7 f6-ns br-pill b noselect'>
+                <span className='pl1 sans-serif'>Play</span>
               </span>
-            </div>
-          )}
+            )}{' '}
+            {!canAffordWager && wageSelected && (
+              <div>
+                <div className='mt2 f7 fw6 '>
+                  You have insufficient credits. Reload your balance.
+                </div>
+              </div>
+            )}
+          </div>
         </form>
       </div>
     </div>
