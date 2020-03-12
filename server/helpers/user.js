@@ -1,9 +1,9 @@
+import { emailContent, stripeSecret, user, wrapAsync } from '../helpers';
 const { json } = require('micro');
 const { parse } = require('url');
 const cors = require('micro-cors')();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_PROD);
+const stripe = require('stripe')(stripeSecret);
 const nodemailer = require('nodemailer');
-import { emailContent, user, wrapAsync } from '../helpers';
 
 const userRetrieveApi = wrapAsync(async function(req, db) {
   const { query } = parse(req.url, true);

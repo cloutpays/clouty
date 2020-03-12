@@ -1,13 +1,13 @@
+import { stripeClient } from '../lib/helpers';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 const Checkout = (props) => {
   const [stripe, setStripe] = useState(null);
   const [amount, setAmount] = useState(0);
   const [sessionId, setSessionId] = useState(0);
 
-  useEffect(() => setStripe(window.Stripe(process.env.STRIPE_CLIENT_PROD)), []);
+  useEffect(() => setStripe(window.Stripe(stripeClient)), []);
 
   const getSession = async (amount) => {
     const sessionId = await axios.get(

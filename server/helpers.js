@@ -1,10 +1,17 @@
 const connect = require('./helpers/db');
 
-export const dev = process.env.NODE_ENV === 'development';
+export const dev =
+  process.env.ENV === 'development' || process.env.NODE_ENV === 'development';
 export const question = dev ? 'questiondev' : 'question';
 export const cloutpays = dev ? 'cloutpaysdev' : 'cloutpays';
 export const user = dev ? 'userdev' : 'user';
 export const payout = dev ? 'payoutdev' : 'payout';
+export const stripeSecret = dev
+  ? process.env.STRIPE_SECRET_DEV
+  : process.env.STRIPE_SECRET_PROD;
+export const stripeClient = dev
+  ? process.env.STRIPE_CLIENT_DEV
+  : process.env.STRIPE_CLIENT_PROD;
 
 export const wrapAsync = (handler) => async (req, res) => {
   const db = await connect();

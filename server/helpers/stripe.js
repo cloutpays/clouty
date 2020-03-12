@@ -1,8 +1,8 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_PROD);
+const stripe = require('stripe')(stripeSecret);
 const { parse } = require('url');
 const { json } = require('micro');
 import { ObjectId } from 'mongodb';
-import { payout, user, wrapAsync } from '../helpers';
+import { payout, stripeSecret, user, wrapAsync } from '../helpers';
 import { updateUser } from './user';
 
 const getUser = async (userId, db) => {
