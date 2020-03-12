@@ -13,7 +13,7 @@ const Games = ({ game, user, previousBet }) => {
     game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
   const data = {
     title,
-    header: 'Play',
+    header: `${game.emoji} ${title}`,
     description: 'Selected games and contests.',
   };
   const description =
@@ -28,12 +28,6 @@ const Games = ({ game, user, previousBet }) => {
           <a className='no-underline white'>
             <div
               className={`white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`}>
-              <h1 className='f4 mt0 fw7'>
-                <span role='img' aria-label={game.emoji_name}>
-                  {game.emoji}
-                </span>
-                {title}
-              </h1>
               <p>{description}</p>
               {!game.answer && (
                 <SignUpForm user={user} game={game} previousBet={previousBet} />
