@@ -34,7 +34,6 @@ const Checkout = (props) => {
     <main className='black-80'>
       <dl className='dib '>
         <dd className='f6 f5-ns b ml0'>Select Amount</dd>
-        {/* <dd className='f3 f2-ns b ml0'> */}
         <div className='flex f3 f2-ns flex-wrap'>
           <a
             onClick={() => updateAmount(10)}
@@ -57,7 +56,6 @@ const Checkout = (props) => {
             <strong>$25</strong>
           </a>
         </div>
-        {/* </dd> */}
       </dl>
       <div className='near-black pt3 fw7 pb3'>
         <dl className='dib mr5'>

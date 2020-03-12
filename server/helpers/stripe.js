@@ -24,18 +24,21 @@ const updateStripeUser = async (paymentIntent, db) => {
 const payoutApi = wrapAsync(async (req, db) => {
   const data = (await json(req)).data;
   let { user, payoutRequest } = data;
-  console.log(payoutRequest, 'd');
   if (user) {
     user.stripe.user.balance = payoutRequest.newBalance;
     await updateUser(user, db);
   }
+
+  //if updating existing request
   if (payoutRequest._id) {
-    const _id = payoutRequest._id;
+    const { _id } = payoutRequest;
     delete payoutRequest._id;
     return await db
       .collection(payout)
       .update({ _id: ObjectId(_id) }, payoutRequest);
-  } else {
+  }
+  //creating new payout request
+  else {
     return await db.collection(payout).insertOne(payoutRequest);
   }
 });
