@@ -56,7 +56,7 @@ const Terms = ({ balance, submissions, user }) => {
                                       <h1 className='f6 f5-ns fw6 lh-title black mv0'>
                                         {`${
                                           game.question.gameType === 'game'
-                                            ? `${game.question.description}`
+                                            ? ` Game #${game.question.question}: ${game.question.description}`
                                             : game.question.description
                                         }`}
                                       </h1>
