@@ -27,13 +27,6 @@ const Question: React.FC<QuestionProps> = ({ options, type, setAnswer }) => {
               <strong>{option.value}</strong>
             </div>
           ))}
-          {/* {options.length === 1 && (
-            <div
-              // onClick={() => setWager([Number(1), Number(5), Number(10)])}
-              className='noselect grow outline dim pa2 mr2 mt2'>
-              <strong>Reset</strong>
-            </div>
-          )} */}
         </div>
       </div>
     </div>
