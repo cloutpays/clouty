@@ -16,6 +16,7 @@ const Dashboard = ({
   totalWager,
   lostBets,
   wonBets,
+  dayWagers,
 }) => {
   const data = {
     title: 'Dashboard',
@@ -41,7 +42,7 @@ const Dashboard = ({
         </dl>
         <dl className='dib mr5'>
           <dd className='f6 f5-ns b ml0'>24-Hour Wagers</dd>
-          <dd className='f3 f2-ns b ml0'>$14.00</dd>
+          <dd className='f3 f2-ns b ml0'>{formatPrice(dayWagers)}</dd>
         </dl>
         <dl className='dib mr5'>
           <dd className='f6 f5-ns b ml0'>House Balance</dd>
@@ -86,25 +87,24 @@ Dashboard.getInitialProps = async ({ req }) => {
   const usersRes = await axios.get(`${apiURL}/api/users`);
   const users = usersRes.data;
   const entries = res.data;
-  console.log(
-    entries.reduce((acc, curr) => {
-      return acc + !curr.won ? 1 : 0;
-    }),
-  );
+  let yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+
   return {
     entries,
     questions,
     users,
     payouts,
-    lostBets: entries.reduce((acc, curr) => {
-      return acc + !curr.won ? 1 : 0;
-    }),
-    wonBets: entries.reduce((acc, curr) => {
-      return acc + curr.won ? 1 : 0;
-    }),
-    totalWager: entries.reduce((acc, curr) =>
-      acc + curr.wager ? curr.wager : 0,
-    ),
+    lostBets: entries.filter(
+      (curr) => typeof curr.won === 'boolean' && !curr.won,
+    ).length,
+    dayWagers: entries
+      .filter((curr) => new Date(curr.date) > yesterday)
+      .reduce((acc, curr) => acc + curr.wager, 0),
+    wonBets: entries.filter((curr) => curr.won).length,
+    totalWager: entries.reduce((acc, curr) => {
+      return acc + curr.wager;
+    }, 0),
   };
 };
 
@@ -116,6 +116,7 @@ Dashboard.propTypes = {
   totalWager: PropTypes.number,
   lostBets: PropTypes.number,
   wonBets: PropTypes.number,
+  dayWagers: PropTypes.number,
 };
 
 export default SecuredPage(Dashboard);
