@@ -17,6 +17,7 @@ const Dashboard = ({
   lostBets,
   wonBets,
   dayWagers,
+  houseBalance,
 }) => {
   const data = {
     title: 'Dashboard',
@@ -46,7 +47,7 @@ const Dashboard = ({
         </dl>
         <dl className='dib mr5'>
           <dd className='f6 f5-ns b ml0'>House Balance</dd>
-          <dd className='f3 f2-ns b ml0'>$37.00</dd>
+          <dd className='f3 f2-ns b ml0'>{formatPrice(houseBalance)}</dd>
         </dl>
         <dl className='dib mr5'>
           <dd className='f6 f5-ns b ml0'>Total Wagers</dd>
@@ -89,6 +90,14 @@ Dashboard.getInitialProps = async ({ req }) => {
   const entries = res.data;
   let yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
+  const wonWagers = entries
+    .filter((curr) => curr.won)
+    .reduce((acc, curr) => {
+      return acc + curr.wager;
+    }, 0);
+  const totalWager = entries.reduce((acc, curr) => {
+    return acc + curr.wager;
+  }, 0);
 
   return {
     entries,
@@ -102,9 +111,8 @@ Dashboard.getInitialProps = async ({ req }) => {
       .filter((curr) => new Date(curr.date) > yesterday)
       .reduce((acc, curr) => acc + curr.wager, 0),
     wonBets: entries.filter((curr) => curr.won).length,
-    totalWager: entries.reduce((acc, curr) => {
-      return acc + curr.wager;
-    }, 0),
+    totalWager,
+    houseBalance: totalWager - wonWagers,
   };
 };
 
@@ -117,6 +125,7 @@ Dashboard.propTypes = {
   lostBets: PropTypes.number,
   wonBets: PropTypes.number,
   dayWagers: PropTypes.number,
+  houseBalance: PropTypes.number,
 };
 
 export default SecuredPage(Dashboard);
