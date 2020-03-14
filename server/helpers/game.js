@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { json } from 'micro';
 import { updateUser } from './user';
 const { parse } = require('url');
@@ -44,7 +45,7 @@ const submissionsRemovalApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
   const { id } = query;
   console.log(id);
-  return await db.collection(cloutpays).remove({ _id: id });
+  return await db.collection(cloutpays).remove({ _id: ObjectId(id) });
 });
 const submissionsRetrieveApi = wrapAsync(
   async (req, db) =>
