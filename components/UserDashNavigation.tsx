@@ -26,7 +26,7 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
       setUserBalance(updateBalance);
     };
     getBalance();
-  }, [balance]);
+  }, []);
   return (
     <>
       <link
