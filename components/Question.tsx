@@ -17,6 +17,14 @@ const Question: React.FC<QuestionProps> = ({ options, type, setAnswer }) => {
       <div className='mt2'>
         <label className='fw6 '>Place your bet:</label>
       </div>
+      <div className='pt1'>
+        <input
+          className='pa2 input-reset bg-transparent'
+          type='text'
+          // value={answer}
+          // onChange={(event) => setAnswer(event.currentTarget.value)}
+        />
+      </div>
       <div className='dib-ns'>
         <div className='flex flex-wrap'>
           {options.map((option: Option, key: number) => (
