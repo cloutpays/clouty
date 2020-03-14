@@ -112,7 +112,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
             {!canAffordWager && wageSelected && (
               <div>
                 <div className='mt2 f7 fw6 '>
-                  You have insufficient credits. Reload your balance.
+                  You have insufficient credits. Add to your balance.
                 </div>
               </div>
             )}

@@ -28,7 +28,7 @@ const Games = ({ game, user, previousBet }) => {
         <div className='dtc f6 b ma0 v-mid w-100 tr'>
           <div className='noselect grow outline dim pv2 ph3 mr2 fr mt2'>
             <Link href='/user/balance'>
-              <strong>RELOAD</strong>
+              <strong>ADD TO BALANCE</strong>
             </Link>
           </div>
         </div>
