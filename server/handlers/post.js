@@ -7,6 +7,7 @@ const {
 } = require('../helpers/game');
 const { userApi } = require('../helpers/user');
 const { send } = require('micro');
+const { hookApi, payoutApi } = require('../helpers/stripe');
 
 const postApi = (fn) => async (req, res) => {
   try {
@@ -20,6 +21,10 @@ const postApi = (fn) => async (req, res) => {
         return await fn(userQuestionSubmitApi(req, res));
       case 'api/user':
         return await fn(userApi(req, res));
+      case 'api/payout':
+        return await fn(payoutApi(req, res));
+      case 'api/hooks':
+        return await fn(hookApi(req, res));
       default:
         return send(res, 200, { err: 'invalid route' });
     }

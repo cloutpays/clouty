@@ -1,73 +1,133 @@
 import { getCookie } from '../../lib/session';
-import { styles } from '../../constants/styles';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SecuredPage from '../../hoc/securedPage';
+import UserDashNavigation from '../../components/UserDashNavigation';
 import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const data = {
-  description: 'Make money while putting your intuition on the line.',
-  header: `The 🌎's first music betting platform.`,
-};
-const User = ({ submissions }) => {
-  console.log(submissions);
+const Terms = ({ balance, submissions, user }) => {
+  const data = {
+    description: 'Make money while putting your intuition on the line.',
+    header: `Welcome, ${user.info.firstName}!`,
+  };
   return (
-    <div>
-      <Wrapper data={data} className='measure-wide'>
-        <h3 className={`${styles.paragraph}`}> Current Games:</h3>
-        {submissions
-          .map((game) => {
-            const gameButtonText = !game.question.answer
-              ? 'Pending'
-              : game.question.answer === game.answer
-              ? 'Won'
-              : 'Lost';
-            const activeLink = `/games/${game.slug}`;
-            const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow grammy`;
-            return (
-              <div
-                key={`work-${game.question.slug}`}
-                className='pv2 pa2-ns w-100 w-50-ns'>
-                <Link href={activeLink}>
-                  <a href={activeLink} className='no-underline white'>
-                    <div className={cardClass}>
-                      <h1 className='f4 mt0 fw7'>
-                        <span role='img' aria-label={game.question.emoji_name}>
-                          {game.question.emoji}
-                        </span>{' '}
-                        {`Game #${game.question.question}`}
-                      </h1>
-                      {game.question.description}
-                      <p>{`Wager: $${game.wager}`}</p>
-                      <p>{`Submission: ${game.answer}`}</p>
-                      <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                        {gameButtonText}
-                        <span className='pl1 sans-serif'>→</span>
-                      </span>
+    <Wrapper data={data} user={user} className='measure-wide'>
+      <main>
+        <UserDashNavigation balance={balance} user={user} />
+        <div className='mw8 center ph3' id='dashboard'>
+          <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>
+            <article className='w-100 w-75-m  ph3-m ph3-l'>
+              <div className='flex-m flex-l flex-wrap items-center justify-between nl3 nr3 pt1 mb4'>
+                <div className='w-100 ph1 mb3 mb0-l'>
+                  <div className='bt bl br b--black-10 br2'>
+                    <div className='pa3 bb b--black-10'>
+                      <h4 className='mv0'>Submitted Bets</h4>
                     </div>
+                    <ul className='list pl0 mt0 measure center'>
+                      <main className=' center'>
+                        {submissions.length === 0 && (
+                          <article>
+                            <div className='link dt w-100 bb b--black-10 pa3 dim blue'>
+                              <div className='dtc v-top' key='no'>
+                                <h1 className='f6 f5-ns fw6 lh-title black mv0 pa4 center '>
+                                  No Games Yet 🕹{' '}
+                                </h1>
+                              </div>
+                            </div>
+                          </article>
+                        )}
+                        {submissions.length > 0 &&
+                          submissions
+                            .map((game, ind) => {
+                              const gameButtonText =
+                                typeof game.won === 'undefined'
+                                  ? 'P'
+                                  : game.won
+                                  ? 'W'
+                                  : 'L';
+                              return (
+                                <article key={ind}>
+                                  <a
+                                    className='link dt w-100 bb b--black-10 pa3 dim blue'
+                                    href={`/games/${game.question.question}`}>
+                                    <div className='dtc v-top' key={ind}>
+                                      <h1 className='f6 f5-ns fw6 lh-title black mv0'>
+                                        {`${
+                                          game.question.gameType === 'game'
+                                            ? ` Game #${game.question.question}: ${game.question.description}`
+                                            : game.question.description
+                                        }`}
+                                      </h1>
+                                      <div className='f5 fw4 pt1 black-60'>
+                                        {`Your Bet: ${game.answer}`}{' '}
+                                      </div>
+                                      {gameButtonText === 'W' && (
+                                        <div>
+                                          <span className='bg-green ph1 mt2 fw8 f5 white'>
+                                            W
+                                          </span>
+                                          <span className='f5 fw5 ml1 silver'>
+                                            +${game.wager * 2}
+                                          </span>
+                                        </div>
+                                      )}
+                                      {gameButtonText === 'L' && (
+                                        <>
+                                          <span className='bg-red ph1 mt2 fw8 f5 white'>
+                                            L
+                                          </span>
+                                          <span className='f5 fw5 ml1 silver'>
+                                            -${game.wager}
+                                          </span>
+                                        </>
+                                      )}
+                                      {gameButtonText === 'P' && (
+                                        <>
+                                          <span className='bg-gold ph1 mt2 fw8 f5 white'>
+                                            P
+                                          </span>
+                                          <span className='f5 fw5 ml1 silver'>
+                                            ${game.wager}
+                                          </span>
+                                        </>
+                                      )}
+                                    </div>
+                                  </a>
+                                </article>
+                              );
+                            })
+                            .reverse()}
+                      </main>
+                    </ul>
+                  </div>
+                  <a
+                    href='/games'
+                    className='no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
+                    Play A Game
                   </a>
-                </Link>
+                </div>
               </div>
-            );
-          })
-          .reverse()}
-      </Wrapper>
-    </div>
+            </article>
+          </section>
+        </div>
+      </main>
+    </Wrapper>
   );
 };
-
-User.getInitialProps = async (ctx) => {
+Terms.getInitialProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
   const apiURL = `${origin}`;
+
   const user = getCookie('id_token', ctx.req);
   const submissionsRes = await axios.get(
     `${apiURL}/api/userSubmissions/${user}`,
   );
   const questionsRes = await axios.get(`${apiURL}/api/questions`);
   const questions = questionsRes.data;
+  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userObj = userRes.data;
   const submissions = submissionsRes.data.map((sub) => {
     return {
       ...sub,
@@ -76,12 +136,16 @@ User.getInitialProps = async (ctx) => {
       })[0],
     };
   });
-
-  return { submissions, questions };
+  return {
+    balance: userObj?.stripe?.user?.balance ?? 0,
+    submissions,
+    user: userObj,
+  };
 };
 
-User.propTypes = {
+Terms.propTypes = {
+  balance: PropTypes.number,
   submissions: PropTypes.array,
-  questions: PropTypes.array,
+  user: PropTypes.object,
 };
-export default SecuredPage(User);
+export default SecuredPage(Terms);

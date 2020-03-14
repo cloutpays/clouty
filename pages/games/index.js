@@ -31,52 +31,70 @@ const Games = ({ questions }) => {
             </div>
           </a>
         </div>
-        <div key='contact' className='pv2 pa2-ns w-100 w-50-ns'>
-          <Link href='/grammys'>
-            <a href='/grammys' className='no-underline'>
-              <div className='white br2 shadow-4 grow pa3 pa4-ns h-100 grammy'>
-                <h1 className='f4 mt0 fw7'>
-                  <span role='img' aria-label='User Submission'>
-                    🏆
-                  </span>{' '}
-                  2020 Grammy Awards
-                </h1>
-                <p>Check out our bets for the 62nd Grammy’s!</p>
-                <p>Click to enter and place your wager </p>
-                <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                  Let&apos;s get it<span className='pl1 sans-serif'>→</span>
-                </span>
-              </div>
-            </a>
-          </Link>
-        </div>
+
         {questions
-          .map((game) => {
+          .reverse()
+          .sort((a, b) => {
+            const aname = a.answer.length === 0;
+            const bname = b.answer.length === 0;
+            if (aname && !bname) {
+              return 1;
+            }
+            if (!aname && bname) {
+              return -1;
+            }
+            return 0;
+          })
+          .map((game, ind) => {
             const gameButtonText = !game.answer ? 'Play Game' : 'See Results';
             const activeLink = `/games/${game.slug}`;
             const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
             return (
-              <div
-                key={`work-${game.question}`}
-                className='pv2 pa2-ns w-100 w-50-ns'>
-                <Link href={activeLink}>
-                  <a href={activeLink} className='no-underline white'>
-                    <div className={cardClass}>
-                      <h1 className='f4 mt0 fw7'>
-                        <span role='img' aria-label={game.emoji_name}>
-                          {game.emoji}
-                        </span>{' '}
-                        {`Game #${game.question}`}
-                      </h1>
-                      <p>{game.description}</p>
-                      <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                        {gameButtonText}
-                        <span className='pl1 sans-serif'>→</span>
-                      </span>
-                    </div>
-                  </a>
-                </Link>
-              </div>
+              <>
+                <div
+                  key={`work-${game.question}`}
+                  className='pv2 pa2-ns w-100 w-50-ns'>
+                  <Link href={activeLink}>
+                    <a href={activeLink} className='no-underline white'>
+                      <div className={cardClass}>
+                        <h1 className='f4 mt0 fw7'>
+                          <span role='img' aria-label={game.emoji_name}>
+                            {game.emoji}
+                          </span>{' '}
+                          {`Game #${game.question}`}
+                        </h1>
+                        <p>{game.description}</p>
+                        <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
+                          {gameButtonText}
+                          <span className='pl1 sans-serif'>→</span>
+                        </span>
+                      </div>
+                    </a>
+                  </Link>
+                </div>
+                {ind === 13 && (
+                  <div key='contact' className='pv2 pa2-ns w-100 w-50-ns'>
+                    <Link href='/grammys'>
+                      <a href='/grammys' className='no-underline'>
+                        <div className='white br2 shadow-4 grow pa3 pa4-ns h-100 grammy'>
+                          <h1 className='f4 mt0 fw7'>
+                            <span role='img' aria-label='User Submission'>
+                              🏆
+                            </span>{' '}
+                            2020 Grammy Awards
+                          </h1>
+                          <p>Check out our bets for the 62nd Grammy’s!</p>
+                          <p>Click to enter and see who won </p>
+                          <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
+                            View Results
+                            <span className='pl1 sans-serif'>→</span>
+                          </span>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                )}
+              </>
             );
           })
           .reverse()}

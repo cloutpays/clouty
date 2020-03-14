@@ -12,7 +12,8 @@ const withAuthSync = (WrappedComponent) =>
       const isLoggedIn = getCookie('id_token', ctx.req) ? true : false;
 
       if (!isLoggedIn) {
-        return redirect(ctx, '/login');
+        redirect(ctx, '/login');
+        return { isLoggedIn };
       }
       const componentProps =
         WrappedComponent.getInitialProps &&

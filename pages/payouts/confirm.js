@@ -11,20 +11,16 @@ const Confirmation = () => (
     <Wrapper data={data} className='measure-wide'>
       <section>
         <p className={`${styles.paragraph}`}>
-          Your wager has been entered into our system. May the odds forever be
-          in your favor!
+          Your payout has been requested & Clouty will send the request to you
+          via the channel selected.
         </p>
         <p className={`${styles.paragraph}`}>
-          Every contestant will be notified of the results and you will be able
-          to earn cash or tokens in realtime.
-        </p>
-        <p className={`${styles.paragraph}`}>
-          All pay outs will be dispersed through one of our three channels.
-          Winnings can be used for future gameplay.
+          It is expected to arrive within the next 1-2 days.{' '}
           <span role='img' aria-label='Bulleye'>
             🎯‍
           </span>
         </p>
+
         <p className={`${styles.paragraph}`}>
           For all issues please email{' '}
           <a className={`${styles.link}`} href='mailto: info@clouty.io'>

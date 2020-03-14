@@ -84,11 +84,6 @@
       "dest": "server/handlers/get.js?id=$1"
     },
     {
-      "src": "/api/allUserPayouts",
-      "methods": ["GET"],
-      "dest": "server/handlers/get.js"
-    },
-    {
       "src": "/api/checkout/(.*)/(.*)",
       "methods": ["GET"],
       "dest": "server/handlers/get.js?id=$1&userId=$2"
@@ -126,7 +121,7 @@
     "FIREBASE_APP_ID": "@firebase-app-id",
     "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
     "STRIPE_CLIENT_DEV": "@stripe-client-dev",
-    "STRIPE_SECRET_DEV": "@stripe-secret-dev",
+    "STRIPE_SECRET_DEV": "@stripe-secret-dev"
     "STRIPE_CLIENT_PROD": "@stripe-client-prod",
     "STRIPE_SECRET_PROD": "@stripe-secret-prod",
     "NODEMAILER": "@nodemailer"

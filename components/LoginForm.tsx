@@ -1,4 +1,6 @@
 import axios from 'axios';
+import 'cleave.js/dist/addons/cleave-phone.us';
+import Cleave from 'cleave.js/react';
 import 'emoji-mart/css/emoji-mart.css';
 import Router from 'next/router';
 import React, { useState } from 'react';
@@ -11,44 +13,70 @@ interface LoginFormProps {
   mode: string;
   firstName: string;
   lastName: string;
+  redirect: string;
 }
 const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [signUpText, setSignUpText] = useState<string>('Sign Up');
+  const [signInText, setSignInText] = useState<string>('Sign In');
+
   const [error, setError] = useState<string>('');
   const signUp = mode === 'signup';
+
   const handleSignUp = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-
+    setSignUpText('Signing Up...');
+    setLoading(true);
     if (!(email && password)) {
-      // console.log('error', 'Please fill in email. and password');
+      setError('Please fill in email and password');
+      setSignUpText('Sign Up');
       return;
     }
     let isError = false;
     Firebase.signup({ email, password })
-      .catch(() => {
-        // const message =
-        //   result && result.message ? result.message : 'Sorry Some error occurs';
-        // console.log('error', message);
+      .catch((result) => {
+        const message =
+          result && result.message ? result.message : 'Sorry Some error occurs';
         isError = true;
+        setError(message);
+        setSignUpText('Sign Up');
+        setLoading(false);
       })
-      .then(() => {
+      .then((result: any) => {
         if (isError) {
           return;
         }
-        // axios.post('/api/user', { data: result.user }).then(() => {
-        //   // console.log(res);
-        // });
-        // console.log(result);
+        if (typeof result !== 'undefined') {
+          axios
+            .post('/api/user', {
+              data: {
+                firebase: result.user,
+                email: result?.user?.email,
+                new: true,
+                info: { firstName, lastName, phoneNumber, userName },
+              },
+            })
+            .then(() => {
+              setCookie('id_token', result.user.uid);
+              Router.push('/user');
+            });
+        }
       });
   };
   const handleLogin = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-
+    setSignInText('Signing In...');
+    setLoading(true);
     if (!(email && password)) {
-      // console.log('error', 'Please fill in email. and password');
+      setError('Please fill in email and password');
+      setSignInText('Sign In');
+      setLoading(false);
       return;
     }
 
@@ -58,9 +86,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
         const message =
           result && result.code.split('/')[1] === 'user-not-found'
             ? "Sorry, we couldn't find an account with that username. Please try again."
-            : "Sorry, that passowrd isn't right. Please try again.";
+            : "Sorry, that password isn't right. Please try again.";
         setError(message);
-
+        setSignInText('Sign In');
+        setLoading(false);
         isError = true;
       })
       .then((result: { message: any; user: { uid: string } }) => {
@@ -68,14 +97,26 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           return;
         }
         setCookie('id_token', result.user.uid);
-        Router.push('/dashboard');
-        axios.post('/api/user', { data: result.user }).then(() => {});
+        Router.push('/user');
+        axios
+          .post('/api/user', { data: { firebase: result.user } })
+          .then(() => {});
       });
   };
 
   return (
     <>
-      <main className='pa4 black-80'>
+      <link
+        rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+      />
+      <style jsx={true}>{`
+        .fa {
+          margin-left: -12px;
+          margin-right: 8px;
+        }
+      `}</style>
+      <main className='black-80'>
         <form className='measure center'>
           <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
             {signUp ? (
@@ -103,6 +144,30 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                     type='name'
                     value={lastName}
                     onChange={(event) => setLastName(event.currentTarget.value)}
+                  />
+                </div>
+                <div className='mv3'>
+                  <label className='db fw6 lh-copy f6' htmlFor='user-name'>
+                    User Name
+                  </label>
+                  <input
+                    className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                    onChange={(event) => setUserName(event.currentTarget.value)}
+                    value={userName}
+                    placeholder='@ '
+                  />
+                </div>
+                <div className='mv3'>
+                  <label className='db fw6 lh-copy f6' htmlFor='last-name'>
+                    Phone Number
+                  </label>
+                  <Cleave
+                    className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                    onChange={(event) =>
+                      setPhoneNumber(event.currentTarget.value)
+                    }
+                    value={phoneNumber}
+                    options={{ phone: true, phoneRegionCode: 'US' }}
                   />
                 </div>
               </>
@@ -145,13 +210,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
               ''
             )}
           </fieldset>
-          <div className=''>
-            <input
-              className='b ph3 pv2 link input-reset ba b--black bg-transparent grow pointer f6 dib'
-              type='submit'
-              value={signUp ? 'Sign up' : 'Sign in'}
-              onClick={signUp ? handleSignUp : handleLogin}
-            />
+          <div>
+            <button
+              className='b ph3 pv2 link input-reset ba b--black bg-transparent grow pointer f6 dib '
+              onClick={signUp ? handleSignUp : handleLogin}>
+              {loading && <i className='fa fa-spinner fa-spin' />}
+              {signUp ? signUpText : signInText}
+            </button>
           </div>
           <div className='lh-copy mt3'>
             {signUp ? (
