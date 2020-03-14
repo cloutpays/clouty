@@ -38,10 +38,10 @@ const Games = ({ questions }) => {
             const aname = a.answer.length === 0;
             const bname = b.answer.length === 0;
             if (aname && !bname) {
-              return -1;
+              return 1;
             }
             if (!aname && bname) {
-              return 1;
+              return -1;
             }
             return 0;
           })
@@ -96,7 +96,8 @@ const Games = ({ questions }) => {
                 )}
               </>
             );
-          })}
+          })
+          .reverse()}
       </section>
     </Wrapper>
   );
