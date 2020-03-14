@@ -8,10 +8,16 @@ const client = require('twilio')(
 );
 import { cloutpays, dev, question, user, wrapAsync } from '../helpers';
 
-const sendTextMessage = async (name, phoneNumber) => {
+const sendTextMessage = async (name, type, phoneNumber) => {
+  const body = {
+    winner: `✅ Congratulations, you came out on top! Your earnings have been added to your balance 🏆`,
+    loss: `🎲 Unfortunately, your prediction was inaccurate. Better luck next time! 🎰`,
+    confirm: `Thank you for placing a bet on Clouty ${name}! This is confirmation that your wager is secure. Let the games begin`,
+  };
   try {
     const message = await client.messages.create({
-      body: `Thank you for placing a bet on Clouty ${name}! This is confirmation that your wager is secure. Let the games begin`,
+      body: body[type],
+
       from: '+14154172439',
       to: phoneNumber,
     });
@@ -29,7 +35,7 @@ const gameSubmitApi = wrapAsync(async (req, db) => {
   user.stripe.user.balance = balance - wager * 100;
   await updateUser(user, db);
   if (!dev) {
-    await sendTextMessage(name, phoneNumber);
+    await sendTextMessage(name, 'confirm', phoneNumber);
   }
   return await db.collection(cloutpays).insertOne(data.userSubmission);
 });
