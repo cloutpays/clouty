@@ -137,7 +137,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     setAnswerVisible(!answerVisible);
   };
   const removeAnswer = () => {
-    setAnswer(undefined);
+    setAnswer('');
     setAnswerVisible(!answerVisible);
   };
 
