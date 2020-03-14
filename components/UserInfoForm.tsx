@@ -19,7 +19,7 @@ const UserInfoForm: React.FC<UserInfoProps> = ({ user }) => {
   const [lastName, setLastName] = useState<string>(
     user ? user.info.lastName : '',
   );
-  const [email, setEmail] = useState<string>(user ? user.firebase.email : '');
+  const [email] = useState<string>(user ? user.firebase.email : '');
   // const [handle, setHandle] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>(
     user ? user.info.phoneNumber : '',
@@ -78,7 +78,7 @@ const UserInfoForm: React.FC<UserInfoProps> = ({ user }) => {
             className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
             type='email'
             value={email}
-            onChange={(event) => setEmail(event.currentTarget.value)}
+            disabled={true}
           />
         </div>
         <div className='mv3'>
