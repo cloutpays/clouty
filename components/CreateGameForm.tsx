@@ -260,7 +260,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
               <span
                 className='b mr2 ph2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
                 onClick={changeColor}>
-                Set Color
+                Change Color
               </span>
             </div>
 
