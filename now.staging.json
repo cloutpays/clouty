@@ -103,7 +103,6 @@
     "env": {
       "FIREBASE_API_KEY": "@firebase-api-key",
       "FIREBASE_APP_ID": "@firebase-app-id",
-      "ENV": "development",
       "FIREBASE_API_KEY_DEV": "@firebase-api-key-dev",
       "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
       "STRIPE_CLIENT_DEV": "@stripe-client-dev",
@@ -115,7 +114,6 @@
   },
   "env": {
     "TWILIO_SID": "@twilio-sid",
-    "ENV": "development",
     "TWILIO_TOKEN": "@twilio-token",
     "MONGO": "@mongo",
     "FIREBASE_API_KEY": "@firebase-api-key",
