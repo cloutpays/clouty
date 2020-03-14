@@ -12,7 +12,7 @@ const Terms = (ctx) => {
   const { user } = ctx;
   const data = {
     description: 'Make money while putting your intuition on the line.',
-    header: `Welcome, ${user.info.firstName}!`,
+    header: `Add to Balance`,
   };
   return (
     <>
