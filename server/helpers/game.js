@@ -40,6 +40,12 @@ const gameSubmitApi = wrapAsync(async (req, db) => {
   return await db.collection(cloutpays).insertOne(data.userSubmission);
 });
 
+const submissionsRemovalApi = wrapAsync(async (req, db) => {
+  const { query } = parse(req.url, true);
+  const { id } = query;
+  console.log(id);
+  return await db.collection(cloutpays).remove({ _id: id });
+});
 const submissionsRetrieveApi = wrapAsync(
   async (req, db) =>
     await db
@@ -193,4 +199,5 @@ module.exports = {
   questionRemoveApi: cors(questionRemoveApi),
   userSubmissionsRetrieveApi: cors(userSubmissionsRetrieveApi),
   userQuestionSubmitApi: cors(userQuestionSubmitApi),
+  submissionsRemovalApi: cors(submissionsRemovalApi),
 };
