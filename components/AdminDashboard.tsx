@@ -45,7 +45,12 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                       {formatDate(new Date(curr.date))}
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='date'>
-                      {curr.preferred}
+                      <div>{curr.preferred}</div>
+                      <div>
+                        {curr.preferred === 'Apple Pay' && <>{curr.appleID}</>}
+                        {curr.preferred === 'Cash App' && <>{curr.handle}</>}
+                        {curr.preferred === 'PayPal' && <>{curr.email}</>}
+                      </div>
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='date'>
                       {formatPrice(curr.amount)}
@@ -105,7 +110,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                       className='pv3 pr3 bb b--black-20'
                       key='wager'>{`$${curr.wager}`}</td>
                     <td className='pv3 pr3 bb b--black-20' key='paid'>
-                      {curr.won === 'undefined' ? (
+                      {typeof curr.won === 'undefined' ? (
                         <span className='bg-gold ph1 mt2 fw8 f5 white'>P</span>
                       ) : curr.won ? (
                         <span className='bg-green ph1 mt2 fw8 f5 white'>W</span>
