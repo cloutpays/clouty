@@ -93,12 +93,11 @@ Dashboard.getInitialProps = async ({ req }) => {
   const wonWagers = entries
     .filter((curr) => curr.won)
     .reduce((acc, curr) => {
-      return acc + curr.wager;
+      return acc + curr.userId ? curr.wager : 0;
     }, 0);
   const totalWager = entries.reduce((acc, curr) => {
-    return acc + curr.wager;
+    return acc + curr.userId ? curr.wager : 0;
   }, 0);
-
   return {
     entries,
     questions,
