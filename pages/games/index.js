@@ -72,7 +72,7 @@ const Games = ({ questions }) => {
                     </a>
                   </Link>
                 </div>
-                {ind === 15 && (
+                {ind === 13 && (
                   <div key='contact' className='pv2 pa2-ns w-100 w-50-ns'>
                     <Link href='/grammys'>
                       <a href='/grammys' className='no-underline'>
