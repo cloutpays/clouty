@@ -88,8 +88,7 @@ Dashboard.getInitialProps = async ({ req }) => {
   const usersRes = await axios.get(`${apiURL}/api/users`);
   const users = usersRes.data;
   const entries = res.data;
-  let yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
+  let yesterday = new Date().setDate(new Date().getDate() - 1);
   const wonWagers = entries
     .filter((curr) => curr.won)
     .reduce((acc, curr) => {
