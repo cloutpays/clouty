@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Router from 'next/router';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { formatDate, formatPrice } from '../lib/helpers';
@@ -18,6 +19,8 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
       method: 'post',
       url: '/api/payout',
       data: { data: { payoutRequest: { ...request, cleared: true } } },
+    }).then(() => {
+      Router.push('/dashboard');
     });
   };
 
