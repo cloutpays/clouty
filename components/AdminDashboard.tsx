@@ -13,6 +13,14 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
   submissions,
   payouts,
 }) => {
+  const removeSubmission = async (request: any) => {
+    await axios({
+      method: 'delete',
+      url: `/api/userSubmissions/${request._id}`,
+    }).then(() => {
+      Router.push('/dashboard');
+    });
+  };
   const clearRequest = async (request: any) => {
     request.cleared = true;
     await axios({
@@ -84,6 +92,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
         <table className='f6 w-100 mw8 center' cellSpacing='0'>
           <thead>
             <tr>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Delete</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Game #</th>
@@ -97,6 +106,13 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
               .map((curr: any, ind: number) => {
                 return (
                   <tr key={ind}>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      <div
+                        className='f6 mr2 link dim ph2 pv1 mb2 dib white bg-black'
+                        onClick={() => removeSubmission(curr)}>
+                        X
+                      </div>
+                    </td>
                     <td className='pv3 pr3 bb b--black-20' key='date'>
                       {formatDate(new Date(curr.date || '2019-11-30'))}
                     </td>
