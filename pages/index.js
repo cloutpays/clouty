@@ -24,8 +24,8 @@ const Home = () => (
           predictions in the rap game.{' '}
         </p>
         <p className={`${styles.paragraph}`}>
-          This is a chance for you and your friends to make money while putting
-          your intuition on the line{' '}
+          This is a chance for you and your friends to double your money while
+          putting your intuition on the line{' '}
           <span role='img' aria-label='Bulleye'>
             🎯‍
           </span>{' '}
