@@ -24,7 +24,7 @@ const Home = ({ questions }) => (
             predictions in the rap game.{' '}
           </p>
           <p className={`${styles.paragraph}`}>
-            Double your money while putting your intuition on the line.{' '}
+            Double your money while putting your intuition on the line.
           </p>
         </div>
         <section className='mt3 w-100 dib pv4 flex items-center justify-center '>
@@ -78,15 +78,15 @@ const Home = ({ questions }) => (
                 href='https://geo.itunes.apple.com/us/album/blonde/id1146195596?at=1l3vqFJ&mt=1&app=music'
                 className='db link dim tc'>
                 <img
-                  src='http://is4.mzstatic.com/image/thumb/Music62/v4/93/8f/75/938f7536-0188-f9ba-4585-0a77ceaebf0a/source/400x40000bb.png'
+                  src='https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/mhgdsrhn3a90ytkkkw3x/don-toliver-heaven-or-hell-stream'
                   alt='Frank Ocean Blonde Album Cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
                   <dt className='clip'>Title</dt>
-                  <dd className='ml0 black truncate w-100'>Blonde</dd>
+                  <dd className='ml0 black truncate w-100'>Heavon or Hell</dd>
                   <dt className='clip'>Artist</dt>
-                  <dd className='ml0 gray truncate w-100'>Frank Ocean</dd>
+                  <dd className='ml0 gray truncate w-100'>Don Toliver</dd>
                 </dl>
               </a>
             </div>
@@ -95,15 +95,17 @@ const Home = ({ questions }) => (
                 href='https://geo.itunes.apple.com/us/album/jeffery/id1146718343?at=1l3vqFJ&mt=1&app=music'
                 className='db link dim tc'>
                 <img
-                  src='http://is1.mzstatic.com/image/thumb/Music71/v4/c8/2d/b1/c82db1cd-9dc5-d7cb-2a34-735cf47bb809/source/400x40000bb.png'
+                  src='https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/ebjrkgp7iu5fajw98mzn/lil-uzi-vert-eternal-atake-deluxe-stream'
                   alt='Young Thug - Jeffery Album Cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
                   <dt className='clip'>Title</dt>
-                  <dd className='ml0 black truncate w-100 ttu'>Jeffery</dd>
+                  <dd className='ml0 black truncate w-100 ttu'>
+                    Eternal Atake (Deluxe)
+                  </dd>
                   <dt className='clip'>Artist</dt>
-                  <dd className='ml0 gray truncate w-100'>Young Thug</dd>
+                  <dd className='ml0 gray truncate w-100'>Lil Uzi Vert</dd>
                 </dl>
               </a>
             </div>
