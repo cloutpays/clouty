@@ -59,10 +59,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
   };
   return (
     <div className='row'>
-      <link
-        rel='stylesheet'
-        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
-      />
       <div className='form-card'>
         <form onSubmit={handleSubmit}>
           <div className='mt2'>

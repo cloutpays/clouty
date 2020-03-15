@@ -60,15 +60,16 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   const [answerVisible, setAnswerVisible] = useState<boolean>(
     game && game.answer ? true : false,
   );
+  const [loading, setLoading] = useState<boolean>(false);
   const [colorway, setColorway] = useState<string>(
     game ? game.class : 'trillectro',
   );
   const newGame = game ? false : true;
   const grammy = game && game.gameType === 'grammy';
 
-  const number = !game
+  const number = newGame
     ? (
-        questions.filter((curr) => curr.gameType !== 'grammy').length + 1
+        questions.filter((curr) => curr.gameType !== 'grammy').length + 3
       ).toString()
     : game.question;
 
@@ -86,6 +87,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     const submission = {
       description,
       emoji: emoji.native ? emoji.native : emoji,
@@ -148,7 +150,13 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     setOptions(updatedOptions);
   };
 
-  const submitAction = isUserSubmission ? 'Submit Game' : 'Update';
+  const submitAction = isUserSubmission
+    ? loading
+      ? 'Submitting...'
+      : 'Submit Game'
+    : loading
+    ? 'Updating...'
+    : 'Update';
   return (
     <>
       <article className='pa4 black-80'>
@@ -260,7 +268,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
               <span
                 className='b mr2 ph2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
                 onClick={changeColor}>
-                Set Color
+                Change Color
               </span>
             </div>
 
@@ -330,12 +338,12 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
         </div>
         <div className='flex'>
           <div className='mt3'>
-            <span
+            <div
               className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'
               onClick={handleSubmit}>
-              {' '}
+              {loading && <i className='fa fa-spinner fa-spin' />}{' '}
               {submitAction}
-            </span>
+            </div>
           </div>
           {!newGame ? (
             <div className='mt3'>

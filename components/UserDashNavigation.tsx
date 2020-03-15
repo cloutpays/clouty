@@ -29,10 +29,6 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
   }, []);
   return (
     <>
-      <link
-        rel='stylesheet'
-        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
-      />
       <nav className='w-100 mb0-l ph3-m ph3-l flex center'>
         <div className='mr5'>
           <h2 className='ttu mt0 mb2 f6 fw5 silver'>Manage</h2>
