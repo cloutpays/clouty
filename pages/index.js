@@ -1,5 +1,6 @@
 import { styles } from '../constants/styles';
 import DemoForm from '../components/DemoForm';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../components/Wrapper';
@@ -29,7 +30,9 @@ const Home = ({ questions }) => (
         </div>
         <section className='mt3 w-100 dib pv4 flex items-center justify-center '>
           <div className='b pa3 mr2  input-reset ba b--black bg-transparent grow pointer f4'>
-            Sign Up
+            <Link href='/signup'>
+              <a className='no-underline black'>Sign Up</a>
+            </Link>
           </div>
           <div className='b pa3 mr2 input-reset ba  bg-black b--black white grow pointer f4'>
             Learn More
@@ -39,6 +42,23 @@ const Home = ({ questions }) => (
           Bets of the Week
         </h2>
         <section className='flex flex-wrap'>
+          {questions.map((curr) => {
+            return (
+              <div className='pv2 pa2-ns w-100 w-50-ns' key={curr.question}>
+                <div className='white br2 shadow-4 pa3 pa4-ns h-100 grow mark-gierl'>
+                  <h1 className='f4 mt0 fw7'>
+                    <span role='img'>🥊</span> Game #{curr.question}
+                  </h1>
+                  <p>
+                    Don Toliver and Jack Harlow both dropped projects last night
+                    with “Heaven or Hell” , and “Sweet Action”. Who will have
+                    the higher number of sales 1st week?
+                  </p>
+                  <DemoForm game={questions[7]} />
+                </div>
+              </div>
+            );
+          })}
           <div className='pv2 pa2-ns w-100 w-50-ns'>
             <div className='white br2 shadow-4 pa3 pa4-ns h-100 grow mark-gierl'>
               <h1 className='f4 mt0 fw7'>
