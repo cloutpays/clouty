@@ -3,7 +3,7 @@ import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 import Router from 'next/router';
 import React, { useState } from 'react';
-import colorways from '../lib/colorways';
+import { colorways } from '../lib/helpers';
 interface Option {
   value: string;
 }
