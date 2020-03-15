@@ -20,9 +20,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
   const [wager, setWager] = useState<number[]>([1, 5, 10, 20, 50]);
 
   const wageSelected = wager.length === 1;
+  const betSelected = options.length === 1;
   const canAffordWager = wager[0] < user.stripe.user.balance / 100;
   const readyToPlay = wager.length + options.length === 2;
-
+  const resetRender = betSelected || wageSelected;
   const confirmAnswer = (answer: any) => {
     setOptions([{ value: answer }]);
     setAnswer(answer);
@@ -90,11 +91,13 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
           />
           <br />
           <div>
-            <span
-              onClick={resetGame}
-              className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
-              <span className='pl1 sans-serif'>Reset</span>
-            </span>
+            {resetRender && (
+              <span
+                onClick={resetGame}
+                className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
+                <span className='pl1 sans-serif'>Reset</span>
+              </span>
+            )}
             {readyToPlay && canAffordWager && wageSelected && (
               <span
                 onClick={handleSubmit}
