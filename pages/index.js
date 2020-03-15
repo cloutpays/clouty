@@ -114,17 +114,15 @@ const Home = ({ questions }) => (
                 href='https://geo.itunes.apple.com/us/album/untitled-unmastered./id1089846273?at=1l3vqFJ&mt=1&app=music'
                 className='db link dim tc'>
                 <img
-                  src='http://is5.mzstatic.com/image/thumb/Music49/v4/1b/36/43/1b3643c6-e6a3-41bc-7f6d-7c2b64b5d60b/source/400x40000bb.png'
+                  src='https://ssla.ulximg.com/image/750x750/cover/1584077338_165f8d2a6837010530db8217968bb1e4.jpg/72170d0cb246d618ac1549bbb1631bd1/1584077338_d76498d52286f7223a6b47f796224344.jpg'
                   alt='Kendrick Lamar untitled unmastered. Album Cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
                   <dt className='clip'>Title</dt>
-                  <dd className='ml0 black truncate w-100'>
-                    untitled umastered.
-                  </dd>
+                  <dd className='ml0 black truncate w-100'>Sweet Action</dd>
                   <dt className='clip'>Artist</dt>
-                  <dd className='ml0 gray truncate w-100'>Kendrick Lamar</dd>
+                  <dd className='ml0 gray truncate w-100'>Jack Harlow</dd>
                 </dl>
               </a>
             </div>
@@ -133,15 +131,15 @@ const Home = ({ questions }) => (
                 href='https://geo.itunes.apple.com/us/album/99.9/id1092026376?at=1l3vqFJ&mt=1&app=music'
                 className='db link dim tc'>
                 <img
-                  src='http://is4.mzstatic.com/image/thumb/Music49/v4/e9/4c/2d/e94c2d5f-bdb0-c565-4cc2-f9dfcf7f0b87/source/400x40000bb.png'
+                  src='https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/fv9exqwsgrwcymbd1btv/rich-the-kid'
                   alt='Kaytranada 99%'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
                   <dt className='clip'>Title</dt>
-                  <dd className='ml0 black truncate w-100'>99%</dd>
+                  <dd className='ml0 black truncate w-100'>Boss Man</dd>
                   <dt className='clip'>Artist</dt>
-                  <dd className='ml0 gray truncate w-100'>Kaytranada</dd>
+                  <dd className='ml0 gray truncate w-100'>Rich the Kid</dd>
                 </dl>
               </a>
             </div>
@@ -150,15 +148,15 @@ const Home = ({ questions }) => (
                 href='https://geo.itunes.apple.com/us/album/aa/id1067924003?at=1l3vqFJ&mt=1&app=music'
                 className='db link dim tc'>
                 <img
-                  src='http://is3.mzstatic.com/image/thumb/Music49/v4/b6/b0/a1/b6b0a1dd-998d-9786-ca2f-87470be15250/source/400x40000bb.png'
+                  src='https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/sdxhbfaip2aklfvv40zx/blueface-find-the-beat-stream'
                   alt='Baauer Aa - Album Cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
                   <dt className='clip'>Title</dt>
-                  <dd className='ml0 black truncate w-100'>Aa</dd>
+                  <dd className='ml0 black truncate w-100'>Find The Beat</dd>
                   <dt className='clip'>Artist</dt>
-                  <dd className='ml0 gray truncate w-100'>Baauer</dd>
+                  <dd className='ml0 gray truncate w-100'>Blueface</dd>
                 </dl>
               </a>
             </div>
@@ -167,15 +165,17 @@ const Home = ({ questions }) => (
                 href='https://geo.itunes.apple.com/us/album/99-cents/id1054734475?at=1l3vqFJ&mt=1&app=music'
                 className='db link dim tc'>
                 <img
-                  src='http://is3.mzstatic.com/image/thumb/Music62/v4/fa/ae/a6/faaea65f-0819-bb5d-afaa-4f5e84015204/source/400x40000bb.png'
+                  src='https://static.stereogum.com/uploads/2020/03/Jay-Electronica-A-Written-Testimony-1584129087-640x640.jpeg'
                   alt='Santigold 99 cents - Album cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
                   <dt className='clip'>Title</dt>
-                  <dd className='ml0 black truncate w-100'>99 cents</dd>
+                  <dd className='ml0 black truncate w-100'>
+                    A Written Testimony
+                  </dd>
                   <dt className='clip'>Artist</dt>
-                  <dd className='ml0 gray truncate w-100'>Santigold</dd>
+                  <dd className='ml0 gray truncate w-100'>Jay Electronica</dd>
                 </dl>
               </a>
             </div>
@@ -184,17 +184,15 @@ const Home = ({ questions }) => (
                 href='https://geo.itunes.apple.com/us/album/a-moon-shaped-pool/id1111577743?at=1l3vqFJ&mt=1&app=music'
                 className='db link dim tc'>
                 <img
-                  src='http://is2.mzstatic.com/image/thumb/Music18/v4/34/03/34/34033451-12e2-2d0b-c100-11a390922a01/source/400x40000bb.png'
+                  src='https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Pop_Smoke_-_Meet_the_Woo_2.png/220px-Pop_Smoke_-_Meet_the_Woo_2.png'
                   alt='A Moon Shaped Pool - Album cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
                   <dt className='clip'>Title</dt>
-                  <dd className='ml0 black truncate w-100'>
-                    A Moon Shaped Pool
-                  </dd>
+                  <dd className='ml0 black truncate w-100'>Meet the Woo 2</dd>
                   <dt className='clip'>Artist</dt>
-                  <dd className='ml0 gray truncate w-100'>Radiohead</dd>
+                  <dd className='ml0 gray truncate w-100'>Pop Smoke</dd>
                 </dl>
               </a>
             </div>
@@ -203,17 +201,15 @@ const Home = ({ questions }) => (
                 href='https://geo.itunes.apple.com/us/album/the-life-of-pablo/id1123231885?at=1l3vqFJ&mt=1&app=music'
                 className='db link dim tc'>
                 <img
-                  src='http://is3.mzstatic.com/image/thumb/Music20/v4/c0/98/d0/c098d05b-7bcc-0ea3-0213-0f69992fda65/source/400x40000bb.png'
+                  src='https://images.genius.com/65fa2295b92218e5c10cbed945537758.1000x1000x1.jpg'
                   alt='The Life of Pablo - Album Cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
                   <dt className='clip'>Title</dt>
-                  <dd className='ml0 black truncate w-100'>
-                    The Life of Pablo
-                  </dd>
+                  <dd className='ml0 black truncate w-100'>Fuck The World</dd>
                   <dt className='clip'>Artist</dt>
-                  <dd className='ml0 gray truncate w-100'>Kanye West</dd>
+                  <dd className='ml0 gray truncate w-100'>Brent Faiyaz</dd>
                 </dl>
               </a>
             </div>
@@ -222,15 +218,15 @@ const Home = ({ questions }) => (
                 href='https://geo.itunes.apple.com/us/album/coloring-book/id1113239004?at=1l3vqFJ&mt=1&app=music'
                 className='db link dim tc'>
                 <img
-                  src='http://is2.mzstatic.com/image/thumb/Music18/v4/5a/42/0f/5a420f73-6490-abc9-bdcc-3001d5c4e9fc/source/400x40000bb.png'
+                  src='https://media.pitchfork.com/photos/5e5d8aa3230d040009b1f403/1:1/w_600/PTSD_G%20Herbo.jpg'
                   alt='Coloring Book - Album cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
                   <dt className='clip'>Title</dt>
-                  <dd className='ml0 black truncate w-100'>Coloring Book</dd>
+                  <dd className='ml0 black truncate w-100'>PTSD</dd>
                   <dt className='clip'>Artist</dt>
-                  <dd className='ml0 gray truncate w-100'>Chance the Rapper</dd>
+                  <dd className='ml0 gray truncate w-100'>G Herbo</dd>
                 </dl>
               </a>
             </div>
@@ -239,17 +235,15 @@ const Home = ({ questions }) => (
                 href='https://geo.itunes.apple.com/us/album/everybody-looking/id1135576036?at=1l3vqFJ&mt=1&app=music'
                 className='db link dim tc'>
                 <img
-                  src='http://is4.mzstatic.com/image/thumb/Music30/v4/9b/2e/e1/9b2ee13e-35fd-0cc1-d203-e65b4beafc7f/source/400x40000bb.png'
+                  src='https://media.pitchfork.com/photos/5e56ce610e27b00008f7b845/1:1/w_320/My%20Turn_Lil%20Baby.jpg'
                   alt='Everybody Looking - Album Cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
                   <dt className='clip'>Title</dt>
-                  <dd className='ml0 black truncate w-100'>
-                    Everybody Looking
-                  </dd>
+                  <dd className='ml0 black truncate w-100'>My Turn</dd>
                   <dt className='clip'>Artist</dt>
-                  <dd className='ml0 gray truncate w-100'>Gucci Mane</dd>
+                  <dd className='ml0 gray truncate w-100'>Lil Baby</dd>
                 </dl>
               </a>
             </div>
