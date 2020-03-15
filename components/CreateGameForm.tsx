@@ -69,7 +69,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
 
   const number = newGame
     ? (
-        questions.filter((curr) => curr.gameType !== 'grammy').length + 3
+        questions.filter((curr) => curr.gameType !== 'grammy').length + 4
       ).toString()
     : game.question;
 
