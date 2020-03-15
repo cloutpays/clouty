@@ -45,7 +45,7 @@ const submissionsRemovalApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
   const { id } = query;
   console.log(id);
-  return await db.collection(cloutpays).remove({ _id: ObjectId(id) });
+  return await db.collection(cloutpays).removeOne({ _id: ObjectId(id) });
 });
 const submissionsRetrieveApi = wrapAsync(
   async (req, db) =>
@@ -188,7 +188,7 @@ const questionRetrieveApi = wrapAsync(async (req, db) => {
 const questionRemoveApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
   const id = query.id;
-  return await db.collection(question).remove({ slug: id });
+  return await db.collection(question).removeOne({ slug: id });
 });
 
 module.exports = {
