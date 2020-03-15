@@ -5,7 +5,7 @@ import Wrapper from '../../../components/Wrapper';
 const ConfirmSubmission = () => {
   const data = {
     title: 'Confirmation',
-    description: 'Your Submission has been received!',
+    description: 'Your submission has been received!',
   };
   return (
     <Wrapper data={data}>
