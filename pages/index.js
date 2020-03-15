@@ -31,7 +31,7 @@ const Home = ({ questions }) => (
           <div className='b pa3 mr2  input-reset ba b--black bg-transparent grow pointer f4'>
             Sign Up
           </div>
-          <div className='b pa3 mr2 input-reset ba b--black bg-transparent grow pointer f4'>
+          <div className='b pa3 mr2 input-reset ba  bg-black b--black white grow pointer f4'>
             Learn More
           </div>
         </section>
