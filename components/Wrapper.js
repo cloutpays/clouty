@@ -22,7 +22,7 @@ export default class Wrapper extends Component {
       return (
         <header className={`${styles.wrapper}`}>
           <div className='measure-wide mt5 mb4'>
-            <h2 className='f3 f2-ns mv0 near-black mb0'>
+            <h2 className='f3 fw8 f2-ns mv0 near-black mb0'>
               {this.props.data.header}
             </h2>
           </div>
