@@ -2,66 +2,15 @@ import { ObjectId } from 'mongodb';
 import { json } from 'micro';
 import { updateUser } from './user';
 const { parse } = require('url');
-const cors = require('micro-cors')();
-const client = require('twilio')(
-  process.env.TWILIO_SID,
-  process.env.TWILIO_TOKEN,
-);
-import { cloutpays, dev, question, user, wrapAsync } from '../helpers';
 
-const sendTextMessage = async (name, type, phoneNumber) => {
-  const body = {
-    winner: `✅ Congratulations, you came out on top! Your earnings have been added to your balance 🏆`,
-    loss: `🎲 Unfortunately, your prediction was inaccurate. Better luck next time! 🎰`,
-    confirm: `Thank you for placing a bet on Clouty ${name}! This is confirmation that your wager is secure. Let the games begin`,
-  };
-  try {
-    const message = await client.messages.create({
-      body: body[type],
-
-      from: '+14154172439',
-      to: phoneNumber,
-    });
-    console.log(`Request sent: ${message.sid} - ${name}`);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const gameSubmitApi = wrapAsync(async (req, db) => {
-  const data = await json(req);
-  const { wager, phoneNumber, name } = data.userSubmission;
-  const { user } = data;
-  const { balance } = user.stripe.user;
-  user.stripe.user.balance = balance - wager * 100;
-  await updateUser(user, db);
-  if (!dev) {
-    await sendTextMessage(name, 'confirm', phoneNumber);
-  }
-  return await db.collection(cloutpays).insertOne(data.userSubmission);
-});
-
-const submissionsRemovalApi = wrapAsync(async (req, db) => {
-  const { query } = parse(req.url, true);
-  const { id } = query;
-  console.log(id);
-  return await db.collection(cloutpays).removeOne({ _id: ObjectId(id) });
-});
-const submissionsRetrieveApi = wrapAsync(
-  async (req, db) =>
-    await db
-      .collection(cloutpays)
-      .find()
-      .toArray(),
-);
-const userSubmissionsRetrieveApi = wrapAsync(async (req, db) => {
-  const { query } = parse(req.url, true);
-  const { id } = query;
-  return await db
-    .collection(cloutpays)
-    .find({ userId: id })
-    .toArray();
-});
+import {
+  cloutpays,
+  dev,
+  question,
+  sendTextMessage,
+  user,
+  wrapAsync,
+} from '../helpers';
 
 const handlePayouts = async (entries, db) => {
   const modifiedUsers = entries.map((entry) => {
@@ -138,8 +87,42 @@ const updateSubmissions = async (entries, answer, db) => {
     return console.log(err);
   }
 };
+export const gameSubmitApi = wrapAsync(async (req, db) => {
+  const data = await json(req);
+  const { wager, phoneNumber, name } = data.userSubmission;
+  const { user } = data;
+  const { balance } = user.stripe.user;
+  user.stripe.user.balance = balance - wager * 100;
+  await updateUser(user, db);
+  if (!dev) {
+    await sendTextMessage(name, 'confirm', phoneNumber);
+  }
+  return await db.collection(cloutpays).insertOne(data.userSubmission);
+});
 
-const questionSubmitApi = wrapAsync(async (req, db) => {
+export const submissionsRemovalApi = wrapAsync(async (req, db) => {
+  const { query } = parse(req.url, true);
+  const { id } = query;
+  console.log(id);
+  return await db.collection(cloutpays).remove({ _id: ObjectId(id) });
+});
+export const submissionsRetrieveApi = wrapAsync(
+  async (req, db) =>
+    await db
+      .collection(cloutpays)
+      .find()
+      .toArray(),
+);
+export const userSubmissionsRetrieveApi = wrapAsync(async (req, db) => {
+  const { query } = parse(req.url, true);
+  const { id } = query;
+  return await db
+    .collection(cloutpays)
+    .find({ userId: id })
+    .toArray();
+});
+
+export const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   const entries = await db
     .collection(cloutpays)
@@ -161,14 +144,14 @@ const questionSubmitApi = wrapAsync(async (req, db) => {
     .findOneAndReplace({ slug: data.slug }, data, { upsert: true });
 });
 
-const userQuestionSubmitApi = wrapAsync(async (req, db) => {
+export const userQuestionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   return await db
     .collection('userquestion')
     .findOneAndReplace({ slug: data.slug }, data, { upsert: true });
 });
 
-const questionsRetrieveApi = wrapAsync(
+export const questionsRetrieveApi = wrapAsync(
   async (req, db) =>
     await db
       .collection(question)
@@ -176,7 +159,7 @@ const questionsRetrieveApi = wrapAsync(
       .toArray(),
 );
 
-const questionRetrieveApi = wrapAsync(async (req, db) => {
+export const questionRetrieveApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
   const id = query.id;
   return await db
@@ -185,20 +168,8 @@ const questionRetrieveApi = wrapAsync(async (req, db) => {
     .toArray();
 });
 
-const questionRemoveApi = wrapAsync(async (req, db) => {
+export const questionRemoveApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
   const id = query.id;
   return await db.collection(question).removeOne({ slug: id });
 });
-
-module.exports = {
-  gameSubmitApi: cors(gameSubmitApi),
-  submissionsRetrieveApi: cors(submissionsRetrieveApi),
-  questionsRetrieveApi: cors(questionsRetrieveApi),
-  questionRetrieveApi: cors(questionRetrieveApi),
-  questionSubmitApi: cors(questionSubmitApi),
-  questionRemoveApi: cors(questionRemoveApi),
-  userSubmissionsRetrieveApi: cors(userSubmissionsRetrieveApi),
-  userQuestionSubmitApi: cors(userQuestionSubmitApi),
-  submissionsRemovalApi: cors(submissionsRemovalApi),
-};

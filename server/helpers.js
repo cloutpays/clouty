@@ -1,6 +1,11 @@
 const connect = require('./helpers/db');
-
-export const dev =
+const cors = require('micro-cors')();
+const nodemailer = require('nodemailer');
+const client = require('twilio')(
+  process.env.TWILIO_SID,
+  process.env.TWILIO_TOKEN,
+);
+const dev =
   process.env.ENV === 'development' || process.env.NODE_ENV === 'development';
 export const question = dev ? 'questiondev' : 'question';
 export const cloutpays = dev ? 'cloutpaysdev' : 'cloutpays';
@@ -9,24 +14,80 @@ export const payout = dev ? 'payoutdev' : 'payout';
 export const stripeSecret = dev
   ? process.env.STRIPE_SECRET_DEV
   : process.env.STRIPE_SECRET_PROD;
-export const stripeClient = dev
-  ? process.env.STRIPE_CLIENT_DEV
-  : process.env.STRIPE_CLIENT_PROD;
 
 export const wrapAsync = (handler) => async (req, res) => {
   const db = await connect();
-  return handler(req, db)
-    .then((result) => {
-      res.setHeader(
-        'cache-control',
-        's-maxage=1 maxage=0, stale-while-revalidate',
-      );
-      return res.json(result);
-    })
-    .catch((error) => res.status(500).json({ error: error.message }));
+  return cors(
+    handler(req, db)
+      .then((result) => {
+        res.setHeader(
+          'cache-control',
+          's-maxage=1 maxage=0, stale-while-revalidate',
+        );
+        return res.json(result);
+      })
+      .catch((error) => res.status(500).json({ error: error.message })),
+  );
 };
 
-export const emailContent = `<div
+export const sendEmail = async (email, content) => {
+  try {
+    // Generate test SMTP service account from ethereal.email
+
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+      host: 'smtp-relay.sendinblue.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'ebrima.jobe92@gmail.com', // generated ethereal user
+        pass: process.env.NODEMAILER, // generated ethereal password
+      },
+    });
+    const message = content.content;
+
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: `"Clouty" <info@clouty.io>`, // sender address
+      to: email, // list of receivers
+      subject: content.subject, // Subject line
+      text: message, // plain text body
+      html: message, // html body
+    });
+
+    console.log('Message sent: %s', info.messageId);
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+    // Preview only available when sending through an Ethereal account
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const sendTextMessage = async (name, type, phoneNumber) => {
+  const body = {
+    winner: `✅ Congratulations, you came out on top! Your earnings have been added to your balance 🏆`,
+    loss: `🎲 Unfortunately, your prediction was inaccurate. Better luck next time! 🎰`,
+    confirm: `Thank you for placing a bet on Clouty ${name}! This is confirmation that your wager is secure. Let the games begin`,
+  };
+  try {
+    const message = await client.messages.create({
+      body: body[type],
+
+      from: '+14154172439',
+      to: phoneNumber,
+    });
+    console.log(`Request sent: ${message.sid} - ${name}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const welcomeEmailContent = {
+  subject: `Welcome To Clouty`,
+  content: `<div
   valign="top"
   class="headerContainer"
   style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"
@@ -411,4 +472,5 @@ export const emailContent = `<div
   </table>
 </div>
 
-`;
+`,
+};
