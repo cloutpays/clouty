@@ -9,16 +9,18 @@ const DemoForm: React.FC<DemoFormProps> = ({ game }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [playText, setPlayText] = useState<string>('Play');
   const [options, setOptions] = useState<any>(game.options);
-  const [wager, setWager] = useState<number[]>([1, 5, 10, 20, 50]);
+  const [wager, setWager] = useState<number[]>([5, 10, 20]);
 
   const wageSelected = wager.length === 1;
   const readyToPlay = wager.length + options.length === 2;
+  const betSelected = options.length === 1;
+  const resetRender = betSelected || wageSelected;
 
   const confirmAnswer = (answer: any) => {
     setOptions([{ value: answer }]);
   };
   const resetGame = () => {
-    setWager([Number(1), Number(5), Number(10), Number(20), Number(50)]);
+    setWager([Number(5), Number(10), Number(20)]);
     setOptions(game.options);
   };
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
@@ -61,11 +63,13 @@ const DemoForm: React.FC<DemoFormProps> = ({ game }) => {
           />
           <br />
           <div>
-            <span
-              onClick={resetGame}
-              className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
-              <span className='pl1 sans-serif'>Reset</span>
-            </span>
+            {resetRender && (
+              <span
+                onClick={resetGame}
+                className='bg-white-30 pv1 pl2 pr3 f7 f6-ns br-pill b noselect'>
+                <span className='pl1 sans-serif'>Reset</span>
+              </span>
+            )}
             {readyToPlay && wageSelected && (
               <span
                 onClick={handleSubmit}
