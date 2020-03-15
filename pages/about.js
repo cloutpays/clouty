@@ -8,7 +8,7 @@ const data = {
 };
 const Home = () => (
   <div>
-    <Wrapper data={data} className='measure-wide'>
+    <Wrapper data={data}>
       <section>
         <p className={`${styles.paragraph}`}>
           The idea was initially birthed in December &apos;19, after our

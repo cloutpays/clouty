@@ -14,7 +14,7 @@ const PayoutSettings = ({ user, submissions }) => {
     header: `Welcome, ${user.info.firstName}!`,
   };
   return (
-    <Wrapper data={data} user={user} className='measure-wide'>
+    <Wrapper data={data} user={user}>
       <main>
         <UserDashNavigation user={user} />
         <div className='mw8 center ph3' id='dashboard'>

@@ -8,7 +8,7 @@ const data = {
 };
 const Faq = () => (
   <div>
-    <Wrapper data={data} className='measure-wide'>
+    <Wrapper data={data}>
       <strong>Is this really real?</strong>
       <p>
         Yes. Clouty is ran by a team who are always on the other side making

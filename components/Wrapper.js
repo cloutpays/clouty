@@ -21,8 +21,8 @@ export default class Wrapper extends Component {
     if (this.props.data.header) {
       return (
         <header className={`${styles.wrapper}`}>
-          <div className='measure-wide mt5 mb4'>
-            <h2 className='f3 fw8 f2-ns mv0 near-black mb0'>
+          <div className='mt5 mb4'>
+            <h2 className='f3 fw8 f2-ns mv0 tc db near-black mb0'>
               {this.props.data.header}
             </h2>
           </div>

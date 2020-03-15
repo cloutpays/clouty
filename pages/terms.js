@@ -7,7 +7,7 @@ const data = {
 };
 const Terms = () => (
   <div>
-    <Wrapper data={data} className='measure-wide'>
+    <Wrapper data={data}>
       <p className='f5 b'>USER AGREEMENT</p>
       <p className='f5'>
         Clouty owns and operates the Website that links to these Terms of Use.
