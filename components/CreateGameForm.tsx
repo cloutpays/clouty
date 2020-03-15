@@ -66,9 +66,9 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   const newGame = game ? false : true;
   const grammy = game && game.gameType === 'grammy';
 
-  const number = !game
+  const number = newGame
     ? (
-        questions.filter((curr) => curr.gameType !== 'grammy').length + 1
+        questions.filter((curr) => curr.gameType !== 'grammy').length + 3
       ).toString()
     : game.question;
 
