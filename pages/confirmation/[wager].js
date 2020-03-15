@@ -4,7 +4,7 @@ import Wrapper from '../../components/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
-  header: 'Your Submission been received!',
+  header: 'Your Submission has been received!',
 };
 const Confirmation = () => (
   <div>
