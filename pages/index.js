@@ -34,8 +34,11 @@ const Home = ({ questions }) => (
               <a className='no-underline black'>Sign Up</a>
             </Link>
           </div>
-          <div className='b pa3 mr2 input-reset ba  bg-black b--black white grow pointer f4'>
-            Learn More
+          <div className='b pa3 mr2 input-reset ba bg-black b--black grow pointer f4'>
+            {' '}
+            <Link href='/learnmore'>
+              <a className='no-underline white'>Learn More</a>
+            </Link>
           </div>
         </section>
         <h2 className='f3 f-subheadline-l measure lh-title fw7'>
