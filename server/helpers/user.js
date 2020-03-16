@@ -15,7 +15,7 @@ export const userRetrieveApi = wrapAsync(async function(req, db) {
   return await db.collection(user).findOne({ _id: id });
 });
 
-const updateUser = async (firebaseUser, db) => {
+export const updateUser = async (firebaseUser, db) => {
   const newUser = await db.collection(user).findOneAndUpdate(
     { _id: firebaseUser.firebase.uid },
     {
