@@ -28,6 +28,7 @@ const DemoForm: React.FC<DemoFormProps> = ({ game }) => {
       setLoading(true);
       setPlayText('Playing...');
       event.preventDefault();
+      window.location.href = '/signup';
     }
   };
   return (
