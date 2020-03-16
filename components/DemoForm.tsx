@@ -47,7 +47,7 @@ const DemoForm: React.FC<DemoFormProps> = ({ game }) => {
                     <div
                       onClick={() => setWager([Number(wage)])}
                       key={ind}
-                      className='noselect grow outline dim pa2 mr2 mt2'>
+                      className='noselect outline dim pa2 mr2 mt2'>
                       <strong>${wage}</strong>
                     </div>
                   );
