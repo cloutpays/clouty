@@ -21,7 +21,7 @@ const Home = ({ questions }) => (
         </h1>
         <div>
           <p className={`${styles.paragraph}`}>
-            Every week, we will host live bets about the latest releases and
+            Every week, we host live bets about the latest releases and
             predictions in the rap game.{' '}
           </p>
           <p className={`${styles.paragraph}`}>
