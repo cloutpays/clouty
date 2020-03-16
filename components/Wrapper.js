@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import Footer from './Footer';
 import Navigation from './Navigation';
 
+import { getCookieFromBrowser } from '../lib/session';
 import { initGA, logPageView } from '../lib/helpers';
 import { styles } from '../constants/styles';
 
@@ -22,9 +23,7 @@ export default class Wrapper extends Component {
       return (
         <header className={`${styles.wrapper}`}>
           <div className='mt5 mb4'>
-            <h2 className='f3 fw8 f2-ns mv0 tc db near-black mb0'>
-              {this.props.data.header}
-            </h2>
+            <h2 className={`${styles.h2}`}>{this.props.data.header}</h2>
           </div>
         </header>
       );
@@ -33,6 +32,7 @@ export default class Wrapper extends Component {
   }
 
   render() {
+    const darkMode = getCookieFromBrowser('dark_mode') === 'true';
     const { data, user, className, children: content } = this.props;
 
     const title = data.title
@@ -56,12 +56,12 @@ export default class Wrapper extends Component {
           />
           <meta name='twitter:description' content={description} />
         </Head>
-        <Navigation user={user} />
+        <Navigation user={user} darkMode={darkMode} />
         {this.renderHeader()}
         <div className='mw8 center flex'>
           <main className={`mb5 w-100 ${cls}`}>{content}</main>
         </div>
-        <Footer />
+        <Footer darkMode={darkMode} />
       </div>
     );
   }

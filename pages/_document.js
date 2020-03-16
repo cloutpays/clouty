@@ -1,9 +1,15 @@
+import { getCookie, getCookieFromBrowser } from '../lib/session';
 import Document, { Head, Main, NextScript } from 'next/document';
 import React from 'react';
-
+import classNames from 'classnames';
+let dark = false;
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  static getInitialProps(ctx) {
+    const { renderPage, req } = ctx;
     const { html, head, errorHtml, chunks } = renderPage();
+    dark = req
+      ? getCookie('dark_mode', req) === 'true'
+      : getCookieFromBrowser('dark_mode') === 'true';
     return {
       html,
       head,
@@ -62,7 +68,16 @@ export default class MyDocument extends Document {
           <meta name='apple-mobile-web-app-title' content='Clouty' />
           <meta name='application-name' content='Clouty' />
         </Head>
-        <body className='sans-serif near-black f5 f4-ns'>
+        <body
+          className={classNames({
+            'sans-serif': true,
+            'near-white': dark,
+            'near-black': !dark,
+            'bg-black-90': dark,
+            'bg-white-90': !dark,
+            f5: true,
+            'f4-ns': true,
+          })}>
           <Main />
 
           <NextScript />

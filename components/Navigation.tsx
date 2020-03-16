@@ -1,10 +1,19 @@
+import classNames from 'classnames';
 import Link from 'next/link';
 import React from 'react';
 import { styles } from '../constants/styles';
 import { getCookieFromBrowser } from '../lib/session';
 
-const Navigation = () => {
+interface DarkModeProps {
+  darkMode: boolean;
+}
+
+const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
   const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;
+  const navLinks = ` ${styles.navigationLink} ${classNames({
+    'near-black': !darkMode,
+    'near-white': darkMode,
+  })}`;
   return (
     <nav className='mw8 center flex items-center mb5'>
       <Link href='/'>
@@ -25,15 +34,19 @@ const Navigation = () => {
           </li>
         )} */}
         <li className='mr2 mr4-ns'>
-          <a href='/games' className={`${styles.navigationLink}`}>
-            Games
-          </a>
+          <Link href='/user'>
+            <a href='/games' className={`${navLinks}`}>
+              Games
+            </a>
+          </Link>
         </li>
         {isLoggedIn && (
           <li className='mr2 mr4-ns'>
-            <a href='/user' className={`${styles.navigationLink}`}>
-              Profile
-            </a>
+            <Link href='/user'>
+              <a href='/user' className={`${navLinks}`}>
+                Profile
+              </a>
+            </Link>
           </li>
         )}
         {!isLoggedIn && (
@@ -41,7 +54,7 @@ const Navigation = () => {
             {/* <a href='/signup' className={`${styles.navigationLink}`}>
               <li className='mr2 mr4-ns'>Sign up </li>
             </a> */}
-            <a href='/login' className={`${styles.navigationLink}`}>
+            <a href='/login' className={`${navLinks}`}>
               <li className='mr2 mr4-ns'>Login</li>
             </a>
           </>
