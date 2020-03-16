@@ -53,7 +53,7 @@ const Home = ({ questions }) => (
                   <div
                     className={`white br2 shadow-4 pa3 pa4-ns h-100 grow ${curr.class}`}>
                     <h1 className='f4 mt0 fw7'>
-                      <span role='img'>🥊</span> Game #{curr.question}
+                      <span role='img'>{curr.emoji}</span> Game #{curr.question}
                     </h1>
                     <p>{curr.description}</p>
                     <DemoForm game={curr} />
