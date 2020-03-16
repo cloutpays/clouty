@@ -14,14 +14,9 @@ const Terms = () => (
       <div className={`lh-copy tc `}>
         <h2 className='f3 f2-l  lh-title fw8'>Betting Guidelines</h2>
         <p>
-          Every week, we host live bets about the latest releases and
-          predictions in the rap game.{' '}
-        </p>
-        <p>
           For an artist to qualify for one of our contests, their music must be
           on either the Big 3: Apple Music, Spotify, or Tidal. If they are only
           on Soundcloud and Youtube they may not qualify for certain bets.
-          {/* You can place up to a $50 wager on a  */}
         </p>
         <p>
           Every contestant will be notified on the results and you can earn REAL
