@@ -139,7 +139,7 @@ const Home = ({ questions, darkMode }) => (
               return (
                 <div className='pv2 pa2-ns w-100 w-50-ns' key={curr.question}>
                   <div
-                    className={`white br2 shadow-4 pa3 pa4-ns h-100 grow ${curr.class}`}>
+                    className={`white br2 shadow-4 pa3 pa4-ns h-100 ${curr.class}`}>
                     <h1 className='f4 mt0 fw7'>
                       <span role='img'>{curr.emoji}</span> Game #{curr.question}
                     </h1>
