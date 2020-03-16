@@ -22,17 +22,19 @@ const Games = ({ game, user, previousBet }) => {
   return (
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
-        <div className='dtc f6 b ma0 v-mid w-100 tr'>
+        <div className='dtc f6 b ma0 v-mid w-100 w-90-ns tr'>
           Current Balance: {formatPrice(user.stripe.user.balance / 100)}
         </div>
-        <div className='dtc f6 b ma0 v-mid w-100 tr'>
+        <div className='dtc f6 b ma0 v-mid w-100 w-90-ns tr'>
           <div className='noselect grow outline dim pv2 ph3 mr2 fr mt2'>
             <Link href='/user/balance'>
               <strong>ADD TO BALANCE</strong>
             </Link>
           </div>
         </div>
-        <div key={`work-${game.name}`} className='pv2 pa2-ns w-100 w-100-ns'>
+        <div
+          key={`work-${game.name}`}
+          className='pv2 pa2-ns w-100 center w-80-ns'>
           <a className='no-underline white'>
             <div
               className={`white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`}>

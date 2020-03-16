@@ -8,7 +8,7 @@ const data = {
 };
 const Login = () => (
   <div>
-    <Wrapper data={data} className='measure-wide'>
+    <Wrapper data={data}>
       <LoginForm mode={'login'} />
     </Wrapper>
   </div>

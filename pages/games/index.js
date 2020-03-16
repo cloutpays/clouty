@@ -31,7 +31,26 @@ const Games = ({ questions }) => {
             </div>
           </a>
         </div>
-
+        <div key='contact' className='pv2 pa2-ns w-100 w-50-ns'>
+          <Link href='https://clouty.substack.com/'>
+            <div className='white br2 shadow-4 grow pa3 pa4-ns h-100 xxl'>
+              <h1 className='f4 mt0 fw7'>XXL Freshman Class</h1>
+              <p>The upcoming Freshman Class of 2020 bets are almost here.</p>
+              <p>Sign up to our newsletter to be the first to know!</p>
+              <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
+                Sign Up
+                <span className='pl1 sans-serif'>→</span>
+              </span>
+              <span className='pv1 ph2 f7 fr f6-ns br-pill b'>
+                <img
+                  width='35px'
+                  height='23px'
+                  src='https://upload.wikimedia.org/wikipedia/commons/2/24/XXL_magazine.png'
+                />
+              </span>
+            </div>
+          </Link>
+        </div>
         {questions
           .reverse()
           .sort((a, b) => {
@@ -108,7 +127,9 @@ Games.getInitialProps = async ({ req }) => {
   const apiURL = `${origin}`;
   const res = await axios.get(`${apiURL}/api/questions`);
   const questions = res.data;
-  return { questions: questions.filter((game) => game.gameType === 'game') };
+  return {
+    questions: questions.filter((game) => game.gameType === 'game'),
+  };
 };
 Games.propTypes = {
   questions: PropTypes.array,

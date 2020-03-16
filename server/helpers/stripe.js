@@ -21,7 +21,7 @@ const updateStripeUser = async (paymentIntent, db) => {
   );
   return newUser.value;
 };
-const payoutApi = wrapAsync(async (req, db) => {
+export const payoutApi = wrapAsync(async (req, db) => {
   const data = (await json(req)).data;
   let { user, payoutRequest } = data;
   if (user) {
@@ -42,7 +42,8 @@ const payoutApi = wrapAsync(async (req, db) => {
     return await db.collection(payout).insertOne(payoutRequest);
   }
 });
-const payoutsByUserApi = wrapAsync(async (req, db) => {
+
+export const payoutsByUserApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
   const { id } = query;
   return await db
@@ -50,14 +51,15 @@ const payoutsByUserApi = wrapAsync(async (req, db) => {
     .find({ userId: id })
     .toArray();
 });
-const allPayoutsApi = wrapAsync(async (req, db) => {
+
+export const allPayoutsApi = wrapAsync(async (req, db) => {
   return await db
     .collection(payout)
     .find()
     .toArray();
 });
 
-const stripeApi = wrapAsync(async (req, db) => {
+export const stripeApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
   const { id, userId } = query;
 
@@ -87,7 +89,7 @@ const stripeApi = wrapAsync(async (req, db) => {
   return session;
 });
 
-const hookApi = wrapAsync(async (req, db) => {
+export const hookApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   switch (data.type) {
     case 'payment_intent.succeeded':
@@ -105,10 +107,3 @@ const hookApi = wrapAsync(async (req, db) => {
       return true;
   }
 });
-module.exports = {
-  stripeApi,
-  hookApi,
-  payoutApi,
-  payoutsByUserApi,
-  allPayoutsApi,
-};

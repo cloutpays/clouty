@@ -8,7 +8,7 @@ const data = {
 };
 const Confirmation = () => (
   <div>
-    <Wrapper data={data} className='measure-wide'>
+    <Wrapper data={data}>
       <section>
         <p className={`${styles.paragraph}`}>
           Your wager has been entered into our system. May the odds forever be

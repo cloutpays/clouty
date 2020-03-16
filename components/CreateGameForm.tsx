@@ -3,7 +3,7 @@ import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 import Router from 'next/router';
 import React, { useState } from 'react';
-import colorways from '../lib/colorways';
+import { colorways } from '../lib/helpers';
 interface Option {
   value: string;
 }
@@ -96,6 +96,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
       type: 'select',
       gameType,
       slug,
+      date: new Date(),
       extendedAnswer: answer,
       class: colorway,
       question: number,

@@ -10,7 +10,7 @@ const data = {
 };
 const Home = () => (
   <div>
-    <Wrapper data={data} className='measure-wide'>
+    <Wrapper data={data}>
       <section>
         <p className={`${styles.paragraph}`}>
           Welcome to{' '}
