@@ -71,11 +71,10 @@ const Home = ({ questions }) => (
           <div className='cf pa2'>
             <div className='fl w-50 w-25-m w-20-l pa2'>
               <a
-                href='https://geo.itunes.apple.com/us/album/blonde/id1146195596?at=1l3vqFJ&mt=1&app=music'
+                href='https://open.spotify.com/album/7z4GhRfLqfSkqrj5F3Yt2B'
                 className='db link dim tc'>
                 <img
                   src='https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/mhgdsrhn3a90ytkkkw3x/don-toliver-heaven-or-hell-stream'
-                  alt='Frank Ocean Blonde Album Cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
@@ -88,11 +87,10 @@ const Home = ({ questions }) => (
             </div>
             <div className='fl w-50 w-25-m w-20-l pa2'>
               <a
-                href='https://geo.itunes.apple.com/us/album/jeffery/id1146718343?at=1l3vqFJ&mt=1&app=music'
+                href='https://open.spotify.com/album/0fEO7g2c5onkaXsybEtuD2'
                 className='db link dim tc'>
                 <img
                   src='https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/ebjrkgp7iu5fajw98mzn/lil-uzi-vert-eternal-atake-deluxe-stream'
-                  alt='Young Thug - Jeffery Album Cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
@@ -107,7 +105,7 @@ const Home = ({ questions }) => (
             </div>
             <div className='fl w-50 w-25-m w-20-l pa2'>
               <a
-                href='https://geo.itunes.apple.com/us/album/untitled-unmastered./id1089846273?at=1l3vqFJ&mt=1&app=music'
+                href='https://open.spotify.com/album/7AaqMMiYMvnMB3RcS8u3EY'
                 className='db link dim tc'>
                 <img
                   src='https://ssla.ulximg.com/image/750x750/cover/1584077338_165f8d2a6837010530db8217968bb1e4.jpg/72170d0cb246d618ac1549bbb1631bd1/1584077338_d76498d52286f7223a6b47f796224344.jpg'
@@ -124,7 +122,7 @@ const Home = ({ questions }) => (
             </div>
             <div className='fl w-50 w-25-m w-20-l pa2'>
               <a
-                href='https://geo.itunes.apple.com/us/album/99.9/id1092026376?at=1l3vqFJ&mt=1&app=music'
+                href='https://open.spotify.com/album/1YOx6ZVgiv9GEluUwBWevi'
                 className='db link dim tc'>
                 <img
                   src='https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/fv9exqwsgrwcymbd1btv/rich-the-kid'
@@ -141,11 +139,10 @@ const Home = ({ questions }) => (
             </div>
             <div className='fl w-50 w-25-m w-20-l pa2'>
               <a
-                href='https://geo.itunes.apple.com/us/album/aa/id1067924003?at=1l3vqFJ&mt=1&app=music'
+                href='https://open.spotify.com/album/2BLEkA5FiMxrp1ldVn4Ajqc'
                 className='db link dim tc'>
                 <img
                   src='https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/sdxhbfaip2aklfvv40zx/blueface-find-the-beat-stream'
-                  alt='Baauer Aa - Album Cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
@@ -158,11 +155,10 @@ const Home = ({ questions }) => (
             </div>
             <div className='fl w-50 w-25-m w-20-l pa2'>
               <a
-                href='https://geo.itunes.apple.com/us/album/99-cents/id1054734475?at=1l3vqFJ&mt=1&app=music'
+                href='https://open.spotify.com/album/0ZJt4dCoI19u71k37E1nQu'
                 className='db link dim tc'>
                 <img
                   src='https://static.stereogum.com/uploads/2020/03/Jay-Electronica-A-Written-Testimony-1584129087-640x640.jpeg'
-                  alt='Santigold 99 cents - Album cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
@@ -177,11 +173,10 @@ const Home = ({ questions }) => (
             </div>
             <div className='fl w-50 w-25-m w-20-l pa2'>
               <a
-                href='https://geo.itunes.apple.com/us/album/a-moon-shaped-pool/id1111577743?at=1l3vqFJ&mt=1&app=music'
+                href='https://open.spotify.com/album/4MZnolldq7ciKKlbVDzLm5'
                 className='db link dim tc'>
                 <img
                   src='https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Pop_Smoke_-_Meet_the_Woo_2.png/220px-Pop_Smoke_-_Meet_the_Woo_2.png'
-                  alt='A Moon Shaped Pool - Album cover'
                   className='w-100 db outline black-10'
                 />
                 <dl className='mt2 f6 lh-copy'>
@@ -194,7 +189,7 @@ const Home = ({ questions }) => (
             </div>
             <div className='fl w-50 w-25-m w-20-l pa2'>
               <a
-                href='https://geo.itunes.apple.com/us/album/the-life-of-pablo/id1123231885?at=1l3vqFJ&mt=1&app=music'
+                href='https://open.spotify.com/album/3vi20DRHkqv4HyVg9Rt9wC'
                 className='db link dim tc'>
                 <img
                   src='https://images.genius.com/65fa2295b92218e5c10cbed945537758.1000x1000x1.jpg'
@@ -211,7 +206,7 @@ const Home = ({ questions }) => (
             </div>
             <div className='fl w-50 w-25-m w-20-l pa2'>
               <a
-                href='https://geo.itunes.apple.com/us/album/coloring-book/id1113239004?at=1l3vqFJ&mt=1&app=music'
+                href='https://open.spotify.com/album/0jH6iWykjOuyW7Y8zNKMBkc'
                 className='db link dim tc'>
                 <img
                   src='https://media.pitchfork.com/photos/5e5d8aa3230d040009b1f403/1:1/w_600/PTSD_G%20Herbo.jpg'
@@ -228,7 +223,7 @@ const Home = ({ questions }) => (
             </div>
             <div className='fl w-50 w-25-m w-20-l pa2'>
               <a
-                href='https://geo.itunes.apple.com/us/album/everybody-looking/id1135576036?at=1l3vqFJ&mt=1&app=music'
+                href='https://open.spotify.com/album/1ynyQdPQiXdYJNQEDL1S3d'
                 className='db link dim tc'>
                 <img
                   src='https://media.pitchfork.com/photos/5e56ce610e27b00008f7b845/1:1/w_320/My%20Turn_Lil%20Baby.jpg'
