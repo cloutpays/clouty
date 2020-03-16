@@ -42,51 +42,24 @@ const Home = ({ questions }) => (
           Bets of the Week
         </h2>
         <section className='flex flex-wrap'>
-          {questions.map((curr) => {
-            return (
-              <div className='pv2 pa2-ns w-100 w-50-ns' key={curr.question}>
-                <div className='white br2 shadow-4 pa3 pa4-ns h-100 grow mark-gierl'>
-                  <h1 className='f4 mt0 fw7'>
-                    <span role='img'>🥊</span> Game #{curr.question}
-                  </h1>
-                  <p>
-                    Don Toliver and Jack Harlow both dropped projects last night
-                    with “Heaven or Hell” , and “Sweet Action”. Who will have
-                    the higher number of sales 1st week?
-                  </p>
-                  <DemoForm game={questions[7]} />
+          {questions
+            .filter((game) => game.answer === '')
+            .map((curr) => {
+              return (
+                <div className='pv2 pa2-ns w-100 w-50-ns' key={curr.question}>
+                  <div
+                    className={`white br2 shadow-4 pa3 pa4-ns h-100 grow ${curr.class}`}>
+                    <h1 className='f4 mt0 fw7'>
+                      <span role='img'>🥊</span> Game #{curr.question}
+                    </h1>
+                    <p>{curr.description}</p>
+                    <DemoForm game={curr} />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-          <div className='pv2 pa2-ns w-100 w-50-ns'>
-            <div className='white br2 shadow-4 pa3 pa4-ns h-100 grow mark-gierl'>
-              <h1 className='f4 mt0 fw7'>
-                <span role='img'>🥊</span> Game #25
-              </h1>
-              <p>
-                Don Toliver and Jack Harlow both dropped projects last night
-                with “Heaven or Hell” , and “Sweet Action”. Who will have the
-                higher number of sales 1st week?
-              </p>
-              <DemoForm game={questions[7]} />
-            </div>
-          </div>
-          <div className='pv2 pa2-ns w-100 w-50-ns'>
-            <a href='/games/27' className='no-underline white'>
-              <div className='white br2 shadow-4 pa3 pa4-ns h-100 grow kanye-wtf'>
-                <h1 className='f4 mt0 fw7'>
-                  <span role='img'>🏆</span> Game #27
-                </h1>
-                <p>
-                  Rich the Kid and Blueface both dropped projects last night
-                  with, “Boss Man” and “Find the Beat”. Who will have the higher
-                  number of sales 1st week?
-                </p>
-                <DemoForm game={questions[8]} />
-              </div>
-            </a>
-          </div>
+              );
+            })
+            .reverse()
+            .slice(0, 4)}
         </section>
         <article>
           <h2 className='f3 f-subheadline-l measure lh-title fw7'>
@@ -304,7 +277,7 @@ Home.getInitialProps = async ({ req }) => {
   const res = await axios.get(`${apiURL}/api/questions`);
   const questions = res.data;
   return {
-    questions: questions.filter((game) => game.gameType === 'game'),
+    questions,
   };
 };
 Home.propTypes = {
