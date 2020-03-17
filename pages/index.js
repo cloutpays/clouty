@@ -112,15 +112,14 @@ const Home = ({ questions, darkMode }) => (
         </div>
         <section className='mt3 w-100 dib pv4 flex items-center justify-center '>
           <div className='b pa3 mr2  input-reset ba b--black bg-transparent grow pointer f4'>
-            <Link href='/signup'>
-              <a
-                className={`no-underline ${classNames({
-                  black: !darkMode,
-                  white: darkMode,
-                })}`}>
-                Sign Up
-              </a>
-            </Link>
+            <a
+              className={`no-underline ${classNames({
+                black: !darkMode,
+                white: darkMode,
+              })}`}
+              href='/signup'>
+              Sign Up
+            </a>
           </div>
           <div className='b pa3 mr2 input-reset ba bg-black b--black grow pointer f4'>
             {' '}
