@@ -103,11 +103,14 @@ const Home = ({ questions, darkMode }) => (
         </h1>
         <div>
           <p className={`${styles.paragraph}`}>
-            Every week, we host live bets about the latest releases and
+            Every week we host live bets about the latest releases and
             predictions in the rap game.{' '}
           </p>
           <p className={`${styles.paragraph}`}>
             Double your money while putting your intuition on the line.
+          </p>
+          <p className={`${styles.paragraph}`}>
+            Sign up today to receive a free $5 towards your bets.
           </p>
         </div>
         <section className='mt3 w-100 dib pv4 flex items-center justify-center '>
