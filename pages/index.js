@@ -93,7 +93,7 @@ const albums = [
     spotify: 'https://open.spotify.com/album/1ynyQdPQiXdYJNQEDL1S3d',
   },
 ];
-const Home = ({ questions, darkMode }) => (
+const Home = ({ questions, darkMode, loggedIn }) => (
   <div>
     <Wrapper data={data}>
       <section>
@@ -103,11 +103,14 @@ const Home = ({ questions, darkMode }) => (
         </h1>
         <div>
           <p className={`${styles.paragraph}`}>
-            Every week, we host live bets about the latest releases and
+            Every week we host live bets about the latest releases and
             predictions in the rap game.{' '}
           </p>
           <p className={`${styles.paragraph}`}>
             Double your money while putting your intuition on the line.
+          </p>
+          <p className={`${styles.paragraph}`}>
+            Sign up today to receive a free $5 towards your bets.
           </p>
         </div>
         <section className='mt3 w-100 dib pv4 flex items-center justify-center '>
@@ -118,7 +121,7 @@ const Home = ({ questions, darkMode }) => (
                 white: darkMode,
               })}`}
               href='/signup'>
-              Sign Up
+              {loggedIn ? 'Play Now' : 'Sign Up'}
             </a>
           </div>
           <div className='b pa3 mr2 input-reset ba bg-black b--black grow pointer f4'>
@@ -229,13 +232,16 @@ Home.getInitialProps = async ({ req }) => {
   const res = await axios.get(`${apiURL}/api/questions`);
   const questions = res.data;
   const darkMode = getCookie('dark_mode', req) === 'true';
+  const loggedIn = getCookie('id_token', req) ? true : false;
   return {
     questions,
     darkMode,
+    loggedIn,
   };
 };
 Home.propTypes = {
   questions: PropTypes.array,
   darkMode: PropTypes.bool,
+  loggedIn: PropTypes.bool,
 };
 export default Home;
