@@ -117,7 +117,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                       {formatDate(new Date(curr.date || '2019-11-30'))}
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='name'>
-                      {curr.name}
+                      @{curr.handle}
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='question'>
                       {curr.question}
