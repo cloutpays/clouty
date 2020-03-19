@@ -62,7 +62,13 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
     <div className='row'>
       <div className='form-card'>
         <form onSubmit={handleSubmit}>
-          <div className='mt2'>
+          <Question
+            type={game.type}
+            options={options}
+            title={game.question}
+            setAnswer={confirmAnswer}
+          />
+          <div className='pt2 mt2'>
             <label className='fw6' htmlFor='email'>
               Select your wager:
             </label>
@@ -74,7 +80,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
                     <div
                       onClick={() => setWager([Number(wage)])}
                       key={ind}
-                      className='noselect grow outline dim pa2 mr2 mt2'>
+                      className='noselect outline dim pa2 mr2 mt2'>
                       <strong>${wage}</strong>
                     </div>
                   );
@@ -83,12 +89,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
             </div>
           </div>
 
-          <Question
-            type={game.type}
-            options={options}
-            title={game.question}
-            setAnswer={confirmAnswer}
-          />
           <br />
           <div>
             {resetRender && (
