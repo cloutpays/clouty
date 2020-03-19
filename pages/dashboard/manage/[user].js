@@ -22,6 +22,15 @@ const Dashboard = ({
   };
   return (
     <Wrapper data={data}>
+      <h1 className='f2 lh-title fw9 mb2 mt0 pt3 bt bw2'>
+        {user.info.firstName} {user.info.lastName}{' '}
+        <span>{user.admin ? '(Admin)' : ''}</span>
+      </h1>
+      <h2 className='f3 mv0 mid-gray '>{user.email}</h2>
+      <h2 className='f3 mv0 mid-gray'>{user.info.phoneNumber}</h2>
+      <time className='f6 ttu mt2 tracked gray'>
+        Last Login: {formatDate(new Date(0).setUTCSeconds(user.updatedAt))}
+      </time>
       <article className='pa2 pa2-ns' data-name='slab-stat'>
         <dl className='dib mr5'>
           <dd className='f6 f5-ns b ml0'>Balance</dd>
