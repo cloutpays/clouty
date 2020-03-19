@@ -44,13 +44,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
         const message =
           result && result.message ? result.message : 'Sorry Some error occurs';
         isError = true;
+        setLoading(false);
         setError(message);
         setSignUpText('Sign Up');
-        setLoading(false);
       })
       .then((result: any) => {
         if (isError) {
-          return;
+          return setLoading(false);
         }
         if (typeof result !== 'undefined') {
           axios
@@ -208,7 +208,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                 <input type='checkbox' /> Remember me
               </label>
             ) : (
-              ''
+              <label className='pa0 ma0 lh-copy f6 pointer'>
+                By clicking "Sign Up" confirms you're age 18+ and agree to our{' '}
+                <a href='/terms'>Terms</a> & <a href='/terms'>Privacy Policy</a>
+                . You may receive SMS Notifications from us and can opt out any
+                time.
+              </label>
             )}
           </fieldset>
           <div>
