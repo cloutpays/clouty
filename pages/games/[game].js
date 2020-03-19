@@ -9,7 +9,7 @@ import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const Games = ({ game, user, previousBet }) => {
+const Games = ({ game, user, submissions, houseBalance, isAdmin }) => {
   const title =
     game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
   const data = {
@@ -39,9 +39,7 @@ const Games = ({ game, user, previousBet }) => {
             <div
               className={`white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`}>
               <p>{description}</p>
-              {!game.answer && (
-                <SignUpForm user={user} game={game} previousBet={previousBet} />
-              )}
+              {!game.answer && <SignUpForm user={user} game={game} />}
               {game.answer && (
                 <>
                   <div className='f5 mt0 fw7'>Winning bet:</div>{' '}
@@ -51,6 +49,16 @@ const Games = ({ game, user, previousBet }) => {
             </div>
           </a>
         </div>
+        {isAdmin && (
+          <>
+            <div className='dtc f4 b ma0 v-mid w-100 w-90-ns tr'>
+              Total Wagers: {submissions.length}
+            </div>
+            <div className='dtc f4 b ma0 v-mid w-100 w-90-ns tr'>
+              Total Pot: {formatPrice(houseBalance)}
+            </div>
+          </>
+        )}
       </section>
     </Wrapper>
   );
@@ -63,22 +71,32 @@ Games.getInitialProps = async (ctx) => {
   const apiURL = `${origin}`;
   const question = (await axios.get(`${apiURL}/api/question/${game}`)).data;
   const user = getCookie('id_token', ctx.req);
+  const isAdmin = getCookie('id_token_admin', ctx.req) ? true : false;
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
-  const submissionsRes = await axios.get(
-    `${apiURL}/api/userSubmissions/${user}`,
+  const submissionsRes = await axios.get(`${apiURL}/api/submissions`);
+  const submissions = submissionsRes.data.filter(
+    (curr) => curr.question === game,
   );
-  const previousBet = submissionsRes.data.filter((sub) => {
-    return sub.question === question[0].question;
-  });
+  const houseBalance = submissions.reduce((acc, curr) => {
+    return acc + curr.wager;
+  }, 0);
   const userObj = userRes.data;
-  return { game: question[0], user: userObj, previousBet };
+  return {
+    game: question[0],
+    user: userObj,
+    submissions,
+    houseBalance,
+    isAdmin,
+  };
 };
 
 Games.propTypes = {
   games: PropTypes.array,
   game: PropTypes.object,
   user: PropTypes.object,
-  previousBet: PropTypes.array,
+  submissions: PropTypes.array,
+  houseBalance: PropTypes.number,
+  isAdmin: PropTypes.boolean,
 };
 
 export default SecuredPage(Games);
