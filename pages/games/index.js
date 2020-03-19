@@ -1,3 +1,4 @@
+import { sortGames } from '../../lib/helpers';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -54,18 +55,7 @@ const Games = ({ questions }) => {
           </Link>
         </div>
         {questions
-          .reverse()
-          .sort((a, b) => {
-            const aname = a.answer.length === 0;
-            const bname = b.answer.length === 0;
-            if (aname && !bname) {
-              return 1;
-            }
-            if (!aname && bname) {
-              return -1;
-            }
-            return 0;
-          })
+          .sort(sortGames)
           .map((game, ind) => {
             const gameButtonText = !game.answer ? 'Play Game' : 'See Results';
             const activeLink = `/games/${game.slug}`;

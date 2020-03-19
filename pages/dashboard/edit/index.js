@@ -1,4 +1,4 @@
-import { grammyRender } from '../../../lib/helpers';
+import { grammyRender, sortGames } from '../../../lib/helpers';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,18 +18,7 @@ const Games = ({ questions }) => {
       <section className='flex flex-wrap'>
         {questions.length > 0
           ? questions
-              .reverse()
-              .sort((a, b) => {
-                const aname = a.answer.length === 0;
-                const bname = b.answer.length === 0;
-                if (aname && !bname) {
-                  return 1;
-                }
-                if (!aname && bname) {
-                  return -1;
-                }
-                return 0;
-              })
+              .sort(sortGames)
               .map((game) => {
                 const gameButtonText = 'Manage';
                 const grammy = game.gameType === 'grammy';

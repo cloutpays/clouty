@@ -65,13 +65,6 @@ const albums = [
     spotify: 'https://open.spotify.com/album/0ZJt4dCoI19u71k37E1nQu',
   },
   {
-    artist: 'Pop Smoke',
-    album: 'Meet the Woo 2',
-    image:
-      'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Pop_Smoke_-_Meet_the_Woo_2.png/220px-Pop_Smoke_-_Meet_the_Woo_2.png',
-    spotify: 'https://open.spotify.com/album/4MZnolldq7ciKKlbVDzLm5',
-  },
-  {
     artist: 'Brent Faiyaz',
     album: 'Fuck The World',
     image:
@@ -120,7 +113,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
                 black: !darkMode,
                 white: darkMode,
               })}`}
-              href='/signup'>
+              href={loggedIn ? '/user' : '/signup'}>
               {loggedIn ? 'Play Now' : 'Sign Up'}
             </a>
           </div>
