@@ -15,6 +15,7 @@ const Dashboard = ({
   users,
   totalWager,
   lostBets,
+  pendingBets,
   wonBets,
   dayWagers,
   houseBalance,
@@ -32,9 +33,9 @@ const Dashboard = ({
           <dd className='f3 f2-ns b ml0'>{questions.length}</dd>
         </dl>
         <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>Wins/Losses</dd>
+          <dd className='f6 f5-ns b ml0'>Wins/Losses/Pending</dd>
           <dd className='f3 f2-ns b ml0'>
-            {wonBets} - {lostBets}
+            {wonBets} - {lostBets} -{pendingBets}
           </dd>
         </dl>
         <dl className='dib mr5'>
@@ -90,13 +91,15 @@ Dashboard.getInitialProps = async ({ req }) => {
   const entries = res.data;
   let yesterday = new Date().setDate(new Date().getDate() - 1);
   const wonWagers = entries
-    .filter((curr) => curr.won)
+    .filter((curr) => curr.won && curr.userId)
     .reduce((acc, curr) => {
-      return acc + curr.userId ? curr.wager : 0;
+      return acc + curr.wager;
     }, 0);
-  const totalWager = entries.reduce((acc, curr) => {
-    return acc + curr.userId ? curr.wager : 0;
-  }, 0);
+  const totalWager = entries
+    .filter((curr) => curr.userId)
+    .reduce((acc, curr) => {
+      return acc + curr.wager;
+    }, 0);
   return {
     entries,
     questions,
@@ -109,6 +112,8 @@ Dashboard.getInitialProps = async ({ req }) => {
       .filter((curr) => new Date(curr.date) > yesterday)
       .reduce((acc, curr) => acc + curr.wager, 0),
     wonBets: entries.filter((curr) => curr.won).length,
+    pendingBets: entries.filter((curr) => typeof curr.won === 'undefined')
+      .length,
     totalWager,
     houseBalance: totalWager - wonWagers,
   };
@@ -122,6 +127,7 @@ Dashboard.propTypes = {
   totalWager: PropTypes.number,
   lostBets: PropTypes.number,
   wonBets: PropTypes.number,
+  pendingBets: PropTypes.number,
   dayWagers: PropTypes.number,
   houseBalance: PropTypes.number,
 };
