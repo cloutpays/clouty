@@ -36,24 +36,34 @@ const Checkout = (props) => {
         <dd className='f6 f5-ns b ml0'>Select Amount</dd>
         <div className='flex f3 f2-ns flex-wrap'>
           <a
+            onClick={() => updateAmount(1)}
+            className='noselect grow outline dim pa3 ma2'>
+            <strong>$1</strong>
+          </a>
+          <a
             onClick={() => updateAmount(10)}
             className='noselect grow outline dim pa3 ma2'>
             <strong>$10</strong>
           </a>
           <a
-            onClick={() => updateAmount(15)}
-            className='noselect grow outline dim pa3 ma2'>
-            <strong>$15</strong>
-          </a>
-          <a
-            onClick={() => updateAmount(20)}
-            className='noselect grow outline dim pa3 ma2'>
-            <strong>$20</strong>
-          </a>
-          <a
             onClick={() => updateAmount(25)}
             className='noselect grow outline dim pa3 ma2'>
             <strong>$25</strong>
+          </a>
+          <a
+            onClick={() => updateAmount(50)}
+            className='noselect grow outline dim pa3 ma2'>
+            <strong>$50</strong>
+          </a>
+          <a
+            onClick={() => updateAmount(75)}
+            className='noselect grow outline dim pa3 ma2'>
+            <strong>$75</strong>
+          </a>
+          <a
+            onClick={() => updateAmount(100)}
+            className='noselect grow outline dim pa3 ma2'>
+            <strong>$100</strong>
           </a>
         </div>
       </dl>
