@@ -35,7 +35,13 @@ const DemoForm: React.FC<DemoFormProps> = ({ game }) => {
     <div className='row'>
       <div className='form-card'>
         <form onSubmit={handleSubmit}>
-          <div className='mt2'>
+          <Question
+            type={game.type}
+            options={options}
+            title={game.question}
+            setAnswer={confirmAnswer}
+          />
+          <div className='pt2 mt2'>
             <label className='fw6' htmlFor='email'>
               Select your wager:
             </label>
@@ -56,12 +62,6 @@ const DemoForm: React.FC<DemoFormProps> = ({ game }) => {
             </div>
           </div>
 
-          <Question
-            type={game.type}
-            options={options}
-            title={game.question}
-            setAnswer={confirmAnswer}
-          />
           <br />
           <div>
             {resetRender && (
