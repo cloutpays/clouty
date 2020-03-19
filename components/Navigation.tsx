@@ -10,6 +10,7 @@ interface DarkModeProps {
 
 const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
   const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;
+  const isAdmin = getCookieFromBrowser('id_token_admin') ? true : false;
   const navLinks = ` ${styles.navigationLink} ${classNames({
     'near-black': !darkMode,
     'near-white': darkMode,
@@ -33,6 +34,15 @@ const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
             </Link>
           </li>
         )} */}
+        {isLoggedIn && isAdmin && (
+          <li className='mr2 mr4-ns'>
+            <Link href='/dashboard'>
+              <a href='/dashboard' className={`${navLinks}`}>
+                Admin
+              </a>
+            </Link>
+          </li>
+        )}
         <li className='mr2 mr4-ns'>
           <Link href='/games'>
             <a href='/games' className={`${navLinks}`}>
