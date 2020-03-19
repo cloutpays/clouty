@@ -120,7 +120,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
                 black: !darkMode,
                 white: darkMode,
               })}`}
-              href='/signup'>
+              href={loggedIn ? '/user' : '/signup'}>
               {loggedIn ? 'Play Now' : 'Sign Up'}
             </a>
           </div>
