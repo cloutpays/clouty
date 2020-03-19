@@ -1,7 +1,7 @@
+import AdminPage from '../../hoc/adminPage';
 import CreateGameForm from '../../components/CreateGameForm';
 import PropTypes from 'prop-types';
 import React from 'react';
-import SecuredPage from '../../hoc/securedPage';
 import Wrapper from '../../components/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
@@ -30,4 +30,4 @@ CreateGame.propTypes = {
   questions: PropTypes.array,
 };
 
-export default SecuredPage(CreateGame);
+export default AdminPage(CreateGame);

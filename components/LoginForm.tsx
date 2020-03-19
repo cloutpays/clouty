@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import Cleave from 'cleave.js/react';
 import 'emoji-mart/css/emoji-mart.css';
@@ -97,10 +97,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           return;
         }
         setCookie('id_token', result.user.uid);
-        Router.push('/user');
         axios
           .post('/api/user', { data: { firebase: result.user } })
-          .then(() => {});
+          .then((res: AxiosResponse) => {
+            const user = res.data;
+            if (user.admin) {
+              setCookie('id_token_admin', true);
+            }
+            Router.push('/user');
+          });
       });
   };
 

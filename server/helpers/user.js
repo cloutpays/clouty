@@ -41,6 +41,7 @@ export const userApi = wrapAsync(async function(req, db) {
     .toArray();
 
   if (userData.new) {
+    userData.admin = false;
     await sendEmail(userData.firebase.email, welcomeEmailContent);
     const stripeUser = await stripe.customers.create({
       email: userData.firebase.email,
