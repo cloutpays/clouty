@@ -90,13 +90,15 @@ Dashboard.getInitialProps = async ({ req }) => {
   const entries = res.data;
   let yesterday = new Date().setDate(new Date().getDate() - 1);
   const wonWagers = entries
-    .filter((curr) => curr.won)
+    .filter((curr) => curr.won && curr.userId)
     .reduce((acc, curr) => {
-      return acc + curr.userId ? curr.wager : 0;
+      return acc + curr.wager;
     }, 0);
-  const totalWager = entries.reduce((acc, curr) => {
-    return acc + curr.userId ? curr.wager : 0;
-  }, 0);
+  const totalWager = entries
+    .filter((curr) => curr.userId)
+    .reduce((acc, curr) => {
+      return acc + curr.wager;
+    }, 0);
   return {
     entries,
     questions,
