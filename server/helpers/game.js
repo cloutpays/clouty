@@ -87,6 +87,7 @@ const updateSubmissions = async (entries, answer, db) => {
     return console.log(err);
   }
 };
+
 export const gameSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   const { wager, phoneNumber, name } = data.userSubmission;
@@ -106,6 +107,7 @@ export const submissionsRemovalApi = wrapAsync(async (req, db) => {
   console.log(id);
   return await db.collection(cloutpays).remove({ _id: ObjectId(id) });
 });
+
 export const submissionsRetrieveApi = wrapAsync(
   async (req, db) =>
     await db
@@ -120,6 +122,14 @@ export const userSubmissionsRetrieveApi = wrapAsync(async (req, db) => {
     .collection(cloutpays)
     .find({ userId: id })
     .toArray();
+});
+
+export const questionCloseApi = wrapAsync(async (req, db) => {
+  const { query } = parse(req.url, true);
+  const id = query.id;
+  await db
+    .collection(question)
+    .update({ question: id }, { $set: { endDate: new Date() } });
 });
 
 export const questionSubmitApi = wrapAsync(async (req, db) => {

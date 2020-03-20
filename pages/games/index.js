@@ -33,8 +33,8 @@ const Games = ({ questions }) => {
           </a>
         </div>
         <div key='contact' className='pv2 pa2-ns w-100 w-50-ns'>
-          <Link href='https://clouty.substack.com/'>
-            <a href='https://clouty.substack.com/' className='no-underline'>
+          <Link href='https://clouty.substack.com/' prefetch={false}>
+            <a target={'_blank'} className='no-underline'>
               <div className='white br2 shadow-4 grow pa3 pa4-ns h-100 xxl'>
                 <h1 className='f4 mt0 fw7'>XXL Freshman Class</h1>
                 <p>The upcoming Freshman Class of 2020 bets are almost here.</p>
@@ -57,7 +57,12 @@ const Games = ({ questions }) => {
         {questions
           .sort(sortGames)
           .map((game, ind) => {
-            const gameButtonText = !game.answer ? 'Play Game' : 'See Results';
+            const gameClosed = new Date(game.endDate) < new Date();
+            const gameButtonText = !game.answer
+              ? gameClosed
+                ? 'Game Ended'
+                : 'Play Game'
+              : 'See Results';
             const activeLink = `/games/${game.slug}`;
             const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
             return (

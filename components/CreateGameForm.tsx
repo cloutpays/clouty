@@ -132,6 +132,11 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     setEmoji(e);
     renderEmoji();
   };
+  const closeGame = () => {
+    axios.post(`/api/endQuestion/${currentGame.slug}`).then(() => {
+      Router.push('/dashboard/edit');
+    });
+  };
 
   const renderEmoji = () => {
     setVisible(!visible);
@@ -347,12 +352,20 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
             </div>
           </div>
           {!newGame ? (
-            <div className='mt3'>
-              <span
-                className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'
-                onClick={removeGame}>
-                Remove Game
-              </span>
+            <div>
+              <div className='mt3'>
+                <span
+                  className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'
+                  onClick={removeGame}>
+                  Remove Game
+                </span>
+
+                <span
+                  className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'
+                  onClick={closeGame}>
+                  Close Game
+                </span>
+              </div>
             </div>
           ) : (
             ''

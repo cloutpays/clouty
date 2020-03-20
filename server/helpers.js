@@ -29,7 +29,33 @@ export const wrapAsync = (handler) => async (req, res) => {
       .catch((error) => res.status(500).json({ error: error.message })),
   );
 };
-
+export const dbRefresh = wrapAsync(async (req, db) => {
+  const usersProd = await db
+    .collection('user')
+    .find()
+    .toArray();
+  const questionsProd = await db
+    .collection('question')
+    .find()
+    .toArray();
+  const cloutpaysProd = await db
+    .collection('cloutpays')
+    .find()
+    .toArray();
+  const payoutsProd = await db
+    .collection('payout')
+    .find()
+    .toArray();
+  await db.collection('userdev').deleteMany();
+  await db.collection('questiondev').deleteMany();
+  await db.collection('cloutpaysdev').deleteMany();
+  await db.collection('payoutdev').deleteMany();
+  await db.collection('userdev').insertMany(usersProd);
+  await db.collection('cloutpaysdev').insertMany(cloutpaysProd);
+  await db.collection('questiondev').insertMany(questionsProd);
+  await db.collection('payoutdev').insertMany(payoutsProd);
+  return true;
+});
 export const sendEmail = async (email, content) => {
   try {
     // Generate test SMTP service account from ethereal.email

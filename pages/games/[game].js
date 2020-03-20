@@ -17,6 +17,8 @@ const Games = ({ game, user, submissions, houseBalance, isAdmin }) => {
     header: `${game.emoji} ${title}`,
     description: 'Selected games and contests.',
   };
+  const gameClosed = new Date(game.endDate) < new Date();
+
   const description =
     game.gameType === 'grammy' ? grammyRender(game) : game.description;
   return (
@@ -39,7 +41,14 @@ const Games = ({ game, user, submissions, houseBalance, isAdmin }) => {
             <div
               className={`white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`}>
               <p>{description}</p>
-              {!game.answer && <SignUpForm user={user} game={game} />}
+              {!game.answer && !gameClosed && (
+                <SignUpForm user={user} game={game} />
+              )}
+              {gameClosed && (
+                <div className='f5 mt4 fw7'>
+                  Game is now closed. Winning bet will be announced shortly 🥳
+                </div>
+              )}
               {game.answer && (
                 <>
                   <div className='f5 mt0 fw7'>Winning bet:</div>{' '}
