@@ -4,6 +4,7 @@ const {
   gameSubmitApi,
   questionSubmitApi,
   userQuestionSubmitApi,
+  questionCloseApi,
 } = require('../helpers/game');
 const { userApi } = require('../helpers/user');
 const { send } = require('micro');
@@ -19,6 +20,8 @@ const postApi = (fn) => async (req, res) => {
         return await fn(questionSubmitApi(req, res));
       case 'api/userquestion':
         return await fn(userQuestionSubmitApi(req, res));
+      case 'api/endQuestion':
+        return await fn(questionCloseApi(req, res));
       case 'api/user':
         return await fn(userApi(req, res));
       case 'api/payout':

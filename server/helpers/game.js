@@ -122,6 +122,13 @@ export const userSubmissionsRetrieveApi = wrapAsync(async (req, db) => {
     .toArray();
 });
 
+export const questionCloseApi = wrapAsync(async (req, db) => {
+  const { query } = parse(req.url, true);
+  const id = query.id;
+  await db
+    .collection(question)
+    .update({ question: id }, { $set: { endDate: new Date() } });
+});
 export const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   const entries = await db
