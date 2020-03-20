@@ -2,16 +2,16 @@ import classNames from 'classnames';
 import React from 'react';
 import { styles } from '../../constants/styles';
 import { getCurrentYear } from '../../lib/helpers';
-import { setCookie } from '../../lib/session';
+// import { setCookie } from '../../lib/session';
 
 interface DarkModeProps {
   darkMode: boolean;
 }
 const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
-  const setDarkMode = () => {
-    setCookie('dark_mode', !darkMode);
-    window.location.href = '/';
-  };
+  // const setDarkMode = () => {
+  //   setCookie('dark_mode', !darkMode);
+  //   window.location.href = '/';
+  // };
   const navLinks = ` ${styles.navigationLink} ${classNames({
     'near-black': !darkMode,
     'near-white': darkMode,
@@ -39,10 +39,10 @@ const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
             Terms
           </a>
         </li>
-        <li className={`${navLinks}`} onClick={setDarkMode}>
+        {/* <li className={`${navLinks}`} onClick={setDarkMode}>
           {' '}
           {darkMode ? 'Light ' : 'Dark '} Mode
-        </li>
+        </li> */}
       </ul>
       <p>© {getCurrentYear()} · Packaged with care.</p>
     </footer>
