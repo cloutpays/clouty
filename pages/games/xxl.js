@@ -1,4 +1,4 @@
-import { XXLForm } from '../../components/forms/xxlForm';
+import { XXLForm } from '../../components/forms/XXLForm';
 import { formatPrice } from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ import axios from 'axios';
 
 const Games = ({ user }) => {
   const data = {
-    header: `XXL`,
+    header: `XXL Freshmen '20`,
     description: 'Selected games and contests.',
   };
 
