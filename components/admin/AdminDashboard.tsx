@@ -58,9 +58,9 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                       </a>
                       <div>{curr.preferred}</div>
                       <div>
-                        {curr.preferred === 'Apple Pay' && <>{curr.appleID}</>}
-                        {curr.preferred === 'Cash App' && <>{curr.handle}</>}
-                        {curr.preferred === 'PayPal' && <>{curr.email}</>}
+                        {curr.preferred === 'Apple Pay' && curr.appleID}
+                        {curr.preferred === 'Cash App' && curr.handle}
+                        {curr.preferred === 'PayPal' && curr.email}
                       </div>
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='date'>
