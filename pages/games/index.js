@@ -57,7 +57,12 @@ const Games = ({ questions }) => {
         {questions
           .sort(sortGames)
           .map((game, ind) => {
-            const gameButtonText = !game.answer ? 'Play Game' : 'See Results';
+            const gameClosed = new Date(game.endDate) < new Date();
+            const gameButtonText = !game.answer
+              ? gameClosed
+                ? 'Game Ended'
+                : 'Play Game'
+              : 'See Results';
             const activeLink = `/games/${game.slug}`;
             const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
             return (
