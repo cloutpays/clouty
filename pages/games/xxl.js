@@ -1,11 +1,11 @@
-import { XXLForm } from '../../components/xxlForm';
+import { XXLForm } from '../../components/forms/xxlForm';
 import { formatPrice } from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SecuredPage from '../../hoc/securedPage';
-import Wrapper from '../../components/Wrapper';
+import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 

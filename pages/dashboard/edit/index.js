@@ -2,7 +2,7 @@ import { grammyRender, sortGames } from '../../../lib/helpers';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Wrapper from '../../../components/Wrapper';
+import Wrapper from '../../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import adminPage from '../../../hoc/adminPage';
 import axios from 'axios';

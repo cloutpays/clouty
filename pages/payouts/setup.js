@@ -1,10 +1,10 @@
 import { getCookie } from '../../lib/session';
-import PayoutForm from '../../components/PayoutForm';
+import PayoutForm from '../../components/forms/PayoutForm';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SecuredPage from '../../hoc/securedPage';
-import UserDashNavigation from '../../components/UserDashNavigation';
-import Wrapper from '../../components/Wrapper';
+import UserDashNavigation from '../../components/layout/UserDashNavigation';
+import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
