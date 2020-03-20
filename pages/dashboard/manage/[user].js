@@ -2,13 +2,14 @@ import { formatDate, formatPrice } from '../../../lib/helpers';
 import AdminPage from '../../../hoc/adminPage';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Wrapper from '../../../components/Wrapper';
+import Wrapper from '../../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
 const Dashboard = ({
   submissions,
   user,
+  payouts,
   wonWagers,
   totalWager,
   lostBets,
@@ -57,7 +58,7 @@ const Dashboard = ({
           <dd className='f3 f2-ns b ml0'>{formatPrice(totalWager)}</dd>
         </dl>
       </article>
-
+      <h2>Submitted Bets</h2>
       <table className='f6 w-100 mw8 center' cellSpacing='0'>
         <thead>
           <tr>
@@ -113,6 +114,64 @@ const Dashboard = ({
             .reverse()}
         </tbody>
       </table>
+      <div className='mv3'>
+        <h2>Payouts</h2>
+        <table className='f6 w-100 mw8 center' cellSpacing='0'>
+          <thead>
+            <tr>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                Preferred
+              </th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Amount</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                Cleared?
+              </th>
+            </tr>
+          </thead>
+          <tbody className='lh-copy'>
+            {payouts
+              .map((curr, ind) => {
+                return (
+                  <tr key={ind}>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      {formatDate(new Date(curr.date))}
+                    </td>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      <a
+                        className='no-underline dim black b'
+                        href={`/dashboard/manage/${curr.userId}`}>
+                        {' '}
+                        @{curr.handle}
+                      </a>
+                      <div>{curr.preferred}</div>
+                      <div>
+                        {curr.preferred === 'Apple Pay' && <>{curr.appleID}</>}
+                        {curr.preferred === 'Cash App' && <>{curr.handle}</>}
+                        {curr.preferred === 'PayPal' && <>{curr.email}</>}
+                      </div>
+                    </td>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      {formatPrice(curr.amount)}
+                    </td>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      {curr.cleared ? (
+                        <div className='f6 mr2 link dim ph3 pv2 mb2 dib fw6 white bg-green'>
+                          Cleared
+                        </div>
+                      ) : (
+                        <div className='f6 noselect mr2 link dim ph3 pv2 mb2 dib fw6 black bg-gold'>
+                          Not Cleared
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })
+              .reverse()}
+          </tbody>
+        </table>
+      </div>
     </Wrapper>
   );
 };
@@ -124,6 +183,8 @@ Dashboard.getInitialProps = async ({ req }) => {
   const submissionsRes = await axios.get(
     `${apiURL}/api/userSubmissions/${user}`,
   );
+  const payoutsRes = await axios.get(`${apiURL}/api/userPayouts/${user}`);
+  const payouts = payoutsRes.data;
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
   const submissions = submissionsRes.data;
@@ -148,11 +209,13 @@ Dashboard.getInitialProps = async ({ req }) => {
     totalWager,
     wonWagers,
     submissions,
+    payouts,
   };
 };
 
 Dashboard.propTypes = {
   submissions: PropTypes.array,
+  payouts: PropTypes.array,
   user: PropTypes.object,
   wonWagers: PropTypes.number,
   wonBets: PropTypes.number,

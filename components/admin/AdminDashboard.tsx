@@ -50,6 +50,12 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                       {formatDate(new Date(curr.date))}
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='date'>
+                      <a
+                        className='no-underline dim black b'
+                        href={`/dashboard/manage/${curr.userId}`}>
+                        {' '}
+                        @{curr.handle}
+                      </a>
                       <div>{curr.preferred}</div>
                       <div>
                         {curr.preferred === 'Apple Pay' && <>{curr.appleID}</>}
