@@ -1,5 +1,6 @@
 // Local dependencies
 const { handleErrors } = require('../helpers/error');
+const { dbRefresh } = require('../helpers');
 const {
   gameSubmitApi,
   questionSubmitApi,
@@ -28,6 +29,8 @@ const postApi = (fn) => async (req, res) => {
         return await fn(payoutApi(req, res));
       case 'api/hooks':
         return await fn(hookApi(req, res));
+      case 'api/dbRefresh':
+        return await fn(dbRefresh(req, res));
       default:
         return send(res, 200, { err: 'invalid route' });
     }

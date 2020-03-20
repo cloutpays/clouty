@@ -84,6 +84,11 @@
       "dest": "server/handlers/post.js?id=$1"
     },
     {
+      "src": "/api/dbRefresh",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
       "src": "/api/userPayouts/(.*)",
       "methods": ["GET"],
       "dest": "server/handlers/get.js?id=$1"
