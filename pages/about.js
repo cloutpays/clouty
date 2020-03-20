@@ -1,6 +1,6 @@
 import { styles } from '../constants/styles';
 import React from 'react';
-import Wrapper from '../components/Wrapper';
+import Wrapper from '../components/layout/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
