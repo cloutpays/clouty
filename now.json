@@ -29,6 +29,11 @@
       "dest": "server/handlers/get.js"
     },
     {
+      "src": "/api/transactions",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js"
+    },
+    {
       "src": "/api/userSubmissions/(.*)",
       "methods": ["GET"],
       "dest": "server/handlers/get.js?id=$1"
@@ -38,6 +43,12 @@
       "methods": ["GET"],
       "dest": "server/handlers/get.js?id=$1"
     },
+    {
+      "src": "/api/gameSubmissions/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1"
+    },
+    {
       "src": "/api/userSubmissions/(.*)",
       "methods": ["DELETE"],
       "dest": "server/handlers/delete.js?id=$1"
