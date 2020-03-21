@@ -2,7 +2,7 @@ const stripe = require('stripe')(stripeSecret);
 const { parse } = require('url');
 const { json } = require('micro');
 import { ObjectId } from 'mongodb';
-import { payout, stripeSecret, user, wrapAsync } from '../helpers';
+import { balance, payout, stripeSecret, user, wrapAsync } from '../helpers';
 import { updateUser } from './user';
 
 const getUser = async (userId, db) => {
@@ -21,6 +21,15 @@ const updateStripeUser = async (paymentIntent, db) => {
   );
   return newUser.value;
 };
+export const getUserTransactionsApi = wrapAsync(async (req, db) => {
+  const { query } = parse(req.url, true);
+  const { id } = query;
+  return db
+    .collection(balance)
+    .find({ 'metadata.userId': id })
+    .toArray();
+});
+
 export const payoutApi = wrapAsync(async (req, db) => {
   const data = (await json(req)).data;
   let { user, payoutRequest } = data;
