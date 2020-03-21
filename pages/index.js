@@ -136,7 +136,6 @@ const Home = ({ questions, darkMode, loggedIn }) => (
         </h2>
         <section className='flex flex-wrap'>
           {questions
-            .filter((game) => game.answer === '')
             .map((curr) => {
               return (
                 <div className='pv2 pa2-ns w-100 w-50-ns' key={curr.question}>
