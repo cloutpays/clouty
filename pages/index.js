@@ -133,7 +133,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             </Link>
           </div>
         </section>
-        <h2 className='f3 f-subheadline-l measure lh-title fw7'>
+        <h2 className='f3 f-subheadline-l measure lh-title fw7 flex justify-center'>
           Bets of the Week
         </h2>
         <section className='flex flex-wrap'>
@@ -159,7 +159,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
           </div> */}
         </section>
         <article>
-          <h2 className='f3 f-subheadline-l measure lh-title fw7'>
+          <h2 className='f3 f-subheadline-l measure lh-title fw7 flex justify-center'>
             New Releases
           </h2>
           <div className='cf pa2'>
