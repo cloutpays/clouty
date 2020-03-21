@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
-import React from 'react';
-import { formatDate, formatPrice } from '../lib/helpers';
+import React, { useState } from 'react';
+import { formatDate, formatPrice } from '../../lib/helpers';
 
 interface SubmissionsProps {
   submissions: any;
@@ -13,6 +13,8 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
   submissions,
   payouts,
 }) => {
+  const [sort, setSort] = useState<string>('');
+
   const clearRequest = async (request: any) => {
     request.cleared = true;
     await axios({
@@ -48,11 +50,17 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                       {formatDate(new Date(curr.date))}
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='date'>
+                      <a
+                        className='no-underline dim black b'
+                        href={`/dashboard/manage/${curr.userId}`}>
+                        {' '}
+                        @{curr.handle}
+                      </a>
                       <div>{curr.preferred}</div>
                       <div>
-                        {curr.preferred === 'Apple Pay' && <>{curr.appleID}</>}
-                        {curr.preferred === 'Cash App' && <>{curr.handle}</>}
-                        {curr.preferred === 'PayPal' && <>{curr.email}</>}
+                        {curr.preferred === 'Apple Pay' && curr.appleID}
+                        {curr.preferred === 'Cash App' && curr.handle}
+                        {curr.preferred === 'PayPal' && curr.email}
                       </div>
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='date'>
@@ -84,16 +92,73 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
         <table className='f6 w-100 mw8 center' cellSpacing='0'>
           <thead>
             <tr>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                {' '}
+                <a className='noselect' onClick={() => setSort('')}>
+                  Date
+                </a>
+              </th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Game #</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Answer</th>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Wager</th>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Result</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                <a className='noselect' onClick={() => setSort('wager')}>
+                  <div>
+                    <span>Wager</span>
+                    <span>
+                      <svg
+                        width='.5cm'
+                        height='.5cm'
+                        viewBox='0 0 400 400'
+                        xmlns='http://www.w3.org/2000/svg'
+                        version='1.1'>
+                        <rect
+                          x='1'
+                          y='1'
+                          width='398'
+                          height='398'
+                          fill='none'
+                        />
+                        <path
+                          d='M 100 100 L 300 100 L 200 300 z'
+                          fill='black'
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </a>
+              </th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                {' '}
+                <a className='noselect' onClick={() => setSort('result')}>
+                  Result
+                </a>
+              </th>
             </tr>
           </thead>
           <tbody className='lh-copy'>
             {submissions
+              .sort((a: any, b: any) => {
+                switch (sort) {
+                  case 'wager':
+                    if (a.wager > b.wager) {
+                      return 1;
+                    }
+                    if (a.wager < b.wager) {
+                      return -1;
+                    }
+                    return 0;
+                  case 'result':
+                    if (a.won && !b.won) {
+                      return 1;
+                    }
+                    if (!a.won && b.won) {
+                      return -1;
+                    }
+                    return 0;
+                }
+                return 0;
+              })
               .map((curr: any, ind: number) => {
                 return (
                   <tr key={ind}>

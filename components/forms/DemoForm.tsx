@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Question from './Question';
+import Question from '../gameplay/Question';
 interface DemoFormProps {
   game: any;
   previousBet: any;

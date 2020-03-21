@@ -129,7 +129,7 @@ export const questionCloseApi = wrapAsync(async (req, db) => {
   const id = query.id;
   await db
     .collection(question)
-    .update({ question: id }, { $set: { endDate: new Date() } });
+    .updateOne({ question: id }, { $set: { endDate: new Date() } });
 });
 
 export const questionSubmitApi = wrapAsync(async (req, db) => {

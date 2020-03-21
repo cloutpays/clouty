@@ -1,6 +1,6 @@
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/forms/LoginForm';
 import React from 'react';
-import Wrapper from '../components/Wrapper';
+import Wrapper from '../components/layout/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',

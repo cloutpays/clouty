@@ -4,8 +4,8 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SecuredPage from '../../hoc/securedPage';
-import SignUpForm from '../../components/SignUpForm';
-import Wrapper from '../../components/Wrapper';
+import SignUpForm from '../../components/gameplay/SignUpForm';
+import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 

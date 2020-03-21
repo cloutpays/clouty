@@ -1,4 +1,4 @@
-import { stripeClient } from '../lib/helpers';
+import { stripeClient } from '../../lib/helpers';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';

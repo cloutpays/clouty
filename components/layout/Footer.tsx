@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React from 'react';
-import { styles } from '../constants/styles';
-// import { setCookie } from '../lib/session';
+import { styles } from '../../constants/styles';
+import { getCurrentYear } from '../../lib/helpers';
+// import { setCookie } from '../../lib/session';
 
-import { getCurrentYear } from '../lib/helpers';
 interface DarkModeProps {
   darkMode: boolean;
 }

@@ -1,10 +1,10 @@
 import { formatPrice } from '../../lib/helpers';
-import AdminDashboard from '../../components/AdminDashboard';
+import AdminDashboard from '../../components/admin/AdminDashboard';
 import AdminPage from '../../hoc/adminPage';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Wrapper from '../../components/Wrapper';
+import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 

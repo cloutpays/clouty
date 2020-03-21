@@ -1,10 +1,10 @@
 import { getCookie } from '../lib/session';
 import { styles } from '../constants/styles';
-import DemoForm from '../components/DemoForm';
+import DemoForm from '../components/forms/DemoForm';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Wrapper from '../components/Wrapper';
+import Wrapper from '../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 import classNames from 'classnames';
@@ -15,13 +15,6 @@ const data = {
 };
 
 const albums = [
-  {
-    artist: 'Pop Smoke',
-    album: 'Meet The Woo 2',
-    image:
-      'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Pop_Smoke_-_Meet_the_Woo_2.png/220px-Pop_Smoke_-_Meet_the_Woo_2.png',
-    spotify: 'https://open.spotify.com/album/4MZnolldq7ciKKlbVDzLm5',
-  },
   {
     artist: 'Don Toliver',
     album: 'Heaven or Hell',
@@ -45,10 +38,17 @@ const albums = [
   },
   {
     artist: 'Rich the Kid',
-    album: 'Boss Man',
+    album: 'BOSSMAN',
     image:
       'https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/fv9exqwsgrwcymbd1btv/rich-the-kid',
     spotify: 'https://open.spotify.com/album/1YOx6ZVgiv9GEluUwBWevi',
+  },
+  {
+    artist: 'Megan Thee Stallion',
+    album: 'Suga EP',
+    image:
+      'https://media.pitchfork.com/photos/5e6293273efe060009390388/1:1/w_320/Suga_Megan%20Thee%20Stallion.jpg',
+    spotify: 'https://open.spotify.com/album/6Lo6ylJg4qbFfxicPEOzMI',
   },
   {
     artist: 'Blueface',
@@ -63,6 +63,13 @@ const albums = [
     image:
       'https://static.stereogum.com/uploads/2020/03/Jay-Electronica-A-Written-Testimony-1584129087-640x640.jpeg',
     spotify: 'https://open.spotify.com/album/0ZJt4dCoI19u71k37E1nQu',
+  },
+  {
+    artist: 'Pop Smoke',
+    album: 'Meet The Woo 2',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Pop_Smoke_-_Meet_the_Woo_2.png/220px-Pop_Smoke_-_Meet_the_Woo_2.png',
+    spotify: 'https://open.spotify.com/album/4MZnolldq7ciKKlbVDzLm5',
   },
   {
     artist: 'Brent Faiyaz',

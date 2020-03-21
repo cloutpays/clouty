@@ -2,8 +2,8 @@ import { getCookie } from '../../lib/session';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SecuredPage from '../../hoc/securedPage';
-import UserInfoForm from '../../components/UserInfoForm';
-import Wrapper from '../../components/Wrapper';
+import UserInfoForm from '../../components/forms/UserInfoForm';
+import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 

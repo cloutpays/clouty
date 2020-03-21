@@ -5,9 +5,9 @@ import React, { Component } from 'react';
 import Footer from './Footer';
 import Navigation from './Navigation';
 
-import { getCookieFromBrowser } from '../lib/session';
-import { initGA, logPageView } from '../lib/helpers';
-import { styles } from '../constants/styles';
+import { getCookieFromBrowser } from '../../lib/session';
+import { initGA, logPageView } from '../../lib/helpers';
+import { styles } from '../../constants/styles';
 
 export default class Wrapper extends Component {
   componentDidMount() {

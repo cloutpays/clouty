@@ -1,6 +1,5 @@
 import { darkMode } from '../lib/helpers';
 import classNames from 'classnames';
-console.log(darkMode);
 export const styles = {
   wrapper: `mw8 center`,
   link: 'gray fw7 link no-underline b bb bw1 dim',

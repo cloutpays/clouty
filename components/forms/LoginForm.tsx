@@ -4,8 +4,8 @@ import Cleave from 'cleave.js/react';
 import 'emoji-mart/css/emoji-mart.css';
 import Router from 'next/router';
 import React, { useState } from 'react';
-import Firebase from '../lib/firebase';
-import { setCookie } from '../lib/session';
+import Firebase from '../../lib/firebase';
+import { setCookie } from '../../lib/session';
 
 interface LoginFormProps {
   email: string;

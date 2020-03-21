@@ -2,8 +2,8 @@ import axios from 'axios';
 import Link from 'next/link';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { formatPrice } from '../lib/helpers';
-import { removeCookie } from '../lib/session';
+import { formatPrice } from '../../lib/helpers';
+import { removeCookie } from '../../lib/session';
 
 interface NavigationProps {
   balance: number;

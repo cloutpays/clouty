@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import React from 'react';
-import { styles } from '../constants/styles';
-import { getCookieFromBrowser } from '../lib/session';
+import { styles } from '../../constants/styles';
+import { getCookieFromBrowser } from '../../lib/session';
 
 interface DarkModeProps {
   darkMode: boolean;

@@ -2,7 +2,7 @@ import { grammyRender, sortGames } from '../../../lib/helpers';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Wrapper from '../../../components/Wrapper';
+import Wrapper from '../../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import adminPage from '../../../hoc/adminPage';
 import axios from 'axios';
@@ -12,7 +12,6 @@ const Games = ({ questions }) => {
     header: 'Edit games and contests.',
     description: 'Edit games and contests.',
   };
-
   return (
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
@@ -22,6 +21,8 @@ const Games = ({ questions }) => {
               .map((game) => {
                 const gameButtonText = 'Manage';
                 const grammy = game.gameType === 'grammy';
+                const gameClosed = new Date(game.endDate) < new Date();
+
                 const activeLink = `/dashboard/edit/${game.slug}`;
                 const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
                 return (
@@ -44,6 +45,11 @@ const Games = ({ questions }) => {
                           <p>
                             {grammy ? grammyRender(game) : game.description}
                           </p>
+                          {!game.answer && gameClosed && (
+                            <>
+                              <div className='f6 mt0 fw7'>Game Closed</div>{' '}
+                            </>
+                          )}
                           {game.answer && (
                             <>
                               <div className='f6 mt0 fw7'>Winning bet:</div>{' '}
