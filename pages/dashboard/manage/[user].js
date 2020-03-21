@@ -15,6 +15,7 @@ const Dashboard = ({
   lostBets,
   wonBets,
   pendingBets,
+  stripe,
 }) => {
   const data = {
     title: 'Dashboard',
@@ -76,7 +77,11 @@ const Dashboard = ({
               return (
                 <tr key={ind}>
                   <td className='pv3 pr3 bb b--black-20' key='date'>
-                    {formatDate(new Date(curr.date))}
+                    <a
+                      className='no-underline dim black b'
+                      href={`/dashboard/manage/${curr._id}`}>
+                      {formatDate(new Date(curr.date))}
+                    </a>
                   </td>
                   <td className='pv3 pr3 bb b--black-20' key='name'>
                     <a
@@ -172,6 +177,34 @@ const Dashboard = ({
           </tbody>
         </table>
       </div>
+      <div className='mv3'>
+        <h2>Transactions</h2>
+        <table className='f6 w-100 mw8 center' cellSpacing='0'>
+          <thead>
+            <tr>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
+
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Amount</th>
+            </tr>
+          </thead>
+          <tbody className='lh-copy'>
+            {stripe
+              .map((curr, ind) => {
+                return (
+                  <tr key={ind}>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      {formatDate(new Date(0).setUTCSeconds(curr.created))}
+                    </td>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      {formatPrice(curr.amount / 100)}
+                    </td>
+                  </tr>
+                );
+              })
+              .reverse()}
+          </tbody>
+        </table>
+      </div>
     </Wrapper>
   );
 };
@@ -185,6 +218,8 @@ Dashboard.getInitialProps = async ({ req }) => {
   );
   const payoutsRes = await axios.get(`${apiURL}/api/userPayouts/${user}`);
   const payouts = payoutsRes.data;
+  const stripeRes = await axios.get(`${apiURL}/api/userTransactions/${user}`);
+  const stripe = stripeRes.data;
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
   const submissions = submissionsRes.data;
@@ -209,6 +244,7 @@ Dashboard.getInitialProps = async ({ req }) => {
     totalWager,
     wonWagers,
     submissions,
+    stripe,
     payouts,
   };
 };
@@ -216,6 +252,7 @@ Dashboard.getInitialProps = async ({ req }) => {
 Dashboard.propTypes = {
   submissions: PropTypes.array,
   payouts: PropTypes.array,
+  stripe: PropTypes.array,
   user: PropTypes.object,
   wonWagers: PropTypes.number,
   wonBets: PropTypes.number,
