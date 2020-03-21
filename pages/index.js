@@ -1,6 +1,7 @@
 import { getCookie } from '../lib/session';
 import { styles } from '../constants/styles';
 import DemoForm from '../components/forms/DemoForm';
+import DisclaimerModal from '../components/DisclaimerModal';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -112,6 +113,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
           <p className={`${styles.paragraph}`}>
             Sign up today to receive a free $5 towards your bets.
           </p>
+          <DisclaimerModal />
         </div>
         <section className='mt3 w-100 dib pv4 flex items-center justify-center '>
           <div className='b pa3 mr2  input-reset ba b--black bg-transparent grow pointer f4'>
