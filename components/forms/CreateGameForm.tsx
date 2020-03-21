@@ -132,18 +132,15 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     setEmoji(e);
     renderEmoji();
   };
-  const closeGame = () => {
+  const closeGame = () =>
     axios.post(`/api/endQuestion/${currentGame.slug}`).then(() => {
       Router.push('/dashboard/edit');
     });
-  };
 
-  const renderEmoji = () => {
-    setVisible(!visible);
-  };
-  const addAnswer = () => {
-    setAnswerVisible(!answerVisible);
-  };
+  const renderEmoji = () => setVisible(!visible);
+
+  const addAnswer = () => setAnswerVisible(!answerVisible);
+
   const removeAnswer = () => {
     setAnswer('');
     setAnswerVisible(!answerVisible);
@@ -162,7 +159,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
       : 'Submit Game'
     : loading
     ? 'Updating...'
-    : 'Update';
+    : 'Update Game';
   return (
     <>
       <article className='pa4 black-80'>
