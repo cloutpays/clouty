@@ -1,7 +1,7 @@
 import { formatDate, formatPrice } from '../../../lib/helpers';
 import AdminPage from '../../../hoc/adminPage';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import Wrapper from '../../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
@@ -22,6 +22,24 @@ const Dashboard = ({
     header: `${user.info.firstName} By The Numbers`,
     description: 'Dashboard',
   };
+
+  const setCredit = async () => {
+    await axios
+      .post(`/api/setCredit`, {
+        data: {
+          credit: {
+            credit: creditBalance * 100,
+            balance: balance * 100,
+            userId: user._id,
+          },
+        },
+      })
+      .then(() => (window.location.href = `/dashboard/users`));
+  };
+  const [balance, setBalance] = useState(user.stripe.user.balance / 100);
+  const [creditBalance, setCreditBalance] = useState(
+    user.stripe.user.credit / 100,
+  );
   return (
     <Wrapper data={data}>
       <h1 className='f2 lh-title fw9 mb2 mt0 pt3 bt bw2'>
@@ -38,6 +56,12 @@ const Dashboard = ({
           <dd className='f6 f5-ns b ml0'>Balance</dd>
           <dd className='f3 f2-ns b ml0'>
             {formatPrice(user.stripe.user.balance / 100)}
+          </dd>
+        </dl>
+        <dl className='dib mr5'>
+          <dd className='f6 f5-ns b ml0'>Credits</dd>
+          <dd className='f3 f2-ns b ml0'>
+            {formatPrice(user.stripe.user.credit / 100)}
           </dd>
         </dl>
         <dl className='dib mr5'>
@@ -59,6 +83,34 @@ const Dashboard = ({
           <dd className='f3 f2-ns b ml0'>{formatPrice(totalWager)}</dd>
         </dl>
       </article>
+      <div className='mv3'>
+        <label className='db fw6 lh-copy f6' htmlFor='user-name'>
+          Balance
+        </label>
+        <input
+          className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-40'
+          onChange={(event) => setBalance(event.currentTarget.value)}
+          value={balance}
+        />
+      </div>
+      <div className='mv3'>
+        <label className='db fw6 lh-copy f6' htmlFor='user-name'>
+          Credit
+        </label>
+        <input
+          className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-40'
+          onChange={(event) => setCreditBalance(event.currentTarget.value)}
+          value={creditBalance}
+        />
+      </div>
+      <div>
+        <span
+          onClick={setCredit}
+          className='f6 mr2 noselect link dim ph3 pv2 mb2 dib white bg-black'>
+          Set Balances
+        </span>
+      </div>
+
       <h2>Submitted Bets</h2>
       <table className='f6 w-100 mw8 center' cellSpacing='0'>
         <thead>

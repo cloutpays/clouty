@@ -5,12 +5,14 @@ const {
   questionsRetrieveApi,
   questionRetrieveApi,
   userSubmissionsRetrieveApi,
+  gameSubmissionsRetrieveApi,
 } = require('../helpers/game');
 const { userRetrieveApi, usersApi } = require('../helpers/user');
 const {
   stripeApi,
   payoutsByUserApi,
   allPayoutsApi,
+  getAllTransactionsApi,
   getUserTransactionsApi,
 } = require('../helpers/stripe');
 const { send } = require('micro');
@@ -22,8 +24,12 @@ const getApi = (fn) => async (req, res) => {
     switch (`api/${parse[2]}`) {
       case 'api/submissions':
         return await fn(submissionsRetrieveApi(req, res));
+      case 'api/transactions':
+        return await fn(getAllTransactionsApi(req, res));
       case 'api/userTransactions':
         return await fn(getUserTransactionsApi(req, res));
+      case 'api/gameSubmissions':
+        return await fn(gameSubmissionsRetrieveApi(req, res));
       case 'api/userSubmissions':
         return await fn(userSubmissionsRetrieveApi(req, res));
       case 'api/userPayouts':

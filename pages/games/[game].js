@@ -25,7 +25,10 @@ const Games = ({ game, user, submissions, houseBalance, isAdmin }) => {
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
         <div className='dtc f6 b ma0 v-mid w-100 w-90-ns tr'>
-          Current Balance: {formatPrice(user.stripe.user.balance / 100)}
+          Current Balance:{' '}
+          {formatPrice(
+            (user.stripe.user.balance + user.stripe.user.credit) / 100,
+          )}
         </div>
         <div className='dtc f6 b ma0 v-mid w-100 w-90-ns tr'>
           <div className='noselect grow outline dim pv2 ph3 mr2 fr mt2'>

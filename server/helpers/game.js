@@ -6,9 +6,12 @@ const { parse } = require('url');
 import {
   cloutpays,
   dev,
+  loserEmailContent,
   question,
+  sendEmail,
   sendTextMessage,
   user,
+  winnerEmailContent,
   wrapAsync,
 } from '../helpers';
 
@@ -93,7 +96,12 @@ export const gameSubmitApi = wrapAsync(async (req, db) => {
   const { wager, phoneNumber, name } = data.userSubmission;
   const { user } = data;
   const { balance } = user.stripe.user;
-  user.stripe.user.balance = balance - wager * 100;
+  const credit = user.stripe.user.credit;
+  if (credit >= wager * 100) {
+    user.stripe.user.credit = credit - wager * 100;
+  } else {
+    user.stripe.user.balance = balance - wager * 100;
+  }
   await updateUser(user, db);
   if (!dev) {
     await sendTextMessage(name, 'confirm', phoneNumber);
@@ -115,6 +123,14 @@ export const submissionsRetrieveApi = wrapAsync(
       .find()
       .toArray(),
 );
+export const gameSubmissionsRetrieveApi = wrapAsync(async (req, db) => {
+  const { query } = parse(req.url, true);
+  const { id } = query;
+  return await db
+    .collection(cloutpays)
+    .find({ question: id })
+    .toArray();
+});
 export const userSubmissionsRetrieveApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
   const { id } = query;
@@ -139,11 +155,16 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
     .find({ question: data.question })
     .toArray();
   if (data.answer) {
-    const payoutUsers = entries.filter((entry) => {
+    const winningUsers = entries.filter((entry) => {
       return entry.answer === data.answer;
     });
-    if (payoutUsers.length > 0) {
-      await handlePayouts(payoutUsers, db);
+    const losingUsers = entries.filter((entry) => {
+      return entry.answer !== data.answer;
+    });
+    await sendEmail(winningUsers, winnerEmailContent);
+    await sendEmail(losingUsers, loserEmailContent);
+    if (winningUsers.length > 0) {
+      await handlePayouts(winningUsers, db);
     }
   }
   if (entries.length > 0) {

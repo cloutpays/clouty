@@ -21,6 +21,33 @@ const updateStripeUser = async (paymentIntent, db) => {
   );
   return newUser.value;
 };
+
+export const getAllTransactionsApi = wrapAsync(async () => {
+  const charges = [];
+  await stripe.charges
+    .list({ limit: 100, created: { gt: 1584300632 } })
+    .autoPagingEach(function(charge) {
+      charges.push(charge);
+    });
+  return charges;
+});
+
+export const setCreditApi = wrapAsync(async (req, db) => {
+  const data = (await json(req)).data;
+  let { credit } = data;
+  return db.collection(user).updateOne(
+    { _id: credit.userId },
+    {
+      $set: {
+        'stripe.user.credit': credit.credit,
+        'stripe.user.balance': credit.balance,
+        edited: true,
+      },
+    },
+    { returnOriginal: false },
+  ).value;
+});
+
 export const getUserTransactionsApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
   const { id } = query;
@@ -30,6 +57,10 @@ export const getUserTransactionsApi = wrapAsync(async (req, db) => {
     .toArray();
 });
 
+// export const payoutRefundApi = wrapAsync(async (req, db) => {
+//   const { query } = parse(req.url, true);
+//   const { id } = query;
+// });
 export const payoutApi = wrapAsync(async (req, db) => {
   const data = (await json(req)).data;
   let { user, payoutRequest } = data;
@@ -44,7 +75,7 @@ export const payoutApi = wrapAsync(async (req, db) => {
     delete payoutRequest._id;
     return await db
       .collection(payout)
-      .updateOne({ _id: ObjectId(_id) }, payoutRequest);
+      .updateOne({ _id: ObjectId(_id) }, { set: payoutRequest });
   }
   //creating new payout request
   else {
