@@ -11,6 +11,7 @@ const {
   stripeApi,
   payoutsByUserApi,
   allPayoutsApi,
+  getUserTransactionsApi,
 } = require('../helpers/stripe');
 const { send } = require('micro');
 
@@ -21,6 +22,8 @@ const getApi = (fn) => async (req, res) => {
     switch (`api/${parse[2]}`) {
       case 'api/submissions':
         return await fn(submissionsRetrieveApi(req, res));
+      case 'api/userTransactions':
+        return await fn(getUserTransactionsApi(req, res));
       case 'api/userSubmissions':
         return await fn(userSubmissionsRetrieveApi(req, res));
       case 'api/userPayouts':
