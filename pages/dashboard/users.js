@@ -30,6 +30,7 @@ const Dashboard = ({ users }) => {
               Total Games Played
             </th>
             <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Balance</th>
+            <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>We good?</th>
           </tr>
         </thead>
         <tbody className='lh-copy'>
@@ -68,6 +69,17 @@ const Dashboard = ({ users }) => {
 
                   <td className='pv3 pr3 bb b--black-20' key='wager'>{`$${curr
                     .stripe.user.balance / 100}`}</td>
+                  <td className='pv3 pr3 bb b--black-20' key='cleared'>
+                    {curr.edited ? (
+                      <div className='f7 noselect mr2 link dim ph2 pv1 b mb2 dib white bg-green'>
+                        W
+                      </div>
+                    ) : (
+                      <div className='f7 noselect mr2 link dim ph2 pv1 b mb2 dib white bg-yellow'>
+                        P
+                      </div>
+                    )}
+                  </td>
                 </tr>
               );
             })

@@ -21,7 +21,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
 
   const wageSelected = wager.length === 1;
   const betSelected = options.length === 1;
-  const canAffordWager = wager[0] <= user.stripe.user.balance / 100;
+  const canAffordWager =
+    wager[0] <= (user.stripe.user.balance + user.stripe.user.credit) / 100;
   const readyToPlay = wager.length + options.length === 2;
   const resetRender = betSelected || wageSelected;
   const confirmAnswer = (answer: any) => {

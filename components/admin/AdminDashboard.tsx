@@ -38,7 +38,9 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                 Preferred
               </th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Amount</th>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Amount</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                Refunded?
+              </th>
             </tr>
           </thead>
           <tbody className='lh-copy'>
