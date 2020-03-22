@@ -69,7 +69,10 @@ const Terms = ({ balance, submissions, user }) => {
                                             W
                                           </span>
                                           <span className='f5 fw5 ml1 silver'>
-                                            +${game.wager * 2}
+                                            +$
+                                            {game.usedCredit
+                                              ? game.wager
+                                              : game.wager * 2}
                                           </span>
                                         </div>
                                       )}

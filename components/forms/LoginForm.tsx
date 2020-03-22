@@ -102,7 +102,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           .then((res: AxiosResponse) => {
             const user = res.data;
             if (user.admin) {
-              setCookie('id_token_admin', true);
+              setCookie('id_token_a', true);
             }
             Router.push('/user');
           });

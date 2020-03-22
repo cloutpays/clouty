@@ -16,7 +16,7 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
 
   const handleLogout = () => {
     removeCookie('id_token');
-    removeCookie('id_token_admin');
+    removeCookie('id_token_a');
     Router.push('/');
   };
   useEffect(() => {
@@ -30,8 +30,8 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
   }, []);
   return (
     <>
-      <nav className='w-100 mb0-l ph3-m ph3-l flex center'>
-        <div className='mr5'>
+      <article className='w-100 mb0-l ph3-m ph3-l flex center'>
+        <div className='mr5 pr3'>
           <h2 className='ttu mt0 mb2 f6 fw5 silver'>Manage</h2>
           <ul className='list pl0 mt0 mb4'>
             <li className='mb2'>
@@ -71,9 +71,9 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
             </li>
           </ul>
         </div>
-      </nav>
-      <article className='w-100 w-75-m w-75-l ph3-m ph3-l'>
-        <header className='mb3'>
+      </article>
+      <article className='w-100 mb0-l ph3-m ph3-l flex center'>
+        <div className='mr5 pr4 pr5-ns'>
           <h2 className='ttu mt0 mb1 f6 fw5 silver'>Balance</h2>
           <h1 className='fw3 dark-gray mt0 mb0'>
             {isLoading ? (
@@ -87,7 +87,19 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
               Add to Balance
             </a>
           </Link>
-        </header>
+        </div>
+        {user.stripe.user.credit > 0 && (
+          <div>
+            <h2 className='ttu mt0 mb2 f6 fw5 silver'>Credit</h2>
+            <h1 className='fw3 dark-gray mt0 mb0'>
+              {isLoading ? (
+                <i className='fa fa-spinner fa-spin' />
+              ) : (
+                formatPrice(user.stripe.user.credit / 100)
+              )}
+            </h1>
+          </div>
+        )}
         <hr className='o-20' />
       </article>
     </>

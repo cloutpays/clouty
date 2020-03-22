@@ -25,7 +25,10 @@ const Games = ({ game, user, submissions, houseBalance, isAdmin }) => {
     <Wrapper data={data}>
       <section className='flex flex-wrap'>
         <div className='dtc f6 b ma0 v-mid w-100 w-90-ns tr'>
-          Current Balance: {formatPrice(user.stripe.user.balance / 100)}
+          Current Balance:{' '}
+          {formatPrice(
+            (user.stripe.user.balance + user.stripe.user.credit) / 100,
+          )}
         </div>
         <div className='dtc f6 b ma0 v-mid w-100 w-90-ns tr'>
           <div className='noselect grow outline dim pv2 ph3 mr2 fr mt2'>
@@ -80,7 +83,7 @@ Games.getInitialProps = async (ctx) => {
   const apiURL = `${origin}`;
   const question = (await axios.get(`${apiURL}/api/question/${game}`)).data;
   const user = getCookie('id_token', ctx.req);
-  const isAdmin = getCookie('id_token_admin', ctx.req) ? true : false;
+  const isAdmin = getCookie('id_token_a', ctx.req) ? true : false;
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
   const submissionsRes = await axios.get(`${apiURL}/api/submissions`);
   const submissions = submissionsRes.data.filter(
