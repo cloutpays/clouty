@@ -213,7 +213,7 @@ export const loserEmailContent = {
 
                         <td valign="top" class="m_-3817735781181349386mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left">
 
-                            <p style="text-align:center;margin:10px 0;padding:0;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%">Unfortunately,&nbsp;the <strong>bet you placed</strong>&nbsp;in our weekly contest fell short.&nbsp;</p>
+                            <p style="text-align:center;margin:10px 0;padding:0;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%">Unfortunately,&nbsp;one or more <strong>bets you placed</strong>&nbsp;in our weekly contest fell short.&nbsp;</p>
 
 <p style="text-align:center;margin:10px 0;padding:0;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%">Please check the site weekly for:<br>
 &nbsp;</p>
@@ -515,7 +515,7 @@ export const winnerEmailContent = {
                                             data-image-whitelisted=""
                                             class="CToWUd"
                                           />Congrats!<br />
-                                          You’ve Won the Bet you Placed
+                                          You’ve won one or more bets you placed
                                           <img
                                             goomoji="1f3c6"
                                             data-goomoji="1f3c6"
