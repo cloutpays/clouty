@@ -8,7 +8,7 @@ import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
@@ -111,14 +111,17 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             Double your money while putting your intuition on the line.
           </p>
           <p className={`${styles.paragraph}`}>
-            Sign up today to receive a free $2 credit towards your bets.
+            Sign up today and receive a free $2 credit towards your bets. Also,
+            for a limited time enjoy
+            <span className={classnames('i b')}> feeless </span>
+            bets!
           </p>
           <DisclaimerModal />
         </div>
         <section className='mt3 w-100 dib pv4 flex items-center justify-center '>
           <div className='b pa3 mr2  input-reset ba b--black bg-transparent grow pointer f4'>
             <a
-              className={`no-underline ${classNames({
+              className={`no-underline ${classnames({
                 black: !darkMode,
                 white: darkMode,
               })}`}
@@ -169,7 +172,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
                   <a href={curr.spotify} className='db link dim tc'>
                     <img
                       src={curr.image}
-                      className={`w-100 db outline ${classNames({
+                      className={`w-100 db outline ${classnames({
                         'black-10': !darkMode,
                         'white-10': darkMode,
                       })}`}
@@ -177,7 +180,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
                     <dl className='mt2 f6 lh-copy'>
                       <dt className='clip'>Title</dt>
                       <dd
-                        className={`ml0 ${classNames({
+                        className={`ml0 ${classnames({
                           black: !darkMode,
                           white: darkMode,
                         })} truncate w-100`}>
@@ -185,7 +188,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
                       </dd>
                       <dt className='clip'>Artist</dt>
                       <dd
-                        className={`ml0 ${classNames({
+                        className={`ml0 ${classnames({
                           gray: !darkMode,
                           'white-70': darkMode,
                         })} truncate w-100`}>
