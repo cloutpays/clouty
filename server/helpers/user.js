@@ -48,7 +48,7 @@ export const userApi = wrapAsync(async function(req, db) {
     });
 
     userData.stripe = {
-      user: { ...stripeUser, balance: 500 },
+      user: { ...stripeUser, balance: 200 },
     };
     userData.new = false;
   }
