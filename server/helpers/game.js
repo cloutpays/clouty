@@ -161,10 +161,18 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
     const losingUsers = entries.filter((entry) => {
       return entry.answer !== data.answer;
     });
-    await sendEmail(winningUsers, winnerEmailContent);
-    await sendEmail(losingUsers, loserEmailContent);
     if (winningUsers.length > 0) {
+      await sendEmail(
+        winningUsers.map((curr) => curr.email),
+        winnerEmailContent,
+      );
       await handlePayouts(winningUsers, db);
+    }
+    if (losingUsers.length > 0) {
+      await sendEmail(
+        losingUsers.map((curr) => curr.email),
+        loserEmailContent,
+      );
     }
   }
   if (entries.length > 0) {
