@@ -13,7 +13,7 @@ const Login = () => (
   <div>
     <Wrapper data={data}>
       <p className={styles.paragraph}>
-        Sign up today to receive a free $5 credit towards your bets.
+        Sign up today to receive a free $2 credit towards your bets.
       </p>
       <DisclaimerModal />
       <LoginForm mode={'signup'} />

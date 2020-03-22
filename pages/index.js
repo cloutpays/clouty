@@ -111,7 +111,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             Double your money while putting your intuition on the line.
           </p>
           <p className={`${styles.paragraph}`}>
-            Sign up today to receive a free $5 credit towards your bets.
+            Sign up today to receive a free $2 credit towards your bets.
           </p>
           <DisclaimerModal />
         </div>
