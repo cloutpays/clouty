@@ -24,7 +24,7 @@ const DisclaimerModal: React.FC = () => {
       <Modal open={isOpen} onClose={onCloseModal} center={true}>
         <h2 className={styles.h2}>Credit Disclosure</h2>
         <p className={classnames(styles.paragraph, 'i')}>
-          The $5 credit is only for betting and can't be cashed out, but
+          The $2 credit is only for betting and can't be cashed out, but
           winnings earned from this credit can be redeemed.
         </p>
       </Modal>
