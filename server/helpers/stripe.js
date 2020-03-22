@@ -32,24 +32,19 @@ export const getAllTransactionsApi = wrapAsync(async () => {
   return charges;
 });
 
-export const removeCreditApi = wrapAsync(async (req, db) => {
-  const { query } = parse(req.url, true);
-  const { id } = query;
-  // console.log(amount);
-  const userQuery = await db
-    .collection(user)
-    .find({ _id: id })
-    .toArray();
-  return db.collection(user).updateOne(
-    { _id: id },
+export const setCreditApi = wrapAsync(async (req, db) => {
+  const data = (await json(req)).data;
+  let { credit } = data;
+  return await db.collection(user).updateOne(
+    { _id: credit.userId },
     {
       $set: {
-        'stripe.user.credit': true,
-        'stripe.user.balance': userQuery[0].stripe.user.balance - 500,
+        'stripe.user.credit': credit.credit,
+        'stripe.user.balance': credit.balance,
+        edited: true,
       },
     },
-    { returnOriginal: false },
-  ).value;
+  );
 });
 
 export const getUserTransactionsApi = wrapAsync(async (req, db) => {

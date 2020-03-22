@@ -23,6 +23,10 @@ const Dashboard = ({
     description: 'Dashboard',
   };
 
+  const [balance, setBalance] = useState(user.stripe.user.balance / 100);
+  const [creditBalance, setCreditBalance] = useState(
+    user.stripe.user.credit / 100,
+  );
   const setCredit = async () => {
     await axios
       .post(`/api/setCredit`, {
@@ -36,10 +40,6 @@ const Dashboard = ({
       })
       .then(() => (window.location.href = `/dashboard/users`));
   };
-  const [balance, setBalance] = useState(user.stripe.user.balance / 100);
-  const [creditBalance, setCreditBalance] = useState(
-    user.stripe.user.credit / 100,
-  );
   return (
     <Wrapper data={data}>
       <h1 className='f2 lh-title fw9 mb2 mt0 pt3 bt bw2'>
