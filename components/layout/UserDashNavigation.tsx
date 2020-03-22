@@ -72,22 +72,37 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
           </ul>
         </div>
       </nav>
-      <article className='w-100 w-75-m w-75-l ph3-m ph3-l'>
-        <header className='mb3'>
-          <h2 className='ttu mt0 mb1 f6 fw5 silver'>Balance</h2>
-          <h1 className='fw3 dark-gray mt0 mb0'>
-            {isLoading ? (
-              <i className='fa fa-spinner fa-spin' />
-            ) : (
-              formatPrice(userBalance / 100)
-            )}
-          </h1>
-          <Link href='/user/balance'>
-            <a className=' f6 no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
-              Add to Balance
-            </a>
-          </Link>
-        </header>
+      <article className='w-100 mb0-l ph3-m ph3-l flex center'>
+        <div className='mr5'>
+          <header className='mb3'>
+            <h2 className='ttu mt0 mb1 f6 fw5 silver'>Balance</h2>
+            <h1 className='fw3 dark-gray mt0 mb0'>
+              {isLoading ? (
+                <i className='fa fa-spinner fa-spin' />
+              ) : (
+                formatPrice(userBalance / 100)
+              )}
+            </h1>
+            <Link href='/user/balance'>
+              <a className=' f6 no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
+                Add to Balance
+              </a>
+            </Link>
+          </header>
+        </div>
+        {user.stripe.user.credit > 0 && (
+          <div>
+            {' '}
+            <h2 className='ttu mt0 mb1 f6 fw5 silver'>Credit</h2>
+            <h1 className='fw3 dark-gray mt0 mb0'>
+              {isLoading ? (
+                <i className='fa fa-spinner fa-spin' />
+              ) : (
+                formatPrice(user.stripe.user.credit / 100)
+              )}
+            </h1>
+          </div>
+        )}
         <hr className='o-20' />
       </article>
     </>
