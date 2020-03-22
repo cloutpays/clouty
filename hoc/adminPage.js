@@ -10,7 +10,7 @@ const withAuthSync = (WrappedComponent) =>
 
     static async getInitialProps(ctx) {
       const isLoggedIn = getCookie('id_token', ctx.req) ? true : false;
-      const isAdmin = getCookie('id_token_admin', ctx.req) ? true : false;
+      const isAdmin = getCookie('id_token_a', ctx.req) ? true : false;
 
       if (!isLoggedIn && !isAdmin) {
         redirect(ctx, '/user');

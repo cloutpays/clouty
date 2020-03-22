@@ -16,7 +16,7 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
 
   const handleLogout = () => {
     removeCookie('id_token');
-    removeCookie('id_token_admin');
+    removeCookie('id_token_a');
     Router.push('/');
   };
   useEffect(() => {

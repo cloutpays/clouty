@@ -10,7 +10,7 @@ interface DarkModeProps {
 
 const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
   const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;
-  const isAdmin = getCookieFromBrowser('id_token_admin') ? true : false;
+  const isAdmin = getCookieFromBrowser('id_token_a') ? true : false;
   const navLinks = ` ${styles.navigationLink} ${classNames({
     'near-black': !darkMode,
     'near-white': darkMode,

@@ -83,7 +83,7 @@ Games.getInitialProps = async (ctx) => {
   const apiURL = `${origin}`;
   const question = (await axios.get(`${apiURL}/api/question/${game}`)).data;
   const user = getCookie('id_token', ctx.req);
-  const isAdmin = getCookie('id_token_admin', ctx.req) ? true : false;
+  const isAdmin = getCookie('id_token_a', ctx.req) ? true : false;
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
   const submissionsRes = await axios.get(`${apiURL}/api/submissions`);
   const submissions = submissionsRes.data.filter(
