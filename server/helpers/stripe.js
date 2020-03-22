@@ -34,7 +34,7 @@ export const getAllTransactionsApi = wrapAsync(async () => {
 
 export const setCreditApi = wrapAsync(async (req, db) => {
   const data = (await json(req)).data;
-  let { credit } = data;
+  const { credit } = data;
   return await db.collection(user).updateOne(
     { _id: credit.userId },
     {
