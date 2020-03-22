@@ -20,6 +20,7 @@ const handlePayouts = async (entries, db) => {
     return {
       _id: entry.userId,
       amount: entry.wager * 200,
+      credit: entry.usedCredit,
     };
   });
 
@@ -36,17 +37,18 @@ const handlePayouts = async (entries, db) => {
     .toArray();
   users = users.map((user) => {
     const { stripe } = user;
+    const queryUser = modifiedUsers.filter((modUser) => {
+      return user._id === modUser._id;
+    })[0];
+    const increase = queryUser.credit ? queryUser.amount / 2 : queryUser.amount;
+
     return {
       ...user,
       stripe: {
         ...stripe,
         user: {
           ...stripe.user,
-          balance:
-            stripe.user.balance +
-            modifiedUsers.filter((modUser) => {
-              return user._id === modUser._id;
-            })[0].amount,
+          balance: stripe.user.balance + increase,
         },
       },
     };
@@ -97,16 +99,22 @@ export const gameSubmitApi = wrapAsync(async (req, db) => {
   const { user } = data;
   const { balance } = user.stripe.user;
   const credit = user.stripe.user.credit;
+  let usedCredit = false;
   if (credit >= wager * 100) {
     user.stripe.user.credit = credit - wager * 100;
-  } else {
+    usedCredit = true;
+  } else if (balance >= wager * 100) {
     user.stripe.user.balance = balance - wager * 100;
+  } else {
+    return 'no sir';
   }
   await updateUser(user, db);
   if (!dev) {
     await sendTextMessage(name, 'confirm', phoneNumber);
   }
-  return await db.collection(cloutpays).insertOne(data.userSubmission);
+  return await db
+    .collection(cloutpays)
+    .insertOne({ ...data.userSubmission, usedCredit });
 });
 
 export const submissionsRemovalApi = wrapAsync(async (req, db) => {
