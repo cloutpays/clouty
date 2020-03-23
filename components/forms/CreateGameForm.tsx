@@ -38,12 +38,14 @@ interface CreateGameFormProps {
   questions: Question[];
   game: GameProps;
   isUserSubmission: boolean;
+  userId: string;
 }
 
 const CreateGameForm: React.FC<CreateGameFormProps> = ({
   game,
   questions,
   isUserSubmission,
+  userId,
 }) => {
   const [description, setDescription] = useState<string>(
     game ? game.description : '',
@@ -100,6 +102,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
       extendedAnswer: answer,
       class: colorway,
       question: number,
+      userId,
     };
     if (isUserSubmission) {
       axios.post('/api/userquestion', submission).then(() => {
