@@ -17,6 +17,13 @@ const data = {
 
 const albums = [
   {
+    artist: 'Money Man',
+    album: 'State of Emergency',
+    image:
+      'https://hw-img.datpiff.com/m30811ba/Money_Man_State_Of_Emergency-front-large.jpg',
+    spotify: 'https://open.spotify.com/album/7rGsQ3XiJbCjdjnxE5qmvM',
+  },
+  {
     artist: 'Don Toliver',
     album: 'Heaven or Hell',
     image:
