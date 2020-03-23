@@ -74,7 +74,7 @@ export const payoutApi = wrapAsync(async (req, db) => {
     delete payoutRequest._id;
     return await db
       .collection(payout)
-      .updateOne({ _id: ObjectId(_id) }, { set: payoutRequest });
+      .updateOne({ _id: ObjectId(_id) }, { $set: payoutRequest });
   }
   //creating new payout request
   else {

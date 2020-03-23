@@ -1,4 +1,4 @@
-import { formatDate } from '../../lib/helpers';
+import { formatDate, formatPrice } from '../../lib/helpers';
 import AdminPage from '../../hoc/adminPage';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -19,6 +19,20 @@ const Dashboard = ({ users }) => {
           <dd className='f6 f5-ns b ml0'>Total Users</dd>
           <dd className='f3 f2-ns b ml0'>{users.length}</dd>
         </dl>
+        <dl className='dib mr5'>
+          <dd className='f6 f5-ns b ml0'>Total User Balances</dd>
+          <dd className='f3 f2-ns b ml0'>
+            {formatPrice(
+              users
+                .map((curr) => {
+                  return curr.stripe.user.balance;
+                })
+                .reduce((acc, curr) => {
+                  return acc + curr;
+                }, 0) / 100,
+            )}
+          </dd>
+        </dl>
       </article>
 
       <table className='f6 w-100 mw8 center' cellSpacing='0'>
@@ -26,6 +40,9 @@ const Dashboard = ({ users }) => {
           <tr>
             <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
             <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
+            <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+              Email Address
+            </th>
             <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
               Total Games Played
             </th>
@@ -56,6 +73,14 @@ const Dashboard = ({ users }) => {
                       href={`/dashboard/manage/${curr._id}`}>
                       {' '}
                       @{curr.info.userName}
+                    </a>
+                  </td>
+                  <td className='pv3 pr3 bb b--black-20' key='name'>
+                    <a
+                      className='no-underline dim black b'
+                      href={`/dashboard/manage/${curr._id}`}>
+                      {' '}
+                      {curr.email}
                     </a>
                   </td>
                   <td className='pv3 pr3 bb b--black-20' key='question'>
