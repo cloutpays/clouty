@@ -1,3 +1,4 @@
+import { getCookie } from '../../lib/session';
 import AdminPage from '../../hoc/adminPage';
 import CreateGameForm from '../../components/forms/CreateGameForm';
 import PropTypes from 'prop-types';
@@ -6,7 +7,7 @@ import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const CreateGame = ({ questions }) => {
+const CreateGame = ({ questions, userId }) => {
   const data = {
     title: 'Dashboard',
     header: 'Create Game',
@@ -14,7 +15,7 @@ const CreateGame = ({ questions }) => {
   };
   return (
     <Wrapper data={data}>
-      <CreateGameForm questions={questions} />
+      <CreateGameForm questions={questions} userId={userId} />
     </Wrapper>
   );
 };
@@ -24,10 +25,12 @@ CreateGame.getInitialProps = async ({ req }) => {
   const apiURL = `${origin}`;
   const res = await axios.get(`${apiURL}/api/questions`);
   const questions = await res.data;
-  return { questions };
+  const userId = getCookie('id_token', req);
+  return { questions, userId };
 };
 CreateGame.propTypes = {
   questions: PropTypes.array,
+  userId: PropTypes.string,
 };
 
 export default AdminPage(CreateGame);

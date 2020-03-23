@@ -1,3 +1,4 @@
+import { getCookie } from '../../../lib/session';
 import CreateGameForm from '../../../components/forms/CreateGameForm';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -5,7 +6,7 @@ import Wrapper from '../../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const CreateUserGame = ({ questions }) => {
+const CreateUserGame = ({ questions, userId }) => {
   const data = {
     title: 'Dashboard',
     header: 'Create Game',
@@ -13,7 +14,11 @@ const CreateUserGame = ({ questions }) => {
   };
   return (
     <Wrapper data={data}>
-      <CreateGameForm questions={questions} isUserSubmission={true} />
+      <CreateGameForm
+        isUserSubmission={true}
+        questions={questions}
+        userId={userId}
+      />
     </Wrapper>
   );
 };
@@ -23,10 +28,12 @@ CreateUserGame.getInitialProps = async ({ req }) => {
   const apiURL = `${origin}`;
   const res = await axios.get(`${apiURL}/api/questions`);
   const questions = await res.data;
-  return { questions };
+  const userId = getCookie('id_token', req);
+  return { questions, userId };
 };
 CreateUserGame.propTypes = {
   questions: PropTypes.array,
+  userId: PropTypes.string,
 };
 
 export default CreateUserGame;
