@@ -27,6 +27,9 @@ const Dashboard = ({ users }) => {
             <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
             <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
             <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+              Email Address
+            </th>
+            <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
               Total Games Played
             </th>
             <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Balance</th>
@@ -56,6 +59,14 @@ const Dashboard = ({ users }) => {
                       href={`/dashboard/manage/${curr._id}`}>
                       {' '}
                       @{curr.info.userName}
+                    </a>
+                  </td>
+                  <td className='pv3 pr3 bb b--black-20' key='name'>
+                    <a
+                      className='no-underline dim black b'
+                      href={`/dashboard/manage/${curr._id}`}>
+                      {' '}
+                      {curr.email}
                     </a>
                   </td>
                   <td className='pv3 pr3 bb b--black-20' key='question'>
