@@ -2,7 +2,15 @@ const stripe = require('stripe')(stripeSecret);
 const { parse } = require('url');
 const { json } = require('micro');
 import { ObjectId } from 'mongodb';
-import { balance, payout, stripeSecret, user, wrapAsync } from '../helpers';
+import {
+  balance,
+  payout,
+  payoutEmailContent,
+  sendEmail,
+  stripeSecret,
+  user,
+  wrapAsync,
+} from '../helpers';
 import { updateUser } from './user';
 
 const getUser = async (userId, db) => {
@@ -72,6 +80,7 @@ export const payoutApi = wrapAsync(async (req, db) => {
   if (payoutRequest._id) {
     const { _id } = payoutRequest;
     delete payoutRequest._id;
+    await sendEmail([payoutRequest.email], payoutEmailContent);
     return await db
       .collection(payout)
       .updateOne({ _id: ObjectId(_id) }, { $set: payoutRequest });
