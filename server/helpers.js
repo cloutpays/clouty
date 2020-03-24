@@ -47,7 +47,7 @@ export const dbRefresh = wrapAsync(async (req, db) => {
     .collection('payout')
     .find()
     .toArray();
-  await db.collection('userdev').deleteMany();
+  await db.collection('userdev').deleteMany({ admin: false });
   await db.collection('questiondev').deleteMany();
   await db.collection('cloutpaysdev').deleteMany();
   await db.collection('payoutdev').deleteMany();
