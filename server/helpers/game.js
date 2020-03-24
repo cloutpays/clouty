@@ -6,14 +6,13 @@ const { parse } = require('url');
 import {
   cloutpays,
   dev,
-  loserEmailContent,
   question,
   sendEmail,
   sendTextMessage,
   user,
-  winnerEmailContent,
   wrapAsync,
 } from '../helpers';
+import { loserEmailContent, winnerEmailContent } from '../emailTemplates';
 
 const handlePayouts = async (entries, db) => {
   const modifiedUsers = entries.map((entry) => {

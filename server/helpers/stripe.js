@@ -5,12 +5,13 @@ import { ObjectId } from 'mongodb';
 import {
   balance,
   payout,
-  payoutEmailContent,
   sendEmail,
   stripeSecret,
   user,
   wrapAsync,
 } from '../helpers';
+import { payoutEmailContent } from '../emailTemplates';
+
 import { updateUser } from './user';
 
 const getUser = async (userId, db) => {
