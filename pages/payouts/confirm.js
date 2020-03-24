@@ -8,7 +8,7 @@ const data = {
 };
 const Confirmation = () => (
   <div>
-    <Wrapper data={data} className='measure-wide'>
+    <Wrapper data={data}>
       <section>
         <p className={`${styles.paragraph}`}>
           Your payout has been requested & Clouty will send the request to you
