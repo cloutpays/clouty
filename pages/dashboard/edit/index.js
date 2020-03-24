@@ -9,8 +9,8 @@ import axios from 'axios';
 const Games = ({ questions }) => {
   const data = {
     title: 'Edit',
-    header: 'Edit games and contests.',
-    description: 'Edit games and contests.',
+    header: 'Manage games and contests.',
+    description: 'Manage games and contests.',
   };
   return (
     <Wrapper data={data}>
