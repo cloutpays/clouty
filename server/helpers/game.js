@@ -96,19 +96,24 @@ const updateSubmissions = async (entries, answer, db) => {
 export const gameSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   const { wager, phoneNumber, name } = data.userSubmission;
-  const { user } = data;
-  const { balance } = user.stripe.user;
-  const credit = user.stripe.user.credit;
+  const userProfile = (
+    await db
+      .collection(user)
+      .find({ _id: data.user._id })
+      .toArray()
+  )[0];
+  const { balance } = userProfile.stripe.user;
+  const credit = userProfile.stripe.user.credit;
   let usedCredit = false;
   if (credit >= wager * 100) {
-    user.stripe.user.credit = credit - wager * 100;
+    userProfile.stripe.user.credit = credit - wager * 100;
     usedCredit = true;
   } else if (balance >= wager * 100) {
-    user.stripe.user.balance = balance - wager * 100;
+    userProfile.stripe.user.balance = balance - wager * 100;
   } else {
     return 'no sir';
   }
-  await updateUser(user, db);
+  await updateUser(userProfile, db);
   if (!dev) {
     await sendTextMessage(name, 'confirm', phoneNumber);
   }
