@@ -193,9 +193,7 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
 
 export const userQuestionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  return await db
-    .collection('userquestion')
-    .findOneAndReplace({ slug: data.slug }, data, { upsert: true });
+  return await db.collection('userquestion').insertOne({ ...data });
 });
 
 export const questionsRetrieveApi = wrapAsync(
