@@ -45,6 +45,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
           </thead>
           <tbody className='lh-copy'>
             {payouts
+              .filter((curr: any) => !curr.cleared)
               .map((curr: any, ind: number) => {
                 return (
                   <tr key={ind}>
