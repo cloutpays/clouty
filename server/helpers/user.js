@@ -1,10 +1,5 @@
-import {
-  sendEmail,
-  stripeSecret,
-  user,
-  welcomeEmailContent,
-  wrapAsync,
-} from '../helpers';
+import { sendEmail, stripeSecret, user, wrapAsync } from '../helpers';
+import { welcomeEmailContent } from '../emailTemplates';
 const { json } = require('micro');
 const { parse } = require('url');
 const stripe = require('stripe')(stripeSecret);
