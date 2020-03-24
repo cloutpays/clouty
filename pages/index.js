@@ -17,6 +17,27 @@ const data = {
 
 const albums = [
   {
+    artist: 'Octavian ft. Skepta',
+    album: 'Papi Chulo',
+    image:
+      'https://is5-ssl.mzstatic.com/image/thumb/Music123/v4/a5/cb/be/a5cbbee9-1fd2-0912-96cd-a704aeb053bf/195081113920.jpg/939x0w.jpg',
+    spotify: 'https://open.spotify.com/album/33FmsnS00we0hrD1NrGniq',
+  },
+  {
+    artist: 'Childish Gambino',
+    album: '3.15.20',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/1/10/Childish_Gambino_-_3.15.20.png',
+    spotify: 'https://open.spotify.com/album/600ClrWRsAr7jZ0qjaBLHz',
+  },
+  {
+    artist: 'Money Man',
+    album: 'State of Emergency',
+    image:
+      'https://hw-img.datpiff.com/m30811ba/Money_Man_State_Of_Emergency-front-large.jpg',
+    spotify: 'https://open.spotify.com/album/7rGsQ3XiJbCjdjnxE5qmvM',
+  },
+  {
     artist: 'Don Toliver',
     album: 'Heaven or Hell',
     image:
