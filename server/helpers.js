@@ -105,6 +105,220 @@ export const sendTextMessage = async (name, type, phoneNumber) => {
   }
 };
 
+export const payoutEmailContent = {
+  subject: 'C.R.E.A.M. 👐',
+  content: `<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse">
+                            <tbody><tr>
+                                <td align="center" valign="top" id="m_-8862373763913484100templateHeader" style="background:#f7f7f7 none no-repeat center/cover;background-color:#f7f7f7;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:54px;padding-bottom:54px">
+                                    
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-8862373763913484100templateContainer" style="border-collapse:collapse;max-width:600px!important">
+                                        <tbody><tr>
+                                            <td valign="top" class="m_-8862373763913484100headerContainer" style="background:transparent none no-repeat center/cover;background-color:transparent;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0;padding-bottom:0"><table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse">
+    <tbody>
+            <tr>
+                <td valign="top" style="padding:9px">
+                    <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0" style="min-width:100%;border-collapse:collapse">
+                        <tbody><tr>
+                            <td valign="top" style="padding-right:9px;padding-left:9px;padding-top:0;padding-bottom:0;text-align:center">
+
+
+                                        <img align="center" alt="" src="https://ci6.googleusercontent.com/proxy/MAX8xaU7B3Pc5AgNMU22SKXXS2ee3rIC_bxttsfvJ78IJSa8Jc_1NiOtDCmfwptrxPivHEDSlf54bYBkn-GlyAgqRPk53KJ671XM5yLG6XS5z814lvGRF2_Z4r0L412QzQs73q4Qd3SEiHEz35ghlE0AMl-J_Q=s0-d-e1-ft#https://mcusercontent.com/9bf69911ae198f52f3648150a/images/3c1517cf-3710-4238-99a9-2d105195542e.png" width="564" style="max-width:3196px;padding-bottom:0;display:inline!important;vertical-align:bottom;border:0;height:auto;outline:none;text-decoration:none" class="m_-8862373763913484100mcnImage CToWUd a6T" tabindex="0"><div class="a6S" dir="ltr" style="opacity: 0.01; left: 536px; top: 205px;"><div id=":pk" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" role="button" tabindex="0" aria-label="Download attachment " data-tooltip-class="a1V" data-tooltip="Download"><div class="aSK J-J5-Ji aYr"></div></div></div>
+
+
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+    </tbody>
+</table></td>
+                                        </tr>
+                                    </tbody></table>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="top" id="m_-8862373763913484100templateBody" style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:27px;padding-bottom:54px">
+                                    
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-8862373763913484100templateContainer" style="border-collapse:collapse;max-width:600px!important">
+                                        <tbody><tr>
+                                            <td valign="top" class="m_-8862373763913484100bodyContainer" style="background:transparent none no-repeat center/cover;background-color:transparent;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0;padding-bottom:0"><table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse">
+    <tbody>
+        <tr>
+            <td valign="top" style="padding-top:9px">
+              	
+			
+				
+                <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%;min-width:100%;border-collapse:collapse" width="100%" class="m_-8862373763913484100mcnTextContentContainer">
+                    <tbody><tr>
+
+                        <td valign="top" class="m_-8862373763913484100mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left">
+
+                            <h1 style="display:block;margin:0;padding:0;color:#222222;font-family:Helvetica;font-size:40px;font-style:normal;font-weight:bold;line-height:150%;letter-spacing:normal;text-align:center"><img goomoji="1f4b8" data-goomoji="1f4b8" style="margin:0 0.2ex;vertical-align:middle;max-height:24px" alt="💸" src="https://mail.google.com/mail/e/1f4b8" data-image-whitelisted="" class="CToWUd">Cha Ching&nbsp;<img goomoji="1f4b5" data-goomoji="1f4b5" style="margin:0 0.2ex;vertical-align:middle;max-height:24px" alt="💵" src="https://mail.google.com/mail/e/1f4b5" data-image-whitelisted="" class="CToWUd"></h1>
+
+                        </td>
+                    </tr>
+                </tbody></table>
+				
+
+				
+            </td>
+        </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-8862373763913484100mcnDividerBlock" style="min-width:100%;border-collapse:collapse;table-layout:fixed!important">
+    <tbody>
+        <tr>
+            <td style="min-width:100%;padding:18px 18px 0px">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse">
+                    <tbody><tr>
+                        <td>
+                            <span></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+            </td>
+        </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse">
+    <tbody>
+            <tr>
+                <td valign="top" style="padding:9px">
+                    <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0" style="min-width:100%;border-collapse:collapse">
+                        <tbody><tr>
+                            <td valign="top" style="padding-right:9px;padding-left:9px;padding-top:0;padding-bottom:0;text-align:center">
+
+
+                                        <img align="center" alt="" src="https://ci4.googleusercontent.com/proxy/z9MIPadmoE1pcyPaS2rBi1lEO-k2eKdCR-mgAydZhbfyA2HQ7iPohat8hHORcgmYmdH2Ma89PeixcjygPdmBcHHuWMLe7FAO_NO_rlvBiKE6m8gXC89YIUm4JjN30oCbSsorNBDHoYbPh2kGtOZn-muaXodwcA=s0-d-e1-ft#https://mcusercontent.com/9bf69911ae198f52f3648150a/images/65be56f2-edd4-452c-b94b-76dc0b94ce90.gif" width="564" style="max-width:1080px;padding-bottom:0;display:inline!important;vertical-align:bottom;border:0;height:auto;outline:none;text-decoration:none" class="m_-8862373763913484100mcnImage CToWUd a6T" tabindex="0"><div class="a6S" dir="ltr" style="opacity: 0.01; left: 536px; top: 915px;"><div id=":qg" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" title="Download" role="button" tabindex="0" aria-label="Download attachment " data-tooltip-class="a1V"><div class="aSK J-J5-Ji aYr"></div></div></div>
+
+
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse">
+    <tbody>
+        <tr>
+            <td valign="top" style="padding-top:9px">
+              	
+			
+				
+                <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%;min-width:100%;border-collapse:collapse" width="100%" class="m_-8862373763913484100mcnTextContentContainer">
+                    <tbody><tr>
+
+                        <td valign="top" class="m_-8862373763913484100mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left">
+
+                            <p style="text-align:center;margin:10px 0;padding:0;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%">Thanks for playing! You have been <span style="color:#006400">cashed</span> out in your preferred payout method.</p>
+
+<p style="text-align:center;margin:10px 0;padding:0;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%">Cheers,</p>
+
+<p style="text-align:center;margin:10px 0;padding:0;color:#757575;font-family:Helvetica;font-size:16px;line-height:150%">Clouty Team&nbsp;</p>
+
+                        </td>
+                    </tr>
+                </tbody></table>
+				
+
+				
+            </td>
+        </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-8862373763913484100mcnDividerBlock" style="min-width:100%;border-collapse:collapse;table-layout:fixed!important">
+    <tbody>
+        <tr>
+            <td style="min-width:100%;padding:9px 18px 0px">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse">
+                    <tbody><tr>
+                        <td>
+                            <span></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+            </td>
+        </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse">
+    <tbody>
+        <tr>
+            <td style="padding-top:0;padding-right:18px;padding-bottom:18px;padding-left:18px" valign="top" align="center">
+                <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate!important;border-radius:3px;background-color:#009fc7">
+                    <tbody>
+                        <tr>
+                            <td align="center" valign="middle" style="font-family:Helvetica;font-size:18px;padding:18px">
+                                <a class="m_-8862373763913484100mcnButton" title="View my Account 🏦" href="http://clouty.io/games" style="font-weight:bold;letter-spacing:-0.5px;line-height:100%;text-align:center;text-decoration:none;color:#ffffff;display:block" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://clouty.io/games&amp;source=gmail&amp;ust=1585095642618000&amp;usg=AFQjCNE26EKXmGlhZC4jlXyYYkU3ncRgLg">View my Account <img goomoji="1f3e6" data-goomoji="1f3e6" style="margin:0 0.2ex;vertical-align:middle;max-height:24px" alt="🏦" src="https://mail.google.com/mail/e/1f3e6" data-image-whitelisted="" class="CToWUd"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table><div><div class="adm"><div id="q_1" class="ajR h4"><div class="ajT"></div></div></div><div class="h5"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-8862373763913484100mcnDividerBlock" style="min-width:100%;border-collapse:collapse;table-layout:fixed!important">
+    <tbody>
+        <tr>
+            <td style="min-width:100%;padding:18px 18px 0px">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse">
+                    <tbody><tr>
+                        <td>
+                            <span></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+            </td>
+        </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse">
+    
+	<tbody>
+        <tr>
+            <td valign="top">
+
+				
+                <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse" class="m_-8862373763913484100mcnBoxedTextContentContainer">
+                    <tbody><tr>
+
+                        <td style="padding-top:9px;padding-left:18px;padding-bottom:9px;padding-right:18px">
+
+                            <table border="0" cellspacing="0" class="m_-8862373763913484100mcnTextContentContainer" width="100%" style="min-width:100%!important;background-color:#f7f7f7;border-collapse:collapse">
+                                <tbody><tr>
+                                    <td valign="top" class="m_-8862373763913484100mcnTextContent" style="padding:18px;color:#707070;font-family:Helvetica;font-size:16px;line-height:200%;text-align:center;word-break:break-word">
+                                        <h3 style="display:block;margin:0;padding:0;color:#444444;font-family:Helvetica;font-size:22px;font-style:normal;font-weight:bold;line-height:150%;letter-spacing:normal;text-align:center">Keep up with Us</h3>
+Let people know what you've been up to or what they might have missed on <a href="http://twitter.com/cloutyio" style="color:#007c89;font-weight:normal;text-decoration:underline" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://twitter.com/cloutyio&amp;source=gmail&amp;ust=1585095642618000&amp;usg=AFQjCNG1mrOnb0yRXiaAB4qq2VcAAr1kWQ">T</a><a href="http://twitter.com/cloutyio" style="color:#007c89;font-weight:normal;text-decoration:underline" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://twitter.com/cloutyio&amp;source=gmail&amp;ust=1585095642618000&amp;usg=AFQjCNG1mrOnb0yRXiaAB4qq2VcAAr1kWQ">witter</a> or <a href="http://instagram.com/clouty.io" style="color:#007c89;font-weight:normal;text-decoration:underline" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://instagram.com/clouty.io&amp;source=gmail&amp;ust=1585095642618000&amp;usg=AFQjCNFoMtw8-ZcjPo8qZuPBQLIUkmAtMQ">Instagram</a>
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                        </td>
+                    </tr>
+                </tbody></table>
+				
+
+				
+            </td>
+        </tr>
+    </tbody>
+</table></div></div></td>
+                                        </tr>
+                                    </tbody></table>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="top" id="m_-8862373763913484100templateFooter" style="background:#333333 none no-repeat center/cover;background-color:#333333;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:45px;padding-bottom:63px">
+                                    
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" class="m_-8862373763913484100templateContainer" style="border-collapse:collapse;max-width:600px!important">
+                                        <tbody><tr>
+                                            <td valign="top" class="m_-8862373763913484100footerContainer" style="background:transparent none no-repeat center/cover;background-color:transparent;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0;padding-bottom:0"></td>
+                                        </tr>
+                                    </tbody></table>
+                                    
+                                </td>
+                            </tr>
+                        </tbody></table>`,
+};
 export const loserEmailContent = {
   subject: 'Better Luck Next Time',
   content: `<table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="m_-3817735781181349386bodyTable" style="border-collapse:collapse;height:100%;margin:0;padding:0;width:100%"><tbody><tr>
@@ -339,6 +553,7 @@ Let people know what you've been up to or what they might have missed on <a href
                 </tr>
             </tbody></table>`,
 };
+
 export const winnerEmailContent = {
   subject: 'Congrats. You won the bet you placed',
   content: `<table

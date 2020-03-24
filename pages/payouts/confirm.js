@@ -8,14 +8,14 @@ const data = {
 };
 const Confirmation = () => (
   <div>
-    <Wrapper data={data} className='measure-wide'>
+    <Wrapper data={data}>
       <section>
         <p className={`${styles.paragraph}`}>
           Your payout has been requested & Clouty will send the request to you
           via the channel selected.
         </p>
         <p className={`${styles.paragraph}`}>
-          It is expected to arrive within the next 1-2 days.{' '}
+          It is expected to arrive within the next 1-2 business days.{' '}
           <span role='img' aria-label='Bulleye'>
             🎯‍
           </span>

@@ -160,6 +160,10 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     ? loading
       ? 'Submitting...'
       : 'Submit Game'
+    : newGame
+    ? loading
+      ? 'Creating Game...'
+      : 'Create Game'
     : loading
     ? 'Updating...'
     : 'Update Game';
