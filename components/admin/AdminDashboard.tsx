@@ -39,7 +39,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
               </th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Amount</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
-                Refunded?
+                Cleared?
               </th>
             </tr>
           </thead>
@@ -70,17 +70,11 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                       {formatPrice(curr.amount)}
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='date'>
-                      {curr.cleared ? (
-                        <div className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-green'>
-                          Cleared
-                        </div>
-                      ) : (
-                        <div
-                          className='f6 noselect mr2 link dim ph3 pv2 mb2 dib white bg-yellow'
-                          onClick={() => clearRequest(curr)}>
-                          Clear
-                        </div>
-                      )}
+                      <div
+                        className='f6 noselect mr2 link dim ph3 pv2 mb2 dib white b bg-yellow'
+                        onClick={() => clearRequest(curr)}>
+                        Clear
+                      </div>
                     </td>
                   </tr>
                 );
