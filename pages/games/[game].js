@@ -9,7 +9,7 @@ import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 
-const Games = ({ game, user, submissions, houseBalance, isAdmin }) => {
+const Games = ({ game, user }) => {
   const title =
     game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
   const data = {
@@ -61,16 +61,6 @@ const Games = ({ game, user, submissions, houseBalance, isAdmin }) => {
             </div>
           </a>
         </div>
-        {isAdmin && (
-          <>
-            <div className='dtc f4 b ma0 v-mid w-100 w-90-ns tr'>
-              Total Wagers: {submissions.length}
-            </div>
-            <div className='dtc f4 b ma0 v-mid w-100 w-90-ns tr'>
-              Total Pot: {formatPrice(houseBalance)}
-            </div>
-          </>
-        )}
       </section>
     </Wrapper>
   );
@@ -83,22 +73,12 @@ Games.getInitialProps = async (ctx) => {
   const apiURL = `${origin}`;
   const question = (await axios.get(`${apiURL}/api/question/${game}`)).data;
   const user = getCookie('id_token', ctx.req);
-  const isAdmin = getCookie('id_token_a', ctx.req) ? true : false;
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
-  const submissionsRes = await axios.get(`${apiURL}/api/submissions`);
-  const submissions = submissionsRes.data.filter(
-    (curr) => curr.question === game,
-  );
-  const houseBalance = submissions.reduce((acc, curr) => {
-    return acc + curr.wager;
-  }, 0);
+
   const userObj = userRes.data;
   return {
     game: question[0],
     user: userObj,
-    submissions,
-    houseBalance,
-    isAdmin,
   };
 };
 
@@ -106,9 +86,6 @@ Games.propTypes = {
   games: PropTypes.array,
   game: PropTypes.object,
   user: PropTypes.object,
-  submissions: PropTypes.array,
-  houseBalance: PropTypes.number,
-  isAdmin: PropTypes.boolean,
 };
 
 export default SecuredPage(Games);
