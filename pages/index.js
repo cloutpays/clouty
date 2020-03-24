@@ -157,7 +157,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             </Link>
           </div>
         </section>
-        <h2 className='f3 f-subheadline-l measure lh-title fw7 flex justify-center'>
+        <h2 className='f3 f-subheadline-l  tc lh-title fw7'>
           Bets of the Week
         </h2>
         <section className='flex flex-wrap'>
@@ -178,12 +178,14 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             })
             .reverse()
             .slice(0, 4)}
-          {/* <div className='b pa3 mt3 mr2 input-reset ba fl bg-black b--black white grow pointer f4'>
+          <a
+            href='/games'
+            className='b no-underline ma4 pa3 flex center  input-reset ba fl bg-black b--black white grow pointer f4 f3-ns'>
             See More Games
-          </div> */}
+          </a>
         </section>
         <article>
-          <h2 className='f3 f-subheadline-l measure lh-title fw7 flex justify-center'>
+          <h2 className='f3 f-subheadline-l  lh-title fw7 flex justify-center'>
             New Releases
           </h2>
           <div className='cf pa2'>
