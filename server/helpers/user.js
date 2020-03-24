@@ -47,7 +47,7 @@ export const userApi = wrapAsync(async function(req, db) {
     });
     await sendEmail([userData.firebase.email], welcomeEmailContent);
     userData.stripe = {
-      user: { ...stripeUser, balance: 200 },
+      user: { ...stripeUser, credit: 200 },
     };
     userData.new = false;
   }
