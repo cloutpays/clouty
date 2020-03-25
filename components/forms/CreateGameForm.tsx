@@ -223,7 +223,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                         onClick={removeOption}
                         key={index}>
                         <div className='flex'>
-                          <div className='f6 link dim ph2 pv2 mb2 dib white bg-red'>
+                          <div className='f4 fw9 link dim ph2 pv2 mb2 dib white bg-red'>
                             X
                           </div>
                           <div className={'ma2'}>{opt.value}</div>
