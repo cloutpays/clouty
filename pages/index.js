@@ -1,6 +1,6 @@
 import { getCookie } from '../lib/session';
 import { styles } from '../constants/styles';
-import DemoForm from '../components/forms/DemoForm';
+import DemoForm from '../components/gameplay/DemoForm';
 import DisclaimerModal from '../components/DisclaimerModal';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
