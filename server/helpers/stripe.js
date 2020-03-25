@@ -143,6 +143,7 @@ export const hookApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   switch (data.type) {
     case 'payment_intent.succeeded':
+      await db.collection(balance).insertOne(data.data.object);
       await stripe.customers.update(
         data.data.object.customer,
         {
