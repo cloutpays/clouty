@@ -261,10 +261,11 @@ const Dashboard = ({
   );
 };
 
-Dashboard.getInitialProps = async ({ req }) => {
+Dashboard.getInitialProps = async (ctx) => {
+  const { query, req } = ctx;
+  const { user } = query;
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
-  const user = req.url.split('/')[3];
   const submissionsRes = await axios.get(
     `${apiURL}/api/userSubmissions/${user}`,
   );
