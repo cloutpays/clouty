@@ -143,7 +143,6 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
               </th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Game #</th>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Answer</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
                 <a className='noselect' onClick={() => setSort('wager')}>
                   <div>
@@ -217,10 +216,11 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                       </a>
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='question'>
-                      {curr.question}
-                    </td>
-                    <td className='pv3 pr3 bb b--black-20' key='answer'>
-                      {curr.answer}
+                      <a
+                        className='no-underline dim black b'
+                        href={`/dashboard/edit/${curr.question}`}>
+                        {curr.question}
+                      </a>
                     </td>
                     <td
                       className='pv3 pr3 bb b--black-20'
