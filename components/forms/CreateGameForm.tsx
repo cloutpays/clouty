@@ -169,7 +169,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     : 'Update Game';
   return (
     <>
-      <article className='pa4 black-80'>
+      <article className='ph4 pb4 black-80'>
         <form action='sign-up_submit' method='get' acceptCharset='utf-8'>
           {visible ? (
             <div className='dt mw9 center pv4 pv5-m '>
