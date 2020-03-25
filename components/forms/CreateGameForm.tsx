@@ -14,7 +14,7 @@ interface GameProps {
   options: Option[];
   description: string;
   emoji: string;
-  visible: boolean;
+  showEmojiKeyboard: boolean;
   slug: string;
   number: string;
   answer: string;
@@ -29,7 +29,7 @@ interface CreateGameFormProps {
   options: Option[];
   description: string;
   emoji: string;
-  visible: boolean;
+  showEmojiKeyboard: boolean;
   gameType: string;
   slug: string;
   extendedAnswer: string;
@@ -58,7 +58,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   const [option, setOption] = useState<string>('');
   const [options, setOptions] = useState<any[]>(game ? game.options : []);
   const [gameType] = useState<string>(game ? game.gameType : 'game');
-  const [visible, setVisible] = useState<boolean>(false);
+  const [showEmojiKeyboard, setShowEmojiKeyboard] = useState<boolean>(false);
   const [answerVisible, setAnswerVisible] = useState<boolean>(
     game && game.answer ? true : false,
   );
@@ -140,7 +140,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
       Router.push('/dashboard/edit');
     });
 
-  const renderEmoji = () => setVisible(!visible);
+  const renderEmoji = () => setShowEmojiKeyboard(!showEmojiKeyboard);
 
   const addAnswer = () => setAnswerVisible(!answerVisible);
 
@@ -272,7 +272,13 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
               )}
             </fieldset>
           )}
-
+          {showEmojiKeyboard && (
+            <div className='dt mw9 center pv4 pv5-m '>
+              <div className='dtc v-top'>
+                <Picker onSelect={emojiSet} />
+              </div>
+            </div>
+          )}
           <div className='flex'>
             <div className='mt3'>
               <span
