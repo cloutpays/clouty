@@ -10,17 +10,22 @@ import axios from 'axios';
 
 const Games = ({ game, questions, submissions, houseBalance, userId }) => {
   const data = {
-    title: 'Edit Game',
-    header: 'Edit Game',
+    title: 'Manage Game',
+    header: 'Manage Game',
     description: 'Selected games and contests.',
   };
 
   return (
     <Wrapper data={data}>
       <CreateGameForm questions={questions} game={game} userId={userId} />
+      <div className='dtc f4 b ma0 v-mid w-100 w-90-ns'>
+        Total Wagers: {submissions.length}
+      </div>
+      <div className='dtc f4 b ma0 v-mid w-100 w-90-ns'>
+        Total Pot: {formatPrice(houseBalance)}
+      </div>
       <div className='mv3'>
         <h2>Submissions</h2>
-
         <table className='f6 w-100 mw8 center' cellSpacing='0'>
           <thead>
             <tr>
@@ -76,12 +81,6 @@ const Games = ({ game, questions, submissions, houseBalance, userId }) => {
               .reverse()}
           </tbody>
         </table>
-        <div className='dtc f4 b ma0 v-mid w-100 w-90-ns tr'>
-          Total Wagers: {submissions.length}
-        </div>
-        <div className='dtc f4 b ma0 v-mid w-100 w-90-ns tr'>
-          Total Pot: {formatPrice(houseBalance)}
-        </div>
       </div>
     </Wrapper>
   );
