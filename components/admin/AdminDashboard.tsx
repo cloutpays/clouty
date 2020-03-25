@@ -7,11 +7,13 @@ import { formatDate, formatPrice } from '../../lib/helpers';
 interface SubmissionsProps {
   submissions: any;
   payouts: any;
+  transactions: any;
 }
 
 const AdminDashboard: React.FC<SubmissionsProps> = ({
   submissions,
   payouts,
+  transactions,
 }) => {
   const [sort, setSort] = useState<string>('');
 
@@ -84,6 +86,50 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
         </table>
       </div>
       <div className='mv3'>
+        <h2>Transactions</h2>
+        <table className='f6 w-100 mw8 center' cellSpacing='0'>
+          <thead>
+            <tr>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Email</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Amount</th>
+            </tr>
+          </thead>
+          <tbody className='lh-copy'>
+            {transactions
+              .map((curr: any, ind: any) => {
+                return (
+                  <tr key={ind}>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      {formatDate(new Date(0).setUTCSeconds(curr.created))}
+                    </td>
+                    <td className='pv3 pr3 bb b--black-20' key='name'>
+                      <a
+                        className='no-underline dim black b'
+                        href={`/dashboard/manage/${curr.metadata.userId}`}>
+                        {curr.billing_details.name}
+                      </a>
+                    </td>
+                    <td className='pv3 pr3 bb b--black-20' key='email'>
+                      <a
+                        className='no-underline dim black b'
+                        href={`/dashboard/manage/${curr.metadata.userId}`}>
+                        {curr.billing_details.email}
+                      </a>
+                    </td>
+                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                      {formatPrice(curr.amount / 100)}
+                    </td>
+                  </tr>
+                );
+              })
+              .reverse()}
+          </tbody>
+        </table>
+      </div>
+
+      <div className='mv3'>
         <h2>Submissions</h2>
 
         <table className='f6 w-100 mw8 center' cellSpacing='0'>
@@ -97,7 +143,6 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
               </th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Game #</th>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Answer</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
                 <a className='noselect' onClick={() => setSort('wager')}>
                   <div>
@@ -171,10 +216,11 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                       </a>
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='question'>
-                      {curr.question}
-                    </td>
-                    <td className='pv3 pr3 bb b--black-20' key='answer'>
-                      {curr.answer}
+                      <a
+                        className='no-underline dim black b'
+                        href={`/dashboard/edit/${curr.question}`}>
+                        {curr.question}
+                      </a>
                     </td>
                     <td
                       className='pv3 pr3 bb b--black-20'

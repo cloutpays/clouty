@@ -17,6 +17,7 @@ const Dashboard = ({
   lostBets,
   pendingBets,
   wonBets,
+  transactions,
   dayWagers,
   houseBalance,
 }) => {
@@ -80,7 +81,11 @@ const Dashboard = ({
           </a>
         </Link>
       </div>
-      <AdminDashboard payouts={payouts} submissions={entries} />
+      <AdminDashboard
+        payouts={payouts}
+        submissions={entries}
+        transactions={transactions}
+      />
     </Wrapper>
   );
 };
@@ -90,10 +95,12 @@ Dashboard.getInitialProps = async ({ req }) => {
   const apiURL = `${origin}`;
   const res = await axios.get(`${apiURL}/api/submissions`);
   const payoutsRes = await axios.get(`${apiURL}/api/allUserPayouts`);
-  const payouts = payoutsRes.data;
   const questionsRes = await axios.get(`${apiURL}/api/questions`);
-  const questions = questionsRes.data;
   const usersRes = await axios.get(`${apiURL}/api/users`);
+  const transactionsRes = await axios.get(`${apiURL}/api/transactions`);
+  const payouts = payoutsRes.data;
+  const questions = questionsRes.data;
+  const transactions = transactionsRes.data;
   const users = usersRes.data;
   const entries = res.data;
   let yesterday = new Date().setDate(new Date().getDate() - 1);
@@ -112,6 +119,7 @@ Dashboard.getInitialProps = async ({ req }) => {
     questions,
     users,
     payouts,
+    transactions,
     lostBets: entries.filter(
       (curr) => typeof curr.won === 'boolean' && !curr.won,
     ).length,
@@ -130,6 +138,7 @@ Dashboard.propTypes = {
   entries: PropTypes.array,
   questions: PropTypes.array,
   payouts: PropTypes.array,
+  transactions: PropTypes.array,
   users: PropTypes.array,
   totalWager: PropTypes.number,
   lostBets: PropTypes.number,

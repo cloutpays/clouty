@@ -125,7 +125,9 @@ Games.getInitialProps = async ({ req }) => {
   const res = await axios.get(`${apiURL}/api/questions`);
   const questions = res.data;
   return {
-    questions: questions.filter((game) => game.gameType === 'game'),
+    questions: questions.filter(
+      (game) => game.gameType === 'game' || game.gameType === 'fill-in-blank',
+    ),
   };
 };
 Games.propTypes = {
