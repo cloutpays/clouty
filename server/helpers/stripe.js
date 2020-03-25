@@ -19,6 +19,7 @@ const getUser = async (userId, db) => {
 };
 
 const updateStripeUser = async (paymentIntent, db) => {
+  await db.collection(balance).insertOne(paymentIntent);
   const newUser = await db.collection(user).updateOne(
     { _id: paymentIntent.metadata.userId },
     {
