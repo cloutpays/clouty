@@ -69,7 +69,7 @@ const Dashboard = ({
           <a
             href='/dashboard/edit'
             className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
-            Manage Game
+            Manage Games
           </a>
         </Link>
         <Link href='/dashboard/users'>
