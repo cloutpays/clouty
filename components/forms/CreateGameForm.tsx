@@ -57,7 +57,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   );
   const [option, setOption] = useState<string>('');
   const [options, setOptions] = useState<any[]>(game ? game.options : []);
-  const [gameType] = useState<string>(game ? game.gameType : 'game');
+  const [gameType, setGameType] = useState<string>(game ? game.gameType : '');
   const [showEmojiKeyboard, setShowEmojiKeyboard] = useState<boolean>(false);
   const [answerVisible, setAnswerVisible] = useState<boolean>(
     game && game.answer ? true : false,
@@ -95,7 +95,6 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
       emoji: emoji.native ? emoji.native : emoji,
       options,
       answer,
-      type: 'select',
       gameType,
       slug,
       date: new Date(),
@@ -171,15 +170,27 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     <>
       <article className='ph4 pb4 black-80'>
         <form action='sign-up_submit' method='get' acceptCharset='utf-8'>
-          {visible ? (
-            <div className='dt mw9 center pv4 pv5-m '>
-              <div className='dtc v-top'>
-                <Picker onSelect={emojiSet} />
-              </div>
-            </div>
-          ) : (
+          {!showEmojiKeyboard && (
             <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
               <legend className='ph0 mh0 fw6 clip'>Sign Up</legend>
+              <div className='mt3'>
+                <label
+                  className='db fw4 mb2 lh-copy f6'
+                  htmlFor='email-address'>
+                  Game Type
+                </label>
+                <span
+                  className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
+                  onClick={() => setGameType('game')}>
+                  Normal
+                </span>
+                <span
+                  className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
+                  onClick={() => setGameType('fill-in-blank')}>
+                  Fill In The Blank
+                </span>
+              </div>
+              <div className='mt3' />
               <div className='mt3'>
                 <label className='db fw4 lh-copy f6' htmlFor='email-address'>
                   Game Question
@@ -195,25 +206,27 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                   }
                 />
               </div>
-              <div className='mt3'>
-                <label className='db fw4 lh-copy f6' htmlFor='password'>
-                  Option
-                </label>
-                <input
-                  className='b pa2 input-reset ba bg-transparent'
-                  type='text'
-                  value={option}
-                  onChange={(event) => setOption(event.currentTarget.value)}
-                />
+              {gameType === 'game' && (
                 <div className='mt3'>
-                  <span
-                    className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
-                    onClick={addOption}>
-                    Add Option
-                  </span>
+                  <label className='db fw4 lh-copy f6' htmlFor='password'>
+                    Option
+                  </label>
+                  <input
+                    className='b pa2 input-reset ba bg-transparent'
+                    type='text'
+                    value={option}
+                    onChange={(event) => setOption(event.currentTarget.value)}
+                  />
+                  <div className='mt3'>
+                    <span
+                      className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
+                      onClick={addOption}>
+                      Add Option
+                    </span>
+                  </div>
                 </div>
-              </div>
-              {!answerVisible ? (
+              )}
+              {!answerVisible && gameType === 'game' && (
                 <div className='mt3'>
                   <strong>Options:</strong>
                   {options.map((opt, index) => {
@@ -232,7 +245,8 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                     );
                   })}
                 </div>
-              ) : (
+              )}
+              {answerVisible && gameType === 'game' && (
                 <div className='mt3'>
                   <strong>Select Answer:</strong>
                   {options.map((opt, index) => {

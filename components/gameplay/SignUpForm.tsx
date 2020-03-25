@@ -64,7 +64,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
       <div className='form-card'>
         <form onSubmit={handleSubmit}>
           <Question
-            type={game.type}
+            gameType={game.gameType}
             options={options}
             title={game.question}
             setAnswer={confirmAnswer}

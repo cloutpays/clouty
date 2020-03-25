@@ -36,7 +36,7 @@ const DemoForm: React.FC<DemoFormProps> = ({ game }) => {
       <div className='form-card'>
         <form onSubmit={handleSubmit}>
           <Question
-            type={game.type}
+            gameType={game.gameType}
             options={options}
             title={game.question}
             setAnswer={confirmAnswer}
