@@ -10,23 +10,27 @@ import axios from 'axios';
 
 const Games = ({ game, questions, submissions, houseBalance, userId }) => {
   const data = {
-    title: 'Edit Game',
-    header: 'Edit Game',
+    title: 'Manage Game',
+    header: 'Manage Game',
     description: 'Selected games and contests.',
   };
 
   return (
     <Wrapper data={data}>
       <CreateGameForm questions={questions} game={game} userId={userId} />
+      <div className='dtc f4 b ma0 v-mid w-100 w-90-ns'>
+        Total Wagers: {submissions.length}
+      </div>
+      <div className='dtc f4 b ma0 v-mid w-100 w-90-ns'>
+        Total Pot: {formatPrice(houseBalance)}
+      </div>
       <div className='mv3'>
         <h2>Submissions</h2>
-
         <table className='f6 w-100 mw8 center' cellSpacing='0'>
           <thead>
             <tr>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'> Date</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Game #</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Answer</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
                 <div>
@@ -56,9 +60,6 @@ const Games = ({ game, questions, submissions, houseBalance, userId }) => {
                         @{curr.handle}
                       </a>
                     </td>
-                    <td className='pv3 pr3 bb b--black-20' key='question'>
-                      {curr.question}
-                    </td>
                     <td className='pv3 pr3 bb b--black-20' key='answer'>
                       {curr.answer}
                     </td>
@@ -80,12 +81,6 @@ const Games = ({ game, questions, submissions, houseBalance, userId }) => {
               .reverse()}
           </tbody>
         </table>
-        <div className='dtc f4 b ma0 v-mid w-100 w-90-ns tr'>
-          Total Wagers: {submissions.length}
-        </div>
-        <div className='dtc f4 b ma0 v-mid w-100 w-90-ns tr'>
-          Total Pot: {formatPrice(houseBalance)}
-        </div>
       </div>
     </Wrapper>
   );
