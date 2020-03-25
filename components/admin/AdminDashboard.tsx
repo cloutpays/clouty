@@ -80,8 +80,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                     </td>
                   </tr>
                 );
-              })
-              .reverse()}
+              })}
           </tbody>
         </table>
       </div>
