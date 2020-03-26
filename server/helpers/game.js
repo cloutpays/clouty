@@ -5,10 +5,10 @@ const { parse } = require('url');
 
 import {
   cloutpays,
-  dev,
+  // dev,
   question,
   sendEmail,
-  sendTextMessage,
+  // sendTextMessage,
   user,
   wrapAsync,
 } from '../helpers';
@@ -94,7 +94,11 @@ const updateSubmissions = async (entries, answer, db) => {
 
 export const gameSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  const { wager, phoneNumber, name } = data.userSubmission;
+  const {
+    wager,
+    // phoneNumber,
+    // name
+  } = data.userSubmission;
   const userProfile = (
     await db
       .collection(user)
@@ -113,9 +117,9 @@ export const gameSubmitApi = wrapAsync(async (req, db) => {
     return 'no sir';
   }
   await updateUser(userProfile, db);
-  if (!dev) {
-    await sendTextMessage(name, 'confirm', phoneNumber);
-  }
+  // if (!dev) {
+  //   await sendTextMessage(name, 'confirm', phoneNumber);
+  // }
   return await db
     .collection(cloutpays)
     .insertOne({ ...data.userSubmission, usedCredit });
