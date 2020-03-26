@@ -5,7 +5,7 @@ const { parse } = require('url');
 
 import {
   cloutpays,
-  // dev,
+  dev,
   question,
   sendEmail,
   // sendTextMessage,
@@ -177,14 +177,14 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
     const losingUsers = entries.filter((entry) => {
       return entry.answer !== data.answer;
     });
-    if (winningUsers.length > 0) {
+    if (winningUsers.length > 0 && !dev) {
       await sendEmail(
         winningUsers.map((curr) => curr.email),
         winnerEmailContent,
       );
       await handlePayouts(winningUsers, db);
     }
-    if (losingUsers.length > 0) {
+    if (losingUsers.length > 0 && !dev) {
       await sendEmail(
         losingUsers.map((curr) => curr.email),
         loserEmailContent,
