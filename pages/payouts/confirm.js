@@ -15,7 +15,7 @@ const Confirmation = () => (
           via the channel selected.
         </p>
         <p className={`${styles.paragraph}`}>
-          It is expected to arrive within the next 1-2 business days.{' '}
+          It is expected to arrive within the next 3-5 business days.{' '}
           <span role='img' aria-label='Bulleye'>
             🎯‍
           </span>
