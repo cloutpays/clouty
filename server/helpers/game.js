@@ -8,7 +8,7 @@ import {
   dev,
   question,
   sendEmail,
-  sendTextMessage,
+  // sendTextMessage,
   user,
   wrapAsync,
 } from '../helpers';
@@ -94,7 +94,11 @@ const updateSubmissions = async (entries, answer, db) => {
 
 export const gameSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  const { wager, phoneNumber, name } = data.userSubmission;
+  const {
+    wager,
+    // phoneNumber,
+    // name
+  } = data.userSubmission;
   const userProfile = (
     await db
       .collection(user)
@@ -113,9 +117,9 @@ export const gameSubmitApi = wrapAsync(async (req, db) => {
     return 'no sir';
   }
   await updateUser(userProfile, db);
-  if (!dev) {
-    await sendTextMessage(name, 'confirm', phoneNumber);
-  }
+  // if (!dev) {
+  //   await sendTextMessage(name, 'confirm', phoneNumber);
+  // }
   return await db
     .collection(cloutpays)
     .insertOne({ ...data.userSubmission, usedCredit });
@@ -173,14 +177,14 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
     const losingUsers = entries.filter((entry) => {
       return entry.answer !== data.answer;
     });
-    if (winningUsers.length > 0) {
+    if (winningUsers.length > 0 && !dev) {
       await sendEmail(
         winningUsers.map((curr) => curr.email),
         winnerEmailContent,
       );
       await handlePayouts(winningUsers, db);
     }
-    if (losingUsers.length > 0) {
+    if (losingUsers.length > 0 && !dev) {
       await sendEmail(
         losingUsers.map((curr) => curr.email),
         loserEmailContent,

@@ -1,3 +1,4 @@
+import { formatDate, formatPrice } from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -25,11 +26,11 @@ const Terms = ({ balance, submissions, user }) => {
                     <div className='pa3 bb b--black-10'>
                       <h4 className='mv0'>Submitted Bets</h4>
                     </div>
-                    <ul className='list pl0 mt0 measure center'>
+                    <ul className='  list pl0 mt0  center'>
                       <main className=' center'>
                         {submissions.length === 0 && (
                           <article>
-                            <div className='link dt w-100 bb b--black-10 pa3 dim blue'>
+                            <div className='link dt w-100 pa3 dim blue'>
                               <div className='dtc v-top' key='no'>
                                 <h1 className='f6 f5-ns fw6 lh-title black mv0 pa4 center '>
                                   No Games Yet 🕹{' '}
@@ -49,55 +50,70 @@ const Terms = ({ balance, submissions, user }) => {
                                   : 'L';
                               return (
                                 <article key={ind}>
-                                  <a
-                                    className='link dt w-100 bb b--black-10 pa3 dim blue'
+                                  <div className='pl3 pt3 dtc v-mid'>
+                                    <span
+                                      role='img'
+                                      className='f2'
+                                      aria-label={game.question.emoji}>
+                                      {game.question.emoji}
+                                    </span>
+                                  </div>
+                                  <div className='dtc v-mid pt2 pl2'>
+                                    <h1 className='f5 f4-ns fw6 lh-title black mv0'>
+                                      {`${game.question.gameType === 'game' &&
+                                        ` Game #${game.question.question}`}`}
+                                    </h1>
+                                    <h2 className='f5 fw4 mt0 mb0 black-80'>
+                                      Bet: {game.answer} ~ Stake{' '}
+                                      {formatPrice(game.wager)}
+                                    </h2>
+                                  </div>
+                                  <div
+                                    className='link dt w-100 bb b--black-10 pl3 pb2 dim blue'
                                     href={`/games/${game.question.question}`}>
-                                    <div className='dtc v-top' key={ind}>
-                                      <h1 className='f6 f5-ns fw6 lh-title black mv0'>
-                                        {`${
-                                          game.question.gameType === 'game'
-                                            ? ` Game #${game.question.question}: ${game.question.description}`
-                                            : game.question.description
-                                        }`}
-                                      </h1>
-                                      <div className='f5 fw4 pt1 black-60'>
-                                        {`Your Bet: ${game.answer}`}{' '}
-                                      </div>
-                                      {gameButtonText === 'W' && (
-                                        <div>
-                                          <span className='bg-green ph1 mt2 fw8 f5 white'>
-                                            W
-                                          </span>
-                                          <span className='f5 fw5 ml1 silver'>
-                                            +$
-                                            {game.usedCredit
-                                              ? game.wager
-                                              : game.wager * 2}
-                                          </span>
-                                        </div>
-                                      )}
-                                      {gameButtonText === 'L' && (
-                                        <>
-                                          <span className='bg-red ph1 mt2 fw8 f5 white'>
-                                            L
-                                          </span>
-                                          <span className='f5 fw5 ml1 silver'>
-                                            -${game.wager}
-                                          </span>
-                                        </>
-                                      )}
-                                      {gameButtonText === 'P' && (
-                                        <>
-                                          <span className='bg-gold ph1 mt2 fw8 f5 white'>
-                                            P
-                                          </span>
-                                          <span className='f5 fw5 ml1 silver'>
-                                            ${game.wager}
-                                          </span>
-                                        </>
-                                      )}
+                                    <div className='dtc v-top pt1' key={ind}>
+                                      <span className='f5  f4-ns fw5  tl silver'>
+                                        {`${formatDate(new Date(game.date))}`}
+                                      </span>
                                     </div>
-                                  </a>
+                                    <div className='dtc v-top' key={ind}>
+                                      <span className='pt2 tr f4'>
+                                        {gameButtonText === 'W' && (
+                                          <>
+                                            <span className='bg-green tr ph1 mt2 fw8 f5 white'>
+                                              W
+                                            </span>
+                                            <span className=' fw5 ml1 tr silver'>
+                                              +$
+                                              {game.usedCredit
+                                                ? game.wager
+                                                : game.wager * 2}
+                                            </span>
+                                          </>
+                                        )}
+                                        {gameButtonText === 'L' && (
+                                          <>
+                                            <span className='bg-red ph1 mt2 fw8 white'>
+                                              L
+                                            </span>
+                                            <span className=' fw5 ml1 silver'>
+                                              -${game.wager}
+                                            </span>
+                                          </>
+                                        )}
+                                        {gameButtonText === 'P' && (
+                                          <>
+                                            <span className='bg-gold tr ph1 mt2 fw8 white'>
+                                              P
+                                            </span>
+                                            <span className=' fw5 ml1 silver'>
+                                              ${game.wager}
+                                            </span>
+                                          </>
+                                        )}
+                                      </span>
+                                    </div>
+                                  </div>
                                 </article>
                               );
                             })
