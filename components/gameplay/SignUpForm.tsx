@@ -17,7 +17,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
   const [playText, setPlayText] = useState<string>('Play');
   const [options, setOptions] = useState<any>(game.options);
   const [phoneNumber] = useState<string>(user ? user.info.phoneNumber : '');
-  const [wager, setWager] = useState<number[]>([1, 5, 10, 20, 50]);
+  const [wager, setWager] = useState<number[]>([1, 2, 5, 10, 20, 50]);
 
   const wageSelected = wager.length === 1;
   const betSelected = options.length === 1;
@@ -30,7 +30,14 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
     setAnswer(answer);
   };
   const resetGame = () => {
-    setWager([Number(1), Number(5), Number(10), Number(20), Number(50)]);
+    setWager([
+      Number(1),
+      Number(2),
+      Number(5),
+      Number(10),
+      Number(20),
+      Number(50),
+    ]);
     setOptions(game.options);
   };
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
