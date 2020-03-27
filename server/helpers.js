@@ -7,14 +7,32 @@ const client = require('twilio')(
 );
 const dev =
   process.env.ENV === 'development' || process.env.NODE_ENV === 'development';
-export const question = dev ? 'questiondev' : 'question';
-export const cloutpays = dev ? 'cloutpaysdev' : 'cloutpays';
-export const user = dev ? 'userdev' : 'user';
-export const payout = dev ? 'payoutdev' : 'payout';
-export const balance = dev ? 'balancedev' : 'balance';
-export const stripeSecret = dev
-  ? process.env.STRIPE_SECRET_DEV
-  : process.env.STRIPE_SECRET_PROD;
+const staging = process.env.ENV === 'staging';
+export const question = dev
+  ? 'question_dev'
+  : staging
+  ? 'question_staging'
+  : 'question_prod';
+export const cloutpays = dev
+  ? 'cloutpays_dev'
+  : staging
+  ? 'cloutpays_staging'
+  : 'cloutpays_prod';
+export const user = dev ? 'user_dev' : staging ? 'user_staging' : 'user_prod';
+export const payout = dev
+  ? 'payout_dev'
+  : staging
+  ? 'payout_staging'
+  : 'payout_prod';
+export const balance = dev
+  ? 'balance_dev'
+  : staging
+  ? 'balance_staging'
+  : 'balance_prod';
+export const stripeSecret =
+  dev || staging
+    ? process.env.STRIPE_SECRET_DEV
+    : process.env.STRIPE_SECRET_PROD;
 
 export const wrapAsync = (handler) => async (req, res) => {
   const db = await connect();
@@ -32,29 +50,48 @@ export const wrapAsync = (handler) => async (req, res) => {
 };
 export const dbRefresh = wrapAsync(async (req, db) => {
   const usersProd = await db
-    .collection('user')
+    .collection('user_prod')
     .find()
     .toArray();
   const questionsProd = await db
-    .collection('question')
+    .collection('question_prod')
     .find()
     .toArray();
   const cloutpaysProd = await db
-    .collection('cloutpays')
+    .collection('cloutpays_prod')
     .find()
     .toArray();
   const payoutsProd = await db
-    .collection('payout')
+    .collection('payout_prod')
     .find()
     .toArray();
-  await db.collection('userdev').deleteMany({ admin: false });
-  await db.collection('questiondev').deleteMany();
-  await db.collection('cloutpaysdev').deleteMany();
-  await db.collection('payoutdev').deleteMany();
-  await db.collection('userdev').insertMany(usersProd);
-  await db.collection('cloutpaysdev').insertMany(cloutpaysProd);
-  await db.collection('questiondev').insertMany(questionsProd);
-  await db.collection('payoutdev').insertMany(payoutsProd);
+  const balancesProd = await db
+    .collection('balance_prod')
+    .find()
+    .toArray();
+
+  // staging db
+  await db.collection('user_staging').deleteMany();
+  await db.collection('question_staging').deleteMany();
+  await db.collection('cloutpays_staging').deleteMany();
+  await db.collection('payout_staging').deleteMany();
+  await db.collection('balance_staging').deleteMany();
+
+  await db.collection('user_staging').insertMany(usersProd);
+  await db.collection('cloutpays_staging').insertMany(cloutpaysProd);
+  await db.collection('question_staging').insertMany(questionsProd);
+  await db.collection('payout_staging').insertMany(payoutsProd);
+  await db.collection('balance_staging').insertMany(balancesProd);
+
+  // dev dbs
+  await db.collection('question_dev').deleteMany();
+  await db.collection('payout_dev').deleteMany();
+  await db.collection('cloutpays_dev').deleteMany();
+  await db.collection('balance_dev').deleteMany();
+
+  await db.collection('question_dev').insertMany(questionsProd);
+  await db.collection('balance_dev').insertMany(balancesProd);
+
   return true;
 });
 export const sendEmail = async (email, content) => {
