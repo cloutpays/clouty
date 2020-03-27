@@ -17,6 +17,13 @@ const data = {
 
 const albums = [
   {
+    artist: 'PARTYNEXTDOOR',
+    album: 'PARTYMOVILE',
+    image:
+      'https://media.gq.com/photos/5e7a5386e84be60008709ba8/master/pass/PARTYMOBILE%20Album%20by%20PARTYNEXTDOOR%20gq%20march%202020.jpg',
+    spotify: 'https://music.apple.com/us/album/partymobile/1500660135',
+  },
+  {
     artist: 'Octavian ft. Skepta',
     album: 'Papi Chulo',
     image:
