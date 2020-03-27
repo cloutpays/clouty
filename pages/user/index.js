@@ -104,13 +104,6 @@ const Terms = ({ balance, submissions, user }) => {
                                     {gameButtonText}
                                   </span>
                                 </>
-                                //   <span className='bg-yellow-30 pv1 ph2 f7 f6-ns br-pill b'>
-                                //     Pending
-                                //   </span>
-                                //   <span className=' fw5 ml1 silver'>
-                                //     ${game.wager}
-                                //   </span>
-                                // </>
                               )}
                             </div>
                           </a>
@@ -120,23 +113,6 @@ const Terms = ({ balance, submissions, user }) => {
                   })
                   .reverse()}
             </section>
-
-            {/* <article className='w-100 w-75-m  ph3-m ph3-l'>
-              <div className='w-100 ph1 mb3 mb0-l'>
-                <div className='bt bl br b--black-10 br2'>
-                  <div className='pa3 bb b--black-10'>
-                    <h4 className='mv0'>Submitted Bets</h4>
-                  </div>
-                  <ul className='  list pl0 mt0  center'></ul>
-                </div>
-                <a
-                  href='/games'
-                  className='no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
-                  Play A Game
-                </a>
-              </div>
-            </article>
-          */}
           </section>
         </div>
       </main>
