@@ -55,7 +55,7 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
           <h2 className='ttu mt0 mb2 f6 fw5 silver'>More</h2>
           <ul className='list pl0 mt0 mb2'>
             <li className='mb2'>
-              <a href='mailto:umeh@clouty.io' className='block link dim blue'>
+              <a href='mailto:info@clouty.io' className='block link dim blue'>
                 Help
               </a>
             </li>
