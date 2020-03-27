@@ -60,8 +60,7 @@ const Terms = ({ balance, submissions, user }) => {
                                   </div>
                                   <div className='dtc v-mid pt2 pl2'>
                                     <h1 className='f5 f4-ns fw6 lh-title black mv0'>
-                                      {`${game.question.gameType === 'game' &&
-                                        ` Game #${game.question.question}`}`}
+                                      {` Game #${game.question.question}`}
                                     </h1>
                                     <h2 className='f5 fw4 mt0 mb0 black-80'>
                                       Bet: {game.answer} ~ Stake{' '}
