@@ -5,8 +5,8 @@ const client = require('twilio')(
   process.env.TWILIO_SID,
   process.env.TWILIO_TOKEN,
 );
-const dev =
-  process.env.ENV === 'development' || process.env.NODE_ENV === 'development';
+const dev = true;
+
 const staging = process.env.ENV === 'staging';
 export const question = dev
   ? 'question_dev'
