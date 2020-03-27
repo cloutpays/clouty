@@ -246,7 +246,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                   })}
                 </div>
               )}
-              {answerVisible && gameType === 'game' && (
+              {answerVisible && (
                 <div className='mt3'>
                   <strong>Select Answer:</strong>
                   {options.map((opt, index) => {
