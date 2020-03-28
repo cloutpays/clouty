@@ -397,7 +397,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                   {currentGame.emoji}
                 </span>
                 {`${
-                  currentGame.gameType === 'game'
+                  currentGame.gameType !== 'grammy'
                     ? `Game #${currentGame.question}`
                     : currentGame.question
                 }`}
