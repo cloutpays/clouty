@@ -89,21 +89,18 @@ const Terms = ({ balance, submissions, user }) => {
                                 </>
                               )}
                               {gameButtonText === 'Loss' && (
-                                <>
-                                  <span className='bg-red black pv1 ph2 f7 f6-ns br-pill b'>
-                                    Loss
-                                  </span>
+                                <span className='bg-red black pv1 ph2 f7 f6-ns br-pill b'>
+                                  Loss
                                   <span className='pl1 sans-serif'>
-                                    -{formatPrice(game.wager)}
+                                    → <span className='f6'>-</span>
+                                    {formatPrice(game.wager)}
                                   </span>
-                                </>
+                                </span>
                               )}
                               {gameButtonText === 'Pending' && (
-                                <>
-                                  <span className='bg-gold black pv1 ph2 f7 f6-ns br-pill b'>
-                                    {gameButtonText}
-                                  </span>
-                                </>
+                                <span className='bg-gold black pv1 ph2 f7 f6-ns br-pill b'>
+                                  {gameButtonText}
+                                </span>
                               )}
                             </div>
                           </a>

@@ -24,24 +24,14 @@
       "dest": "server/handlers/post.js"
     },
     {
+      "src": "/api/setCredit",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
       "src": "/api/submissions",
       "methods": ["GET"],
       "dest": "server/handlers/get.js"
-    },
-    {
-      "src": "/api/endQuestion/(.*)",
-      "methods": ["POST"],
-      "dest": "server/handlers/post.js?id=$1"
-    },
-    {
-      "src": "/api/api/userTransactions/(.*)",
-      "methods": ["GET"],
-      "dest": "server/handlers/get.js?id=$1"
-    },
-    {
-      "src": "/api/dbRefresh",
-      "methods": ["POST"],
-      "dest": "server/handlers/post.js"
     },
     {
       "src": "/api/transactions",
@@ -50,6 +40,11 @@
     },
     {
       "src": "/api/userSubmissions/(.*)",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js?id=$1"
+    },
+    {
+      "src": "/api/userTransactions/(.*)",
       "methods": ["GET"],
       "dest": "server/handlers/get.js?id=$1"
     },
@@ -104,9 +99,29 @@
       "dest": "server/handlers/get.js?id=$1"
     },
     {
+      "src": "/api/endQuestion/(.*)",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js?id=$1"
+    },
+    {
+      "src": "/api/dbRefresh",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
       "src": "/api/userPayouts/(.*)",
       "methods": ["GET"],
       "dest": "server/handlers/get.js?id=$1"
+    },
+    {
+      "src": "/api/removeCredit/(.*)",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js?id=$1&amount=$2"
+    },
+    {
+      "src": "/api/allUserPayouts",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js"
     },
     {
       "src": "/api/checkout/(.*)/(.*)",
@@ -134,7 +149,8 @@
       "STRIPE_SECRET_DEV": "@stripe-secret-dev",
       "STRIPE_CLIENT_PROD": "@stripe-client-prod",
       "STRIPE_SECRET_PROD": "@stripe-secret-prod",
-      "NODEMAILER": "@nodemailer"
+      "NODEMAILER": "@nodemailer",
+      "ENV": "development"
     }
   },
   "env": {
@@ -149,6 +165,7 @@
     "STRIPE_SECRET_DEV": "@stripe-secret-dev",
     "STRIPE_CLIENT_PROD": "@stripe-client-prod",
     "STRIPE_SECRET_PROD": "@stripe-secret-prod",
-    "NODEMAILER": "@nodemailer"
+    "NODEMAILER": "@nodemailer",
+    "ENV": "development"
   }
 }
