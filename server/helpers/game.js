@@ -178,10 +178,10 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
       return entry.answer !== data.answer;
     });
     if (winningUsers.length > 0 && !dev) {
-      await sendEmail(
-        winningUsers.map((curr) => curr.email),
-        winnerEmailContent,
-      );
+      // await sendEmail(
+      //   winningUsers.map((curr) => curr.email),
+      //   winnerEmailContent,
+      // );
       await handlePayouts(winningUsers, db);
     }
     if (losingUsers.length > 0 && !dev) {
