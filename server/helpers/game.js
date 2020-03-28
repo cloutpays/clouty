@@ -199,6 +199,23 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
     .findOneAndReplace({ slug: data.slug }, data, { upsert: true });
 });
 
+export const winBetApi = wrapAsync(async (req, db) => {
+  const data = await json(req);
+  const { submission } = data;
+  await db
+    .collection(cloutpays)
+    .updateOne({ _id: ObjectId(submission._id) }, { $set: { won: true } });
+  await sendEmail([submission.email], winnerEmailContent);
+  await handlePayouts([submission], db);
+});
+export const loseBetApi = wrapAsync(async (req, db) => {
+  const data = await json(req);
+  const { submission } = data;
+  await db
+    .collection(cloutpays)
+    .updateOne({ _id: ObjectId(submission._id) }, { $set: { won: false } });
+  await sendEmail([submission.email], loserEmailContent);
+});
 export const userQuestionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
   return await db.collection('userquestion').insertOne({ ...data });
