@@ -37,7 +37,8 @@ const Games = ({ questions }) => {
                               {game.emoji}
                             </span>{' '}
                             {`${
-                              game.gameType === 'game'
+                              game.gameType === 'game' ||
+                              game.gameType === 'fill-in-blank'
                                 ? `Game #${game.question}`
                                 : game.question
                             }`}
