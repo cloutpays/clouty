@@ -174,7 +174,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
         submission: bet,
       })
       .then(() => {
-        Router.push('/dashboard/edit/33');
+        Router.push('/dashboard/edit');
       });
   };
   const loseBet = (bet: Submissions) => {
@@ -183,7 +183,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
         submission: bet,
       })
       .then(() => {
-        Router.push('/dashboard/edit/33');
+        Router.push('/dashboard/edit');
       });
   };
   const removeOption = (event: React.MouseEvent<HTMLElement>) => {
