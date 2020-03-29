@@ -31,13 +31,15 @@ Games.getInitialProps = async ({ query, req }) => {
   const { game } = query;
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
-  const question = await (await axios.get(`${apiURL}/api/question/${game}`))
-    .data;
-  const questions = await (await axios.get(`${apiURL}/api/questions`)).data;
-  const submissionsRes = await axios.get(
-    `${apiURL}/api/gameSubmissions/${game}`,
-  );
-  const submissions = submissionsRes.data;
+  const [
+    { data: question },
+    { data: questions },
+    { data: submissions },
+  ] = await Promise.all([
+    axios.get(`${apiURL}/api/question/${game}`),
+    axios.get(`${apiURL}/api/questions`),
+    axios.get(`${apiURL}/api/gameSubmissions/${game}`),
+  ]);
   const userId = getCookie('id_token', req);
   const houseBalance = submissions.reduce((acc, curr) => {
     return acc + curr.wager;
