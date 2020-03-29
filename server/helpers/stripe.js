@@ -42,8 +42,9 @@ export const getAllTransactionsApi = wrapAsync(async () => {
 });
 
 export const setCreditApi = wrapAsync(async (req, db) => {
-  const data = (await json(req)).data;
-  const { credit } = data;
+  const {
+    data: { credit },
+  } = await json(req);
   return await db.collection(user).updateOne(
     { _id: credit.userId },
     {
@@ -70,8 +71,9 @@ export const getUserTransactionsApi = wrapAsync(async (req, db) => {
 //   const { id } = query;
 // });
 export const payoutApi = wrapAsync(async (req, db) => {
-  const data = (await json(req)).data;
-  let { user, payoutRequest } = data;
+  const {
+    data: { user, payoutRequest },
+  } = await json(req);
   if (user) {
     user.stripe.user.balance = payoutRequest.newBalance;
     await updateUser(user, db);

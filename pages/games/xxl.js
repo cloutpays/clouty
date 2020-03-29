@@ -41,17 +41,17 @@ const Games = ({ user }) => {
 };
 
 Games.getInitialProps = async (ctx) => {
-  const { query, req } = ctx;
-  const { game } = query;
-  const { origin } = absoluteUrl(req);
-  const apiURL = origin;
-  const question = (await axios.get(`${apiURL}/api/question/${game}`)).data;
-  const user = getCookie('id_token', ctx.req);
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
-  const userObj = userRes.data;
+  const {
+    query: { game },
+    req,
+  } = ctx;
+  const { origin: apiURL } = absoluteUrl(req);
+  const { data: question } = await axios.get(`${apiURL}/api/question/${game}`);
+  const userID = getCookie('id_token', ctx.req);
+  const { data: user } = await axios.get(`${apiURL}/api/user/${userID}`);
   return {
     game: question[0],
-    user: userObj,
+    user,
   };
 };
 

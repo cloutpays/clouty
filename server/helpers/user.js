@@ -29,7 +29,7 @@ export const usersApi = wrapAsync(async function(req, db) {
 });
 
 export const userApi = wrapAsync(async function(req, db) {
-  let userData = (await json(req)).data;
+  let { data: userData } = await json(req);
   const queryUser = await db
     .collection(user)
     .find({ _id: userData.firebase.uid })
