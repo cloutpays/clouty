@@ -18,13 +18,12 @@ const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
   })}`;
   return (
     <footer className={'pa4 h-25 bg-black white items-center mt4 f6 f5-ns fw7'}>
-      <p className='f5 f4-ns '>© {getCurrentYear()} · Packaged with care.</p>
-      <div className='justify-between items-center flex-row-reverse flex flex-wrap'>
-        <div className='justify-center items-center tc w-40 pl0 flex '>
-          <div className='mr1 mr3-ns tr ml3'>
+      <div className='justify-between items-center flex-row-reverse w-100 flex flex-wrap'>
+        <div className='justify-center justify-end-ns  items-center tc w-100 w-30-l pl0 flex '>
+          <div className='mr1 mr3-ns tc ml3'>
             <a
               className='link hover-silver white dib mh3 tc'
-              href='https://twitter.com/mrmrs_'
+              href='https://twitter.com/cloutyio'
               title='Twitter'>
               <svg
                 className='dib h2 w2'
@@ -45,7 +44,7 @@ const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
           <div className=''>
             <a
               className='link hover-silver near-black dib mh3 tc'
-              href='https://instagram.com/mrmrs_'
+              href='https://instagram.com/clouty.io'
               title='Instagram'>
               <svg
                 className='dib h2 w2 white'
@@ -61,22 +60,27 @@ const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
             </a>
           </div>
         </div>
-        <div className='justify-center items-center pl0 pb0 flex flex-wrap  tl'>
-          <span className='mr2 pt2 pb0 mr4-ns'>
-            <a href='https://clouty.substack.com/' className={`${navLinks}`}>
-              Newsletter
-            </a>
+        <div className='justify-center justify-start-m justify-start-l items-center pl0 pb0 flex flex-wrap  tc pv1 mv2 tl-m tl-l'>
+          <span className='db f5 f4-ns mb2 w-100 pb2-ns pb1-m'>
+            © {getCurrentYear()} · Packaged with care.
           </span>
-          <span className='mr2 pt2 mr4-ns'>
-            <a href='/faq' className={`${navLinks}`}>
-              FAQ
-            </a>
-          </span>
-          <span className='mr2 pt2 mr4-ns mr3'>
-            <a href='/terms' className={`${navLinks}`}>
-              Terms
-            </a>
-          </span>
+          <div className='pt3'>
+            <span className='mr2 pb0 mr4-ns'>
+              <a href='https://clouty.substack.com/' className={`${navLinks}`}>
+                Newsletter
+              </a>
+            </span>
+            <span className='mr2 pt2 mr4-ns'>
+              <a href='/faq' className={`${navLinks}`}>
+                FAQ
+              </a>
+            </span>
+            <span className='mr2 pt2 mr4-ns mr3'>
+              <a href='/terms' className={`${navLinks}`}>
+                Terms
+              </a>
+            </span>
+          </div>
           {/* <li className={`${navLinks}`} onClick={setDarkMode}>
           {' '}
           {darkMode ? 'Light ' : 'Dark '} Mode
