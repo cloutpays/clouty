@@ -44,6 +44,13 @@ const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
           </li>
         )}
         <li className='mr2 mr4-ns'>
+          <Link href='/about'>
+            <a href='/about' className={`${navLinks}`}>
+              About
+            </a>
+          </Link>
+        </li>
+        <li className='mr2 mr4-ns'>
           <Link href='/games'>
             <a href='/games' className={`${navLinks}`}>
               Games
