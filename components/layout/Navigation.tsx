@@ -16,9 +16,9 @@ const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
     'near-white': darkMode,
   })}`;
   return (
-    <nav className='mw8 center flex items-center mb5 ma3 ma4-l'>
+    <nav className=' center flex items-center mb5 ma3 ma4-l'>
       <Link href='/'>
-        <a href='/' className='white flex-grow-1 no-underline'>
+        <a href='/' className='white pl2 flex-grow-1 no-underline '>
           <img
             width='40px'
             height='40px'
@@ -35,7 +35,7 @@ const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
           </li>
         )} */}
         {isLoggedIn && isAdmin && (
-          <li className='mr2 mr4-ns'>
+          <li className='mr2 mr4-ns underline-hover'>
             <Link href='/dashboard'>
               <a href='/dashboard' className={`${navLinks}`}>
                 Admin
@@ -43,14 +43,14 @@ const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
             </Link>
           </li>
         )}
-        <li className='mr2 mr4-ns'>
+        <li className='mr2 mr4-ns underline-hover'>
           <Link href='/about'>
             <a href='/about' className={`${navLinks}`}>
               About
             </a>
           </Link>
         </li>
-        <li className='mr2 mr4-ns'>
+        <li className='mr2 mr4-ns underline-hover'>
           <Link href='/games'>
             <a href='/games' className={`${navLinks}`}>
               Games
@@ -58,7 +58,7 @@ const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
           </Link>
         </li>
         {isLoggedIn && (
-          <li className='mr2 mr4-ns'>
+          <li className='mr2 mr4-ns underline-hover'>
             <Link href='/user'>
               <a href='/user' className={`${navLinks}`}>
                 Profile
@@ -71,7 +71,7 @@ const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
             {/* <a href='/signup' className={`${styles.navigationLink}`}>
               <li className='mr2 mr4-ns'>Sign up </li>
             </a> */}
-            <a href='/login' className={`${navLinks}`}>
+            <a href='/login' className={`${navLinks} underline-hover`}>
               <li className='mr2 mr4-ns'>Login</li>
             </a>
           </>
