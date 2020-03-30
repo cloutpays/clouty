@@ -100,27 +100,6 @@ const albums = [
       'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Pop_Smoke_-_Meet_the_Woo_2.png/220px-Pop_Smoke_-_Meet_the_Woo_2.png',
     spotify: 'https://open.spotify.com/album/4MZnolldq7ciKKlbVDzLm5',
   },
-  {
-    artist: 'Brent Faiyaz',
-    album: 'Fuck The World',
-    image:
-      'https://images.genius.com/65fa2295b92218e5c10cbed945537758.1000x1000x1.jpg',
-    spotify: 'https://open.spotify.com/album/3vi20DRHkqv4HyVg9Rt9wC',
-  },
-  {
-    artist: 'G Herbo',
-    album: 'PTSD',
-    image:
-      'https://media.pitchfork.com/photos/5e5d8aa3230d040009b1f403/1:1/w_600/PTSD_G%20Herbo.jpg',
-    spotify: 'https://open.spotify.com/album/0jH6iWykjOuyW7Y8zNKMBkc',
-  },
-  {
-    artist: 'Lil Baby',
-    album: 'My Turn',
-    image:
-      'https://media.pitchfork.com/photos/5e56ce610e27b00008f7b845/1:1/w_320/My%20Turn_Lil%20Baby.jpg',
-    spotify: 'https://open.spotify.com/album/1ynyQdPQiXdYJNQEDL1S3d',
-  },
 ];
 const Home = ({ questions, darkMode, loggedIn }) => (
   <div>
