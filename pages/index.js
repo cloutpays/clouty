@@ -143,7 +143,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             </Link>
           </div>
         </section>
-        <section className='bg-black white'>
+        {/* <section className='bg-black white'>
           <h2 className='f3 tc lh-title fw5 pt5 '>IN THE PRESS</h2>
           <div className='items-start flex justify-center flex-wrap w-100 pv4'>
             <div
@@ -170,6 +170,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             </div>
           </div>
         </section>
+         */}
         <h2 className='f f-subheadline-l  tc lh-title fw7'>Bets of the Week</h2>
         <section className='flex flex-wrap ma3 ma4-l'>
           {questions
