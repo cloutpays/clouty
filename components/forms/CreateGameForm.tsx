@@ -205,7 +205,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     ? 'Updating...'
     : 'Update Game';
   return (
-    <>
+    <div className='ma3 ma4-l mw8'>
       <article className='ph4 pb4 black-80'>
         <form action='sign-up_submit' method='get' acceptCharset='utf-8'>
           {!showEmojiKeyboard && (
@@ -453,99 +453,105 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
           )}
         </div>
       </section>{' '}
-      <section>
-        <div className='dtc f4 b ma0 v-mid w-100 w-90-ns'>
-          Total Wagers: {submissions.length}
-        </div>
-        <div className='dtc f4 b ma0 v-mid w-100 w-90-ns'>
-          Total Pot: {formatPrice(houseBalance)}
-        </div>
-        <div className='mv3 w-50'>
-          <h2>Submissions</h2>
-          <table className='f6 w-100 mw8 center' cellSpacing='0'>
-            <thead>
-              <tr>
-                <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
-                  {' '}
-                  Date
-                </th>
-                <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
-                <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
-                  Answer
-                </th>
-                <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
-                  <div>
-                    <span>Wager</span>
-                  </div>
-                </th>
-                <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
-                  {' '}
-                  Result
-                </th>
-              </tr>
-            </thead>
-            <tbody className='lh-copy'>
-              {submissions
-                .map((curr, ind) => {
-                  return (
-                    <tr key={ind}>
-                      <td className='pv3 pr3 bb b--black-20' key='date'>
-                        {formatDate(new Date(curr.date || '2019-11-30'))}
-                      </td>
-                      <td className='pv3 pr3 bb b--black-20' key='name'>
-                        <a
-                          className='no-underline dim black b'
-                          href={`/dashboard/manage/${curr.userId}`}>
-                          {' '}
-                          @{curr.handle}
-                        </a>
-                      </td>
-                      <td className='pv3 pr3 bb b--black-20' key='answer'>
-                        {curr.answer}
-                      </td>
-                      <td
-                        className='pv3 pr3 bb b--black-20'
-                        key='wager'>{`$${curr.wager}`}</td>
-                      <td className='pv3 pr3 bb b--black-20' key='paid'>
-                        {typeof curr.won === 'undefined' &&
-                          game.gameType === 'game' && (
-                            <span className='bg-gold ph1 mt2  mr2 fw8 f5 white'>
-                              P
+      {submissions && (
+        <section>
+          <div className='dtc f4 b ma0 v-mid w-100 w-90-ns'>
+            Total Wagers: {submissions?.length}
+          </div>
+          <div className='dtc f4 b ma0 v-mid w-100 w-90-ns'>
+            Total Pot: {formatPrice(houseBalance)}
+          </div>
+          <div className='mv3 w-50'>
+            <h2>Submissions</h2>
+            <table className='f6 w-100 mw8 center' cellSpacing='0'>
+              <thead>
+                <tr>
+                  <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                    {' '}
+                    Date
+                  </th>
+                  <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                    Name
+                  </th>
+                  <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                    Answer
+                  </th>
+                  <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                    <div>
+                      <span>Wager</span>
+                    </div>
+                  </th>
+                  <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                    {' '}
+                    Result
+                  </th>
+                </tr>
+              </thead>
+              <tbody className='lh-copy'>
+                {submissions
+                  .map((curr, ind) => {
+                    return (
+                      <tr key={ind}>
+                        <td className='pv3 pr3 bb b--black-20' key='date'>
+                          {formatDate(new Date(curr.date || '2019-11-30'))}
+                        </td>
+                        <td className='pv3 pr3 bb b--black-20' key='name'>
+                          <a
+                            className='no-underline dim black b'
+                            href={`/dashboard/manage/${curr.userId}`}>
+                            {' '}
+                            @{curr.handle}
+                          </a>
+                        </td>
+                        <td className='pv3 pr3 bb b--black-20' key='answer'>
+                          {curr.answer}
+                        </td>
+                        <td
+                          className='pv3 pr3 bb b--black-20'
+                          key='wager'>{`$${curr.wager}`}</td>
+                        <td className='pv3 pr3 bb b--black-20' key='paid'>
+                          {typeof curr.won === 'undefined' &&
+                            game.gameType === 'game' && (
+                              <span className='bg-gold ph1 mt2  mr2 fw8 f5 white'>
+                                P
+                              </span>
+                            )}
+                          {typeof curr.won === 'undefined' &&
+                            game.gameType === 'fill-in-blank' && (
+                              <>
+                                <span
+                                  onClick={() => winBet(curr)}
+                                  className='bg-green dim noselect ph1 mt2 mr2 fw8 f5 white'>
+                                  W
+                                </span>
+                                <span
+                                  onClick={() => loseBet(curr)}
+                                  className='bg-red dim  noselect ph1 mt2 fw8 f5 white'>
+                                  L
+                                </span>
+                              </>
+                            )}
+                          {typeof curr.won !== 'undefined' && curr.won && (
+                            <span className='bg-green ph1 mt2 fw8 f5 white'>
+                              W
+                            </span>
+                          )}{' '}
+                          {typeof curr.won !== 'undefined' && !curr.won && (
+                            <span className='bg-red ph1 mt2 fw8 f5 white'>
+                              L
                             </span>
                           )}
-                        {typeof curr.won === 'undefined' &&
-                          game.gameType === 'fill-in-blank' && (
-                            <>
-                              <span
-                                onClick={() => winBet(curr)}
-                                className='bg-green dim noselect ph1 mt2 mr2 fw8 f5 white'>
-                                W
-                              </span>
-                              <span
-                                onClick={() => loseBet(curr)}
-                                className='bg-red dim  noselect ph1 mt2 fw8 f5 white'>
-                                L
-                              </span>
-                            </>
-                          )}
-                        {typeof curr.won !== 'undefined' && curr.won && (
-                          <span className='bg-green ph1 mt2 fw8 f5 white'>
-                            W
-                          </span>
-                        )}{' '}
-                        {typeof curr.won !== 'undefined' && !curr.won && (
-                          <span className='bg-red ph1 mt2 fw8 f5 white'>L</span>
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })
-                .reverse()}
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </>
+                        </td>
+                      </tr>
+                    );
+                  })
+                  .reverse()}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+    </div>
   );
 };
 

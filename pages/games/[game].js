@@ -23,7 +23,7 @@ const Games = ({ game, user }) => {
     game.gameType === 'grammy' ? grammyRender(game) : game.description;
   return (
     <Wrapper data={data}>
-      <section className='flex flex-wrap'>
+      <section className='ma3 ma4-l flex flex-wrap'>
         <div className='dtc f6 b ma0 v-mid w-100 w-90-ns tr'>
           Current Balance:{' '}
           {formatPrice(

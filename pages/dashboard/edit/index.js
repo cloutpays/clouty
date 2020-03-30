@@ -14,7 +14,7 @@ const Games = ({ questions }) => {
   };
   return (
     <Wrapper data={data}>
-      <section className='flex flex-wrap'>
+      <section className='ma3 ma4-l flex flex-wrap'>
         {questions.length > 0
           ? questions
               .sort(sortGames)
@@ -37,7 +37,8 @@ const Games = ({ questions }) => {
                               {game.emoji}
                             </span>{' '}
                             {`${
-                              game.gameType === 'game'
+                              game.gameType === 'game' ||
+                              game.gameType === 'fill-in-blank'
                                 ? `Game #${game.question}`
                                 : game.question
                             }`}

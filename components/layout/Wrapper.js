@@ -44,7 +44,7 @@ export default class Wrapper extends Component {
       : 'Fantasy gameplay at the intersection of data, music and finance.';
 
     return (
-      <div className='ma3 ma4-l'>
+      <div>
         <Head>
           <title>{title}</title>
           <meta name='description' content={description} />
@@ -58,7 +58,7 @@ export default class Wrapper extends Component {
         </Head>
         <Navigation user={user} darkMode={darkMode} />
         {this.renderHeader()}
-        <div className='mw8 center flex'>
+        <div className='center flex'>
           <main className={`mb5 w-100 ${cls}`}>{content}</main>
         </div>
         <Footer darkMode={darkMode} />

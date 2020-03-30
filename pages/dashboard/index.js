@@ -28,64 +28,66 @@ const Dashboard = ({
   };
   return (
     <Wrapper data={data}>
-      <article className='pa2 pa2-ns' data-name='slab-stat'>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>Total Games</dd>
-          <dd className='f3 f2-ns b ml0'>{questions.length}</dd>
-        </dl>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>Wins/Losses/Pending</dd>
-          <dd className='f3 f2-ns b ml0'>
-            {wonBets} - {lostBets} -{pendingBets}
-          </dd>
-        </dl>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>Total Bets</dd>
-          <dd className='f3 f2-ns b ml0'>{entries.length}</dd>
-        </dl>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>24-Hour Wagers</dd>
-          <dd className='f3 f2-ns b ml0'>{formatPrice(dayWagers)}</dd>
-        </dl>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>House Balance</dd>
-          <dd className='f3 f2-ns b ml0'>{formatPrice(houseBalance)}</dd>
-        </dl>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>Total Wagers</dd>
-          <dd className='f3 f2-ns b ml0'>{formatPrice(totalWager)}</dd>
-        </dl>
-        <dl className='dib'>
-          <dd className='f6 f5-ns b ml0'>Users</dd>
-          <dd className='f3 f2-ns b ml0'>{users.length}</dd>
-        </dl>
-      </article>
-      <div className='flex'>
-        <a
-          href='/dashboard/create'
-          className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
-          Create Game
-        </a>
-        <Link href='/dashboard/edit'>
+      <div className='ma3 ma4-l'>
+        <article className=' pa2 pa2-ns' data-name='slab-stat'>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>Total Games</dd>
+            <dd className='f3 f2-ns b ml0'>{questions.length}</dd>
+          </dl>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>Wins/Losses/Pending</dd>
+            <dd className='f3 f2-ns b ml0'>
+              {wonBets} - {lostBets} -{pendingBets}
+            </dd>
+          </dl>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>Total Bets</dd>
+            <dd className='f3 f2-ns b ml0'>{entries.length}</dd>
+          </dl>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>24-Hour Wagers</dd>
+            <dd className='f3 f2-ns b ml0'>{formatPrice(dayWagers)}</dd>
+          </dl>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>House Balance</dd>
+            <dd className='f3 f2-ns b ml0'>{formatPrice(houseBalance)}</dd>
+          </dl>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>Total Wagers</dd>
+            <dd className='f3 f2-ns b ml0'>{formatPrice(totalWager)}</dd>
+          </dl>
+          <dl className='dib'>
+            <dd className='f6 f5-ns b ml0'>Users</dd>
+            <dd className='f3 f2-ns b ml0'>{users.length}</dd>
+          </dl>
+        </article>
+        <div className='flex'>
           <a
-            href='/dashboard/edit'
+            href='/dashboard/create'
             className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
-            Manage Games
+            Create Game
           </a>
-        </Link>
-        <Link href='/dashboard/users'>
-          <a
-            href='/dashboard/users'
-            className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
-            Manage Users
-          </a>
-        </Link>
+          <Link href='/dashboard/edit'>
+            <a
+              href='/dashboard/edit'
+              className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
+              Manage Games
+            </a>
+          </Link>
+          <Link href='/dashboard/users'>
+            <a
+              href='/dashboard/users'
+              className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
+              Manage Users
+            </a>
+          </Link>
+        </div>
+        <AdminDashboard
+          payouts={payouts}
+          submissions={entries}
+          transactions={transactions}
+        />
       </div>
-      <AdminDashboard
-        payouts={payouts}
-        submissions={entries}
-        transactions={transactions}
-      />
     </Wrapper>
   );
 };

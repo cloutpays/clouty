@@ -32,7 +32,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
     <div>
       <div className='mv3'>
         <h2>Payouts</h2>
-        <table className='f6 w-100 mw8 center' cellSpacing='0'>
+        <table className='f6 w-100  center' cellSpacing='0'>
           <thead>
             <tr>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
@@ -86,7 +86,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
       </div>
       <div className='mv3'>
         <h2>Transactions</h2>
-        <table className='f6 w-100 mw8 center' cellSpacing='0'>
+        <table className='f6 w-100  center' cellSpacing='0'>
           <thead>
             <tr>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
@@ -131,7 +131,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
       <div className='mv3'>
         <h2>Submissions</h2>
 
-        <table className='f6 w-100 mw8 center' cellSpacing='0'>
+        <table className='f6 w-100  center' cellSpacing='0'>
           <thead>
             <tr>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>

@@ -100,27 +100,6 @@ const albums = [
       'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Pop_Smoke_-_Meet_the_Woo_2.png/220px-Pop_Smoke_-_Meet_the_Woo_2.png',
     spotify: 'https://open.spotify.com/album/4MZnolldq7ciKKlbVDzLm5',
   },
-  {
-    artist: 'Brent Faiyaz',
-    album: 'Fuck The World',
-    image:
-      'https://images.genius.com/65fa2295b92218e5c10cbed945537758.1000x1000x1.jpg',
-    spotify: 'https://open.spotify.com/album/3vi20DRHkqv4HyVg9Rt9wC',
-  },
-  {
-    artist: 'G Herbo',
-    album: 'PTSD',
-    image:
-      'https://media.pitchfork.com/photos/5e5d8aa3230d040009b1f403/1:1/w_600/PTSD_G%20Herbo.jpg',
-    spotify: 'https://open.spotify.com/album/0jH6iWykjOuyW7Y8zNKMBkc',
-  },
-  {
-    artist: 'Lil Baby',
-    album: 'My Turn',
-    image:
-      'https://media.pitchfork.com/photos/5e56ce610e27b00008f7b845/1:1/w_320/My%20Turn_Lil%20Baby.jpg',
-    spotify: 'https://open.spotify.com/album/1ynyQdPQiXdYJNQEDL1S3d',
-  },
 ];
 const Home = ({ questions, darkMode, loggedIn }) => (
   <div>
@@ -164,10 +143,36 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             </Link>
           </div>
         </section>
-        <h2 className='f3 f-subheadline-l  tc lh-title fw7'>
-          Bets of the Week
-        </h2>
-        <section className='flex flex-wrap'>
+        {/* <section className='bg-black white'>
+          <h2 className='f3 tc lh-title fw5 pt5 '>IN THE PRESS</h2>
+          <div className='items-start flex justify-center flex-wrap w-100 pv4'>
+            <div
+              className='link hover-silver db mv1  tc w-30'
+              href='https://www.instagram.com/p/B9zp7bYFkA_/'
+              title='Bleacher Report'>
+              <img
+                className=' h3 h4-ns'
+                // style={{ filter: 'brightness(0)' }}
+                src='/static/img/br_logo.png'
+              />
+              <p>No clue how this works... I’m in</p>
+            </div>
+            <div
+              className='link hover-silver db mv1  tc w-30'
+              href='https://musically.com/2020/01/16/clouty-wants-fans-to-place-bets-on-rap-predictions/'
+              title='Musically'>
+              <img
+                className='dib h3 h4-ns'
+                // style={{ filter: 'brightness(0)' }}
+                src='/static/img/musically.png'
+              />
+              <p>Clouty wants fans to place bets on rap predictions</p>
+            </div>
+          </div>
+        </section>
+         */}
+        <h2 className='f f-subheadline-l  tc lh-title fw7'>Bets of the Week</h2>
+        <section className='flex flex-wrap ma3 ma4-l'>
           {questions
             .map((curr) => {
               return (
@@ -191,7 +196,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             See More Games
           </a>
         </section>
-        <article>
+        <article className='ma3 ma4-l'>
           <h2 className='f3 f-subheadline-l  lh-title fw7 flex justify-center'>
             New Releases
           </h2>
