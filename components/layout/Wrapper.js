@@ -44,22 +44,24 @@ export default class Wrapper extends Component {
       : 'Fantasy gameplay at the intersection of data, music and finance.';
 
     return (
-      <div className='ma3 ma4-l'>
-        <Head>
-          <title>{title}</title>
-          <meta name='description' content={description} />
-          <meta property='og:title' content={title} />
-          <meta property='og:description' content={description} />
-          <meta
-            name='twitter:title'
-            content={`The 🌎's first music betting platform.`}
-          />
-          <meta name='twitter:description' content={description} />
-        </Head>
-        <Navigation user={user} darkMode={darkMode} />
-        {this.renderHeader()}
-        <div className='mw8 center flex'>
-          <main className={`mb5 w-100 ${cls}`}>{content}</main>
+      <div>
+        <div className='ma3 ma4-l'>
+          <Head>
+            <title>{title}</title>
+            <meta name='description' content={description} />
+            <meta property='og:title' content={title} />
+            <meta property='og:description' content={description} />
+            <meta
+              name='twitter:title'
+              content={`The 🌎's first music betting platform.`}
+            />
+            <meta name='twitter:description' content={description} />
+          </Head>
+          <Navigation user={user} darkMode={darkMode} />
+          {this.renderHeader()}
+          <div className='mw8 center flex'>
+            <main className={`mb5 w-100 ${cls}`}>{content}</main>
+          </div>
         </div>
         <Footer darkMode={darkMode} />
       </div>
