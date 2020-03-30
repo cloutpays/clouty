@@ -7,8 +7,8 @@ const data = {
   header: `Frequently Asked Questions`,
 };
 const Faq = () => (
-  <div>
-    <Wrapper data={data}>
+  <Wrapper data={data}>
+    <div className='ma3 ma4-l'>
       <strong>Is this really real?</strong>
       <p>
         Yes. Clouty is ran by a team who are always on the other side making
@@ -55,8 +55,8 @@ const Faq = () => (
       <p>Email us at breemz@clouty.io</p>
       <strong>Do you offer refunds?</strong>
       <p>We do not offer refunds. All bets are final.</p>
-    </Wrapper>
-  </div>
+    </div>
+  </Wrapper>
 );
 
 export default Faq;

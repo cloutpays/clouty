@@ -9,7 +9,7 @@ const data = {
 const Confirmation = () => (
   <div>
     <Wrapper data={data}>
-      <section>
+      <section className='ma3 ma4-l'>
         <p className={`${styles.paragraph}`}>
           Your wager has been entered into our system. May the odds forever be
           in your favor!

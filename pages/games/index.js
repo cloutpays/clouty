@@ -14,7 +14,7 @@ const Games = ({ questions }) => {
   };
   return (
     <Wrapper data={data}>
-      <section className='flex flex-wrap'>
+      <section className='ma3 ma4-l flex flex-wrap'>
         <div key='createGame' className='pv2 pa2-ns w-100 w-50-ns'>
           <a href='/games/create' className='no-underline'>
             <div className='white br2 shadow-4 grow pa3 pa4-ns h-100 contact-card'>

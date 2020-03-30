@@ -45,23 +45,21 @@ export default class Wrapper extends Component {
 
     return (
       <div>
-        <div className='ma3 ma4-l'>
-          <Head>
-            <title>{title}</title>
-            <meta name='description' content={description} />
-            <meta property='og:title' content={title} />
-            <meta property='og:description' content={description} />
-            <meta
-              name='twitter:title'
-              content={`The 🌎's first music betting platform.`}
-            />
-            <meta name='twitter:description' content={description} />
-          </Head>
-          <Navigation user={user} darkMode={darkMode} />
-          {this.renderHeader()}
-          <div className='mw8 center flex'>
-            <main className={`mb5 w-100 ${cls}`}>{content}</main>
-          </div>
+        <Head>
+          <title>{title}</title>
+          <meta name='description' content={description} />
+          <meta property='og:title' content={title} />
+          <meta property='og:description' content={description} />
+          <meta
+            name='twitter:title'
+            content={`The 🌎's first music betting platform.`}
+          />
+          <meta name='twitter:description' content={description} />
+        </Head>
+        <Navigation user={user} darkMode={darkMode} />
+        {this.renderHeader()}
+        <div className='center flex'>
+          <main className={`mb5 w-100 ${cls}`}>{content}</main>
         </div>
         <Footer darkMode={darkMode} />
       </div>

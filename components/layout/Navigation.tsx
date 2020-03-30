@@ -16,7 +16,7 @@ const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
     'near-white': darkMode,
   })}`;
   return (
-    <nav className='mw8 center flex items-center mb5'>
+    <nav className='mw8 center flex items-center mb5 ma3 ma4-l'>
       <Link href='/'>
         <a href='/' className='white flex-grow-1 no-underline'>
           <img

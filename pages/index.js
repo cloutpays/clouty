@@ -191,7 +191,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             See More Games
           </a>
         </section>
-        <article>
+        <article className='ma3 ma4-l'>
           <h2 className='f3 f-subheadline-l  lh-title fw7 flex justify-center'>
             New Releases
           </h2>

@@ -28,7 +28,7 @@ const Dashboard = ({
   };
   return (
     <Wrapper data={data}>
-      <article className='pa2 pa2-ns' data-name='slab-stat'>
+      <article className='ma3 ma4-l pa2 pa2-ns' data-name='slab-stat'>
         <dl className='dib mr5'>
           <dd className='f6 f5-ns b ml0'>Total Games</dd>
           <dd className='f3 f2-ns b ml0'>{questions.length}</dd>

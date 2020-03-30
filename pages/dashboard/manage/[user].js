@@ -42,184 +42,128 @@ const Dashboard = ({
   };
   return (
     <Wrapper data={data}>
-      <h1 className='f2 lh-title fw9 mb2 mt0 pt3 bt bw2'>
-        {user.info.firstName} {user.info.lastName}{' '}
-        <span>{user.admin ? '(Admin)' : ''}</span>
-      </h1>
-      <h2 className='f3 mv0 mid-gray '>{user.email}</h2>
-      <h2 className='f3 mv0 mid-gray'>{user.info.phoneNumber}</h2>
-      <time className='f6 ttu mt2 tracked gray'>
-        Last Login: {formatDate(new Date(0).setUTCSeconds(user.updatedAt))}
-      </time>
-      <article className='pa2 pa2-ns' data-name='slab-stat'>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>Balance</dd>
-          <dd className='f3 f2-ns b ml0'>
-            {formatPrice(user.stripe.user.balance / 100)}
-          </dd>
-        </dl>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>Credits</dd>
-          <dd className='f3 f2-ns b ml0'>
-            {formatPrice(user.stripe.user.credit / 100)}
-          </dd>
-        </dl>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>Wins/Losses/Pending</dd>
-          <dd className='f3 f2-ns b ml0'>
-            {wonBets} - {lostBets} - {pendingBets}
-          </dd>
-        </dl>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>Total Bets</dd>
-          <dd className='f3 f2-ns b ml0'>{submissions.length}</dd>
-        </dl>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>Winnings</dd>
-          <dd className='f3 f2-ns b ml0'>{formatPrice(wonWagers)}</dd>
-        </dl>
-        <dl className='dib mr5'>
-          <dd className='f6 f5-ns b ml0'>Total Wagers</dd>
-          <dd className='f3 f2-ns b ml0'>{formatPrice(totalWager)}</dd>
-        </dl>
-      </article>
-      <div className='mv3'>
-        <label className='db fw6 lh-copy f6' htmlFor='user-name'>
-          Balance
-        </label>
-        <input
-          className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-40'
-          onChange={(event) => setBalance(event.currentTarget.value)}
-          value={balance}
-        />
-      </div>
-      <div className='mv3'>
-        <label className='db fw6 lh-copy f6' htmlFor='user-name'>
-          Credit
-        </label>
-        <input
-          className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-40'
-          onChange={(event) => setCreditBalance(event.currentTarget.value)}
-          value={creditBalance}
-        />
-      </div>
-      <div>
-        <span
-          onClick={setCredit}
-          className='f6 mr2 noselect link dim ph3 pv2 mb2 dib white bg-black'>
-          Set Balances
-        </span>
-      </div>
+      <div className='ma3 ma4-l'>
+        <h1 className='f2 lh-title fw9 mb2 mt0 pt3 bt bw2'>
+          {user.info.firstName} {user.info.lastName}{' '}
+          <span>{user.admin ? '(Admin)' : ''}</span>
+        </h1>
+        <h2 className='f3 mv0 mid-gray '>{user.email}</h2>
+        <h2 className='f3 mv0 mid-gray'>{user.info.phoneNumber}</h2>
+        <time className='f6 ttu mt2 tracked gray'>
+          Last Login: {formatDate(new Date(0).setUTCSeconds(user.updatedAt))}
+        </time>
+        <article className='pa2 pa2-ns' data-name='slab-stat'>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>Balance</dd>
+            <dd className='f3 f2-ns b ml0'>
+              {formatPrice(user.stripe.user.balance / 100)}
+            </dd>
+          </dl>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>Credits</dd>
+            <dd className='f3 f2-ns b ml0'>
+              {formatPrice(user.stripe.user.credit / 100)}
+            </dd>
+          </dl>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>Wins/Losses/Pending</dd>
+            <dd className='f3 f2-ns b ml0'>
+              {wonBets} - {lostBets} - {pendingBets}
+            </dd>
+          </dl>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>Total Bets</dd>
+            <dd className='f3 f2-ns b ml0'>{submissions.length}</dd>
+          </dl>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>Winnings</dd>
+            <dd className='f3 f2-ns b ml0'>{formatPrice(wonWagers)}</dd>
+          </dl>
+          <dl className='dib mr5'>
+            <dd className='f6 f5-ns b ml0'>Total Wagers</dd>
+            <dd className='f3 f2-ns b ml0'>{formatPrice(totalWager)}</dd>
+          </dl>
+        </article>
+        <div className='mv3'>
+          <label className='db fw6 lh-copy f6' htmlFor='user-name'>
+            Balance
+          </label>
+          <input
+            className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-40'
+            onChange={(event) => setBalance(event.currentTarget.value)}
+            value={balance}
+          />
+        </div>
+        <div className='mv3'>
+          <label className='db fw6 lh-copy f6' htmlFor='user-name'>
+            Credit
+          </label>
+          <input
+            className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-40'
+            onChange={(event) => setCreditBalance(event.currentTarget.value)}
+            value={creditBalance}
+          />
+        </div>
+        <div>
+          <span
+            onClick={setCredit}
+            className='f6 mr2 noselect link dim ph3 pv2 mb2 dib white bg-black'>
+            Set Balances
+          </span>
+        </div>
 
-      <h2>Submitted Bets</h2>
-      <table className='f6 w-100 mw8 center' cellSpacing='0'>
-        <thead>
-          <tr>
-            <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
-            <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
-            <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Game #</th>
-            <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Answer</th>
-            <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Wager</th>
-            <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Result</th>
-          </tr>
-        </thead>
-        <tbody className='lh-copy'>
-          {submissions
-            .map((curr, ind) => {
-              return (
-                <tr key={ind}>
-                  <td className='pv3 pr3 bb b--black-20' key='date'>
-                    <a
-                      className='no-underline dim black b'
-                      href={`/dashboard/manage/${curr._id}`}>
-                      {formatDate(new Date(curr.date))}
-                    </a>
-                  </td>
-                  <td className='pv3 pr3 bb b--black-20' key='name'>
-                    <a
-                      className='no-underline dim black b'
-                      href={`/dashboard/manage/${curr.userId}`}>
-                      {' '}
-                      @{curr.handle}
-                    </a>
-                  </td>
-                  <td className='pv3 pr3 bb b--black-20' key='question'>
-                    <a
-                      className='no-underline dim black b'
-                      href={`/dashboard/edit/${curr.question}`}>
-                      {curr.question}
-                    </a>
-                  </td>
-                  <td className='pv3 pr3 bb b--black-20' key='answer'>
-                    {curr.answer}
-                  </td>
-                  <td
-                    className='pv3 pr3 bb b--black-20'
-                    key='wager'>{`$${curr.wager}`}</td>
-                  <td className='pv3 pr3 bb b--black-20' key='paid'>
-                    {typeof curr.won === 'undefined' ? (
-                      <span className='bg-gold ph1 mt2 fw8 f5 white'>P</span>
-                    ) : curr.won ? (
-                      <span className='bg-green ph1 mt2 fw8 f5 white'>W</span>
-                    ) : (
-                      <span className='bg-red ph1 mt2 fw8 f5 white'>L</span>
-                    )}
-                  </td>
-                </tr>
-              );
-            })
-            .reverse()}
-        </tbody>
-      </table>
-      <div className='mv3'>
-        <h2>Payouts</h2>
+        <h2>Submitted Bets</h2>
         <table className='f6 w-100 mw8 center' cellSpacing='0'>
           <thead>
             <tr>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
-                Preferred
-              </th>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Amount</th>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
-                Cleared?
-              </th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Game #</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Answer</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Wager</th>
+              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Result</th>
             </tr>
           </thead>
           <tbody className='lh-copy'>
-            {payouts
+            {submissions
               .map((curr, ind) => {
                 return (
                   <tr key={ind}>
                     <td className='pv3 pr3 bb b--black-20' key='date'>
-                      {formatDate(new Date(curr.date))}
+                      <a
+                        className='no-underline dim black b'
+                        href={`/dashboard/manage/${curr._id}`}>
+                        {formatDate(new Date(curr.date))}
+                      </a>
                     </td>
-                    <td className='pv3 pr3 bb b--black-20' key='date'>
+                    <td className='pv3 pr3 bb b--black-20' key='name'>
                       <a
                         className='no-underline dim black b'
                         href={`/dashboard/manage/${curr.userId}`}>
                         {' '}
                         @{curr.handle}
                       </a>
-                      <div>{curr.preferred}</div>
-                      <div>
-                        {curr.preferred === 'Apple Pay' && <>{curr.appleID}</>}
-                        {curr.preferred === 'Cash App' && <>{curr.handle}</>}
-                        {curr.preferred === 'PayPal' && <>{curr.email}</>}
-                      </div>
                     </td>
-                    <td className='pv3 pr3 bb b--black-20' key='date'>
-                      {formatPrice(curr.amount)}
+                    <td className='pv3 pr3 bb b--black-20' key='question'>
+                      <a
+                        className='no-underline dim black b'
+                        href={`/dashboard/edit/${curr.question}`}>
+                        {curr.question}
+                      </a>
                     </td>
-                    <td className='pv3 pr3 bb b--black-20' key='date'>
-                      {curr.cleared ? (
-                        <div className='f6 mr2 link dim ph3 pv2 mb2 dib fw6 white bg-green'>
-                          Cleared
-                        </div>
+                    <td className='pv3 pr3 bb b--black-20' key='answer'>
+                      {curr.answer}
+                    </td>
+                    <td
+                      className='pv3 pr3 bb b--black-20'
+                      key='wager'>{`$${curr.wager}`}</td>
+                    <td className='pv3 pr3 bb b--black-20' key='paid'>
+                      {typeof curr.won === 'undefined' ? (
+                        <span className='bg-gold ph1 mt2 fw8 f5 white'>P</span>
+                      ) : curr.won ? (
+                        <span className='bg-green ph1 mt2 fw8 f5 white'>W</span>
                       ) : (
-                        <div className='f6 noselect mr2 link dim ph3 pv2 mb2 dib fw6 black bg-gold'>
-                          Not Cleared
-                        </div>
+                        <span className='bg-red ph1 mt2 fw8 f5 white'>L</span>
                       )}
                     </td>
                   </tr>
@@ -228,34 +172,98 @@ const Dashboard = ({
               .reverse()}
           </tbody>
         </table>
-      </div>
-      <div className='mv3'>
-        <h2>Transactions</h2>
-        <table className='f6 w-100 mw8 center' cellSpacing='0'>
-          <thead>
-            <tr>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
+        <div className='mv3'>
+          <h2>Payouts</h2>
+          <table className='f6 w-100 mw8 center' cellSpacing='0'>
+            <thead>
+              <tr>
+                <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
+                <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                  Preferred
+                </th>
+                <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                  Amount
+                </th>
+                <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                  Cleared?
+                </th>
+              </tr>
+            </thead>
+            <tbody className='lh-copy'>
+              {payouts
+                .map((curr, ind) => {
+                  return (
+                    <tr key={ind}>
+                      <td className='pv3 pr3 bb b--black-20' key='date'>
+                        {formatDate(new Date(curr.date))}
+                      </td>
+                      <td className='pv3 pr3 bb b--black-20' key='date'>
+                        <a
+                          className='no-underline dim black b'
+                          href={`/dashboard/manage/${curr.userId}`}>
+                          {' '}
+                          @{curr.handle}
+                        </a>
+                        <div>{curr.preferred}</div>
+                        <div>
+                          {curr.preferred === 'Apple Pay' && (
+                            <>{curr.appleID}</>
+                          )}
+                          {curr.preferred === 'Cash App' && <>{curr.handle}</>}
+                          {curr.preferred === 'PayPal' && <>{curr.email}</>}
+                        </div>
+                      </td>
+                      <td className='pv3 pr3 bb b--black-20' key='date'>
+                        {formatPrice(curr.amount)}
+                      </td>
+                      <td className='pv3 pr3 bb b--black-20' key='date'>
+                        {curr.cleared ? (
+                          <div className='f6 mr2 link dim ph3 pv2 mb2 dib fw6 white bg-green'>
+                            Cleared
+                          </div>
+                        ) : (
+                          <div className='f6 noselect mr2 link dim ph3 pv2 mb2 dib fw6 black bg-gold'>
+                            Not Cleared
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })
+                .reverse()}
+            </tbody>
+          </table>
+        </div>
+        <div className='mv3'>
+          <h2>Transactions</h2>
+          <table className='f6 w-100 mw8 center' cellSpacing='0'>
+            <thead>
+              <tr>
+                <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
 
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Amount</th>
-            </tr>
-          </thead>
-          <tbody className='lh-copy'>
-            {stripe
-              .map((curr, ind) => {
-                return (
-                  <tr key={ind}>
-                    <td className='pv3 pr3 bb b--black-20' key='date'>
-                      {formatDate(new Date(0).setUTCSeconds(curr.created))}
-                    </td>
-                    <td className='pv3 pr3 bb b--black-20' key='date'>
-                      {formatPrice(curr.amount / 100)}
-                    </td>
-                  </tr>
-                );
-              })
-              .reverse()}
-          </tbody>
-        </table>
+                <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>
+                  Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody className='lh-copy'>
+              {stripe
+                .map((curr, ind) => {
+                  return (
+                    <tr key={ind}>
+                      <td className='pv3 pr3 bb b--black-20' key='date'>
+                        {formatDate(new Date(0).setUTCSeconds(curr.created))}
+                      </td>
+                      <td className='pv3 pr3 bb b--black-20' key='date'>
+                        {formatPrice(curr.amount / 100)}
+                      </td>
+                    </tr>
+                  );
+                })
+                .reverse()}
+            </tbody>
+          </table>
+        </div>
       </div>
     </Wrapper>
   );
