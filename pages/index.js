@@ -143,10 +143,35 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             </Link>
           </div>
         </section>
-        <h2 className='f3 f-subheadline-l  tc lh-title fw7'>
-          Bets of the Week
-        </h2>
-        <section className='flex flex-wrap'>
+        <section className='bg-black white'>
+          <h2 className='f3 tc lh-title fw5 pt5 '>IN THE PRESS</h2>
+          <div className='items-start flex justify-center flex-wrap w-100 pv4'>
+            <div
+              className='link hover-silver db mv1  tc w-30'
+              href='https://www.instagram.com/p/B9zp7bYFkA_/'
+              title='Bleacher Report'>
+              <img
+                className=' h3 h4-ns'
+                // style={{ filter: 'brightness(0)' }}
+                src='/static/img/br_logo.png'
+              />
+              <p>No clue how this works... I’m in</p>
+            </div>
+            <div
+              className='link hover-silver db mv1  tc w-30'
+              href='https://musically.com/2020/01/16/clouty-wants-fans-to-place-bets-on-rap-predictions/'
+              title='Musically'>
+              <img
+                className='dib h3 h4-ns'
+                // style={{ filter: 'brightness(0)' }}
+                src='/static/img/musically.png'
+              />
+              <p>Clouty wants fans to place bets on rap predictions</p>
+            </div>
+          </div>
+        </section>
+        <h2 className='f f-subheadline-l  tc lh-title fw7'>Bets of the Week</h2>
+        <section className='flex flex-wrap ma3 ma4-l'>
           {questions
             .map((curr) => {
               return (
