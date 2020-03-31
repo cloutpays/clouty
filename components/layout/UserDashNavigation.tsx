@@ -46,7 +46,7 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
             </li>
             <li className='mb2'>
               <Link href='/user/change-password'>
-                <a className='block link dim blue'>Change password</a>
+                <a className='block link dim blue'>Change Password</a>
               </Link>
             </li>
             {/* <li className='mb2'>
