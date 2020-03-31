@@ -74,9 +74,14 @@
       "dest": "server/handlers/post.js"
     },
     {
-      "src": "/api/userquestion",
+      "src": "/api/userQuestions",
       "methods": ["POST"],
       "dest": "server/handlers/post.js"
+    },
+    {
+      "src": "/api/userQuestions",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js"
     },
     {
       "src": "/api/payout",

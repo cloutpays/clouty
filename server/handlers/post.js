@@ -23,7 +23,7 @@ const postApi = (fn) => async (req, res) => {
         return await fn(gameSubmitApi(req, res));
       case 'api/question':
         return await fn(questionSubmitApi(req, res));
-      case 'api/userquestion':
+      case 'api/userQuestions':
         return await fn(userQuestionSubmitApi(req, res));
       case 'api/endQuestion':
         return await fn(questionCloseApi(req, res));

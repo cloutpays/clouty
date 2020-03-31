@@ -6,6 +6,7 @@ const {
   questionRetrieveApi,
   userSubmissionsRetrieveApi,
   gameSubmissionsRetrieveApi,
+  userQuestionRetrieveApi,
 } = require('../helpers/game');
 const { userRetrieveApi, usersApi } = require('../helpers/user');
 const {
@@ -21,6 +22,8 @@ const getApi = (fn) => async (req, res) => {
   try {
     const parse = req.url.split('/');
     console.log(`get api/${parse[2]}`);
+    console.log('parse', parse);
+    console.log(req.url);
     switch (`api/${parse[2]}`) {
       case 'api/submissions':
         return await fn(submissionsRetrieveApi(req, res));
@@ -44,6 +47,8 @@ const getApi = (fn) => async (req, res) => {
         return await fn(userRetrieveApi(req, res));
       case 'api/users':
         return await fn(usersApi(req, res));
+      case 'api/userQuestions':
+        return await fn(userQuestionRetrieveApi(req, res));
       case 'api/checkout':
         return await fn(stripeApi(req, res));
 
