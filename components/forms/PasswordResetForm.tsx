@@ -7,11 +7,19 @@ interface PasswordResetFromProps {
   email: string;
 }
 
+interface ErrorState {
+  message: string;
+}
+
+const fireBaseError: ErrorState = {
+  message: '',
+};
+
 const PasswordResetForm: React.FC<PasswordResetFromProps> = ({
   email: initEmail,
 }) => {
   const [email, setEmail] = useState<string>(initEmail || '');
-  const [error, setError] = useState<any>({});
+  const [error, setError] = useState<ErrorState>({ ...fireBaseError });
   const [loading, setLoading] = useState<boolean>(false);
   const [confirmation, setConfirmation] = useState<boolean>(false);
 
@@ -19,7 +27,7 @@ const PasswordResetForm: React.FC<PasswordResetFromProps> = ({
     setLoading(true);
     await Firebase.resetPassword(email)
       .then(() => {
-        setError('');
+        setError({ ...fireBaseError });
         setConfirmation(true);
       })
       .catch((error) => {
@@ -51,7 +59,7 @@ const PasswordResetForm: React.FC<PasswordResetFromProps> = ({
                   onChange={onChange}
                 />
                 <small id='name-desc' className='hljs-strong f6 red db mb2'>
-                  {error && <p>{error.message}</p>}
+                  {error.message.length > 0 && <p>{error.message}</p>}
                 </small>
               </div>
             </fieldset>
