@@ -27,7 +27,7 @@ const PasswordChangeForm = () => {
         setConfirmation(true);
         setTimeout(() => {
           window.history.back();
-        }, 2000);
+        }, 3000);
       })
       .catch((error) => {
         setError(error);
