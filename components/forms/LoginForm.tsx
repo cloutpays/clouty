@@ -118,7 +118,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           margin-right: 8px;
         }
       `}</style>
-      <main className='black-80 ma3 ma4-l'>
+      <main className='black-80  vh-50 ma3 ma4-l'>
         <form className=' center'>
           <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
             {signUp ? (
@@ -237,13 +237,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                 Already have an account? Sign in
               </a>
             ) : (
-              <a href='/signup' className='f6 link dim black db'>
-                Sign up
-              </a>
+              <Link href='/user/pw-forget'>
+                <a className='f6 link dim black db'>Forgot your password?</a>
+              </Link>
             )}
-            <Link href='/user/pw-forget'>
-              <a className='f6 link dim black db'>Forgot your password?</a>
-            </Link>
           </div>
         </form>
       </main>
