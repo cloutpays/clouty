@@ -118,8 +118,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           margin-right: 8px;
         }
       `}</style>
-      <main className='black-80'>
-        <form className='measure center'>
+      <main className='black-80 ma3 ma4-l'>
+        <form className=' center'>
           <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
             {signUp ? (
               <>

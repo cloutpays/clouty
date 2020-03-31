@@ -29,7 +29,7 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
     getBalance();
   }, []);
   return (
-    <>
+    <div className='ma3 ma4-l'>
       <article className='w-100 mb0-l ph3-m ph3-l flex center'>
         <div className='mr5 pr3'>
           <h2 className='ttu mt0 mb2 f6 fw5 silver'>Manage</h2>
@@ -112,7 +112,7 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
           <h2 className='ttu mt0 mb1 f6 fw5 silver'>Game History</h2>
         </div>
       </article>
-    </>
+    </div>
   );
 };
 
