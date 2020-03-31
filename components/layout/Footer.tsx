@@ -20,7 +20,7 @@ const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
     <footer className={'pa4 h-25 bg-black white items-center mt4 f6 f5-ns fw7'}>
       <div className='justify-between items-center flex-row-reverse w-100 flex flex-wrap'>
         <div className='justify-center justify-end-ns  items-center tc w-100 w-30-l pl0 flex '>
-          <div className='mr1 mr3-ns tc ml3'>
+          <div className='tc ml3'>
             <a
               className='link hover-silver white dib mh3 tc'
               href='https://twitter.com/cloutyio'
@@ -61,7 +61,7 @@ const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
           </div>
         </div>
         <div className='justify-center justify-start-m justify-start-l items-center pl0 pb0 flex flex-wrap  tc pv1 mv2 tl-m tl-l'>
-          <span className='db f5 f4-ns mb2 w-100 pb2-ns pb1-m'>
+          <span className='db f5 f4-ns pt2 w-100 pb2-ns pb1-m'>
             © {getCurrentYear()} · Packaged with care.
           </span>
           <div className='pt3'>
@@ -75,7 +75,7 @@ const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
                 FAQ
               </a>
             </span>
-            <span className='mr2 pt2 mr4-ns mr3'>
+            <span className=' pt2 '>
               <a href='/terms' className={`${navLinks}`}>
                 Terms
               </a>
