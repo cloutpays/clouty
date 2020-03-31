@@ -61,7 +61,7 @@ const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
           </div>
         </div>
         <div className='justify-center justify-start-m justify-start-l items-center pl0 pb0 flex flex-wrap  tc pv1 mv2 tl-m tl-l'>
-          <span className='db f5 f4-ns pt2 w-100 pb2-ns pb1-m'>
+          <span className='db f6 f5-ns pt2 w-100 pb2-ns pb1-m'>
             © {getCurrentYear()} · Packaged with care.
           </span>
           <div className='pt3'>
