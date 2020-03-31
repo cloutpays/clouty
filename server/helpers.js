@@ -14,6 +14,11 @@ export const question = dev
   : staging
   ? 'question_staging'
   : 'question_prod';
+export const userQuestion = dev
+  ? 'userquestion_dev'
+  : staging
+  ? 'userquestion_staging'
+  : 'userquestion_prod';
 export const cloutpays = dev
   ? 'cloutpays_dev'
   : staging
