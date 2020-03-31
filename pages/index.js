@@ -174,6 +174,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
         <h2 className='f f-subheadline-l  tc lh-title fw7'>Bets of the Week</h2>
         <section className='flex flex-wrap ma3 ma4-l'>
           {questions
+            .filter((curr) => curr.gameType !== 'grammy')
             .map((curr) => {
               return (
                 <div className='pv2 pa2-ns w-100 w-50-ns' key={curr.question}>
