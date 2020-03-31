@@ -124,7 +124,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
       userId,
     };
     if (isUserSubmission) {
-      axios.post('/api/userquestion', submission).then(() => {
+      axios.post('/api/userQuestions', submission).then(() => {
         Router.push('/games/create/confirmation');
       });
     } else {

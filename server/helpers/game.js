@@ -10,6 +10,7 @@ import {
   sendEmail,
   // sendTextMessage,
   user,
+  userQuestion,
   wrapAsync,
 } from '../helpers';
 import { loserEmailContent, winnerEmailContent } from '../emailTemplates';
@@ -133,7 +134,7 @@ export const submissionsRemovalApi = wrapAsync(async (req, db) => {
 });
 
 export const submissionsRetrieveApi = wrapAsync(
-  async (req, db) =>
+  async (_, db) =>
     await db
       .collection(cloutpays)
       .find()
@@ -218,11 +219,19 @@ export const loseBetApi = wrapAsync(async (req, db) => {
 });
 export const userQuestionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  return await db.collection('userquestion').insertOne({ ...data });
+  return await db.collection(userQuestion).insertOne({ ...data });
 });
 
+export const userQuestionRetrieveApi = wrapAsync(
+  async (_, db) =>
+    await db
+      .collection(userQuestion)
+      .find()
+      .toArray(),
+);
+
 export const questionsRetrieveApi = wrapAsync(
-  async (req, db) =>
+  async (_, db) =>
     await db
       .collection(question)
       .find()
