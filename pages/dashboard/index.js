@@ -81,6 +81,11 @@ const Dashboard = ({
               Manage Users
             </a>
           </Link>
+          <Link href='/dashboard/users/games'>
+            <a className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
+              Manage User Submissions
+            </a>
+          </Link>
         </div>
         <AdminDashboard
           payouts={payouts}
