@@ -44,6 +44,11 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
                 Payouts
               </a>
             </li>
+            <li className='mb2'>
+              <Link href='/user/change-password'>
+                <a className='block link dim blue'>Change password</a>
+              </Link>
+            </li>
             {/* <li className='mb2'>
               <a href='#' className='block link dim blue'>
                 Game History
