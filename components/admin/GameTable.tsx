@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDate } from '../../lib/helpers';
 
 interface Option {
   value: string;
@@ -16,6 +17,8 @@ interface Game {
   extendedAnswer: string;
   class: string;
   question: string;
+  userId: string;
+  date: any;
 }
 
 interface GameTableProps {
@@ -23,8 +26,10 @@ interface GameTableProps {
 }
 
 const TABLE_HEADERS = [
+  { name: 'Date', id: 0 },
   { name: 'Description', id: 1 },
   { name: 'Options', id: 2 },
+  { name: 'User ID', id: 3 },
 ];
 
 const GameTable: React.FC<GameTableProps> = ({ games }) => {
@@ -44,6 +49,9 @@ const GameTable: React.FC<GameTableProps> = ({ games }) => {
           {games.map((game, index) => {
             return (
               <tr key={index}>
+                <td className='pv3 pr3 bb b--black-20' key='date'>
+                  {formatDate(new Date(game.date))}
+                </td>
                 <td className='pv3 pr3 bb b--black-20' key='description'>
                   {game.description}
                 </td>
@@ -51,6 +59,9 @@ const GameTable: React.FC<GameTableProps> = ({ games }) => {
                   {game.options
                     .map((option: Option) => option.value)
                     .join(', ')}
+                </td>
+                <td className='pv3 pr3 bb b--black-20' key='user-id'>
+                  {game.userId}
                 </td>
               </tr>
             );
