@@ -42,7 +42,7 @@ const PasswordResetForm: React.FC<PasswordResetFromProps> = ({
   };
 
   return (
-    <>
+    <div className=' vh-50 mb4'>
       {!confirmation ? (
         <main className='black-80'>
           <form className='measure center'>
@@ -87,7 +87,7 @@ const PasswordResetForm: React.FC<PasswordResetFromProps> = ({
           </p>
         </section>
       )}
-    </>
+    </div>
   );
 };
 
