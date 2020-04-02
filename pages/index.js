@@ -106,13 +106,13 @@ const Home = ({ questions, darkMode, loggedIn }) => (
     <Wrapper data={data}>
       <section>
         {/* <h1 className='f1 fw9'>Welcome to Clouty</h1> */}
-        <h1 className='f1 f-subheadline-l db tc measure lh-title fw9 mv5'>
+        <h1 className='f1 f-subheadline-l db tc measure lh-title fw9 mv5 mh2'>
           The 🌎&apos;s first music betting platform.
         </h1>
         <div>
           <p className={`${styles.paragraph}`}>
             Every week we host live bets about the latest releases and
-            predictions in the rap game.{' '}
+            predictions in the rap game.
           </p>
           <p className={`${styles.paragraph}`}>
             Double your money while putting your intuition on the line.
@@ -120,8 +120,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
           <p className={`${styles.paragraph}`}>
             Sign up today and receive a free $2 credit towards your bets. Also,
             for a limited time enjoy
-            <span className={classnames('i b')}> feeless </span>
-            bets!
+            <span className='i b'> no fees </span> for all bets!
           </p>
           <DisclaimerModal />
         </div>
