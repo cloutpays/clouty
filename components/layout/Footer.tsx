@@ -20,7 +20,7 @@ const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
     <footer
       className={'pt3 ph4 h-25 bg-black white items-center mt4 f6 f5-ns fw7'}>
       <div className='justify-between items-center flex-row-reverse w-100 flex tc flex-wrap'>
-        <div className='justify-center justify-end-ns  items-center tc w-100 w-40-m w-30-l pl0 flex '>
+        <div className='justify-center justify-end-ns pr4-l pr4-m items-center pt2 tc w-100 w-50-l w-40-m w-30-l pl0 flex '>
           <div className='tc'>
             <a
               className='link hover-silver white dib mh3 tc'
@@ -61,11 +61,11 @@ const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
             </a>
           </div>
         </div>
-        <div className='justify-center justify-start-l items-center pl0 pb0 flex flex-wrap  w-100 w-60-m tc pb3 mv3 tl-m tl-l'>
-          <span className='db f7 f6-ns pt2 w-100 pl3-l pl3-m pb2-ns pb1-m'>
+        <div className='justify-center justify-start-l items-center pl0 pb0 flex flex-wrap  w-100 w-50-l w-60-m tc pb3 mv3 tl-m tl-l'>
+          <span className='db f7 f6-ns pt2 w-100 pl4-l pl4-m pb2-ns pb1-m'>
             © {getCurrentYear()} · Packaged with care.
           </span>
-          <div className='pt3 pl3-l pl3-m w-100'>
+          <div className='pt3 pl4-l pl4-m w-100'>
             <span className='pr2 pb0 mr4-ns'>
               <a href='https://clouty.substack.com/' className={`${navLinks}`}>
                 Newsletter
