@@ -70,7 +70,9 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
               </a>
             </li> */}
             <li className='mb2'>
-              <a onClick={handleLogout} className='block link dim blue'>
+              <a
+                onClick={handleLogout}
+                className='block noselect link dim blue'>
                 Logout
               </a>
             </li>
