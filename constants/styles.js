@@ -4,7 +4,7 @@ export const styles = {
   wrapper: `mw8 center`,
   link: 'gray fw7 link no-underline b bb bw1 dim',
   linkNormalWeight: 'near-black link no-underline bb bw1 b--orange dim',
-  navigationLink: `fw7 link no-underline `,
+  navigationLink: `fw6 link no-underline `,
   unorderedList: 'list unordered-list lh-copy',
   paragraph: `lh-copy ma3 ma4-l tc ${classNames({
     gray: !darkMode,
