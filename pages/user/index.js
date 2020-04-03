@@ -16,9 +16,9 @@ const Terms = ({ balance, submissions, user }) => {
   };
   return (
     <Wrapper data={data} user={user}>
-      <main>
+      <main className='ma3 ma4-l'>
         <UserDashNavigation balance={balance} user={user} />
-        <div className='mw8 center ph3 mt1' id='dashboard'>
+        <div className='center ph3 mt1' id='dashboard'>
           <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>
             <section className=' flex flex-wrap '>
               {submissions.length === 0 && (
