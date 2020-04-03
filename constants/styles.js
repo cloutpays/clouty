@@ -6,7 +6,7 @@ export const styles = {
   linkNormalWeight: 'near-black link no-underline bb bw1 b--orange dim',
   navigationLink: `fw6 link no-underline `,
   unorderedList: 'list unordered-list lh-copy',
-  paragraph: `lh-copy ma3 ma4-l tc ${classNames({
+  paragraph: `lh-copy ma3 mh4 ma4-l tc ${classNames({
     gray: !darkMode,
     'white-70': darkMode,
   })} ph4`,

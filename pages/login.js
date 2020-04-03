@@ -4,14 +4,16 @@ import Wrapper from '../components/layout/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
-  header: `The 🌎's first music betting platform.`,
 };
 const Login = () => (
-  <div>
-    <Wrapper data={data}>
+  <Wrapper data={data}>
+    <div className='ma3 ma4-l'>
+      <h2 className='tc f2 fw9 mv0'>Welcome</h2>
+      <img src='/static/img/clouty-04.png' className='h4 center db  mt2' />
+      <h3 className='tc f3 fw6'>Have an account with us?</h3>
       <LoginForm mode={'login'} />
-    </Wrapper>
-  </div>
+    </div>
+  </Wrapper>
 );
 
 Login.getInitialProps = ({ isLoggedIn }) => {
