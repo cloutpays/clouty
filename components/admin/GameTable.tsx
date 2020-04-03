@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { formatDate } from '../../lib/helpers';
 
@@ -61,7 +62,9 @@ const GameTable: React.FC<GameTableProps> = ({ games }) => {
                     .join(', ')}
                 </td>
                 <td className='pv3 pr3 bb b--black-20' key='user-id'>
-                  {game.userId}
+                  <Link href={`/dashboard/manage/${game.userId}`}>
+                    <a className='no-underline dim black b'>{game.userId}</a>
+                  </Link>
                 </td>
               </tr>
             );
