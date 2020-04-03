@@ -11,20 +11,19 @@ const data = {
   header: `Start Playing Clouty`,
 };
 const Login = () => (
-  <div>
-    <Wrapper data={data}>
+  <Wrapper data={data}>
+    <div className='ma3 ma4-l'>
       <p className={styles.paragraph}>
         Sign up today and receive a free $2 credit towards your bets.
       </p>
       <p className={styles.paragraph}>
         Also, for a limited time enjoy
-        <span className={classnames('i b')}> feeless </span>
-        bets!
+        <span className={classnames('i b')}> no fees </span> for all bets!
       </p>
       <DisclaimerModal />
       <LoginForm mode={'signup'} />
-    </Wrapper>
-  </div>
+    </div>
+  </Wrapper>
 );
 
 Login.getInitialProps = ({ isLoggedIn }) => {
