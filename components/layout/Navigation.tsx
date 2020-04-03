@@ -35,17 +35,19 @@ const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
           </li>
         )} */}
         {isLoggedIn && isAdmin && (
-          <li className='mr2 mr4-ns underline-hover'>
+          <li className='mr2 mr4-ns '>
             <Link href='/dashboard'>
-              <a href='/dashboard' className={`${navLinks}`}>
+              <a
+                href='/dashboard'
+                className={`${navLinks} pb2 underline-hover `}>
                 Admin
               </a>
             </Link>
           </li>
         )}
-        <li className='mr2 mr4-ns underline-hover'>
+        <li className='mr2 mr4-ns'>
           <Link href='/about'>
-            <a href='/about' className={`${navLinks}`}>
+            <a href='/about' className={`${navLinks} pb2 underline-hover `}>
               About
             </a>
           </Link>
