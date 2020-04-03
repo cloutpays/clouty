@@ -6,8 +6,8 @@ const data = {
   header: `How it Works`,
 };
 const Terms = () => (
-  <div>
-    <Wrapper data={data}>
+  <Wrapper data={data}>
+    <div className='ma3 ma4-l'>
       <h1 className='f2 f1-l db tc measure lh-title fw9 mv5'>
         Double your earnings for every bet you win!
       </h1>
@@ -83,8 +83,8 @@ const Terms = () => (
       {/* <div>
         <span className={`${styles.link}`}>Straight Bets</span>
       </div> */}
-    </Wrapper>
-  </div>
+    </div>
+  </Wrapper>
 );
 
 export default Terms;
