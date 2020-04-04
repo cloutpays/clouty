@@ -9,7 +9,7 @@ const data = {
 const Confirmation = () => (
   <div>
     <Wrapper data={data}>
-      <section>
+      <section className='ma3 ma4-l'>
         <p className={`${styles.paragraph}`}>
           Your payout has been requested & Clouty will send the request to you
           via the channel selected.
