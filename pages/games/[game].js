@@ -23,7 +23,7 @@ const Games = ({ game, user }) => {
     game.gameType === 'grammy' ? grammyRender(game) : game.description;
   return (
     <Wrapper data={data}>
-      <section className='ma3 ma4-l flex flex-wrap'>
+      <div className='ma3 ma4-l mb7-m mb7-l flex flex-wrap'>
         <div className='dtc f6 b ma0 v-mid w-100 w-90-ns tr'>
           Current Balance:{' '}
           {formatPrice(
@@ -44,6 +44,7 @@ const Games = ({ game, user }) => {
             <div
               className={`white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`}>
               <p>{description}</p>
+              <p className='f6 fw6'>{game.details}</p>
               {!game.answer && !gameClosed && (
                 <SignUpForm user={user} game={game} />
               )}
@@ -61,7 +62,7 @@ const Games = ({ game, user }) => {
             </div>
           </a>
         </div>
-      </section>
+      </div>
     </Wrapper>
   );
 };

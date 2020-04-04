@@ -21,6 +21,7 @@ interface Submissions {
   handle: string;
   won: boolean;
   name: string;
+  details: string;
   date: string;
   answer: string;
   usedCredit: boolean;
@@ -35,6 +36,7 @@ interface GameProps {
   number: string;
   answer: string;
   class: string;
+  details: string;
   extendedAnswer: string;
   gameType: string;
   question: string;
@@ -77,6 +79,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   );
   const [option, setOption] = useState<string>('');
   const [options, setOptions] = useState<any[]>(game ? game.options : []);
+  const [details, setDetails] = useState<string>(game ? game.details : '');
   const [gameType, setGameType] = useState<string>(game ? game.gameType : '');
   const [showEmojiKeyboard, setShowEmojiKeyboard] = useState<boolean>(false);
   const [answerVisible, setAnswerVisible] = useState<boolean>(
@@ -105,6 +108,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     answer,
     extendedAnswer,
     gameType,
+    details,
     question: number,
   };
 
@@ -115,6 +119,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
       emoji: emoji.native ? emoji.native : emoji,
       options,
       answer,
+      details,
       gameType,
       slug,
       date: new Date(),
@@ -247,7 +252,6 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                   </span>
                 )}
               </div>
-              <div className='mt3' />
               <div className='mt3'>
                 <label className='db fw4 lh-copy f6' htmlFor='email-address'>
                   Game Question
@@ -263,6 +267,21 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                   }
                 />
               </div>
+              {!isUserSubmission && (
+                <div className='mt3'>
+                  <label className='db fw4 lh-copy f6' htmlFor='email-address'>
+                    Game Details
+                  </label>
+                  <textarea
+                    id='comment'
+                    name='comment'
+                    className='db h3 border-box hover-black w-100 measure ba b--black pa2 br2 mb2'
+                    aria-describedby='comment-desc'
+                    value={details}
+                    onChange={(event) => setDetails(event.currentTarget.value)}
+                  />
+                </div>
+              )}
               {gameType === 'game' && (
                 <div className='mt3'>
                   <label className='db fw4 lh-copy f6' htmlFor='password'>
@@ -414,6 +433,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                     })
                   : currentGame.description}
               </p>
+              <p className='f6 fw6'>{currentGame.details}</p>
               {currentGame.answer && (
                 <>
                   <div className='f5 mt0 fw7'>Winning bet:</div>{' '}
@@ -432,7 +452,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
               {submitAction}
             </div>
           </div>
-          {!newGame ? (
+          {!newGame && (
             <div>
               <div className='mt3'>
                 <span
@@ -448,11 +468,9 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                 </span>
               </div>
             </div>
-          ) : (
-            ''
           )}
         </div>
-      </section>{' '}
+      </section>
       {submissions && (
         <section>
           <div className='dtc f4 b ma0 v-mid w-100 w-90-ns'>

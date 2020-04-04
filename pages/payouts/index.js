@@ -16,68 +16,66 @@ const Terms = ({ balance, payouts, user }) => {
   return (
     <Wrapper data={data} user={user} className='measure-wide'>
       <UserDashNavigation balance={balance} user={user} />
-      <div className='ma3 ma4-l center ph3' id='dashboard'>
+      <div className='center ph3' id='dashboard'>
         <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>
           <article className='w-100 w-75-m  ph3-m ph3-l'>
-            <div className='flex-m flex-l flex-wrap items-center justify-between nl3 nr3 pt1 mb4'>
-              <div className='w-100 ph1 mb3 mb0-l'>
-                <div className='bt bl br b--black-10 br2'>
-                  <div className='pa3 bb b--black-10'>
-                    <h4 className='mv0'>Payouts</h4>
-                  </div>
-                  <ul className='list pl0 mt0 measure center'>
-                    <main className=' center'>
-                      {payouts.length === 0 && (
-                        <article>
-                          <div className='link dt w-100 bb b--black-10 pa3 dim blue'>
-                            <div className='dtc v-top' key='no'>
-                              <h1 className='f6 f5-ns fw6 lh-title black mv0 pa4 center '>
-                                No Payouts Yet 💸{' '}
-                              </h1>
-                            </div>
+            <div className='ma3 ma4-l w-100 ph1 mb3 mb0-l'>
+              <div className='bt bl br b--black-10 br2'>
+                <div className='pa3 bb b--black-10'>
+                  <h4 className='mv0'>Payouts</h4>
+                </div>
+                <ul className='list pl0 mt0 measure center'>
+                  <main className=' center'>
+                    {payouts.length === 0 && (
+                      <article>
+                        <div className='link dt w-100 bb b--black-10 pa3 dim blue'>
+                          <div className='dtc v-top' key='no'>
+                            <h1 className='f6 f5-ns fw6 lh-title black mv0 pa4 center '>
+                              No Payouts Yet 💸{' '}
+                            </h1>
                           </div>
-                        </article>
-                      )}
-                      {payouts
-                        .map((game, ind) => {
-                          let methodOfPayment = game.preferred;
-                          return (
-                            <article key={ind}>
-                              <div className='link dt w-100 bb b--black-10 pa3 dim blue'>
-                                <div className='dtc v-top' key={ind}>
-                                  <h1 className='f6 f5-ns fw6 lh-title black mv0'>
-                                    {methodOfPayment} Deposit - ${game.amount}
-                                  </h1>
-                                  <div className='f5 fw4 pt1 black-60'>
-                                    {formatDate(new Date(game.date))}
-                                  </div>
-                                  <div>
-                                    {!game.cleared && (
-                                      <span className='bg-yellow pa1 mt2 fw8 f5 white'>
-                                        Processing
-                                      </span>
-                                    )}
-                                    {game.cleared && (
-                                      <span className='bg-green pa1 mt2 fw8 f5 white'>
-                                        Cleared
-                                      </span>
-                                    )}
-                                  </div>
+                        </div>
+                      </article>
+                    )}
+                    {payouts
+                      .map((game, ind) => {
+                        let methodOfPayment = game.preferred;
+                        return (
+                          <article key={ind}>
+                            <div className='link dt w-100 bb b--black-10 pa3 dim blue'>
+                              <div className='dtc v-top' key={ind}>
+                                <h1 className='f6 f5-ns fw6 lh-title black mv0'>
+                                  {methodOfPayment} Deposit - ${game.amount}
+                                </h1>
+                                <div className='f5 fw4 pt1 black-60'>
+                                  {formatDate(new Date(game.date))}
+                                </div>
+                                <div>
+                                  {!game.cleared && (
+                                    <span className='bg-yellow pa1 mt2 fw8 f5 white'>
+                                      Processing
+                                    </span>
+                                  )}
+                                  {game.cleared && (
+                                    <span className='bg-green pa1 mt2 fw8 f5 white'>
+                                      Cleared
+                                    </span>
+                                  )}
                                 </div>
                               </div>
-                            </article>
-                          );
-                        })
-                        .reverse()}
-                    </main>
-                  </ul>
-                </div>
-                <a
-                  href='/payouts/setup'
-                  className='no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
-                  Setup a Payout
-                </a>
+                            </div>
+                          </article>
+                        );
+                      })
+                      .reverse()}
+                  </main>
+                </ul>
               </div>
+              <a
+                href='/payouts/setup'
+                className='no-underline fw5 mt3 br2 ph3 pv2 dib ba b--blue blue bg-white hover-bg-blue hover-white'>
+                Setup a Payout
+              </a>
             </div>
           </article>
         </section>

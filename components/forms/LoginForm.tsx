@@ -118,8 +118,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           margin-right: 8px;
         }
       `}</style>
-      <main className='black-80  vh-50 ma3 ma4-l'>
-        <form className=' center'>
+      <div className='black-80 center ma3 measure'>
+        <form>
           <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
             {signUp ? (
               <>
@@ -204,23 +204,33 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                 onChange={(event) => setPassword(event.currentTarget.value)}
               />
             </div>
-            {!signUp ? (
-              <label className='pa0 ma0 lh-copy f6 pointer'>
-                <input type='checkbox' /> Remember me
-              </label>
-            ) : (
-              <label className='pa0 ma0 lh-copy f6 pointer'>
+            {signUp && (
+              <label className='pa0 ma0 f5  black '>
                 By clicking "Sign Up" confirms you're age 18+ and agree to our{' '}
-                <a className='b black' href='/terms'>
+                <a
+                  className='fw5 link no-underline bb bw1 dim black'
+                  href='/terms'>
                   Terms
                 </a>{' '}
                 &{' '}
-                <a className='b black' href='/terms'>
+                <a
+                  className='fw5 link no-underline bb bw1 dim black'
+                  href='/terms'>
                   Privacy Policy
                 </a>
                 . You may receive SMS Notifications from us and can opt out any
                 time.
               </label>
+            )}
+            {signUp && (
+              <div className='mt2'>
+                <a href='/login' className='f5 link dim black db'>
+                  Already have an account?{' '}
+                  <span className='fw5 link no-underline bb bw1 dim '>
+                    Sign in
+                  </span>
+                </a>
+              </div>
             )}
           </fieldset>
           <div>
@@ -232,18 +242,24 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             </button>
           </div>
           <div className='lh-copy mt3'>
-            {signUp ? (
-              <a href='/login' className='f6 link dim black db'>
-                Already have an account? Sign in
-              </a>
-            ) : (
-              <Link href='/user/pw-forget'>
-                <a className='f6 link dim black db'>Forgot your password?</a>
-              </Link>
+            {!signUp && (
+              <div>
+                <a href='/signup' className='f5 link dim black db'>
+                  Don't have an account?{' '}
+                  <span className='fw5 link no-underline bb bw1 dim '>
+                    Sign Up
+                  </span>
+                </a>
+                <Link href='/user/pw-forget'>
+                  <a className='fw5 link f5 bb bw1 dim black'>
+                    Forgot password?
+                  </a>
+                </Link>
+              </div>
             )}
           </div>
         </form>
-      </main>
+      </div>
     </>
   );
 };

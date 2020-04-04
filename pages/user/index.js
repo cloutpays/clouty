@@ -8,6 +8,7 @@ import UserDashNavigation from '../../components/layout/UserDashNavigation';
 import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
+import classNames from 'classnames';
 
 const Terms = ({ balance, submissions, user }) => {
   const data = {
@@ -47,7 +48,10 @@ const Terms = ({ balance, submissions, user }) => {
                     return (
                       <div
                         key={`work-${ind}`}
-                        className='pv2 pa2-ns w-100 w-50-ns'>
+                        className={`pv2 pa2-ns ${classNames({
+                          'w-100-ns': submissions.length === 1,
+                          'w-50-ns': submissions.length !== 1,
+                        })} w-100`}>
                         <Link href={activeLink}>
                           <a href={activeLink} className='no-underline white'>
                             <div className={cardClass}>

@@ -6,8 +6,8 @@ const data = {
   header: `Terms of Service`,
 };
 const Terms = () => (
-  <div>
-    <Wrapper data={data}>
+  <Wrapper data={data}>
+    <div className='ma3 ma4-l'>
       <p className='f5 b'>USER AGREEMENT</p>
       <p className='f5'>
         Clouty owns and operates the Website that links to these Terms of Use.
@@ -174,8 +174,8 @@ const Terms = () => (
         NAMES, LOGO, COPYRIGHT OR OTHER PROPRIETARY NOTICES, LEGENDS, SYMBOLS OR
         LABELS ON THE WEBSITE.
       </p>
-    </Wrapper>
-  </div>
+    </div>
+  </Wrapper>
 );
 
 export default Terms;
