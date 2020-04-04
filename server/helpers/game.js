@@ -29,7 +29,6 @@ const handlePayouts = async (entries, db) => {
     .find({
       _id: {
         $in: entries.map((entry) => {
-          console.log('yo', entry.userId);
           return entry.userId;
         }),
       },
