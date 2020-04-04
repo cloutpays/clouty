@@ -115,9 +115,6 @@ const Home = ({ questions, darkMode, loggedIn }) => (
             predictions in the rap game.
           </p>
           <p className={`${styles.paragraph}`}>
-            Double your money while putting your intuition on the line.
-          </p>
-          <p className={`${styles.paragraph}`}>
             Sign up today and receive a free $2 credit towards your bets. Also,
             for a limited time enjoy
             <span className='i b'> no fees </span> for all bets!
