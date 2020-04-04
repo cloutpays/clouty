@@ -8,9 +8,6 @@ const data = {
 const Terms = () => (
   <Wrapper data={data}>
     <div className='ma3 ma4-l'>
-      <h1 className='f2 f1-l db tc measure lh-title fw9 mv5'>
-        Double your earnings for every bet you win!
-      </h1>
       <div className={`lh-copy tc `}>
         <h2 className='f3 f2-l  lh-title fw8'>Betting Guidelines</h2>
         <p>
