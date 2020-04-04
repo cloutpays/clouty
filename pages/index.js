@@ -183,6 +183,7 @@ const Home = ({ questions, darkMode, loggedIn }) => (
                       <span role='img'>{curr.emoji}</span> Game #{curr.question}
                     </h1>
                     <p>{curr.description}</p>
+                    <p className='f6 fw6'>{curr.details}</p>
                     <DemoForm game={curr} />
                   </div>
                 </div>

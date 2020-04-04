@@ -80,6 +80,7 @@ const Games = ({ questions }) => {
                           {`Game #${game.question}`}
                         </h1>
                         <p>{game.description}</p>
+                        <p className='f6 fw6'>{game.details}</p>
                         <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
                           {gameButtonText}
                           <span className='pl1 sans-serif'>→</span>

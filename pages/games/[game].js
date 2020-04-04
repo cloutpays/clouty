@@ -44,6 +44,7 @@ const Games = ({ game, user }) => {
             <div
               className={`white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`}>
               <p>{description}</p>
+              <p className='f6 fw6'>{game.details}</p>
               {!game.answer && !gameClosed && (
                 <SignUpForm user={user} game={game} />
               )}
