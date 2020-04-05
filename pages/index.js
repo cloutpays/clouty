@@ -17,6 +17,19 @@ const data = {
 
 const albums = [
   {
+    artist: 'Drake',
+    album: 'Toosie Slide',
+    image: 'https://i.scdn.co/image/ab67616d0000b2736443676b54522a86f6323e65',
+    spotify: 'https://open.spotify.com/album/3xIwVbGJuAcovYIhzbLO3J',
+  },
+  {
+    artist: 'J Mint',
+    album: 'Quarantine Dream',
+    image: 'https://i.scdn.co/image/ab67616d0000b27370e4d299ba729e72f490c24c',
+    spotify:
+      'https://open.spotify.com/track/5SnUDfYK65X7Cqu5WaPl7y?si=8ZRxTk76S12n-ygBtUOXRA',
+  },
+  {
     artist: 'PARTYNEXTDOOR',
     album: 'PARTYMOVILE',
     image:
@@ -85,20 +98,6 @@ const albums = [
     image:
       'https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/sdxhbfaip2aklfvv40zx/blueface-find-the-beat-stream',
     spotify: 'https://open.spotify.com/album/2BLEkA5FiMxrp1ldVn4Ajqc',
-  },
-  {
-    artist: 'Jay Electronica',
-    album: 'A Written Testimony',
-    image:
-      'https://static.stereogum.com/uploads/2020/03/Jay-Electronica-A-Written-Testimony-1584129087-640x640.jpeg',
-    spotify: 'https://open.spotify.com/album/0ZJt4dCoI19u71k37E1nQu',
-  },
-  {
-    artist: 'Pop Smoke',
-    album: 'Meet The Woo 2',
-    image:
-      'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Pop_Smoke_-_Meet_the_Woo_2.png/220px-Pop_Smoke_-_Meet_the_Woo_2.png',
-    spotify: 'https://open.spotify.com/album/4MZnolldq7ciKKlbVDzLm5',
   },
 ];
 const Home = ({ questions, darkMode, loggedIn }) => (
