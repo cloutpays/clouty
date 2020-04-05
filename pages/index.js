@@ -23,11 +23,10 @@ const albums = [
     spotify: 'https://open.spotify.com/album/3xIwVbGJuAcovYIhzbLO3J',
   },
   {
-    artist: 'J Mint',
-    album: 'Quarantine Dream',
-    image: 'https://i.scdn.co/image/ab67616d0000b27370e4d299ba729e72f490c24c',
-    spotify:
-      'https://open.spotify.com/track/5SnUDfYK65X7Cqu5WaPl7y?si=8ZRxTk76S12n-ygBtUOXRA',
+    artist: 'Turbo, Gunna, Young Thug',
+    album: 'QUARANTINE CLEAN',
+    image: 'https://i.scdn.co/image/ab67616d0000b273a78797757ad9ab7b12270d9b',
+    spotify: 'https://open.spotify.com/album/0dqvGJ4kNo76SFdtmZhGYs',
   },
   {
     artist: 'PARTYNEXTDOOR',
