@@ -1,13 +1,25 @@
-import Head from 'next/head';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
-import Footer from './Footer';
-import Navigation from './Navigation';
-
 import { getCookieFromBrowser } from '../../lib/session';
 import { initGA, logPageView } from '../../lib/helpers';
 import { styles } from '../../constants/styles';
+import Footer from './Footer';
+import Head from 'next/head';
+import NProgress from 'nprogress';
+import Navigation from './Navigation';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import Router from 'next/router';
+
+Router.onRouteChangeStart = () => {
+  NProgress.start();
+};
+
+Router.onRouteChangeComplete = () => {
+  NProgress.done();
+};
+
+Router.onRouteChangeError = () => {
+  NProgress.done();
+};
 
 export default class Wrapper extends Component {
   componentDidMount() {

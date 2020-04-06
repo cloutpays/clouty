@@ -73,9 +73,13 @@ const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
             {/* <a href='/signup' className={`${styles.navigationLink}`}>
               <li className='mr2 mr4-ns'>Sign up </li>
             </a> */}
-            <a href='/login' className={`${navLinks} underline-hover`}>
-              <li className='mr2 mr4-ns'>Login</li>
-            </a>
+            <li className='mr2 mr4-ns underline-hover'>
+              <Link href='/login'>
+                <a href='/login' className={`${navLinks}`}>
+                  Login
+                </a>
+              </Link>
+            </li>
           </>
         )}
       </ul>
