@@ -1,14 +1,22 @@
 import classNames from 'classnames';
 import Link from 'next/link';
+import { SingletonRouter } from 'next/router';
 import React from 'react';
 import { styles } from '../../constants/styles';
-import { getCookieFromBrowser } from '../../lib/session';
+import { getCookieFromBrowser, removeCookie } from '../../lib/session';
 
-interface DarkModeProps {
+interface Navigation {
+  user: any;
   darkMode: boolean;
+  router: SingletonRouter;
 }
 
-const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
+const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
+  const handleLogout = () => {
+    removeCookie('id_token');
+    removeCookie('id_token_a');
+    router.push('/');
+  };
   const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;
   const isAdmin = getCookieFromBrowser('id_token_a') ? true : false;
   const navLinks = ` ${styles.navigationLink} ${classNames({
@@ -60,13 +68,22 @@ const Navigation: React.FC<DarkModeProps> = ({ darkMode }) => {
           </Link>
         </li>
         {isLoggedIn && (
-          <li className='mr2 mr4-ns underline-hover'>
-            <Link href='/user'>
-              <a href='/user' className={`${navLinks}`}>
-                Profile
-              </a>
-            </Link>
-          </li>
+          <>
+            <li className='mr2 mr4-ns underline-hover'>
+              <Link href='/user'>
+                <a href='/user' className={navLinks}>
+                  Profile
+                </a>
+              </Link>
+            </li>
+            <li className='mr2 mr4-ns underline-hover'>
+              <Link href='#' as='logout'>
+                <a onClick={handleLogout} className={navLinks}>
+                  Logout
+                </a>
+              </Link>
+            </li>
+          </>
         )}
         {!isLoggedIn && (
           <>
