@@ -77,9 +77,11 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
               </Link>
             </li>
             <li className='mr2 mr4-ns underline-hover'>
-              <a onClick={handleLogout} className={navLinks}>
-                Logout
-              </a>
+              <Link href='#' as='logout'>
+                <a onClick={handleLogout} className={navLinks}>
+                  Logout
+                </a>
+              </Link>
             </li>
           </>
         )}
