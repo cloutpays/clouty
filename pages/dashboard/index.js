@@ -62,11 +62,11 @@ const Dashboard = ({
           </dl>
         </article>
         <div className='flex'>
-          <a
-            href='/dashboard/create'
-            className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
-            Create Game
-          </a>
+          <Link href='/dashboard/create'>
+            <a className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
+              Create Game
+            </a>
+          </Link>
           <Link href='/dashboard/edit'>
             <a
               href='/dashboard/edit'
