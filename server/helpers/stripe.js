@@ -133,6 +133,7 @@ export const stripeApi = wrapAsync(async (req, db) => {
         quantity: 1,
       },
     ],
+    billing_address_collection: 'required',
     success_url: `http://${req.headers.host}/user`,
     cancel_url: `http://${req.headers.host}/user/balance`,
   });
