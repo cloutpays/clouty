@@ -146,7 +146,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   };
   const addOption = () => {
     const updatedOptions = [{ odds: 0, value: option }, ...(true && options)];
-    setOptions(updatedOptions.sort((curr) => curr));
+    setOptions(updatedOptions);
     setOption('');
   };
   const setOdds = (odds: string, value: string) => {
