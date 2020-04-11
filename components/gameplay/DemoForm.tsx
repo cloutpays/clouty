@@ -17,7 +17,7 @@ const DemoForm: React.FC<DemoFormProps> = ({ game }) => {
   const resetRender = betSelected || wageSelected;
 
   const confirmAnswer = (answer: any) => {
-    setOptions([{ value: answer }]);
+    setOptions([{ value: answer.value, odds: answer.odds }]);
   };
   const resetGame = () => {
     setWager([Number(5), Number(10), Number(20)]);
