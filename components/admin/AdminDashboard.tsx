@@ -123,7 +123,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
                   </tr>
                 );
               })
-              .reverse()}
+              .slice(0, 10)}
           </tbody>
         </table>
       </div>
