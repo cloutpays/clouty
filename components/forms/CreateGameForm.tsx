@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { colorways, formatDate, formatPrice } from '../../lib/helpers';
 interface Option {
   value: string;
+  odds: string;
 }
 interface Question {
   gameType: string;
@@ -21,6 +22,7 @@ interface Submissions {
   handle: string;
   won: boolean;
   name: string;
+  odds: string;
   details: string;
   date: string;
   answer: string;
@@ -143,12 +145,14 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     setColorway(color);
   };
   const addOption = () => {
-    const updatedOptions = [
-      { key: option, value: option },
-      ...(true && options),
-    ];
-    setOptions(updatedOptions);
+    const updatedOptions = [{ odds: 0, value: option }, ...(true && options)];
+    setOptions(updatedOptions.sort((curr) => curr));
     setOption('');
+  };
+  const setOdds = (odds: string, value: string) => {
+    const updatedOptions = options.filter((curr) => curr.value !== value);
+    updatedOptions.push({ odds, value });
+    setOptions(updatedOptions);
   };
   const removeGame = () => {
     axios.delete(`/api/question/${currentGame.slug}`).then(() => {
@@ -305,21 +309,35 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
               {!answerVisible && gameType === 'game' && (
                 <div className='mt3'>
                   <strong>Options:</strong>
-                  {options.map((opt, index) => {
-                    return (
-                      <div
-                        data-option-index={index}
-                        onClick={removeOption}
-                        key={index}>
-                        <div className='flex'>
-                          <div className='f4 fw9 link dim ph2 pv2 mb2 dib white bg-red'>
-                            X
+                  {options
+                    .sort((a, b) => {
+                      if (a.value > b.value) return 1;
+                      if (b.value > a.value) return -1;
+
+                      return 0;
+                    })
+                    .map((opt, index) => {
+                      return (
+                        <div data-option-index={index} key={index}>
+                          <div className='flex'>
+                            <div
+                              onClick={removeOption}
+                              className='f4 fw9 link dim ph2 pv2 mv1 dib white bg-red'>
+                              X
+                            </div>
+                            <div className={'ma2'}>{opt.value}</div>
+                            <input
+                              className='b mv1 w3 h-10  input-reset ba bg-transparent'
+                              type='text'
+                              value={opt.odds}
+                              onChange={(event) =>
+                                setOdds(event.currentTarget.value, opt.value)
+                              }
+                            />
                           </div>
-                          <div className={'ma2'}>{opt.value}</div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
                 </div>
               )}
               {answerVisible && (
@@ -522,7 +540,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                           </a>
                         </td>
                         <td className='pv3 pr3 bb b--black-20' key='answer'>
-                          {curr.answer}
+                          {curr.answer} {curr.odds && `(${curr.odds})`}
                         </td>
                         <td
                           className='pv3 pr3 bb b--black-20'
