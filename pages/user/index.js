@@ -66,6 +66,7 @@ const Terms = ({ balance, submissions, user }) => {
                                 <div className='dtc v-mid '>
                                   <h3 className='b mt0 mb1 f5 tl '>
                                     {game.answer}
+                                    {game.odds && `(${game.odds})`}
                                   </h3>
                                 </div>
 
