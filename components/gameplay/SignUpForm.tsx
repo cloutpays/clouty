@@ -8,11 +8,15 @@ interface SignUpFormProps {
   previousBet: any;
 }
 
+interface Answer {
+  value: string;
+  odds: string;
+}
 const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
   const [name] = useState<string>(user ? user.info.firstName : '');
   const [email] = useState<string>(user ? user.firebase.email : '');
   const [handle] = useState<string>(user ? user.info.firstName : '');
-  const [answer, setAnswer] = useState<string>('');
+  const [answer, setAnswer] = useState<Answer>({ value: '', odds: '' });
   const [loading, setLoading] = useState<boolean>(false);
   const [playText, setPlayText] = useState<string>('Play');
   const [options, setOptions] = useState<any>(game.options);
@@ -23,10 +27,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
   const betSelected = options.length === 1;
   const canAffordWager =
     wager[0] <= (user.stripe.user.balance + user.stripe.user.credit) / 100;
-  const readyToPlay = wager.length === 1 && answer !== '';
+  const readyToPlay = wager.length === 1 && answer.value !== '';
   const resetRender = betSelected || wageSelected;
   const confirmAnswer = (answer: any) => {
-    setOptions([{ value: answer }]);
+    setOptions([{ value: answer.value, odds: answer.odds }]);
     setAnswer(answer);
   };
   const resetGame = () => {
@@ -47,7 +51,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
       const date = new Date();
       const userSubmission = {
         email,
-        answer,
+        answer: answer.value,
+        odds: answer.odds,
         name,
         phoneNumber,
         handle,
