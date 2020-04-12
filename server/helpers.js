@@ -147,3 +147,27 @@ export const sendTextMessage = async (name, type, phoneNumber) => {
     console.error(error);
   }
 };
+
+export const convertAmericanToDecimalOdds = (odds) => {
+  const floatingPointOdds = Math.abs(parseFloat(odds));
+  const positive = odds[0] === '+';
+  if (positive) {
+    return (floatingPointOdds / 100 + 1).toPrecision(4);
+  } else {
+    return (100 / floatingPointOdds + 1).toPrecision(4);
+  }
+};
+
+export const convertDollarsToCents = (amount) => amount * 100;
+
+export const calculateTotalPayout = (odds = '+100', wager) => {
+  const decimalOdds = convertAmericanToDecimalOdds(odds);
+  const payOutTotal = wager * decimalOdds;
+  return convertDollarsToCents(payOutTotal);
+};
+
+export const calculateTotalPayoutWithCredits = (odds = '+100', wager) => {
+  const decimalOdds = convertAmericanToDecimalOdds(odds);
+  const payOutTotal = wager * decimalOdds - wager;
+  return convertDollarsToCents(payOutTotal);
+};
