@@ -35,21 +35,14 @@ const handlePayouts = async (entries, db) => {
     })
     .toArray();
   users = users.map((user) => {
-    const { stripe } = user;
     const queryUser = modifiedUsers.filter((modUser) => {
       return user._id === modUser._id;
     })[0];
     const increase = queryUser.credit ? queryUser.amount / 2 : queryUser.amount;
 
     return {
-      ...user,
-      stripe: {
-        ...stripe,
-        user: {
-          ...stripe.user,
-          balance: stripe.user.balance + increase,
-        },
-      },
+      _id: user._id,
+      increase,
     };
   });
   let ops = [];
@@ -58,7 +51,7 @@ const handlePayouts = async (entries, db) => {
       updateOne: {
         filter: { _id: user._id },
         update: {
-          $set: user,
+          $inc: { 'stripe.user.balance': user.increase },
         },
       },
     });
