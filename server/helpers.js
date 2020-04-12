@@ -149,7 +149,7 @@ export const sendTextMessage = async (name, type, phoneNumber) => {
 };
 
 export const formatAmericanToDecimalOdds = (odds) => {
-  const floatingPointOdds = parseFloat(odds);
+  const floatingPointOdds = Math.abs(parseFloat(odds));
   const positive = odds[0] === '+';
   if (positive) {
     return floatingPointOdds / 100 + 1;
