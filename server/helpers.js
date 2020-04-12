@@ -148,26 +148,26 @@ export const sendTextMessage = async (name, type, phoneNumber) => {
   }
 };
 
-export const formatAmericanToDecimalOdds = (odds) => {
+export const convertAmericanToDecimalOdds = (odds) => {
   const floatingPointOdds = Math.abs(parseFloat(odds));
   const positive = odds[0] === '+';
   if (positive) {
-    return floatingPointOdds / 100 + 1;
+    return (floatingPointOdds / 100 + 1).toPrecision(4);
   } else {
-    return 100 / floatingPointOdds + 1;
+    return (100 / floatingPointOdds + 1).toPrecision(4);
   }
 };
 
-export const exportDollarsToCents = (amount) => amount * 100;
+export const convertDollarsToCents = (amount) => amount * 100;
 
 export const calculateTotalPayout = (odds = '+100', wager) => {
-  const decimalOdds = formatAmericanToDecimalOdds(odds);
+  const decimalOdds = convertAmericanToDecimalOdds(odds);
   const payOutTotal = wager * decimalOdds;
-  return exportDollarsToCents(payOutTotal);
+  return convertDollarsToCents(payOutTotal);
 };
 
 export const calculateTotalPayoutWithCredits = (odds = '+100', wager) => {
-  const decimalOdds = formatAmericanToDecimalOdds(odds);
+  const decimalOdds = convertAmericanToDecimalOdds(odds);
   const payOutTotal = wager * decimalOdds - wager;
-  return exportDollarsToCents(payOutTotal);
+  return convertDollarsToCents(payOutTotal);
 };
