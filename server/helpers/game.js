@@ -4,6 +4,8 @@ import { updateUser } from './user';
 const { parse } = require('url');
 
 import {
+  calculateTotalPayout,
+  calculateTotalPayoutWithCredits,
   cloutpays,
   dev,
   question,
@@ -19,7 +21,9 @@ const handlePayouts = async (entries, db) => {
   const modifiedUsers = entries.map((entry) => {
     return {
       _id: entry.userId,
-      amount: entry.wager * 200,
+      amount: entry.usedCredit
+        ? calculateTotalPayoutWithCredits(entry.odds, entry.wager)
+        : calculateTotalPayout(entry.odds, entry.wager),
       credit: entry.usedCredit,
     };
   });
@@ -38,11 +42,10 @@ const handlePayouts = async (entries, db) => {
     const queryUser = modifiedUsers.filter((modUser) => {
       return user._id === modUser._id;
     })[0];
-    const increase = queryUser.credit ? queryUser.amount / 2 : queryUser.amount;
 
     return {
       _id: user._id,
-      increase,
+      balance: queryUser.amount,
     };
   });
   let ops = [];
@@ -51,7 +54,7 @@ const handlePayouts = async (entries, db) => {
       updateOne: {
         filter: { _id: user._id },
         update: {
-          $inc: { 'stripe.user.balance': user.increase },
+          $inc: { 'stripe.user.balance': user.balance },
         },
       },
     });

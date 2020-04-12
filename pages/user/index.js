@@ -1,4 +1,9 @@
-import { formatPrice } from '../../lib/helpers';
+import {
+  calculateTotalPayout,
+  calculateTotalPayoutWithCredits,
+  formatPrice,
+  formatPriceWithFractionDigits,
+} from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
@@ -15,6 +20,7 @@ const Terms = ({ balance, submissions, user }) => {
     description: 'Make money while putting your intuition on the line.',
     header: `Welcome, ${user.info.firstName}!`,
   };
+
   return (
     <Wrapper data={data} user={user}>
       <main>
@@ -83,10 +89,16 @@ const Terms = ({ balance, submissions, user }) => {
                                     Win
                                     <span className='pl1 sans-serif'>
                                       → <span className='f6'>+</span>
-                                      {formatPrice(
+                                      {formatPriceWithFractionDigits(
                                         game.usedCredit
-                                          ? game.wager
-                                          : game.wager * 2,
+                                          ? calculateTotalPayoutWithCredits(
+                                              game.odds,
+                                              game.wager,
+                                            )
+                                          : calculateTotalPayout(
+                                              game.odds,
+                                              game.wager,
+                                            ),
                                       )}
                                     </span>
                                   </span>
