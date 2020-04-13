@@ -41,11 +41,15 @@ const handlePayouts = async (entries, db) => {
   users = users.map((user) => {
     const queryUser = modifiedUsers.filter((modUser) => {
       return user._id === modUser._id;
-    })[0];
+    });
 
+    const increase = queryUser.reduce(
+      (acc, currentValue) => (acc += currentValue.amount),
+      0,
+    );
     return {
       _id: user._id,
-      balance: queryUser.amount,
+      increase,
     };
   });
   let ops = [];
@@ -54,7 +58,7 @@ const handlePayouts = async (entries, db) => {
       updateOne: {
         filter: { _id: user._id },
         update: {
-          $inc: { 'stripe.user.balance': user.balance },
+          $inc: { 'stripe.user.balance': user.increase },
         },
       },
     });
