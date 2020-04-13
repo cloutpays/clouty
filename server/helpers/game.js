@@ -43,10 +43,10 @@ const handlePayouts = async (entries, db) => {
       return user._id === modUser._id;
     });
 
-    let increase = 0;
-    queryUser.forEach((query) => {
-      increase += query.amount;
-    });
+    const increase = queryUser.reduce(
+      (acc, currentValue) => (acc += currentValue.amount),
+      0,
+    );
     return {
       _id: user._id,
       increase,
