@@ -1248,7 +1248,7 @@ export const welcomeEmailContent = {
       class="null"
       style="text-align: center;display: block;margin: 0;padding: 0;color: #202020;font-family: Helvetica;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;"
     >
-      <strong>Step 1: Collect your free $5 for signing up&nbsp;</strong>
+      <strong>Step 1: Collect your free $2 for signing up&nbsp;</strong>
     </h1>
     &nbsp;
   
