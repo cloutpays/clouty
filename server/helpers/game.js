@@ -45,7 +45,7 @@ const handlePayouts = async (entries, db) => {
 
     let increase = 0;
     queryUser.forEach((query) => {
-      increase += query.credit ? query.amount / 2 : query.amount;
+      increase += query.amount;
     });
     return {
       _id: user._id,
