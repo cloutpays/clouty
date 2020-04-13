@@ -1213,7 +1213,7 @@ export const welcomeEmailContent = {
                     <p
                       style="text-align: center;margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;"
                     >
-                      <strong>For all questions email help@clouty.io</strong>
+                      <strong>For all questions email info@clouty.io</strong>
                     </p>
   
                     <p
