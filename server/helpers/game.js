@@ -17,17 +17,37 @@ import {
 } from '../helpers';
 import { loserEmailContent, winnerEmailContent } from '../emailTemplates';
 
-const handlePayouts = async (entries, db) => {
-  const modifiedUsers = entries.map((entry) => {
-    return {
-      _id: entry.userId,
-      amount: entry.usedCredit
-        ? calculateTotalPayoutWithCredits(entry.odds, entry.wager)
-        : calculateTotalPayout(entry.odds, entry.wager),
-      credit: entry.usedCredit,
-    };
-  });
+const reduceAndParseUsers = (users) => {
+  // TODO this logic could be handled in a join table
+  const reducedUsers = users.reduce((acc, value) => {
+    if (acc[value.userId]) {
+      const user = acc[value.userId];
+      user.amount += value.usedCredit
+        ? calculateTotalPayoutWithCredits(value.odds, value.wager)
+        : calculateTotalPayout(value.odds, value.wager);
+    } else {
+      acc[value.userId] = {
+        _id: value.userId,
+        amount: value.usedCredit
+          ? calculateTotalPayoutWithCredits(value.odds, value.wager)
+          : calculateTotalPayout(value.odds, value.wager),
+        credit: value.usedCredit,
+      };
+    }
+    return acc;
+  }, {});
 
+  const updateUsers = [];
+
+  for (const key in reducedUsers) {
+    updateUsers.push(reducedUsers[key]);
+  }
+
+  return updateUsers;
+};
+
+const handlePayouts = async (entries, db) => {
+  const updatedUsers = reduceAndParseUsers(entries);
   let users = await db
     .collection(user)
     .find({
@@ -39,7 +59,7 @@ const handlePayouts = async (entries, db) => {
     })
     .toArray();
   users = users.map((user) => {
-    const queryUser = modifiedUsers.filter((modUser) => {
+    const queryUser = updatedUsers.filter((modUser) => {
       return user._id === modUser._id;
     })[0];
 
