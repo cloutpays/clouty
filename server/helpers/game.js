@@ -178,15 +178,17 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
       return entry.answer !== data.answer;
     });
     if (winningUsers.length > 0 && !dev) {
+      const winners = winningUsers.map((curr) => curr.email);
       await sendEmail(
-        winningUsers.map((curr) => curr.email),
+        winners.filter((item, index) => winners.indexOf(item) === index),
         winnerEmailContent,
       );
       await handlePayouts(winningUsers, db);
     }
     if (losingUsers.length > 0 && !dev) {
+      const losers = losingUsers.map((curr) => curr.email);
       await sendEmail(
-        losingUsers.map((curr) => curr.email),
+        losers.filter((item, index) => losers.indexOf(item) === index),
         loserEmailContent,
       );
     }
