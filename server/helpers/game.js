@@ -10,6 +10,7 @@ import {
   dev,
   question,
   sendEmail,
+  // staging,
   // sendTextMessage,
   user,
   userQuestion,
@@ -166,6 +167,8 @@ export const questionCloseApi = wrapAsync(async (req, db) => {
 
 export const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
+  const staging = req;
+  console.log(staging.headers.origin);
   const entries = await db
     .collection(cloutpays)
     .find({ question: data.question })
@@ -177,7 +180,7 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
     const losingUsers = entries.filter((entry) => {
       return entry.answer !== data.answer;
     });
-    if (winningUsers.length > 0 && !dev) {
+    if (winningUsers.length > 0 && !dev && !staging) {
       const winners = winningUsers.map((curr) => curr.email);
       await sendEmail(
         winners.filter((item, index) => winners.indexOf(item) === index),
@@ -185,7 +188,7 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
       );
       await handlePayouts(winningUsers, db);
     }
-    if (losingUsers.length > 0 && !dev) {
+    if (losingUsers.length > 0 && !dev && !staging) {
       const losers = losingUsers.map((curr) => curr.email);
       await sendEmail(
         losers.filter((item, index) => losers.indexOf(item) === index),
