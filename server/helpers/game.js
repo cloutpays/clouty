@@ -10,7 +10,7 @@ import {
   dev,
   question,
   sendEmail,
-  // staging,
+  staging,
   // sendTextMessage,
   user,
   userQuestion,
@@ -167,8 +167,7 @@ export const questionCloseApi = wrapAsync(async (req, db) => {
 
 export const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  const staging = req;
-  console.log(staging.headers.origin);
+  console.log('staging', staging);
   const entries = await db
     .collection(cloutpays)
     .find({ question: data.question })
