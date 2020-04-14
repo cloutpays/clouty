@@ -71,18 +71,15 @@ const updateSubmissions = async (entries, answer, db) => {
   try {
     let ops = [];
     entries.forEach((entry) => {
-      if (!answer) {
+      if (answer) {
         ops.push({
           updateOne: {
             filter: { _id: entry._id },
-            update: { $unset: { won: '' } },
-          },
-        });
-      } else {
-        ops.push({
-          updateOne: {
-            filter: { _id: entry._id },
-            update: { $set: { won: entry.answer === answer } },
+            update: {
+              $set: {
+                won: entry.answer === answer,
+              },
+            },
           },
         });
       }
