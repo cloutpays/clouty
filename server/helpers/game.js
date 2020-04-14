@@ -10,7 +10,7 @@ import {
   dev,
   question,
   sendEmail,
-  // staging,
+  staging,
   // sendTextMessage,
   user,
   userQuestion,
@@ -71,18 +71,15 @@ const updateSubmissions = async (entries, answer, db) => {
   try {
     let ops = [];
     entries.forEach((entry) => {
-      if (!answer) {
+      if (answer) {
         ops.push({
           updateOne: {
             filter: { _id: entry._id },
-            update: { $unset: { won: '' } },
-          },
-        });
-      } else {
-        ops.push({
-          updateOne: {
-            filter: { _id: entry._id },
-            update: { $set: { won: entry.answer === answer } },
+            update: {
+              $set: {
+                won: entry.answer === answer,
+              },
+            },
           },
         });
       }
@@ -167,26 +164,32 @@ export const questionCloseApi = wrapAsync(async (req, db) => {
 
 export const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  const staging = req;
-  console.log(staging.headers.origin);
   const entries = await db
     .collection(cloutpays)
     .find({ question: data.question })
     .toArray();
   if (data.answer) {
-    const winningUsers = entries.filter((entry) => {
+    const submissions = entries.filter((entry) => {
+      return typeof entry.won === 'undefined';
+    });
+    const winningUsers = submissions.filter((entry) => {
       return entry.answer === data.answer;
     });
-    const losingUsers = entries.filter((entry) => {
+    const losingUsers = submissions.filter((entry) => {
       return entry.answer !== data.answer;
     });
-    if (winningUsers.length > 0 && !dev && !staging) {
-      const winners = winningUsers.map((curr) => curr.email);
-      await sendEmail(
-        winners.filter((item, index) => winners.indexOf(item) === index),
-        winnerEmailContent,
-      );
+    if (submissions.length > 1) {
+      await updateSubmissions(submissions, data.answer, db);
+    }
+    if (winningUsers.length > 0) {
       await handlePayouts(winningUsers, db);
+      if (!dev && !staging) {
+        const winners = winningUsers.map((curr) => curr.email);
+        await sendEmail(
+          winners.filter((item, index) => winners.indexOf(item) === index),
+          winnerEmailContent,
+        );
+      }
     }
     if (losingUsers.length > 0 && !dev && !staging) {
       const losers = losingUsers.map((curr) => curr.email);
@@ -195,9 +198,6 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
         loserEmailContent,
       );
     }
-  }
-  if (entries.length > 0) {
-    await updateSubmissions(entries, data.answer, db);
   }
   return await db
     .collection(question)
