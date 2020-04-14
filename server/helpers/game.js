@@ -179,13 +179,15 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
     const losingUsers = entries.filter((entry) => {
       return entry.answer !== data.answer;
     });
-    if (winningUsers.length > 0 && !dev && !staging) {
-      const winners = winningUsers.map((curr) => curr.email);
-      await sendEmail(
-        winners.filter((item, index) => winners.indexOf(item) === index),
-        winnerEmailContent,
-      );
+    if (winningUsers.length > 0) {
       await handlePayouts(winningUsers, db);
+      if (!dev && !staging) {
+        const winners = winningUsers.map((curr) => curr.email);
+        await sendEmail(
+          winners.filter((item, index) => winners.indexOf(item) === index),
+          winnerEmailContent,
+        );
+      }
     }
     if (losingUsers.length > 0 && !dev && !staging) {
       const losers = losingUsers.map((curr) => curr.email);
