@@ -1,4 +1,10 @@
-import { formatDate, formatPrice } from '../../../lib/helpers';
+import {
+  calculateTotalPayout,
+  calculateTotalPayoutWithCredits,
+  formatDate,
+  formatPrice,
+  formatPriceWithFractionDigits,
+} from '../../../lib/helpers';
 import AdminPage from '../../../hoc/adminPage';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -117,7 +123,6 @@ const Dashboard = ({
           <thead>
             <tr>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Date</th>
-              <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Name</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Game #</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Answer</th>
               <th className='fw6 bb b--black-20 tl pb3 pr3 bg-white'>Wager</th>
@@ -136,14 +141,7 @@ const Dashboard = ({
                         {formatDate(new Date(curr.date))}
                       </a>
                     </td>
-                    <td className='pv3 pr3 bb b--black-20' key='name'>
-                      <a
-                        className='no-underline dim black b'
-                        href={`/dashboard/manage/${curr.userId}`}>
-                        {' '}
-                        @{curr.handle}
-                      </a>
-                    </td>
+
                     <td className='pv3 pr3 bb b--black-20' key='question'>
                       <a
                         className='no-underline dim black b'
@@ -152,7 +150,7 @@ const Dashboard = ({
                       </a>
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='answer'>
-                      {curr.answer}
+                      {curr.answer} {curr.odds && `(${curr.odds})`}
                     </td>
                     <td
                       className='pv3 pr3 bb b--black-20'
@@ -161,7 +159,22 @@ const Dashboard = ({
                       {typeof curr.won === 'undefined' ? (
                         <span className='bg-gold ph1 mt2 fw8 f5 white'>P</span>
                       ) : curr.won ? (
-                        <span className='bg-green ph1 mt2 fw8 f5 white'>W</span>
+                        <>
+                          <span className='bg-green ph1 mt2 fw8 f5 white'>
+                            W
+                          </span>{' '}
+                          <span className='pl1 sans-serif'>
+                            → <span className='f6'>+</span>
+                            {formatPriceWithFractionDigits(
+                              curr.usedCredit
+                                ? calculateTotalPayoutWithCredits(
+                                    curr.odds,
+                                    curr.wager,
+                                  )
+                                : calculateTotalPayout(curr.odds, curr.wager),
+                            )}
+                          </span>
+                        </>
                       ) : (
                         <span className='bg-red ph1 mt2 fw8 f5 white'>L</span>
                       )}

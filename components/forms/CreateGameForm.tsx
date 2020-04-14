@@ -3,7 +3,14 @@ import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 import Router from 'next/router';
 import React, { useState } from 'react';
-import { colorways, formatDate, formatPrice } from '../../lib/helpers';
+import {
+  calculateTotalPayout,
+  calculateTotalPayoutWithCredits,
+  colorways,
+  formatDate,
+  formatPrice,
+  formatPriceWithFractionDigits,
+} from '../../lib/helpers';
 interface Option {
   value: string;
   odds: string;
@@ -497,7 +504,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
           <div className='dtc f4 b ma0 v-mid w-100 w-90-ns'>
             Total Pot: {formatPrice(houseBalance)}
           </div>
-          <div className='mv3 w-50'>
+          <div className='mv3 w-70'>
             <h2>Submissions</h2>
             <table className='f6 w-100 mw8 center' cellSpacing='0'>
               <thead>
@@ -568,9 +575,25 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                               </>
                             )}
                           {typeof curr.won !== 'undefined' && curr.won && (
-                            <span className='bg-green ph1 mt2 fw8 f5 white'>
-                              W
-                            </span>
+                            <>
+                              <span className='bg-green ph1 mt2 fw8 f5 white'>
+                                W
+                              </span>{' '}
+                              <span className='pl1 sans-serif'>
+                                → <span className='f6'>+</span>
+                                {formatPriceWithFractionDigits(
+                                  curr.usedCredit
+                                    ? calculateTotalPayoutWithCredits(
+                                        curr.odds,
+                                        curr.wager,
+                                      )
+                                    : calculateTotalPayout(
+                                        curr.odds,
+                                        curr.wager,
+                                      ),
+                                )}
+                              </span>
+                            </>
                           )}{' '}
                           {typeof curr.won !== 'undefined' && !curr.won && (
                             <span className='bg-red ph1 mt2 fw8 f5 white'>
