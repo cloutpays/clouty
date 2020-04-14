@@ -164,18 +164,23 @@ export const questionCloseApi = wrapAsync(async (req, db) => {
 
 export const questionSubmitApi = wrapAsync(async (req, db) => {
   const data = await json(req);
-  console.log('staging', staging);
   const entries = await db
     .collection(cloutpays)
     .find({ question: data.question })
     .toArray();
   if (data.answer) {
-    const winningUsers = entries.filter((entry) => {
+    const submissions = entries.filter((entry) => {
+      return typeof entry.won === 'undefined';
+    });
+    const winningUsers = submissions.filter((entry) => {
       return entry.answer === data.answer;
     });
-    const losingUsers = entries.filter((entry) => {
+    const losingUsers = submissions.filter((entry) => {
       return entry.answer !== data.answer;
     });
+    if (submissions.length > 1) {
+      await updateSubmissions(submissions, data.answer, db);
+    }
     if (winningUsers.length > 0) {
       await handlePayouts(winningUsers, db);
       if (!dev && !staging) {
@@ -193,9 +198,6 @@ export const questionSubmitApi = wrapAsync(async (req, db) => {
         loserEmailContent,
       );
     }
-  }
-  if (entries.length > 0) {
-    await updateSubmissions(entries, data.answer, db);
   }
   return await db
     .collection(question)
