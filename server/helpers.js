@@ -8,9 +8,7 @@ const client = require('twilio')(
 export const dev =
   process.env.ENV === 'development' || process.env.NODE_ENV === 'development';
 
-export const staging = true;
-// export const staging = (req) =>
-// req.headers.origin !== 'clouty.io' || req.headers.origin !== 'getclouty.com';
+export const staging = process.env.ENV === 'staging';
 
 export const question = dev
   ? 'question_dev'
