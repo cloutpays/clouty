@@ -69,6 +69,13 @@ const Terms = () => (
         Clouty Website and related information sources, and shall not be
         responsible or liable for any error or omissions in that information.
       </p>
+      <p className='f5 b'>CONTEST DATA SOURCE</p>
+      <p className='f5'>
+        Please note all bets are final. Music sales measurement is powered by
+        Nielsen and BuzzAngle Music. Total sales are the combination of Pure
+        ALBUM sales (digital and physical), TEA (track equivalent album), and
+        SEA (streaming equivalent album).
+      </p>
       <p className='f5 b'>PRIZES</p>
       <p className='f5'>
         At the conclusion of each Contest, prizes will be awarded by 12:00 NOON
