@@ -18,6 +18,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
   const [handle] = useState<string>(user ? user.info.firstName : '');
   const [answer, setAnswer] = useState<Answer>({ value: '', odds: '' });
   const [loading, setLoading] = useState<boolean>(false);
+  const [confirm, setConfirm] = useState<boolean>(false);
   const [playText, setPlayText] = useState<string>('Play');
   const [options, setOptions] = useState<any>(game.options);
   const [phoneNumber] = useState<string>(user ? user.info.phoneNumber : '');
@@ -113,7 +114,14 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
             )}
             {readyToPlay && canAffordWager && wageSelected && (
               <span
-                onClick={handleSubmit}
+                onClick={
+                  confirm
+                    ? handleSubmit
+                    : () => {
+                        setConfirm(true);
+                        setPlayText('Confirm?');
+                      }
+                }
                 className='bg-white-30 pv1 pl2 pr3 ml2 f7 f6-ns br-pill b noselect'>
                 <span className='pl1 sans-serif'>
                   {loading && <i className='fa fa-spinner fa-spin mr1' />}
