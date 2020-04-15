@@ -26,6 +26,11 @@ const Terms = ({ balance, submissions, user }) => {
       <main>
         <UserDashNavigation balance={balance} user={user} />
         <div className='center ph3 mt1' id='dashboard'>
+          <article className='pl3-ns mt2 pt1'>
+            <div className='mr5 pr2 pr5-ns'>
+              <h2 className='ttu mt0 f6 fw5 silver'>Game History</h2>
+            </div>
+          </article>
           <section className='flex-m flex-l nl3-m nr3-m nl3-l nr3-l'>
             <section className='ma3 ma4-l  flex flex-wrap '>
               {submissions.length === 0 && (

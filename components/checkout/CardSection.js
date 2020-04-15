@@ -33,7 +33,6 @@ const Checkout = (props) => {
   return (
     <main className='black-80'>
       <dl className='dib '>
-        <dd className='f6 f5-ns b ml0'>Select Amount</dd>
         <div className='flex f3 f2-ns flex-wrap'>
           <a
             onClick={() => updateAmount(1)}
