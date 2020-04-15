@@ -14,10 +14,6 @@ import { payoutEmailContent } from '../emailTemplates';
 
 import { updateUser } from './user';
 
-const getUser = async (userId, db) => {
-  return await db.collection(user).findOne({ _id: userId });
-};
-
 const updateStripeUser = async (paymentIntent, db) => {
   const newUser = await db.collection(user).updateOne(
     { _id: paymentIntent.metadata.userId },
@@ -110,13 +106,11 @@ export const allPayoutsApi = wrapAsync(async (req, db) => {
     .toArray();
 });
 
-export const stripeApi = wrapAsync(async (req, db) => {
+export const stripeApi = wrapAsync(async (req) => {
   const { query } = parse(req.url, true);
   const { id, userId } = query;
 
-  const customer = await getUser(userId, db);
   const session = await stripe.checkout.sessions.create({
-    customer: customer.stripe.user.id,
     payment_method_types: ['card'],
     payment_intent_data: {
       metadata: {
