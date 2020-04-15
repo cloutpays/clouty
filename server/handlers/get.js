@@ -22,8 +22,6 @@ const getApi = (fn) => async (req, res) => {
   try {
     const parse = req.url.split('/');
     console.log(`get api/${parse[2]}`);
-    console.log('parse', parse);
-    console.log(req.url);
     switch (`api/${parse[2]}`) {
       case 'api/submissions':
         return await fn(submissionsRetrieveApi(req, res));
