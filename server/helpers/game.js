@@ -127,7 +127,7 @@ export const submissionsRemovalApi = wrapAsync(async (req, db) => {
   const { query } = parse(req.url, true);
   const { id } = query;
   console.log(id);
-  return await db.collection(cloutpays).remove({ _id: ObjectId(id) });
+  return await db.collection(cloutpays).deleteOne({ _id: ObjectId(id) });
 });
 
 export const submissionsRetrieveApi = wrapAsync(
