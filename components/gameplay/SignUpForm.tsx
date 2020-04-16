@@ -44,6 +44,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
       Number(50),
     ]);
     setOptions(game.options);
+    setPlayText('Play');
   };
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
     if (!loading) {
