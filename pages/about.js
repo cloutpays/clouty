@@ -47,31 +47,13 @@ const Home = () => (
         </span>
       </p>
       <p className={`${styles.paragraph}`}>
-        All Media inquiries:{' '}
-        <a href='mailto:breemz@clouty.io ' className={`${styles.link}`}>
-          breemz@clouty.io
+        All inquiries:{' '}
+        <a href='mailto:info@clouty.io ' className={`${styles.link}`}>
+          info@clouty.io
         </a>{' '}
         <span role='img' aria-label='Bulleye'>
           🎯‍
         </span>
-      </p>
-      <p className={`${styles.paragraph}`}>
-        All Business inquiries:{' '}
-        <a href='mailto:umeh@clouty.io ' className={`${styles.link}`}>
-          umeh@clouty.io
-        </a>{' '}
-        <span role='img' aria-label='Bulleye'>
-          🎯‍
-        </span>
-      </p>
-      <p className={`${styles.paragraph}`}>
-        Game related questions:{' '}
-        <a href='mailto:julius@clouty.io ' className={`${styles.link}`}>
-          julius@clouty.io
-        </a>{' '}
-        <span role='img' aria-label='Bulleye'>
-          🎯‍
-        </span>{' '}
       </p>
     </section>
   </Wrapper>
