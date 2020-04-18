@@ -6,6 +6,7 @@ module.exports = withCSS({
   target: 'serverless',
   env: {
     // Reference a variable that was defined in the .env file and make it available at Build Time
+    SPOTIFY: process.env.SPOTIFY,
     MONGO: process.env.MONGO,
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     FIREBASE_API_KEY_DEV: process.env.FIREBASE_API_KEY_DEV,

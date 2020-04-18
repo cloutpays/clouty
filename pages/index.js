@@ -5,139 +5,57 @@ import DisclaimerModal from '../components/DisclaimerModal';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
+import SpotifyWebApi from 'spotify-web-api-node';
 import Wrapper from '../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 import classnames from 'classnames';
-
+var spotifyApi = new SpotifyWebApi();
 const data = {
   description: 'Make money while putting your intuition on the line.',
   header: `Welcome to Clouty`,
 };
 
-const albums = [
-  {
-    artist: 'Drake',
-    album: 'Toosie Slide',
-    image: 'https://i.scdn.co/image/ab67616d0000b2736443676b54522a86f6323e65',
-    spotify: 'https://open.spotify.com/album/3xIwVbGJuAcovYIhzbLO3J',
-  },
-  {
-    artist: 'Turbo, Gunna, Young Thug',
-    album: 'QUARANTINE CLEAN',
-    image: 'https://i.scdn.co/image/ab67616d0000b273a78797757ad9ab7b12270d9b',
-    spotify: 'https://open.spotify.com/album/0dqvGJ4kNo76SFdtmZhGYs',
-  },
-  {
-    artist: 'PARTYNEXTDOOR',
-    album: 'PARTYMOVILE',
-    image:
-      'https://media.gq.com/photos/5e7a5386e84be60008709ba8/master/pass/PARTYMOBILE%20Album%20by%20PARTYNEXTDOOR%20gq%20march%202020.jpg',
-    spotify: 'https://music.apple.com/us/album/partymobile/1500660135',
-  },
-  {
-    artist: 'Octavian ft. Skepta',
-    album: 'Papi Chulo',
-    image:
-      'https://is5-ssl.mzstatic.com/image/thumb/Music123/v4/a5/cb/be/a5cbbee9-1fd2-0912-96cd-a704aeb053bf/195081113920.jpg/939x0w.jpg',
-    spotify: 'https://open.spotify.com/album/33FmsnS00we0hrD1NrGniq',
-  },
-  {
-    artist: 'Childish Gambino',
-    album: '3.15.20',
-    image:
-      'https://upload.wikimedia.org/wikipedia/en/1/10/Childish_Gambino_-_3.15.20.png',
-    spotify: 'https://open.spotify.com/album/600ClrWRsAr7jZ0qjaBLHz',
-  },
-  {
-    artist: 'Money Man',
-    album: 'State of Emergency',
-    image:
-      'https://hw-img.datpiff.com/m30811ba/Money_Man_State_Of_Emergency-front-large.jpg',
-    spotify: 'https://open.spotify.com/album/7rGsQ3XiJbCjdjnxE5qmvM',
-  },
-  {
-    artist: 'Don Toliver',
-    album: 'Heaven or Hell',
-    image:
-      'https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/mhgdsrhn3a90ytkkkw3x/don-toliver-heaven-or-hell-stream',
-    spotify: 'https://open.spotify.com/album/7z4GhRfLqfSkqrj5F3Yt2B',
-  },
-  {
-    artist: 'Lil Uzi Vert',
-    album: 'Eternal Atake (Deluxe)',
-    image:
-      'https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/ebjrkgp7iu5fajw98mzn/lil-uzi-vert-eternal-atake-deluxe-stream',
-    spotify: 'https://open.spotify.com/album/0fEO7g2c5onkaXsybEtuD2',
-  },
-  {
-    artist: 'Jack Harlow',
-    album: 'Sweet Action',
-    image:
-      'https://ssla.ulximg.com/image/750x750/cover/1584077338_165f8d2a6837010530db8217968bb1e4.jpg/72170d0cb246d618ac1549bbb1631bd1/1584077338_d76498d52286f7223a6b47f796224344.jpg',
-    spotify: 'https://open.spotify.com/album/7AaqMMiYMvnMB3RcS8u3EY',
-  },
-  {
-    artist: 'Rich the Kid',
-    album: 'BOSSMAN',
-    image:
-      'https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/fv9exqwsgrwcymbd1btv/rich-the-kid',
-    spotify: 'https://open.spotify.com/album/1YOx6ZVgiv9GEluUwBWevi',
-  },
-  {
-    artist: 'Megan Thee Stallion',
-    album: 'Suga EP',
-    image:
-      'https://media.pitchfork.com/photos/5e6293273efe060009390388/1:1/w_320/Suga_Megan%20Thee%20Stallion.jpg',
-    spotify: 'https://open.spotify.com/album/6Lo6ylJg4qbFfxicPEOzMI',
-  },
-  {
-    artist: 'Blueface',
-    album: 'Find The Beat',
-    image:
-      'https://images.complex.com/complex/images/c_fill,dpr_auto,q_90,w_920/fl_lossy,pg_1/sdxhbfaip2aklfvv40zx/blueface-find-the-beat-stream',
-    spotify: 'https://open.spotify.com/album/2BLEkA5FiMxrp1ldVn4Ajqc',
-  },
-];
-const Home = ({ questions, darkMode, loggedIn }) => (
-  <div>
-    <Wrapper data={data}>
-      <section>
-        {/* <h1 className='f1 fw9'>Welcome to Clouty</h1> */}
-        <h1 className='f1 f-subheadline-l db tc measure lh-title fw9 mv5 mh2'>
-          The 🌎&apos;s first music betting platform.
-        </h1>
-        <div>
-          <p className={`${styles.paragraph}`}>
-            Every week we host live bets about the latest releases and
-            predictions in the rap game.
-          </p>
-          <p className={`${styles.paragraph}`}>
-            Sign up today and receive a free $2 credit towards your bets. Also,
-            for a limited time enjoy
-            <span className='i b'> no fees </span> for all bets!
-          </p>
-          <DisclaimerModal />
-        </div>
-        <section className='mt3 w-100 dib pv4 flex items-center justify-center '>
-          <div className='b pa3 mr2  input-reset ba b--black bg-transparent grow pointer f4'>
-            <a
-              className={`no-underline ${classnames({
-                black: !darkMode,
-                white: darkMode,
-              })}`}
-              href={loggedIn ? '/user' : '/signup'}>
-              {loggedIn ? 'Play Now' : 'Sign Up'}
-            </a>
+const Home = ({ questions, darkMode, loggedIn, album }) => {
+  return (
+    <div>
+      <Wrapper data={data}>
+        <section>
+          {/* <h1 className='f1 fw9'>Welcome to Clouty</h1> */}
+          <h1 className='f1 f-subheadline-l db tc measure lh-title fw9 mv5 mh2'>
+            The 🌎&apos;s first music betting platform.
+          </h1>
+          <div>
+            <p className={`${styles.paragraph}`}>
+              Every week we host live bets about the latest releases and
+              predictions in the rap game.
+            </p>
+            <p className={`${styles.paragraph}`}>
+              Sign up today and receive a free $2 credit towards your bets.
+              Also, for a limited time enjoy
+              <span className='i b'> no fees </span> for all bets!
+            </p>
+            <DisclaimerModal />
           </div>
-          <div className='b pa3 mr2 input-reset ba bg-black b--black grow pointer f4'>
-            {' '}
-            <Link href='/learnmore'>
-              <a className='no-underline white'>Learn More</a>
-            </Link>
-          </div>
-        </section>
-        {/* <section className='bg-black white'>
+          <section className='mt3 w-100 dib pv4 flex items-center justify-center '>
+            <div className='b pa3 mr2  input-reset ba b--black bg-transparent grow pointer f4'>
+              <a
+                className={`no-underline ${classnames({
+                  black: !darkMode,
+                  white: darkMode,
+                })}`}
+                href={loggedIn ? '/user' : '/signup'}>
+                {loggedIn ? 'Play Now' : 'Sign Up'}
+              </a>
+            </div>
+            <div className='b pa3 mr2 input-reset ba bg-black b--black grow pointer f4'>
+              {' '}
+              <Link href='/learnmore'>
+                <a className='no-underline white'>Learn More</a>
+              </Link>
+            </div>
+          </section>
+          {/* <section className='bg-black white'>
           <h2 className='f3 tc lh-title fw5 pt5 '>IN THE PRESS</h2>
           <div className='items-start flex justify-center flex-wrap w-100 pv4'>
             <div
@@ -165,87 +83,90 @@ const Home = ({ questions, darkMode, loggedIn }) => (
           </div>
         </section>
          */}
-        <h2 className='f f-subheadline-l  tc lh-title fw7'>Bets of the Week</h2>
-        <section className='flex flex-wrap ma3 ma4-l'>
-          {questions
-            .filter((curr) => curr.gameType !== 'grammy')
-            .map((curr) => {
-              return (
-                <div className='pv2 pa2-ns w-100 w-50-ns' key={curr.question}>
-                  <div
-                    className={`white br2 shadow-4 pa3 pa4-ns h-100 ${curr.class}`}>
-                    <h1 className='f4 mt0 fw7'>
-                      <span role='img'>{curr.emoji}</span> Game #{curr.question}
-                    </h1>
-                    <p>{curr.description}</p>
-                    <p className='f6 fw6'>{curr.details}</p>
-                    <DemoForm game={curr} />
-                  </div>
-                </div>
-              );
-            })
-            .reverse()
-            .slice(0, 4)}
-          <a
-            href='/games'
-            className='b no-underline ma4 pa3 flex center  input-reset ba fl bg-black b--black white grow pointer f4 f3-ns'>
-            See More Games
-          </a>
-        </section>
-        <article className='ma3 ma4-l'>
-          <h2 className='f3 f-subheadline-l  lh-title fw7 flex justify-center'>
-            New Releases
+          <h2 className='f f-subheadline-l  tc lh-title fw7'>
+            Bets of the Week
           </h2>
-          <div className='cf pa2'>
-            {albums.map((curr) => {
-              return (
-                <div className='fl w-50 w-25-m w-20-l pa2' key={curr.album}>
-                  <a href={curr.spotify} className='db link dim tc'>
-                    <img
-                      src={curr.image}
-                      className={`w-100 db outline ${classnames({
-                        'black-10': !darkMode,
-                        'white-10': darkMode,
-                      })}`}
-                    />
-                    <dl className='mt2 f6 lh-copy'>
-                      <dt className='clip'>Title</dt>
-                      <dd
-                        className={`ml0 ${classnames({
-                          black: !darkMode,
-                          white: darkMode,
-                        })} truncate w-100`}>
-                        {curr.album}
-                      </dd>
-                      <dt className='clip'>Artist</dt>
-                      <dd
-                        className={`ml0 ${classnames({
-                          gray: !darkMode,
-                          'white-70': darkMode,
-                        })} truncate w-100`}>
-                        {curr.artist}
-                      </dd>
-                    </dl>
-                  </a>
-                </div>
-              );
-            })}
-          </div>
-        </article>
-        <p className={`${styles.paragraph}`}>
-          {/* <h2 className='f2 f-subheadline-l measure lh-title fw8'>
+          <section className='flex flex-wrap ma3 ma4-l'>
+            {questions
+              .filter((curr) => curr.gameType !== 'grammy')
+              .map((curr) => {
+                return (
+                  <div className='pv2 pa2-ns w-100 w-50-ns' key={curr.question}>
+                    <div
+                      className={`white br2 shadow-4 pa3 pa4-ns h-100 ${curr.class}`}>
+                      <h1 className='f4 mt0 fw7'>
+                        <span role='img'>{curr.emoji}</span> Game #
+                        {curr.question}
+                      </h1>
+                      <p>{curr.description}</p>
+                      <p className='f6 fw6'>{curr.details}</p>
+                      <DemoForm game={curr} />
+                    </div>
+                  </div>
+                );
+              })
+              .reverse()
+              .slice(0, 4)}
+            <a
+              href='/games'
+              className='b no-underline ma4 pa3 flex center  input-reset ba fl bg-black b--black white grow pointer f4 f3-ns'>
+              See More Games
+            </a>
+          </section>
+          <article className='ma3 ma4-l'>
+            <h2 className='f3 f-subheadline-l  lh-title fw7 flex justify-center'>
+              New Releases
+            </h2>
+            <div className='cf pa2'>
+              {album.map((curr) => {
+                return (
+                  <div className='fl w-50 w-25-m w-20-l pa2' key={curr.album}>
+                    <a href={curr.spotify} className='db link dim tc'>
+                      <img
+                        src={curr.image}
+                        className={`w-100 db outline ${classnames({
+                          'black-10': !darkMode,
+                          'white-10': darkMode,
+                        })}`}
+                      />
+                      <dl className='mt2 f6 lh-copy'>
+                        <dt className='clip'>Title</dt>
+                        <dd
+                          className={`ml0 ${classnames({
+                            black: !darkMode,
+                            white: darkMode,
+                          })} truncate w-100`}>
+                          {curr.album}
+                        </dd>
+                        <dt className='clip'>Artist</dt>
+                        <dd
+                          className={`ml0 ${classnames({
+                            gray: !darkMode,
+                            'white-70': darkMode,
+                          })} truncate w-100`}>
+                          {curr.artist}
+                        </dd>
+                      </dl>
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </article>
+          <p className={`${styles.paragraph}`}>
+            {/* <h2 className='f2 f-subheadline-l measure lh-title fw8'>
             How It Works
           </h2>
           Welcome to{' '} */}
-          {/* <a
+            {/* <a
             href='/about'
             alt='Ableton Push 2'
             title='Ableton Push 2'
             className={`${styles.link}`}>
             Clouty
           </a> */}
-        </p>
-        {/* <h2>Weekly Contents</h2>
+          </p>
+          {/* <h2>Weekly Contents</h2>
         <p className={`${styles.paragraph}`}>
           These questions will be regarding releases and predictions in the rap
           game and we will use data and announcements to determine each weeks
@@ -255,27 +176,50 @@ const Home = ({ questions, darkMode, loggedIn }) => (
           </span>{' '}
         </p>
         <h2>Live Events</h2> */}
-      </section>
-      {/* <img width='300px' height='300px' src='/static/img/dare.png' /> */}
-    </Wrapper>
-  </div>
-);
+        </section>
+        {/* <img width='300px' height='300px' src='/static/img/dare.png' /> */}
+      </Wrapper>
+    </div>
+  );
+};
 
 Home.getInitialProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
   const res = await axios.get(`${apiURL}/api/questions`);
+  const spotifyRefreshToken = await axios.post(`${apiURL}/api/spotify`);
   const questions = res.data;
   const darkMode = getCookie('dark_mode', req) === 'true';
   const loggedIn = getCookie('id_token', req) ? true : false;
+  spotifyApi.setAccessToken(spotifyRefreshToken.data.access_token);
+  let album = [];
+  await spotifyApi.getPlaylist('37i9dQZF1DX0XUsuxWHRQd').then(
+    function(data) {
+      album = data.body.tracks.items
+        .map((curr) => {
+          return {
+            artist: curr.track.artists[0].name,
+            image: curr.track.album.images[0].url,
+            album: curr.track.name,
+            spotify: curr.track.external_urls.spotify,
+          };
+        })
+        .slice(0, 12);
+    },
+    function(err) {
+      console.error(err);
+    },
+  );
   return {
     questions,
+    album,
     darkMode,
     loggedIn,
   };
 };
 Home.propTypes = {
   questions: PropTypes.array,
+  album: PropTypes.array,
   darkMode: PropTypes.bool,
   loggedIn: PropTypes.bool,
 };
