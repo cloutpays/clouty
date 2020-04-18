@@ -1,3 +1,5 @@
+import axios from 'axios';
+const querystring = require('querystring');
 const connect = require('./helpers/db');
 const cors = require('micro-cors')();
 const nodemailer = require('nodemailer');
@@ -55,6 +57,28 @@ export const wrapAsync = (handler) => async (req, res) => {
       .catch((error) => res.status(500).json({ error: error.message })),
   );
 };
+
+export const spotifyApi = wrapAsync(async () => {
+  console.log(process.env.SPOTIFY);
+  return await axios
+    .post(
+      'https://accounts.spotify.com/api/token',
+      querystring.stringify({ grant_type: 'client_credentials' }),
+
+      {
+        headers: {
+          Authorization: `Basic ${new Buffer.from(process.env.SPOTIFY).toString(
+            'base64',
+          )}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      },
+    )
+    .then((res) => res.data)
+    .catch((err) => {
+      console.log(err);
+    });
+});
 export const dbRefresh = wrapAsync(async (req, db) => {
   const usersProd = await db
     .collection('user_prod')
