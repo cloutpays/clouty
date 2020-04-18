@@ -164,11 +164,13 @@
       "STRIPE_SECRET_DEV": "@stripe-secret-dev",
       "STRIPE_CLIENT_PROD": "@stripe-client-prod",
       "STRIPE_SECRET_PROD": "@stripe-secret-prod",
-      "NODEMAILER": "@nodemailer"
+      "NODEMAILER": "@nodemailer",
+      "SPOTIFY": "@spotify"
     }
   },
   "env": {
     "TWILIO_SID": "@twilio-sid",
+    "SPOTIFY": "@spotify",
     "TWILIO_TOKEN": "@twilio-token",
     "MONGO": "@mongo",
     "FIREBASE_API_KEY": "@firebase-api-key",
