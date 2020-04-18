@@ -64,6 +64,11 @@
       "dest": "server/handlers/get.js"
     },
     {
+      "src": "/api/spotify",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
       "src": "/api/users",
       "methods": ["GET"],
       "dest": "server/handlers/get.js"
