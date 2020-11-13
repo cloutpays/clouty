@@ -58,8 +58,18 @@ export const wrapAsync = (handler) => async (req, res) => {
   );
 };
 
-export const spotifyApi = wrapAsync(async () => {
-  console.log(process.env.SPOTIFY);
+export const spotifyApi = wrapAsync(async (req, db) => {
+  const access = (
+    await db
+      .collection('access')
+      .find()
+      .toArray()
+  )[0];
+  if (new Date(access.expires) > new Date()) {
+    return {
+      access_token: access.access_token,
+    };
+  }
   return await axios
     .post(
       'https://accounts.spotify.com/api/token',
@@ -74,7 +84,21 @@ export const spotifyApi = wrapAsync(async () => {
         },
       },
     )
-    .then((res) => res.data)
+    .then(async (res) => {
+      console.log('yo', res.data);
+      let date = new Date();
+      date.setSeconds(date.getSeconds() + 3600);
+
+      await db.collection('access').updateOne(
+        {},
+        {
+          $set: {
+            access_token: res.data.access_token,
+            expires: new Date(date),
+          },
+        },
+      );
+    })
     .catch((err) => {
       console.log(err);
     });
