@@ -24,83 +24,85 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
     'near-white': darkMode,
   })}`;
   return (
-    <nav className=' center flex items-center mb5 ma3 ma4-l'>
-      <Link href='/'>
-        <a href='/' className='white pl2 flex-grow-1 no-underline '>
-          <img
-            width='40px'
-            height='40px'
-            src='/static/img/transparent_clouty-umbrella.png'
-          />
-        </a>
-      </Link>
-      <ul className='list pl0 flex mv0'>
-        {/* {isLoggedIn && (
-          <li className='mr2 mr4-ns'>
-            <Link href='/dashboard'>
-              <a className={`${styles.navigationLink}`}>Admin</a>
-            </Link>
-          </li>
-        )} */}
-        {isLoggedIn && isAdmin && (
-          <li className='mr2 mr4-ns '>
-            <Link href='/dashboard'>
-              <a
-                href='/dashboard'
-                className={`${navLinks} pb2 underline-hover `}>
-                Admin
-              </a>
-            </Link>
-          </li>
-        )}
-        <li className='mr2 mr4-ns'>
-          <Link href='/about'>
-            <a href='/about' className={`${navLinks} pb2 underline-hover `}>
-              About
-            </a>
-          </Link>
-        </li>
-        <li className='mr2 mr4-ns underline-hover'>
-          <Link href='/games'>
-            <a href='/games' className={`${navLinks}`}>
-              Games
-            </a>
-          </Link>
-        </li>
-        {isLoggedIn && (
-          <>
-            <li className='mr2 mr4-ns underline-hover'>
-              <Link href='/user'>
-                <a href='/user' className={navLinks}>
-                  Profile
+    <div>
+      <section className='top-banner'>
+        <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+          <a className='navbar-brand' href='/'>
+            Clouty
+          </a>
+          <button
+            className='navbar-toggler'
+            type='button'
+            data-toggle='collapse'
+            data-target='#navbarSupportedContent'
+            aria-controls='navbarSupportedContent'
+            aria-expanded='false'
+            aria-label='Toggle navigation'>
+            <span className='navbar-toggler-icon' />
+          </button>
+          <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+            <ul className='navbar-nav mr-auto'>
+              <li className='nav-item'>
+                <a className='nav-link' href='/about'>
+                  About <span className='sr-only'>(current)</span>
                 </a>
-              </Link>
-            </li>
-            <li className='mr2 mr4-ns underline-hover'>
-              <Link href='#' as='logout'>
-                <a onClick={handleLogout} className={navLinks}>
-                  Logout
+              </li>
+              <li className='nav-item'>
+                <a className='nav-link' href='/games'>
+                  Games
                 </a>
-              </Link>
-            </li>
-          </>
-        )}
-        {!isLoggedIn && (
-          <>
-            {/* <a href='/signup' className={`${styles.navigationLink}`}>
+              </li>
+              <li className='nav-item'>
+                <a className='nav-link' href='/terms'>
+                  Terms
+                </a>
+              </li>
+            </ul>
+            <ul className='navbar-nav my-2 my-lg-0'>
+              {isLoggedIn && (
+                <>
+                  <li className='mr2 mr4-ns underline-hover'>
+                    <Link href='/user'>
+                      <a href='/user' className={navLinks}>
+                        Profile
+                      </a>
+                    </Link>
+                  </li>
+                  <li className='mr2 mr4-ns underline-hover'>
+                    <Link href='#' as='logout'>
+                      <a onClick={handleLogout} className={navLinks}>
+                        Logout
+                      </a>
+                    </Link>
+                  </li>
+                </>
+              )}
+              {!isLoggedIn && (
+                <>
+                  {/* <a href='/signup' className={`${styles.navigationLink}`}>
               <li className='mr2 mr4-ns'>Sign up </li>
             </a> */}
-            <li className='mr2 mr4-ns underline-hover'>
-              <Link href='/login'>
-                <a href='/login' className={`${navLinks}`}>
-                  Login
+                  <li className='mr2 mr4-ns underline-hover'>
+                    <Link href='/login'>
+                      <a href='/login' className={`${navLinks}`}>
+                        Login
+                      </a>
+                    </Link>
+                  </li>
+                </>
+              )}
+              <li className='nav-item' id='signup'>
+                <a
+                  className='nav-link btn btn-sm btn-outline-success text-white'
+                  href='/signup'>
+                  Sign Up
                 </a>
-              </Link>
-            </li>
-          </>
-        )}
-      </ul>
-    </nav>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </section>
+    </div>
   );
 };
 

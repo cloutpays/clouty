@@ -13,15 +13,37 @@ const data = {
 const Login = () => (
   <Wrapper data={data}>
     <div className='ma3 ma4-l'>
-      <p className={styles.paragraph}>
-        Sign up today and receive a free $2 credit towards your bets.
-      </p>
-      <p className={styles.paragraph}>
-        Also, for a limited time enjoy
-        <span className={classnames('i b')}> no fees </span> for all bets!
-      </p>
-      <DisclaimerModal />
-      <LoginForm mode={'signup'} />
+      <section className='signup-banner'>
+        <img
+          src='/static/img/new/signup-banner.jpg'
+          width='100%'
+          height='250'
+        />
+        <div className='card'>
+          <div className='card-body text-center'>
+            <h2>Hey There! 👋</h2>
+            <p>Your free $2 credit is waiting for you inside.</p>
+            <button className='btn btn-default'>Claim Your Free Credit</button>
+            <div className=''>
+              <a href='#'>Credit Disclosure</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className='signup-form'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-6 offset-md-3'>
+              <h1>Get started playing Clouty</h1>
+              <p>
+                Enjoy no fees on all bets for a limited time!Enjoy no fees on
+                all bets for a limited time!
+              </p>
+              <LoginForm mode={'signup'} />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </Wrapper>
 );

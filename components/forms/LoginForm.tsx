@@ -124,29 +124,33 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             {signUp ? (
               <>
                 {' '}
-                <div className='mt1'>
-                  <label className='db fw6 lh-copy f6' htmlFor='first-name'>
-                    First Name
-                  </label>
-                  <input
-                    className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
-                    type='name'
-                    value={firstName}
-                    onChange={(event) =>
-                      setFirstName(event.currentTarget.value)
-                    }
-                  />
-                </div>
-                <div className='mv3'>
-                  <label className='db fw6 lh-copy f6' htmlFor='last-name'>
-                    Last Name
-                  </label>
-                  <input
-                    className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
-                    type='name'
-                    value={lastName}
-                    onChange={(event) => setLastName(event.currentTarget.value)}
-                  />
+                <div className='row'>
+                  <div className='col-md-6'>
+                    <label className='db fw6 lh-copy f6' htmlFor='first-name'>
+                      First Name
+                    </label>
+                    <input
+                      className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                      type='name'
+                      value={firstName}
+                      onChange={(event) =>
+                        setFirstName(event.currentTarget.value)
+                      }
+                    />
+                  </div>
+                  <div className='col-md-6'>
+                    <label className='db fw6 lh-copy f6' htmlFor='last-name'>
+                      Last Name
+                    </label>
+                    <input
+                      className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                      type='name'
+                      value={lastName}
+                      onChange={(event) =>
+                        setLastName(event.currentTarget.value)
+                      }
+                    />
+                  </div>
                 </div>
                 <div className='mv3'>
                   <label className='db fw6 lh-copy f6' htmlFor='user-name'>
@@ -235,7 +239,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           </fieldset>
           <div>
             <button
-              className='b ph3 pv2 link input-reset ba b--black bg-transparent grow pointer f6 dib '
+              className='btn btn-primary'
               onClick={signUp ? handleSignUp : handleLogin}>
               {loading && <i className='fa fa-spinner fa-spin' />}
               {signUp ? signUpText : signInText}

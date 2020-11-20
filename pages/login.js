@@ -7,11 +7,21 @@ const data = {
 };
 const Login = () => (
   <Wrapper data={data}>
-    <div className='ma3 ma4-l'>
-      <h2 className='tc f2 fw9 mv0'>Welcome</h2>
-      <img src='/static/img/clouty-04.png' className='h4 center db  mt2' />
-      <h3 className='tc f3 fw6'>Have an account with us?</h3>
-      <LoginForm mode={'login'} />
+    <div className='container'>
+      <div className='row'>
+        <div className='col-md-6'>
+          <div className='banner-content pl-5 pr-5'>
+            <h1>Log In</h1>
+            <p style={{ color: '#692699' }}>Welcome back to Clouty</p>
+            <LoginForm mode={'login'} />
+          </div>
+        </div>
+      </div>
+      <img
+        className='background-banner-image'
+        src='/static/img/new/banner-right.jpg'
+        width='528'
+      />
     </div>
   </Wrapper>
 );

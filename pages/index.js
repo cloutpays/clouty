@@ -18,73 +18,206 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
   return (
     <div>
       <Wrapper data={data}>
-        <section>
-          {/* <h1 className='f1 fw9'>Welcome to Clouty</h1> */}
-          <h1 className='f1 f-subheadline-l db tc measure lh-title fw9 mv5 mh2'>
-            The 🌎&apos;s first music betting platform.
-          </h1>
-          <div>
-            <p className={`${styles.paragraph}`}>
-              Every week we host live bets about the latest releases and
-              predictions in the rap game.
-            </p>
-            <p className={`${styles.paragraph}`}>
-              Sign up today and receive a free $2 credit towards your bets.
-              Also, for a limited time enjoy
-              <span className='i b'> no fees </span> for all bets!
-            </p>
-            <DisclaimerModal />
-          </div>
-          <section className='mt3 w-100 dib pv4 flex items-center justify-center '>
-            <div className='b pa3 mr2  input-reset ba b--black bg-transparent grow pointer f4'>
-              <a
-                className={`no-underline ${classnames({
-                  black: !darkMode,
-                  white: darkMode,
-                })}`}
-                href={loggedIn ? '/user' : '/signup'}>
-                {loggedIn ? 'Play Now' : 'Sign Up'}
-              </a>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-6'>
+              <div className='banner-content'>
+                <p>Welcome to Clouty</p>
+                <h1>The 🌎's first music betting platform.</h1>
+                <div>
+                  <span>
+                    We host live bets about the latest releases and predictions
+                    in the rap game. Sign up today and receive a free $2 credit
+                    towards your bets and no fees for all bets!
+                  </span>
+                </div>
+                <a href='/signup'>
+                  <button className='btn btn-default'>Sign Up</button>
+                </a>
+              </div>
             </div>
-            <div className='b pa3 mr2 input-reset ba bg-black b--black grow pointer f4'>
-              {' '}
-              <Link href='/learnmore'>
-                <a className='no-underline white'>Learn More</a>
-              </Link>
+          </div>
+          <img
+            className='background-banner-image'
+            src='/static/img/new/banner-right.jpg'
+            width='528'
+          />
+          <img
+            className='background-mobile-image'
+            src='/static/img/new/mobile-frame.png'
+          />
+        </div>
+        <section>
+          <section>
+            <div className='row'>
+              <div className='col-md-4 p-0'>
+                <img
+                  src='/static/img/new/album-cover.jpg'
+                  width='100%'
+                  height='300'
+                />
+              </div>
+              <div className='col-md-8 p-0'>
+                <div className='album-cover'>
+                  <p>This Week's Featured Bet</p>
+                  <h3>#Verzuz to return with Gucci Mane vs. Jeezy</h3>
+                  <button className='btn btn-default bet-now mr-3'>
+                    Bet Now
+                  </button>
+                  <button className='btn btn-default all-bet'>
+                    View All Bets
+                  </button>
+                </div>
+              </div>
             </div>
           </section>
-          {/* <section className='bg-black white'>
-          <h2 className='f3 tc lh-title fw5 pt5 '>IN THE PRESS</h2>
-          <div className='items-start flex justify-center flex-wrap w-100 pv4'>
-            <div
-              className='link hover-silver db mv1  tc w-30'
-              href='https://www.instagram.com/p/B9zp7bYFkA_/'
-              title='Bleacher Report'>
-              <img
-                className=' h3 h4-ns'
-                // style={{ filter: 'brightness(0)' }}
-                src='/static/img/br_logo.png'
-              />
-              <p>No clue how this works... I’m in</p>
+          <section className='places-featured'>
+            <div className='row'>
+              <div className='col-md-12 text-center'>
+                <h5>Places we've been featured</h5>
+                <div className='places-featured-images'>
+                  <img src='/static/img/new/bleacher.png' />
+                  <img src='/static/img/new/featured-image1.png' />
+                  <img src='/static/img/new/insider.png' />
+                </div>
+              </div>
             </div>
-            <div
-              className='link hover-silver db mv1  tc w-30'
-              href='https://musically.com/2020/01/16/clouty-wants-fans-to-place-bets-on-rap-predictions/'
-              title='Musically'>
-              <img
-                className='dib h3 h4-ns'
-                // style={{ filter: 'brightness(0)' }}
-                src='/static/img/musically.png'
-              />
-              <p>Clouty wants fans to place bets on rap predictions</p>
+          </section>
+          <section className='fav-artist'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-md-6'>
+                  <div className='fav-artist-content'>
+                    <p>Bet On Your Favorite Artists</p>
+                    <h1>Put your money where your ears are.</h1>
+                    <div>
+                      <span>
+                        Clouty is the first and only platform where you can
+                        place bets and earn money on your favorite artists,
+                        events, and albums. Are you ready to put your money
+                        where your ears are?
+                      </span>
+                    </div>
+                    <button className='btn btn-default'>View All Bets</button>
+                  </div>
+                </div>
+                <img
+                  src='/static/img/new/Benefits-Duotone-Image.jpg'
+                  width='300'
+                />
+              </div>
             </div>
-          </div>
-        </section>
-         */}
+          </section>
+          <section>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-md-12 text-center'>
+                  <div className='fav-artist-content'>
+                    <p>Types Of Betting</p>
+                    <h1>How it works</h1>
+                    <div>
+                      <span>
+                        For an artist to qualify for one of our contests, their
+                        music must be on either the Big 3: Apple Music, Spotify,
+                        or Tidal. If they are only on Soundcloud and Youtube
+                        they may not qualify for certain bets. Every contestant
+                        will be notified on the results and you can earn REAL
+                        cash or tokens to use on future games. The results of
+                        the games will ONLY be validated with accurate data and
+                        credible announcements to determine each weeks winners.
+                        Our charts are powered by Nielsen Soundscan.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className='section-services'>
+                  <div className='row'>
+                    <div className='col-md-4 col-lg-3'>
+                      <div className='single-service'>
+                        <div className='part-1'>
+                          <img src='http://languagetutor.mashpy.me/images/classNameroom-service.svg' />
+                          <h3 className='title text-dark'>First Week Sales</h3>
+                          <p className='description'>
+                            Place bets on the first week album sales of your
+                            favorite rappers.
+                          </p>
+                          <a href='#'>Place Your Bet</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='col-md-4 col-lg-3'>
+                      <div className='single-service'>
+                        <div className='part-1'>
+                          <img src='http://languagetutor.mashpy.me/images/classNameroom-service.svg' />
+                          <h3 className='title text-dark'>Over / Under</h3>
+                          <p className='description'>
+                            Place bets on whether an album will beat or fall
+                            under a certain metric.
+                          </p>
+                          <a href='#'>Place Your Bet</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='col-md-4 col-lg-3'>
+                      <div className='single-service'>
+                        <div className='part-1'>
+                          <img src='http://languagetutor.mashpy.me/images/classNameroom-service.svg' />
+                          <h3 className='title text-dark'>Futures</h3>
+                          <p className='description'>
+                            Look into your crystal ball and bet on future events
+                            in the rap game.
+                          </p>
+                          <a href='#'>Place Your Bet</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='col-md-4 col-lg-3'>
+                      <div className='single-service'>
+                        <div className='part-1'>
+                          <img src='http://languagetutor.mashpy.me/images/classNameroom-service.svg' />
+                          <h3 className='title text-dark'>Live Events</h3>
+                          <p className='description'>
+                            Bet on live events like the Grammys and Billboard
+                            Music Awards.
+                          </p>
+                          <a href='#'>Place Your Bet</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className='col-md-12 text-center stay-tuned'>
+                  <p>Stay Tuned for More ways to bet...</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-md-12 text-center'>
+                  <div className='fav-artist-content'>
+                    <p>Sign Up & Place Your Bets</p>
+                    <h1>Ready to get started?</h1>
+                    <div>
+                      <span>
+                        You're just minutes away from placing your first ever
+                        music bet.
+                        <br />
+                        We'll even give you $2 free when you sign up!
+                      </span>
+                    </div>
+                    <button className='btn btn-default'>Sign Up</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <h2 className='f f-subheadline-l  tc lh-title fw7'>
             Bets of the Week
           </h2>
-          <section className='flex flex-wrap ma3 ma4-l'>
+          {/* <section className='flex flex-wrap ma3 ma4-l'>
             {questions
               .filter((curr) => curr.gameType !== 'grammy')
               .map((curr) => {
@@ -110,8 +243,8 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
               className='b no-underline ma4 pa3 flex center  input-reset ba fl bg-black b--black white grow pointer f4 f3-ns'>
               See More Games
             </a>
-          </section>
-          <article className='ma3 ma4-l'>
+          </section> */}
+          {/* <article className='ma3 ma4-l'>
             <h2 className='f3 f-subheadline-l  lh-title fw7 flex justify-center'>
               New Releases
             </h2>
@@ -150,7 +283,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                 );
               })}
             </div>
-          </article>
+          </article> */}
           <p className={`${styles.paragraph}`}>
             {/* <h2 className='f2 f-subheadline-l measure lh-title fw8'>
             How It Works

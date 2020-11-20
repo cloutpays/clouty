@@ -69,7 +69,7 @@ export default class Wrapper extends Component {
           <meta name='twitter:description' content={description} />
         </Head>
         <Navigation user={user} darkMode={darkMode} router={Router} />
-        {this.renderHeader()}
+        {/* {this.renderHeader()} */}
         <div className='center flex'>
           <main className={`mb5 w-100 ${cls}`}>{content}</main>
         </div>
