@@ -24,8 +24,9 @@ const Home = () => (
                   discovered the artists Foggieraw and Ankhlejohn. Upon hearing
                   their cadences and presence he knew they had serious shot at
                   making it big. In a large group-chat where nothing but music
-                  was discussed and debated, he went on to say, &ldquo;This guy is
-                  gonna blow....if I could put my money on it, I would.&ldquo;
+                  was discussed and debated, he went on to say, &ldquo;This guy
+                  is gonna blow....if I could put my money on it, I
+                  would.&ldquo;
                 </p>
               </div>
               <div className='col-md-6'>
