@@ -135,7 +135,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                     <div className='col-md-4 col-lg-3'>
                       <div className='single-service'>
                         <div className='part-1'>
-                          <img src='http://languagetutor.mashpy.me/images/classNameroom-service.svg' />
+                          <img src='/static/img/new/Screenshot1.png' style={{width:"30px"}} />
                           <h3 className='title text-dark'>First Week Sales</h3>
                           <p className='description'>
                             Place bets on the first week album sales of your
@@ -148,7 +148,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                     <div className='col-md-4 col-lg-3'>
                       <div className='single-service'>
                         <div className='part-1'>
-                          <img src='http://languagetutor.mashpy.me/images/classNameroom-service.svg' />
+                          <img src='/static/img/new/Screenshot2.png' style={{width:"30px"}} />
                           <h3 className='title text-dark'>Over / Under</h3>
                           <p className='description'>
                             Place bets on whether an album will beat or fall
@@ -161,7 +161,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                     <div className='col-md-4 col-lg-3'>
                       <div className='single-service'>
                         <div className='part-1'>
-                          <img src='http://languagetutor.mashpy.me/images/classNameroom-service.svg' />
+                          <img src='/static/img/new/Screenshot3.png' style={{width:"30px"}} />
                           <h3 className='title text-dark'>Futures</h3>
                           <p className='description'>
                             Look into your crystal ball and bet on future events
@@ -174,7 +174,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                     <div className='col-md-4 col-lg-3'>
                       <div className='single-service'>
                         <div className='part-1'>
-                          <img src='http://languagetutor.mashpy.me/images/classNameroom-service.svg' />
+                          <img src='/static/img/new/Screenshot4.png' style={{width:"30px"}} />
                           <h3 className='title text-dark'>Live Events</h3>
                           <p className='description'>
                             Bet on live events like the Grammys and Billboard
@@ -214,9 +214,9 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
             </div>
           </section>
 
-          <h2 className='f f-subheadline-l  tc lh-title fw7'>
+          {/* <h2 className='f f-subheadline-l  tc lh-title fw7'>
             Bets of the Week
-          </h2>
+          </h2> */}
           {/* <section className='flex flex-wrap ma3 ma4-l'>
             {questions
               .filter((curr) => curr.gameType !== 'grammy')

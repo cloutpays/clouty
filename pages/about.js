@@ -7,8 +7,8 @@ const data = {
 };
 const Home = () => (
   <Wrapper data={data}>
-    <div className='container'>
-      <div className='row'>
+    <div style={{backgroundColor: "#EFE8F4", marginTop: "-100px"}}>
+      <div className='row mx-5'>
         <div className='col-md-12'>
           <div className='about-banner-content'>
             <div className='row'>

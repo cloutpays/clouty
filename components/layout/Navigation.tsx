@@ -82,22 +82,22 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
                   {/* <a href='/signup' className={`${styles.navigationLink}`}>
               <li className='mr2 mr4-ns'>Sign up </li>
             </a> */}
-                  <li className='mr2 mr4-ns underline-hover'>
+                  <li className='nav-item'>
                     <Link href='/login'>
-                      <a href='/login' className={`${navLinks}`}>
+                      <a href='/login' className='nav-link'>
                         Login
                       </a>
                     </Link>
                   </li>
+                  <li className='nav-item'>
+                    <a
+                      className='nav-link btn btn-sm btn-dark py-1 px-4 text-white mt-2'
+                      href='/signup'>
+                      Sign Up
+                    </a>
+                  </li>
                 </>
               )}
-              <li className='nav-item' id='signup'>
-                <a
-                  className='nav-link btn btn-sm btn-outline-success text-white'
-                  href='/signup'>
-                  Sign Up
-                </a>
-              </li>
             </ul>
           </div>
         </nav>

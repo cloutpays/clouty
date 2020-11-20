@@ -130,7 +130,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                       First Name
                     </label>
                     <input
-                      className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                      className='form-control'
                       type='name'
                       value={firstName}
                       onChange={(event) =>
@@ -143,7 +143,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                       Last Name
                     </label>
                     <input
-                      className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                      className='form-control'
                       type='name'
                       value={lastName}
                       onChange={(event) =>
@@ -157,7 +157,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                     User Name
                   </label>
                   <input
-                    className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                    className='form-control'
                     onChange={(event) => setUserName(event.currentTarget.value)}
                     value={userName}
                     placeholder='@ '
@@ -168,7 +168,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                     Phone Number
                   </label>
                   <Cleave
-                    className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                    className='form-control'
                     onChange={(event) =>
                       setPhoneNumber(event.currentTarget.value)
                     }
@@ -185,7 +185,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                 Email
               </label>
               <input
-                className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                className='form-control'
                 type='email'
                 value={email}
                 onChange={(event) => {
@@ -202,7 +202,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                 Password
               </label>
               <input
-                className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                className='form-control'
                 type='password'
                 value={password}
                 onChange={(event) => setPassword(event.currentTarget.value)}
