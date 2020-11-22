@@ -97,7 +97,6 @@ export const spotifyRefreshApi = wrapAsync(async (req, db) => {
           };
         })
         .slice(0, 12);
-      console.log(album, 'uo');
     })
     .catch((err) => {
       console.log('err', err);
