@@ -69,6 +69,11 @@
       "dest": "server/handlers/post.js"
     },
     {
+      "src": "/api/spotifyRefresh",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
       "src": "/api/users",
       "methods": ["GET"],
       "dest": "server/handlers/get.js"
@@ -170,12 +175,14 @@
       "STRIPE_CLIENT_PROD": "@stripe-client-prod",
       "STRIPE_SECRET_PROD": "@stripe-secret-prod",
       "NODEMAILER": "@nodemailer",
-      "SPOTIFY": "@spotify"
+      "SPOTIFY_CLIENT_ID": "@spotify-client-id",
+      "SPOTIFY_CLIENT_SECRET": "@spotify-client-secret"
     }
   },
   "env": {
     "TWILIO_SID": "@twilio-sid",
-    "SPOTIFY": "@spotify",
+    "SPOTIFY_CLIENT_ID": "@spotify-client-id",
+    "SPOTIFY_CLIENT_SECRET": "@spotify-client-secret",
     "TWILIO_TOKEN": "@twilio-token",
     "MONGO": "@mongo",
     "FIREBASE_API_KEY": "@firebase-api-key",
