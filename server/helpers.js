@@ -1,17 +1,20 @@
-import axios from 'axios';
-const querystring = require('querystring');
 const connect = require('./helpers/db');
 const cors = require('micro-cors')();
+const SpotifyWebApi = require('spotify-web-api-node');
+var spotifyFetchApi = new SpotifyWebApi({
+  clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+});
+
 const nodemailer = require('nodemailer');
 const client = require('twilio')(
   process.env.TWILIO_SID,
   process.env.TWILIO_TOKEN,
 );
-export const dev =
-  process.env.ENV === 'development' || process.env.NODE_ENV === 'development';
 
-export const staging = process.env.ENV === 'staging';
+export const dev = false;
 
+export const staging = true;
 export const question = dev
   ? 'question_dev'
   : staging
@@ -38,10 +41,14 @@ export const balance = dev
   : staging
   ? 'balance_staging'
   : 'balance_prod';
-export const stripeSecret =
-  dev || staging
-    ? process.env.STRIPE_SECRET_DEV
-    : process.env.STRIPE_SECRET_PROD;
+export const spotify = dev
+  ? 'spotify_dev'
+  : staging
+  ? 'spotify_staging'
+  : 'spotify_prod';
+export const stripeSecret = dev
+  ? process.env.STRIPE_SECRET_DEV
+  : process.env.STRIPE_SECRET_PROD;
 
 export const wrapAsync = (handler) => async (req, res) => {
   const db = await connect();
@@ -58,50 +65,58 @@ export const wrapAsync = (handler) => async (req, res) => {
   );
 };
 
-export const spotifyApi = wrapAsync(async (req, db) => {
-  const access = (
-    await db
-      .collection('access')
-      .find()
-      .toArray()
-  )[0];
-  if (new Date(access.expires) > new Date()) {
-    return {
-      access_token: access.access_token,
-    };
-  }
-  return await axios
-    .post(
-      'https://accounts.spotify.com/api/token',
-      querystring.stringify({ grant_type: 'client_credentials' }),
-
-      {
-        headers: {
-          Authorization: `Basic ${new Buffer.from(process.env.SPOTIFY).toString(
-            'base64',
-          )}`,
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      },
-    )
-    .then(async (res) => {
-      console.log('yo', res.data);
-      let date = new Date();
-      date.setSeconds(date.getSeconds() + 3600);
-
-      await db.collection('access').updateOne(
-        {},
-        {
-          $set: {
-            access_token: res.data.access_token,
-            expires: new Date(date),
-          },
-        },
+export const spotifyRefreshApi = wrapAsync(async (req, db) => {
+  await spotifyFetchApi
+    .clientCredentialsGrant()
+    .then(function(result) {
+      console.log(
+        'It worked! Your access token is: ' + result.body.access_token,
       );
+      spotifyFetchApi.setAccessToken(result.body.access_token);
     })
-    .catch((err) => {
+    .catch(function(err) {
+      console.log(
+        'If this is printed, it probably means that you used invalid ' +
+          'clientId and clientSecret values. Please check!',
+      );
+      console.log('Hint: ');
       console.log(err);
     });
+  let album;
+  await spotifyFetchApi
+    .getPlaylist('37i9dQZF1DX0XUsuxWHRQd')
+    .then((data) => {
+      album = data.body.tracks.items
+        .map((curr) => {
+          console.log(curr);
+          return {
+            artist: curr.track.artists[0].name,
+            image: curr.track.album.images[0].url,
+            album: curr.track.name,
+            spotify: curr.track.external_urls.spotify,
+          };
+        })
+        .slice(0, 12);
+    })
+    .catch((err) => {
+      console.log('err', err);
+    });
+  console.log(album);
+  return await db.collection('spotify').updateOne(
+    {},
+    {
+      $set: {
+        project: album,
+      },
+    },
+    { upsert: true, returnOriginal: false },
+  );
+});
+export const spotifyApi = wrapAsync(async (req, db) => {
+  return await db
+    .collection('spotify')
+    .find()
+    .toArray();
 });
 export const dbRefresh = wrapAsync(async (req, db) => {
   const usersProd = await db

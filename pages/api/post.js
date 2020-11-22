@@ -1,6 +1,6 @@
 // Local dependencies
-const { handleErrors } = require('../helpers/error');
-const { dbRefresh } = require('../helpers');
+const { handleErrors } = require('../../server/helpers/error');
+const { dbRefresh } = require('../../server/helpers');
 const {
   gameSubmitApi,
   questionSubmitApi,
@@ -8,11 +8,14 @@ const {
   questionCloseApi,
   winBetApi,
   loseBetApi,
-} = require('../helpers/game');
-const { userApi } = require('../helpers/user');
+} = require('../../server/helpers/game');
+const { userApi } = require('../../server/helpers/user');
 const { send } = require('micro');
-const { hookApi, payoutApi, setCreditApi } = require('../helpers/stripe');
-const { spotifyApi, spotifyRefreshApi } = require('../helpers');
+const {
+  hookApi,
+  payoutApi,
+  setCreditApi,
+} = require('../../server/helpers/stripe');
 
 const postApi = (fn) => async (req, res) => {
   try {
@@ -32,10 +35,6 @@ const postApi = (fn) => async (req, res) => {
         return await fn(setCreditApi(req, res));
       case 'api/user':
         return await fn(userApi(req, res));
-      case 'api/spotify':
-        return await fn(spotifyApi(req, res));
-      case 'api/spotifyRefresh':
-        return await fn(spotifyRefreshApi(req, res));
       case 'api/winBet':
         return await fn(winBetApi(req, res));
       case 'api/loseBet':
