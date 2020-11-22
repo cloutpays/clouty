@@ -1,5 +1,5 @@
 // Local dependencies
-const { handleErrors } = require('../../helpers/error');
+const { handleErrors } = require('../../server/error');
 const { dbRefresh } = require('../../server/helpers');
 const {
   gameSubmitApi,
