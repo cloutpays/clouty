@@ -14,7 +14,7 @@ const client = require('twilio')(
 
 export const dev = false;
 
-export const staging = true;
+export const staging = false;
 export const question = dev
   ? 'question_dev'
   : staging
