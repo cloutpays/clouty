@@ -1,7 +1,7 @@
 const { send } = require('micro');
 
 // Error handling
-const handleErrors = fn => async (req, res) => {
+export const handleErrors = (fn) => async (req, res) => {
   try {
     return await fn(req, res);
   } catch (err) {
@@ -10,8 +10,4 @@ const handleErrors = fn => async (req, res) => {
     console.error(err);
     return send(res, statusCode, message);
   }
-};
-
-module.exports = {
-  handleErrors,
 };

@@ -8,10 +8,14 @@ const {
   questionCloseApi,
   winBetApi,
   loseBetApi,
-} = require('../../helpers/game');
-const { userApi } = require('../../helpers/user');
+} = require('../../server/helpers/game');
+const { userApi } = require('../../server/helpers/user');
 const { send } = require('micro');
-const { hookApi, payoutApi, setCreditApi } = require('../../helpers/stripe');
+const {
+  hookApi,
+  payoutApi,
+  setCreditApi,
+} = require('../../server/helpers/stripe');
 
 const postApi = (fn) => async (req, res) => {
   try {

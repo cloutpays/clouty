@@ -12,9 +12,9 @@ const client = require('twilio')(
   process.env.TWILIO_TOKEN,
 );
 
-const dev = false;
+export const dev = false;
 
-const staging = true;
+export const staging = true;
 export const question = dev
   ? 'question_dev'
   : staging
