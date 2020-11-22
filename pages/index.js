@@ -5,12 +5,10 @@ import DisclaimerModal from '../components/DisclaimerModal';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
-import SpotifyWebApi from 'spotify-web-api-node';
 import Wrapper from '../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
 import classnames from 'classnames';
-var spotifyApi = new SpotifyWebApi();
 const data = {
   description: 'Make money while putting your intuition on the line.',
   header: `Welcome to Clouty`,
@@ -187,32 +185,14 @@ Home.getInitialProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
   const res = await axios.get(`${apiURL}/api/questions`);
-  const spotifyRefreshToken = await axios.post(`${apiURL}/api/spotify`);
+  const projects = await axios.post(`${apiURL}/api/spotify`);
   const questions = res.data;
   const darkMode = getCookie('dark_mode', req) === 'true';
   const loggedIn = getCookie('id_token', req) ? true : false;
-  spotifyApi.setAccessToken(spotifyRefreshToken.data.access_token);
-  let album = [];
-  await spotifyApi.getPlaylist('37i9dQZF1DX0XUsuxWHRQd').then(
-    function(data) {
-      album = data.body.tracks.items
-        .map((curr) => {
-          return {
-            artist: curr.track.artists[0].name,
-            image: curr.track.album.images[0].url,
-            album: curr.track.name,
-            spotify: curr.track.external_urls.spotify,
-          };
-        })
-        .slice(0, 12);
-    },
-    function(err) {
-      console.error(err);
-    },
-  );
+
   return {
     questions,
-    album,
+    album: projects.data[0].projects,
     darkMode,
     loggedIn,
   };
