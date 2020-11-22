@@ -192,7 +192,7 @@ Home.getInitialProps = async ({ req }) => {
 
   return {
     questions,
-    album: projects.data[0].projects,
+    album: projects.data[0].project,
     darkMode,
     loggedIn,
   };
