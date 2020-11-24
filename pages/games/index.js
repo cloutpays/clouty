@@ -39,92 +39,6 @@ const Games = ({ questions }) => {
               <div className='col-md-12 text-center'>
                 <p className='text-dark'>Our Active Bets</p>
               </div>
-              {/* <div className='col-md-6'>
-                <div className='card'>
-                  <div className='card-body'>
-                    <p className='game-id'>Game #44</p>
-                    <h2 className='game-title'>
-                      #Verzuz to Return With Gucci Mane vs. Jeezy
-                    </h2>
-                    <p className='game-des'>
-                      Wager on who you think the winner will be when Jeezy and
-                      Gucci Mane pit their catalogs of hits head-to-head.
-                    </p>
-                    <button type='submit' className='btn btn-outline-default'>
-                      Place Your Bet
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className='col-md-6'>
-                <div className='card'>
-                  <div className='card-body'>
-                    <p className='game-id'>Game #44</p>
-                    <h2 className='game-title'>
-                      #Verzuz to Return With Gucci Mane vs. Jeezy
-                    </h2>
-                    <p className='game-des'>
-                      Wager on who you think the winner will be when Jeezy and
-                      Gucci Mane pit their catalogs of hits head-to-head.
-                    </p>
-                    <button type='submit' className='btn btn-outline-default'>
-                      Place Your Bet
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className='col-md-6'>
-                <div className='card'>
-                  <div className='card-body'>
-                    <p className='game-id'>Game #44</p>
-                    <h2 className='game-title'>
-                      #Verzuz to Return With Gucci Mane vs. Jeezy
-                    </h2>
-                    <p className='game-des'>
-                      Wager on who you think the winner will be when Jeezy and
-                      Gucci Mane pit their catalogs of hits head-to-head.
-                    </p>
-                    <button type='submit' className='btn btn-outline-default'>
-                      Place Your Bet
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className='col-md-6'>
-                <div className='card'>
-                  <div className='card-body'>
-                    <p className='game-id'>Game #44</p>
-                    <h2 className='game-title'>
-                      #Verzuz to Return With Gucci Mane vs. Jeezy
-                    </h2>
-                    <p className='game-des'>
-                      Wager on who you think the winner will be when Jeezy and
-                      Gucci Mane pit their catalogs of hits head-to-head.
-                    </p>
-                    <button type='submit' className='btn btn-outline-default'>
-                      Place Your Bet
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className='col-md-6'>
-                <div className='card'>
-                  <div className='card-body'>
-                    <p className='game-id'>Game #44</p>
-                    <h2 className='game-title'>
-                      #Verzuz to Return With Gucci Mane vs. Jeezy
-                    </h2>
-                    <p className='game-des'>
-                      Wager on who you think the winner will be when Jeezy and
-                      Gucci Mane pit their catalogs of hits head-to-head.
-                    </p>
-                    <button type='submit' className='btn btn-outline-default'>
-                      Place Your Bet
-                    </button>
-                  </div>
-                </div>
-              </div>
-             */}
               {questions
                 .sort(sortGames)
                 .filter((curr, ind) => ind !== 13)
@@ -137,23 +51,23 @@ const Games = ({ questions }) => {
                     : 'See Results';
                   const activeLink = `/games/${game.slug}`;
                   return (
-                    <a key={activeLink} href={activeLink}>
-                      <div className='col-md-6'>
-                        <div className='card'>
-                          <div className='card-body'>
-                            <p className='game-id'>{`Game #${game.question}`}</p>
-                            <h2 className='game-title'>{game.title}</h2>
-                            <p className='game-des'>{game.description}</p>
-                            <p className='game-des'>{game.details}</p>
+                    <div key={activeLink} className='col-md-6'>
+                      <div className='card'>
+                        <div className='card-body'>
+                          <p className='game-id'>{`Game #${game.question}`}</p>
+                          <h2 className='game-title'>{game.title}</h2>
+                          <p className='game-des'>{game.description}</p>
+                          <p className='game-des'>{game.details}</p>
+                          <a href={activeLink}>
                             <button
                               type='submit'
                               className='btn btn-outline-default'>
                               {gameButtonText}
                             </button>
-                          </div>
+                          </a>
                         </div>
                       </div>
-                    </a>
+                    </div>
                   );
                 })
                 .reverse()}
