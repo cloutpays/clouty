@@ -45,6 +45,7 @@ interface GameProps {
   number: string;
   answer: string;
   class: string;
+  title: string;
   details: string;
   extendedAnswer: string;
   gameType: string;
@@ -52,13 +53,13 @@ interface GameProps {
   game: GameProps;
 }
 interface CreateGameFormProps {
-  title: string;
   houseBalance: number;
   options: Option[];
   description: string;
   emoji: string;
   showEmojiKeyboard: boolean;
   gameType: string;
+  title: string;
   slug: string;
   extendedAnswer: string;
   number: string;
@@ -82,6 +83,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     game ? game.description : '',
   );
   const [emoji, setEmoji] = useState<any>(game ? game.emoji : '🏆');
+  const [title, setTitle] = useState<any>(game ? game.title : '');
   const [answer, setAnswer] = useState<any>(game ? game.answer : '');
   const [extendedAnswer, setExtendedAnswer] = useState<any>(
     game ? game.answer : '',
@@ -113,6 +115,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     emoji: emoji.native ? emoji.native : emoji,
     options,
     slug,
+    title,
     class: colorway,
     answer,
     extendedAnswer,
@@ -130,6 +133,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
       answer,
       details,
       gameType,
+      title,
       slug,
       date: new Date(),
       extendedAnswer: answer,
@@ -262,6 +266,17 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                     Fill In The Blank
                   </span>
                 )}
+              </div>
+              <div className='mt3'>
+                <label className='db fw4 lh-copy f6'>Game Title</label>
+                <textarea
+                  id='comment'
+                  name='comment'
+                  className='db h3 border-box hover-black w-100 measure ba b--black pa2 br2 mb2'
+                  aria-describedby='comment-desc'
+                  value={title}
+                  onChange={(event) => setTitle(event.currentTarget.value)}
+                />
               </div>
               <div className='mt3'>
                 <label className='db fw4 lh-copy f6' htmlFor='email-address'>
