@@ -59,6 +59,15 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
               </li>
             </ul>
             <ul className='navbar-nav my-2 my-lg-0'>
+              {isLoggedIn && isAdmin && (
+                <li className='mr2 mr4-ns underline-hover'>
+                  <Link href='/dashboard'>
+                    <a href='/dashboard' className={navLinks}>
+                      Admin
+                    </a>
+                  </Link>
+                </li>
+              )}
               {isLoggedIn && (
                 <>
                   <li className='mr2 mr4-ns underline-hover'>
@@ -83,11 +92,9 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
               <li className='mr2 mr4-ns'>Sign up </li>
             </a> */}
                   <li className='nav-item'>
-                    <Link href='/login'>
-                      <a href='/login' className='nav-link'>
-                        Login
-                      </a>
-                    </Link>
+                    <a href='/login' className='nav-link'>
+                      Login
+                    </a>
                   </li>
                   <li className='nav-item'>
                     <a
