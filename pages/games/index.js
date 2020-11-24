@@ -1,5 +1,4 @@
 import { sortGames } from '../../lib/helpers';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../../components/layout/Wrapper';
@@ -40,7 +39,7 @@ const Games = ({ questions }) => {
               <div className='col-md-12 text-center'>
                 <p className='text-dark'>Our Active Bets</p>
               </div>
-              <div className='col-md-6'>
+              {/* <div className='col-md-6'>
                 <div className='card'>
                   <div className='card-body'>
                     <p className='game-id'>Game #44</p>
@@ -125,9 +124,11 @@ const Games = ({ questions }) => {
                   </div>
                 </div>
               </div>
+             */}
               {questions
                 .sort(sortGames)
-                .map((game, ind) => {
+                .filter((curr, ind) => ind !== 13)
+                .map((game) => {
                   const gameClosed = new Date(game.endDate) < new Date();
                   const gameButtonText = !game.answer
                     ? gameClosed
@@ -136,7 +137,7 @@ const Games = ({ questions }) => {
                     : 'See Results';
                   const activeLink = `/games/${game.slug}`;
                   return (
-                    <Link key={game.title} to={activeLink}>
+                    <a key={activeLink} href={activeLink}>
                       <div className='col-md-6'>
                         <div className='card'>
                           <div className='card-body'>
@@ -152,29 +153,7 @@ const Games = ({ questions }) => {
                           </div>
                         </div>
                       </div>
-                      {ind === 13 && (
-                        <div key='contact' className='pv2 pa2-ns w-100 w-50-ns'>
-                          <Link href='/grammys'>
-                            <a href='/grammys' className='no-underline'>
-                              <div className='white br2 shadow-4 grow pa3 pa4-ns h-100 grammy'>
-                                <h1 className='f4 mt0 fw7'>
-                                  <span role='img' aria-label='User Submission'>
-                                    🏆
-                                  </span>{' '}
-                                  2020 Grammy Awards
-                                </h1>
-                                <p>Check out our bets for the 62nd Grammy’s!</p>
-                                <p>Click to enter and see who won </p>
-                                <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                                  View Results
-                                  <span className='pl1 sans-serif'>→</span>
-                                </span>
-                              </div>
-                            </a>
-                          </Link>
-                        </div>
-                      )}
-                    </Link>
+                    </a>
                   );
                 })
                 .reverse()}
