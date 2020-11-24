@@ -1,21 +1,14 @@
-import classNames from 'classnames';
 import React from 'react';
-import { styles } from '../../constants/styles';
-import { getCurrentYear } from '../../lib/helpers';
-// import { setCookie } from '../../lib/session';
 
 interface DarkModeProps {
   darkMode: boolean;
 }
-const Footer: React.FC<DarkModeProps> = ({ darkMode }) => {
+const Footer: React.FC<DarkModeProps> = () => {
   // const setDarkMode = () => {
   //   setCookie('dark_mode', !darkMode);
   //   window.location.href = '/';
   // };
-  const navLinks = ` ${styles.navigationLink} ${classNames({
-    'near-white': !darkMode,
-    'near-black': darkMode,
-  })}`;
+
   return (
     <footer id='footer' className='footer-1'>
       <div className='main-footer widgets-dark typo-light'>
