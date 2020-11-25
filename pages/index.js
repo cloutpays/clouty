@@ -20,7 +20,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
       <Wrapper data={data}>
         <div className='container'>
           <div className='row'>
-            <div className='col-md-6'>
+            <div className='col-md-7'>
               <div className='banner-content'>
                 <p>Welcome to Clouty</p>
                 <h1>The 🌎's first music betting platform.</h1>
@@ -37,13 +37,26 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
               </div>
             </div>
           </div>
+          <div className='row'>
+            <div className='col-md-12'>
+              adadaWDAD
+              <img
+                  className='background-banner-image'
+                  src='/static/img/new/banner-right-mobile.jpg'
+              />
+              <img
+                  className='background-mobile-image'
+                  src='/static/img/new/mobile-frame.png'
+              />
+            </div>
+          </div>
           <img
-            className='background-banner-image'
+            className='background-banner-image d-none d-sm-none d-md-block'
             src='/static/img/new/banner-right.jpg'
             width='528'
           />
           <img
-            className='background-mobile-image'
+            className='background-mobile-image d-none d-sm-none d-md-block'
             src='/static/img/new/mobile-frame.png'
           />
         </div>

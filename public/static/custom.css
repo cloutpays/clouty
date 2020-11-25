@@ -3,6 +3,7 @@ body {
     overflow-x: hidden;
 }
 
+/* web screen custom css start */
 .navbar {
     font-size: 18px;
     z-index: 9999;
@@ -27,21 +28,21 @@ body {
     position: absolute;
     right: 0;
     top: 0;
-    height: 700px;
-    width: 528px;
+    height: 900px;
+    width: 400px;
     opacity: 0.8;
 }
 
 .background-mobile-image {
     position: absolute;
-    right: 26vw;
+    right: 14vw;
     top: 17vh;
-    width: 340px
+    width: 365px
 
 }
 
 .banner-content {
-    padding: 10rem 0;
+    padding: 8rem 0;
 }
 
 .banner-content p {
@@ -50,7 +51,7 @@ body {
 }
 
 .banner-content h1 {
-    font-size: 50px;
+    font-size: 60px;
     font-weight: 700;
 }
 
@@ -603,4 +604,13 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     color: #ffffff;
     margin-top: 1.5rem;
     border: 0;
+}
+/* web screen custom css end */
+
+
+
+/* small screen custom css start*/
+
+@media screen and (max-width: 480px) {
+
 }
