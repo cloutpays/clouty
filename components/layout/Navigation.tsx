@@ -28,7 +28,10 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
       <section className='top-banner'>
         <nav className='navbar navbar-expand-lg navbar-light bg-light'>
           <a className='navbar-brand' href='/'>
-            Clouty
+            <img
+              height='50'
+              src='/static/img/new/logo-mobile.png'
+            />
           </a>
           <button
             className='navbar-toggler'

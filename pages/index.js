@@ -34,26 +34,29 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                 <a href='/signup'>
                   <button className='btn btn-default'>Sign Up</button>
                 </a>
+                <a href='/signup'>
+                  <button className='btn btn-default login-mobile'>Log In</button>
+                </a>
               </div>
             </div>
           </div>
-          <div className='row'>
-            <div className='col-md-12'>
-              adadaWDAD
-              <img
-                  className='background-banner-image'
-                  src='/static/img/new/banner-right-mobile.jpg'
-              />
-              <img
-                  className='background-mobile-image'
-                  src='/static/img/new/mobile-frame.png'
-              />
+          <section className='top-banner-right-mobile'>
+            <div className='row'>
+              <div className='col-md-12'>
+                <img
+                    className='background-banner-image-mobile'
+                    src='/static/img/new/banner-right-mobile.jpg'
+                />
+                <img
+                    className='background-mobile-image-mobile'
+                    src='/static/img/new/mobile-frame.png'
+                />
+              </div>
             </div>
-          </div>
+          </section>
           <img
             className='background-banner-image d-none d-sm-none d-md-block'
             src='/static/img/new/banner-right.jpg'
-            width='528'
           />
           <img
             className='background-mobile-image d-none d-sm-none d-md-block'
@@ -63,23 +66,34 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
         <section>
           <section>
             <div className='row'>
-              <div className='col-md-4 p-0'>
+              <div className='col-md-4 p-0 album-over-order-sm-2'>
                 <img
+                    className='album-cover-image'
                   src='/static/img/new/album-cover.jpg'
-                  width='100%'
-                  height='300'
                 />
-              </div>
-              <div className='col-md-8 p-0'>
-                <div className='album-cover'>
-                  <p>This Week's Featured Bet</p>
-                  <h3>#Verzuz to return with Gucci Mane vs. Jeezy</h3>
+                <div className='bet-button-group-mobile'>
                   <button className='btn btn-default bet-now mr-3'>
                     Bet Now
                   </button>
-                  <button className='btn btn-default all-bet'>
-                    View All Bets
+                  <button className='btn btn-default read-more'>
+                    Read More
                   </button>
+                </div>
+              </div>
+              <div className='col-md-8 p-0 album-over-order-sm-1'>
+                <div className='album-cover'>
+                  <div className='album-cover-content'>
+                    <p>This Week's Featured Bet</p>
+                    <h3>#Verzuz returns with Gucci Mane vs. Jeezy Battle</h3>
+                    <div className='bet-button-group'>
+                      <button className='btn btn-default bet-now mr-3'>
+                        Bet Now
+                      </button>
+                      <button className='btn btn-default all-bet'>
+                        View All Bets
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -89,9 +103,9 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
               <div className='col-md-12 text-center'>
                 <h5>Places we've been featured</h5>
                 <div className='places-featured-images'>
-                  <img src='/static/img/new/bleacher.png' />
-                  <img src='/static/img/new/featured-image1.png' />
-                  <img src='/static/img/new/insider.png' />
+                  <img src='/static/img/new/bleacher-logo.png' />
+                  <img src='/static/img/new/musically-logo.png' />
+                  <img src='/static/img/new/insider-logo.png' />
                 </div>
               </div>
             </div>
@@ -128,7 +142,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                   <div className='fav-artist-content'>
                     <p>Types Of Betting</p>
                     <h1>How it works</h1>
-                    <div>
+                    <div  className='text-left'>
                       <span>
                         For an artist to qualify for one of our contests, their
                         music must be on either the Big 3: Apple Music, Spotify,

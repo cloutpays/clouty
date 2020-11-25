@@ -26,18 +26,12 @@ const Footer: React.FC<DarkModeProps> = () => {
                 </p>
                 <div className='input-group mb-3'>
                   <input
-                    style={{
-                      color: 'black',
-                      background: '#111111 0% 0% no-repeat paddinBox',
-                      opacity: 0.15,
-                    }}
                     type='text'
-                    className='form-control'
+                    className='form-control footer-input'
                   />
                   <div className='input-group-append'>
                     <span
-                      style={{ background: '#692699' }}
-                      className='text-white input-group-text'>
+                      className='text-white input-group-text submit-btn-footer'>
                       {' '}
                       Submit{' '}
                     </span>
@@ -65,7 +59,7 @@ const Footer: React.FC<DarkModeProps> = () => {
                 </ul>
               </div>
             </div>
-            <div className='col-xs-12 col-sm-6 col-md-2'>
+            <div className='col-sm-6 col-md-2 col-6'>
               <div className='widget no-box'>
                 <ul className='thumbnail-widget'>
                   <li>
@@ -96,7 +90,7 @@ const Footer: React.FC<DarkModeProps> = () => {
                 </ul>
               </div>
             </div>
-            <div className='col-xs-12 col-sm-6 col-md-2'>
+            <div className='col-sm-6 col-md-2 col-6'>
               <div className='widget no-box'>
                 <ul className='thumbnail-widget'>
                   <li>
@@ -126,12 +120,12 @@ const Footer: React.FC<DarkModeProps> = () => {
             </div>
 
             <div className='col-xs-12 col-sm-6 col-md-2'>
-              <div className='widget no-box'>
-                <h5 className='widget-title mt-3'>
-                  Logo
-                  <span />
-                </h5>
-                <p>© Clouty 2020 Packaged with care.</p>
+              <div className='widget no-box flex justify-between'>
+                <img
+                  height='80'
+                  src='/static/img/new/footer-logo-transparent.png'
+                />
+                <p className='pt-4 pl-5 footer-copyright-content'>© Clouty 2020 Packaged with care.</p>
               </div>
             </div>
           </div>
