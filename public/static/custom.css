@@ -85,6 +85,7 @@ body {
     opacity: 1;
     color: #ffffff;
     margin-top: 1.5rem;
+    border: 0;
 }
 
 .banner-content button:hover {
@@ -140,6 +141,64 @@ body {
 
 .about-cover .bet-button-group {
     display: block;
+}
+
+.login-banner-content {
+    padding: 0.5vw 13vw 3vw 0 !important;
+}
+
+.login-banner-content p {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.login-banner-content h1 {
+    font-size: 4.5vw;
+    font-weight: 700;
+    letter-spacing: -2.25px;
+}
+
+.login-banner-content span {
+    font-size: 15px;
+}
+
+.login-background-banner-image {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: auto;
+    width: 27.3vw;
+    opacity: 1;
+}
+
+.login-banner-content input{
+    color: #000;
+    background: #E9E9E9;
+}
+
+.login-banner-content input:focus{
+    color: #000 !important;
+    background: #E9E9E9;
+    opacity: .8;
+}
+
+.login-banner-content button {
+    background: #692699 0% 0% no-repeat padding-box;
+    box-shadow: 0px 8px 24px #6926994D;
+    border-radius: 4px;
+    opacity: 1;
+    color: #ffffff;
+    margin-top: 1.5rem;
+    border: 0;
+}
+
+.login-banner-content button:hover {
+    background: #111111 0% 0% no-repeat padding-box;
+    box-shadow: 0px 16px 24px #69269933;
+    border-radius: 4px;
+    opacity: 1;
+    color: #ffffff;
+    margin-top: 1.5rem;
 }
 
 .album-cover .all-bet {
@@ -650,6 +709,10 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     display: none;
 }
 
+.login-top-banner-right-mobile {
+    display: none;
+}
+
 .banner-content .login-mobile {
     display: none;
 }
@@ -698,6 +761,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 /* small screen custom css start*/
 
 @media screen and (max-width: 480px) {
+    /*    Home page mobile start   */
     .background-banner-image-mobile {
         position: relative;
         right: 0;
@@ -736,6 +800,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
         text-align: center;
         padding: .8rem;
         font-size: 18px;
+        border: 0;
     }
 
     .banner-content .login-mobile {
@@ -960,5 +1025,21 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
         font-size: 18px;
         background: #692699;
         border: 0;
+    }
+/*    Home page mobile end   */
+
+    /* Login page mobile start*/
+
+    .login-content-mobile {
+        padding: 0 !important;
+    }
+
+    .login-banner-content h1 {
+        font-size: 45px;
+    }
+
+    .login-top-banner-right-mobile {
+        display: block;
+        margin-bottom: 0vw;
     }
 }

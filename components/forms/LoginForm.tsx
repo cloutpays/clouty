@@ -231,7 +231,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                 <a href='/login' className='f5 link dim black db'>
                   Already have an account?{' '}
                   <span className='fw5 link no-underline bb bw1 dim '>
-                    Sign in
+                    Sign In
                   </span>
                 </a>
               </div>
@@ -248,17 +248,17 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           <div className='lh-copy mt3'>
             {!signUp && (
               <div>
-                <a href='/signup' className='f5 link dim black db'>
-                  Don't have an account?{' '}
-                  <span className='fw5 link no-underline bb bw1 dim '>
-                    Sign Up
-                  </span>
-                </a>
                 <Link href='/user/pw-forget'>
                   <a className='fw5 link f5 bb bw1 dim black'>
                     Forgot password?
                   </a>
                 </Link>
+                <a href='/signup' className='f5 link dim black db mt-3'>
+                  Don't have an account?{' '}
+                  <span className='fw5 link no-underline bb bw1 dim '>
+                    Sign Up
+                  </span>
+                </a>
               </div>
             )}
           </div>
