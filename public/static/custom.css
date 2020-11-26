@@ -21,28 +21,46 @@ body {
 }
 
 .bg-light {
-    background-color: #ffffff00!important;
+    background-color: #ffffff00 !important;
+}
+
+.logo-mobile {
+    display: none;
+}
+
+.logo-web {
+    display: block;
+    width: 6vw;
+    height: auto;
 }
 
 .background-banner-image {
     position: absolute;
     right: 0;
     top: 0;
-    height: 900px;
-    width: 400px;
-    opacity: 0.8;
+    height: auto;
+    width: 30vw;
+    opacity: 1;
 }
 
 .background-mobile-image {
     position: absolute;
     right: 14vw;
-    top: 17vh;
-    width: 365px
+    top: 9vw;
+    width: 28vw;
 
 }
 
 .banner-content {
-    padding: 8rem 0;
+    padding: 8.5vw 0 13vw 0;
+}
+
+.banner-line-vertical {
+    height: 61.5vw;
+    position: absolute;
+    right: 30vw;
+    top: 0;
+    width: 3vw;
 }
 
 .banner-content p {
@@ -51,8 +69,9 @@ body {
 }
 
 .banner-content h1 {
-    font-size: 60px;
+    font-size: 4.5vw;
     font-weight: 700;
+    letter-spacing: -2.25px;
 }
 
 .banner-content span {
@@ -78,7 +97,7 @@ body {
 }
 
 .album-cover {
-    padding: 8.5rem 5rem;
+    padding: 10vw 18vw 0 9vw;
     background: #E9E9E9 0% 0% no-repeat padding-box;
     opacity: 1;
     height: 100%;
@@ -98,7 +117,7 @@ body {
     letter-spacing: -1.5px;
     color: #111111;
     opacity: 1;
-    font-size: 35px;
+    font-size: 3vw;
 }
 
 .album-cover .bet-now {
@@ -171,8 +190,9 @@ body {
 }
 
 .fav-artist-content h1 {
-    font-size: 50px;
+    font-size: 4vw;
     font-weight: 700;
+    letter-spacing: -2.25px;
 }
 
 .fav-artist-content span {
@@ -201,11 +221,11 @@ body {
     position: relative;
 }
 
-.fav-artist img{
+.fav-artist img {
     position: absolute;
     right: 0;
-    width: 45%;
-    height: 605px;
+    width: 39vw;
+    height: 55vw;
 }
 
 /*home page services start */
@@ -226,6 +246,17 @@ body {
     background: #EFE8F4;
     border-radius: 4px;
     opacity: 1;
+    min-height: 100%;
+    cursor: pointer;
+}
+
+.section-services .single-service:hover {
+    box-shadow: 0px 24px 32px #69269933;
+}
+
+.section-services .single-service:hover .part-1 > a,
+.section-services .single-service:hover .part-1 .title {
+    color: #692699 !important;
 }
 
 .section-services .single-service .part-1 {
@@ -254,6 +285,7 @@ body {
     letter-spacing: 0px;
     color: #111111;
     opacity: 1;
+    font-size: 15px;
 }
 
 .section-services .single-service .part-1 a {
@@ -262,6 +294,7 @@ body {
     color: #111111;
     opacity: 1;
     font-size: 15px;
+    font-weight: bold;
 }
 
 .section-services .col-md-4, .col-lg-3 {
@@ -326,11 +359,11 @@ footer .fa {
 .widget-title.text-center span,.widget-title.text-center span::after {margin-left: auto;margin-right:auto;left: 0;right: 0;}
 .widget .badge{	float: right;	background: #7f7f7f;}
 .widget.no-box ul li {
- list-style-type: none;
+ list-style-type: none
 }
 
 .widget.no-box ul {
-    line-height: 2;
+    line-height: 1.5;
 }
 .typo-light h1,
 .typo-light h2,
@@ -383,6 +416,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 .about-banner-content h1 {
     font-size: 50px;
     font-weight: 700;
+    letter-spacing: -2.25px;
 }
 
 .about-banner-content span {
@@ -626,11 +660,37 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 }
 
 .footer-input {
-    color: #111111;
-    background: #ffffff;
-    opacity: 0.8;
-    border-radius: 8px 0 0 8px;
+    color: #000;
+    background: #bfbfbf;
+    border-radius: 8px !important;
+    padding: .6rem 5rem .6rem .6rem;
 }
+
+.footer-input:focus {
+    color: #000 !important;
+    background: #bfbfbf;
+    opacity: .8;
+}
+
+.submit-btn-footer {
+    background: #692699;
+    border: 0;
+    position: absolute;
+    right: 4px;
+    border-radius: .3rem;
+    top: 12%;
+    font-size: 15px;
+    z-index: 99999;
+}
+
+.bet-button-group-mobile {
+    display: none;
+}
+
+.footer-input-label {
+    font-size: 16px;
+}
+
 /* web screen custom css end */
 
 
@@ -751,9 +811,6 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 
     .bet-button-group-mobile {
         padding: 0 2rem;
-    }
-
-    .bet-button-group-mobile {
         display: block;
     }
 
@@ -788,6 +845,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     }
 
     .fav-artist-content h1 {
+        font-size: 50px;
         font-weight: 800;
     }
 
@@ -802,6 +860,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 
     .section-services .single-service {
         margin: 1rem 1.5rem;
+        min-height: auto;
     }
 
     .section-services .single-service img{
@@ -835,10 +894,15 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     }
 
     .submit-btn-footer {
-        background: #692699;
-        font-size: 20px;
-        border-radius: 0 8px 8px 0;
+        background: #fff;
         border: 0;
+        position: absolute;
+        right: 4px;
+        border-radius: .3rem !important;
+        top: 10%;
+        font-size: 16px;
+        color: #111 !important;
+        font-weight: bold;
     }
 
     .widget li a {
@@ -852,7 +916,49 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
         padding-left: 0 !important;
     }
 
+    .widget-footer {
+        display: flex;
+    }
+
     .footer-copyright-content {
-        font-size: 18px !important;
+        font-size: 24px !important;
+        padding: 0 0 0 3rem;
+    }
+
+    footer .fa {
+        font-size: 32px;
+    }
+
+    ul.social-footer2 li a {
+        width: 45px;
+    }
+
+    .logo-mobile {
+        display: block;
+    }
+
+    .logo-web {
+        display: none;
+    }
+
+    .navbar {
+        font-size: 39px;
+        z-index: 9999;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .bg-light {
+        background-color: #fff !important;
+    }
+
+    .navbar #nav-signup a{
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: .8rem !important;
+        font-size: 18px;
+        background: #692699;
+        border: 0;
     }
 }

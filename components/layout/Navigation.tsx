@@ -29,8 +29,14 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
         <nav className='navbar navbar-expand-lg navbar-light bg-light'>
           <a className='navbar-brand' href='/'>
             <img
+              className='logo-mobile'
               height='50'
               src='/static/img/new/logo-mobile.png'
+            />
+            <img
+              className='logo-web'
+              height='50'
+              src='/static/img/new/logo-web.png'
             />
           </a>
           <button
@@ -94,12 +100,12 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
                   {/* <a href='/signup' className={`${styles.navigationLink}`}>
               <li className='mr2 mr4-ns'>Sign up </li>
             </a> */}
-                  <li className='nav-item'>
+                  <li className='nav-item' id='nav-login'>
                     <a href='/login' className='nav-link'>
                       Login
                     </a>
                   </li>
-                  <li className='nav-item'>
+                  <li className='nav-item' id='nav-signup'>
                     <a
                       className='nav-link btn btn-sm btn-dark py-1 px-4 text-white mt-2'
                       href='/signup'>

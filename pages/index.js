@@ -42,8 +42,11 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
           </div>
           <section className='top-banner-right-mobile'>
             <div className='row'>
-              <div className='col-md-12'>
+              <div className='col-md-12 p-0'>
                 <img
+                    width='100%'
+                    src='/static/img/new/line-horizontal.jpg'
+                /><img
                     className='background-banner-image-mobile'
                     src='/static/img/new/banner-right-mobile.jpg'
                 />
@@ -54,6 +57,10 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
               </div>
             </div>
           </section>
+          <img
+              className='banner-line-vertical d-none d-sm-none d-md-block'
+              src='/static/img/new/line-vertical.jpg'
+          />
           <img
             className='background-banner-image d-none d-sm-none d-md-block'
             src='/static/img/new/banner-right.jpg'
@@ -117,7 +124,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                   <div className='fav-artist-content'>
                     <p>Bet On Your Favorite Artists</p>
                     <h1>Put your money where your ears are.</h1>
-                    <div>
+                    <div className='pr-md-5'>
                       <span>
                         Clouty is the first and only platform where you can
                         place bets and earn money on your favorite artists,

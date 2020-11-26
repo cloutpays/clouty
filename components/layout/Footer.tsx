@@ -24,6 +24,7 @@ const Footer: React.FC<DarkModeProps> = () => {
                   Be the first to find out about the latest bets when you sign
                   up for our newsletter. Short reads and no spam.
                 </p>
+                <label class='footer-input-label'>Email address</label>
                 <div className='input-group mb-3'>
                   <input
                     type='text'
@@ -120,12 +121,12 @@ const Footer: React.FC<DarkModeProps> = () => {
             </div>
 
             <div className='col-xs-12 col-sm-6 col-md-2'>
-              <div className='widget no-box flex justify-between'>
+              <div className='widget no-box justify-between widget-footer'>
                 <img
                   height='80'
                   src='/static/img/new/footer-logo-transparent.png'
                 />
-                <p className='pt-4 pl-5 footer-copyright-content'>© Clouty 2020 Packaged with care.</p>
+                <p className='footer-copyright-content'>© Clouty 2020 Packaged with care.</p>
               </div>
             </div>
           </div>
