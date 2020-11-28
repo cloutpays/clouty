@@ -571,7 +571,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 }
 
 .signup-banner .card {
-    width: 25rem;
+    width: 22rem;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 16px 24px #11111126;
     border-radius: 8px;
@@ -606,10 +606,26 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 .signup-banner .card-body a {
     font-size: 14px;
     color: #111111;
+    text-decoration: underline;
 }
 
 .signup-form {
     margin-top: 15rem;
+}
+
+.signup-form h1 {
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #111111;
+    opacity: 1;
+}
+
+.signup-form p {
+    letter-spacing: 0px;
+    color: #111111;
+    opacity: 1;
+    font-size: 18px;
+    margin-bottom: 5rem;
 }
 
 .signup-form-list h1 {
@@ -617,10 +633,29 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     width: 20px;
 }
 
+.login-banner-content input{
+    color: #000;
+    background: #E9E9E9;
+    border: 0;
+    padding: .8rem 0;
+    }
+
+.signup-form label {
+    font-size: 18px;
+    font-weight: 500;
+}
+
 .signup-form input {
-    color: black;
-    background: #111111 0% 0% no-repeat padding-box;
-    opacity: 0.15;
+    color: #000;
+    background: #E9E9E9;
+    padding: .7rem .5rem;
+    border: 0;
+}
+
+.signup-form input:focus{
+    color: #000 !important;
+    background: #E9E9E9;
+    opacity: .8;
 }
 
 .signup-form button {
@@ -1041,5 +1076,17 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     .login-top-banner-right-mobile {
         display: block;
         margin-bottom: 0vw;
+    }
+
+    /*Signup page mobile start*/
+
+    .signup-form h1 {
+        font-size: 38px;
+        text-align: center;
+    }
+
+    .signup-form p {
+        text-align: center;
+        margin-bottom: 5rem;
     }
 }

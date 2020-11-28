@@ -24,7 +24,7 @@ const Footer: React.FC<DarkModeProps> = () => {
                   Be the first to find out about the latest bets when you sign
                   up for our newsletter. Short reads and no spam.
                 </p>
-                <label class='footer-input-label'>Email address</label>
+                <label className='footer-input-label'>Email address</label>
                 <div className='input-group mb-3'>
                   <input
                     type='text'

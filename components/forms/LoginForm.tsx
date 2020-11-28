@@ -24,7 +24,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [signUpText, setSignUpText] = useState<string>('Sign Up');
+  const [signUpText, setSignUpText] = useState<string>('Submit');
   const [signInText, setSignInText] = useState<string>('Sign In');
 
   const [error, setError] = useState<string>('');
@@ -36,7 +36,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
     setLoading(true);
     if (!(email && password)) {
       setError('Please fill in email and password');
-      setSignUpText('Sign Up');
+      setSignUpText('Submit');
       return;
     }
     let isError = false;
@@ -47,7 +47,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
         isError = true;
         setLoading(false);
         setError(message);
-        setSignUpText('Sign Up');
+        setSignUpText('Submit');
       })
       .then((result: any) => {
         if (isError) {
@@ -208,36 +208,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                 onChange={(event) => setPassword(event.currentTarget.value)}
               />
             </div>
-            {signUp && (
-              <label className='pa0 ma0 f5  black '>
-                By clicking "Sign Up" confirms you're age 18+ and agree to our{' '}
-                <a
-                  className='fw5 link no-underline bb bw1 dim black'
-                  href='/terms'>
-                  Terms
-                </a>{' '}
-                &{' '}
-                <a
-                  className='fw5 link no-underline bb bw1 dim black'
-                  href='/terms'>
-                  Privacy Policy
-                </a>
-                . You may receive SMS Notifications from us and can opt out any
-                time.
-              </label>
-            )}
-            {signUp && (
-              <div className='mt2'>
-                <a href='/login' className='f5 link dim black db'>
-                  Already have an account?{' '}
-                  <span className='fw5 link no-underline bb bw1 dim '>
-                    Sign In
-                  </span>
-                </a>
-              </div>
-            )}
           </fieldset>
-          <div>
+          <div className={signUp ? 'text-center' : ''}>
             <button
               className='btn btn-primary'
               onClick={signUp ? handleSignUp : handleLogin}>
@@ -245,6 +217,34 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
               {signUp ? signUpText : signInText}
             </button>
           </div>
+          {signUp && (
+            <div className='mt-4'>
+              <a href='/login' className='f5 link dim black db '>
+                Already have an account?{' '}
+                <span className='fw5 link no-underline bb bw1 dim '>
+                    Log in
+                  </span>
+              </a>
+            </div>
+          )}
+          {signUp && (
+            <div className='pa0 ma0 f5  black mt-4'>
+              By clicking "Submit" confirms you're age 18+ and agree to our{' '}
+              <a
+                className='fw5 link no-underline bb bw1 dim black'
+                href='/terms'>
+                Terms
+              </a>{' '}
+              &{' '}
+              <a
+                className='fw5 link no-underline bb bw1 dim black'
+                href='/terms'>
+                Privacy Policy
+              </a>
+              . You may receive SMS Notifications from us and can opt out any
+              time.
+            </div>
+          )}
           <div className='lh-copy mt3'>
             {!signUp && (
               <div>

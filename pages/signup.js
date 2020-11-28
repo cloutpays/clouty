@@ -12,7 +12,7 @@ const data = {
 };
 const Login = () => (
   <Wrapper data={data}>
-    <div className='ma3 ma4-l'>
+    <div>
       <section className='signup-banner'>
         <img
           src='/static/img/new/signup-banner.jpg'
@@ -36,8 +36,7 @@ const Login = () => (
             <div className='col-md-6 offset-md-3'>
               <h1>Get started playing Clouty</h1>
               <p>
-                Enjoy no fees on all bets for a limited time!Enjoy no fees on
-                all bets for a limited time!
+                Enjoy no fees on all bets for a limited time!
               </p>
               <LoginForm mode={'signup'} />
             </div>
