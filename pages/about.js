@@ -8,7 +8,7 @@ const data = {
 const Home = () => (
   <Wrapper data={data}>
     <div style={{backgroundColor: "#EFE8F4", marginTop: "-100px"}}>
-      <div className='row mx-5'>
+      <div className='row'>
         <div className='col-md-12'>
           <div className='about-banner-content'>
             <div className='row'>
@@ -24,9 +24,9 @@ const Home = () => (
                   discovered the artists Foggieraw and Ankhlejohn. Upon hearing
                   their cadences and presence he knew they had serious shot at
                   making it big. In a large group-chat where nothing but music
-                  was discussed and debated, he went on to say, &ldquo;This guy
-                  is gonna blow....if I could put my money on it, I
-                  would.&ldquo;
+                  was discussed and debated, he went on to say,
+                  &ldquo;<strong>This guy is gonna blow....if I could put my money on it, I
+                  would.</strong>&ldquo;
                 </p>
               </div>
               <div className='col-md-6'>
@@ -34,8 +34,8 @@ const Home = () => (
                   Upon hearing their cadences and presence he knew they had
                   serious shot at making it big. In a large group-chat where
                   nothing but music was discussed and debated, he went on to
-                  say, The first and only platform when audiophiles could put
-                  their money where their ears are.
+                  say, <strong>The first and only platform when audiophiles could put
+                  their money where their ears are.</strong>
                 </p>
               </div>
             </div>

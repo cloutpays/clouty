@@ -20,6 +20,18 @@ body {
     color: #000;
 }
 
+.mobile-nav-item-home {
+    display: none;
+}
+
+#mobile-nav-login {
+    display: none;
+}
+
+.homepage-nav-toggler {
+    border: 0;
+}
+
 .bg-light {
     background-color: #ffffff00 !important;
 }
@@ -61,6 +73,7 @@ body {
     right: 30vw;
     top: 0;
     width: 3vw;
+    display: block;
 }
 
 .banner-content p {
@@ -327,6 +340,11 @@ body {
     width: 50px !important;
 }
 
+.section-services .service-icon{
+    font-size: 28px;
+    margin-bottom: 1rem;
+}
+
 .section-services .single-service .part-1 .title {
     font-size: 16px;
     font-weight: 700;
@@ -462,18 +480,18 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 /*About section*/
 
 .about-banner-content {
-    padding: 10rem 0;
+    padding: 10rem 4rem;
 }
 
 .about-banner-content p {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     text-align: justify;
     text-justify: inter-word;
 }
 
 .about-banner-content h1 {
-    font-size: 50px;
+    font-size: 70px;
     font-weight: 700;
     letter-spacing: -2.25px;
 }
@@ -510,9 +528,9 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     -ms-transform-origin: 20% 40%; /* IE 9 */
     transform: rotate(90deg);
     transform-origin: 20% 40%;
-    padding: 2rem;
+    padding: .1rem;
     color: #692699;
-    font-size: 30px;
+    font-size: 43px;
     font-weight: 700;
 }
 
@@ -535,11 +553,11 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 }
 
 .about-fav-artist-content {
-    padding: 6rem 0;
+    padding: 4rem 0;
 }
 
 .about-fav-artist-content p {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
 }
 
@@ -704,7 +722,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 
 .game-container .game-title {
     font-weight: 600;
-    font-size: 28px;
+    font-size: 26px;
 }
 
 .game-container .game-des {
@@ -723,10 +741,23 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     color: #000000 !important;
 }
 
+.game-list-main-title {
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #111111;
+}
+
 .bet-mind-card {
     background: #E9E9E9 !important;
     color: #111111;
-    padding: 1.4rem;
+    padding: 1rem;
+}
+
+.bet-mind-card h1 {
+    font-size: 35px;
+    font-weight: 700;
+    letter-spacing: -1px;
 }
 
 .bet-mind-card button{
@@ -789,6 +820,61 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     font-size: 16px;
 }
 
+/*Game card*/
+
+.masonry { /* Masonry container */
+    -webkit-column-count: 4;
+    -moz-column-count:4;
+    column-count: 4;
+    -webkit-column-gap: 1em;
+    -moz-column-gap: 1em;
+    column-gap: 1em;
+    margin: 1.5em;
+    padding: 0;
+    -moz-column-gap: 1.5em;
+    -webkit-column-gap: 1.5em;
+    column-gap: 1.5em;
+    font-size: .85em;
+}
+.item {
+    display: inline-block;
+    width: 100%;
+    -webkit-transition:1s ease all;
+}
+.item img{max-width:100%;}
+
+@media only screen and (max-width: 480px) {
+    .masonry {
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 768px){
+    .masonry {
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1200px){
+    .masonry {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+@media only screen and (min-width: 1201px) {
+    .masonry {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+
+/*game card end*/
+
 /* web screen custom css end */
 
 
@@ -797,6 +883,12 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 
 @media screen and (max-width: 480px) {
     /*    Home page mobile start   */
+    .banner-line-vertical, .background-banner-image, .background-mobile-image {
+        display: none;
+    }
+    .banner-line-vertical {
+        display: none;
+    }
     .background-banner-image-mobile {
         position: relative;
         right: 0;
@@ -821,7 +913,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     }
 
     .banner-content h1 {
-        font-size: 50px;
+        font-size: 13vw;
         font-weight: 800;
     }
 
@@ -863,6 +955,10 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 
     .album-cover h3 {
         font-size: 38px;
+    }
+
+    .album-cover-content {
+        padding: 0 0.7rem 0 1rem;
     }
 
     .bet-button-group-mobile .bet-now {
@@ -945,7 +1041,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     }
 
     .fav-artist-content h1 {
-        font-size: 50px;
+        font-size: 13vw;
         font-weight: 800;
     }
 
@@ -1088,5 +1184,524 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     .signup-form p {
         text-align: center;
         margin-bottom: 5rem;
+    }
+
+    /*about page mobile start*/
+
+    .about-banner-content {
+        padding: 11rem 1rem;
+    }
+
+    .about-banner-content h1 {
+        font-size: 52px;
+    }
+
+    .about-banner-content button {
+        display: block;
+        width: 100%;
+        padding: .8rem;
+    }
+
+    .about-service .title h1 {
+        -ms-transform: rotate(0deg);
+        -ms-transform-origin: 20% 40%;
+        transform: rotate(0deg);
+        transform-origin: 20% 40%;
+        color: #692699;
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+    .about-service {
+        padding: 3rem 0;
+    }
+
+    .about-service-item h5 {
+        font-weight: 700;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+        font-size: 22px;
+    }
+
+    .about-fav-artist-content p {
+        font-weight: bold;
+    }
+
+    .about-fav-artist-content h1 {
+        font-size: 50px;
+        letter-spacing: -1.25px;
+    }
+
+    .about-fav-artist-content button {
+        width: 100%;
+        padding: .8rem;
+        border: 0;
+    }
+
+    .album-cover h3 {
+        font-size: 35px;
+    }
+
+    .game-container {
+        padding: 0;
+    }
+
+    .game-container .game-id {
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: 0px;
+    }
+
+    .game-container .game-des {
+        font-size: 17px;
+        letter-spacing: 0px;
+    }
+
+    .game-container .game-title {
+        font-weight: 600;
+        font-size: 26px;
+    }
+
+    .game-container .game-list-main-title {
+        font-weight: 700;
+        font-size: 40px;
+    }
+
+    .game-container button {
+        border: 2px solid #FFF;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .game-section {
+        margin-top: 5rem;
+    }
+
+    .mobile-nav-item-home {
+        display: block;
+    }
+
+    #nav-login {
+        display: none;
+    }
+
+    #mobile-nav-login {
+        display: block;
+        font-size: 18px;
+        font-weight: 500;
+        border-top: 1px solid #111;
+        margin-top: 4rem;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    /*    Home page mobile start   */
+    .banner-line-vertical, .background-banner-image, .background-mobile-image {
+        display: none;
+    }
+    .background-banner-image-mobile {
+        position: relative;
+        right: 0;
+        left: 0;
+        height: auto;
+        width: 100%;
+        opacity: 1;
+    }
+
+    .background-mobile-image-mobile {
+        width: 60vw;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        text-align: center;
+        transform: translate3d(-44%, 43%, 0);
+    }
+
+    .top-banner-right-mobile {
+        display: block;
+        margin-bottom: 62vw;
+    }
+
+    .banner-content h1 {
+        font-size: 50px;
+        font-weight: 800;
+    }
+
+    .banner-content span {
+        font-size: 18px;
+    }
+
+    .banner-content button {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: .8rem;
+        font-size: 18px;
+        border: 0;
+    }
+
+    .banner-content .login-mobile {
+        box-shadow: 0px 0px 0px #ffffff;
+        border-radius: 4px;
+        opacity: 1;
+        color: #000000;
+        display: block;
+        font-size: 18px;
+        margin-top: 0;
+        background: transparent;
+    }
+
+    .album-over-order-sm-1 {
+        order: 1;
+    }
+    .album-over-order-sm-2 {
+        order: 2;
+    }
+
+    .album-cover {
+        padding: 3.5rem 2rem;
+        background: transparent;
+    }
+
+    .album-cover h3 {
+        font-size: 38px;
+    }
+
+    .album-cover-content {
+        padding: 0 0.7rem 0 1rem;
+    }
+
+    .bet-button-group-mobile .bet-now {
+        background: #692699 0% 0% no-repeat padding-box;
+        box-shadow: 0px 8px 24px #6926994D;
+        border-radius: 4px;
+        opacity: 1;
+        color: #ffffff;
+        border: 2px solid #692699;
+        margin-top: 1.5rem;
+        width: 100%;
+        padding: .8rem;
+        font-size: 18px;
+    }
+
+    .bet-button-group-mobile .bet-now:hover {
+        background: #111111 0% 0% no-repeat padding-box;
+        box-shadow: 0px 16px 24px #69269933;
+        border-radius: 4px;
+        opacity: 1;
+        color: #ffffff;
+    }
+
+    .bet-button-group-mobile .read-more {
+        border: 2px solid #111111;
+        border-radius: 4px;
+        opacity: 1;
+        color: #000000;
+        margin-top: 1.5rem;
+        width: 100%;
+        padding: .8rem;
+        font-size: 18px;
+    }
+
+    .bet-button-group-mobile .read-more:hover {
+        background: #111111 0% 0% no-repeat padding-box;
+        box-shadow: 0px 16px 24px #69269933;
+        border-radius: 4px;
+        opacity: 1;
+        color: #ffffff;
+    }
+
+    .bet-button-group {
+        display: none;
+    }
+
+    .bet-button-group-mobile {
+        padding: 0 2rem;
+        display: block;
+    }
+
+    .album-cover-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .places-featured {
+        padding: 4rem 0;
+    }
+
+    .places-featured h5 {
+        font-size: 25px;
+    }
+
+    .places-featured-images img {
+        width: 150px;
+        margin: .5rem 3rem 4rem 0;
+    }
+
+    .fav-artist img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 4rem;
+        margin-bottom: 5rem;
+    }
+
+    .fav-artist-content {
+        padding: 2rem 0;
+    }
+
+    .fav-artist-content h1 {
+        font-size: 50px;
+        font-weight: 800;
+    }
+
+    .fav-artist-content span {
+        font-size: 18px;
+    }
+
+    .fav-artist-content button {
+        width: 100%;
+        padding: .8rem;
+    }
+
+    .section-services .single-service {
+        margin: 1rem 1.5rem;
+        min-height: auto;
+    }
+
+    .section-services .single-service img{
+        width: 50px;
+    }
+
+    .section-services .single-service .part-1 .title {
+        font-size: 25px;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-services .single-service .part-1 .description {
+        font-size: 18px;
+    }
+
+    .part-1 a {
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .stay-tuned p {
+        color: #111;
+        font-size: 18px;
+        margin-bottom: 5rem;
+    }
+
+    footer .main-footer h5 {
+        font-weight: 700;
+        color: #692699;
+        font-size: 26px;
+    }
+
+    .submit-btn-footer {
+        background: #fff;
+        border: 0;
+        position: absolute;
+        right: 4px;
+        border-radius: .3rem !important;
+        top: 10%;
+        font-size: 16px;
+        color: #111 !important;
+        font-weight: bold;
+    }
+
+    .widget li a {
+        color: #111;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .widget.no-box ul {
+        line-height: 2.5;
+        padding-left: 0 !important;
+    }
+
+    .widget-footer {
+        display: flex;
+    }
+
+    .footer-copyright-content {
+        font-size: 24px !important;
+        padding: 0 0 0 3rem;
+    }
+
+    footer .fa {
+        font-size: 32px;
+    }
+
+    ul.social-footer2 li a {
+        width: 45px;
+    }
+
+    .logo-mobile {
+        display: block;
+    }
+
+    .logo-web {
+        display: none;
+    }
+
+    .navbar {
+        font-size: 39px;
+        z-index: 9999;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .bg-light {
+        background-color: #fff !important;
+    }
+
+    .navbar #nav-signup a{
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: .8rem !important;
+        font-size: 18px;
+        background: #692699;
+        border: 0;
+    }
+    /*    Home page mobile end   */
+
+    /* Login page mobile start*/
+
+    .login-content-mobile {
+        padding: 0 !important;
+    }
+
+    .login-banner-content h1 {
+        font-size: 45px;
+    }
+
+    .login-top-banner-right-mobile {
+        display: block;
+        margin-bottom: 0vw;
+    }
+
+    /*Signup page mobile start*/
+
+    .signup-form h1 {
+        font-size: 38px;
+        text-align: center;
+    }
+
+    .signup-form p {
+        text-align: center;
+        margin-bottom: 5rem;
+    }
+
+    /*about page mobile start*/
+
+    .about-banner-content {
+        padding: 11rem 1rem;
+    }
+
+    .about-banner-content h1 {
+        font-size: 52px;
+    }
+
+    .about-banner-content button {
+        display: block;
+        width: 100%;
+        padding: .8rem;
+    }
+
+    .about-service .title h1 {
+        -ms-transform: rotate(0deg);
+        -ms-transform-origin: 20% 40%;
+        transform: rotate(0deg);
+        transform-origin: 20% 40%;
+        color: #692699;
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+    .about-service {
+        padding: 3rem 0;
+    }
+
+    .about-service-item h5 {
+        font-weight: 700;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+        font-size: 22px;
+    }
+
+    .about-fav-artist-content p {
+        font-weight: bold;
+    }
+
+    .about-fav-artist-content h1 {
+        font-size: 50px;
+        letter-spacing: -1.25px;
+    }
+
+    .about-fav-artist-content button {
+        width: 100%;
+        padding: .8rem;
+        border: 0;
+    }
+
+    .album-cover h3 {
+        font-size: 35px;
+    }
+
+    .game-container {
+        padding: 0;
+    }
+
+    .game-container .game-id {
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: 0px;
+    }
+
+    .game-container .game-des {
+        font-size: 17px;
+        letter-spacing: 0px;
+    }
+
+    .game-container .game-title {
+        font-weight: 600;
+        font-size: 26px;
+    }
+
+    .game-container .game-list-main-title {
+        font-weight: 700;
+        font-size: 40px;
+    }
+
+    .game-container button {
+        border: 2px solid #FFF;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .game-section {
+        margin-top: 5rem;
+    }
+
+    .mobile-nav-item-home {
+        display: block;
+    }
+
+    #nav-login {
+        display: none;
+    }
+
+    #mobile-nav-login {
+        display: block;
+        font-size: 18px;
+        font-weight: 500;
+        border-top: 1px solid #111;
+        margin-top: 4rem;
     }
 }

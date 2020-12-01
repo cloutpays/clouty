@@ -58,15 +58,15 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
             </div>
           </section>
           <img
-              className='banner-line-vertical d-none d-sm-none d-md-block'
+              className='banner-line-vertical'
               src='/static/img/new/line-vertical.jpg'
           />
           <img
-            className='background-banner-image d-none d-sm-none d-md-block'
+            className='background-banner-image'
             src='/static/img/new/banner-right.jpg'
           />
           <img
-            className='background-mobile-image d-none d-sm-none d-md-block'
+            className='background-mobile-image'
             src='/static/img/new/mobile-frame.png'
           />
         </div>
@@ -169,7 +169,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                     <div className='col-md-4 col-lg-3'>
                       <div className='single-service'>
                         <div className='part-1'>
-                          <img src='/static/img/new/Screenshot1.png' style={{width:"30px"}} />
+                          <div className='service-icon'>📈</div>
                           <h3 className='title text-dark'>First Week Sales</h3>
                           <p className='description'>
                             Place bets on the first week album sales of your
@@ -208,7 +208,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                     <div className='col-md-4 col-lg-3'>
                       <div className='single-service'>
                         <div className='part-1'>
-                          <img src='/static/img/new/Screenshot4.png' style={{width:"30px"}} />
+                          <div className='service-icon'>🎙️</div>
                           <h3 className='title text-dark'>Live Events</h3>
                           <p className='description'>
                             Bet on live events like the Grammys and Billboard

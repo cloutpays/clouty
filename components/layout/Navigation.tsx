@@ -31,16 +31,16 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
             <img
               className='logo-mobile'
               height='50'
-              src='/static/img/new/logo-mobile.png'
+              src='/static/img/new/logo-mobile.svg'
             />
             <img
               className='logo-web'
               height='50'
-              src='/static/img/new/logo-web.png'
+              src='/static/img/new/logo-web.svg'
             />
           </a>
           <button
-            className='navbar-toggler'
+            className='navbar-toggler homepage-nav-toggler'
             type='button'
             data-toggle='collapse'
             data-target='#navbarSupportedContent'
@@ -51,6 +51,11 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
           </button>
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav mr-auto'>
+              <li className='nav-item mobile-nav-item-home '>
+                <a className='nav-link' href='/'>
+                  Home
+                </a>
+              </li>
               <li className='nav-item'>
                 <a className='nav-link' href='/about'>
                   About <span className='sr-only'>(current)</span>
@@ -110,6 +115,11 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
                       className='nav-link btn btn-sm btn-dark py-1 px-4 text-white mt-2'
                       href='/signup'>
                       Sign Up
+                    </a>
+                  </li>
+                  <li className='nav-item' id='mobile-nav-login'>
+                    <a href='/login' className='nav-link'>
+                      Login
                     </a>
                   </li>
                 </>
