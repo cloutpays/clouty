@@ -7,7 +7,7 @@ const data = {
 };
 const Home = () => (
   <Wrapper data={data}>
-    <div style={{backgroundColor: "#EFE8F4", marginTop: "-100px"}}>
+    <div style={{backgroundColor: "#EFE8F4", marginTop: "-8vw"}}>
       <div className='row'>
         <div className='col-md-12'>
           <div className='about-banner-content'>
@@ -105,7 +105,7 @@ const Home = () => (
       <div className='container'>
         <div className='row'>
           <div className='col-md-12 text-center'>
-            <div className='about-fav-artist-content'>
+            <div className='get-ready-started-content'>
               <p>Sign Up & Place Your Bets</p>
               <h1>Ready to get started?</h1>
               <div>

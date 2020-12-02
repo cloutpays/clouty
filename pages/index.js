@@ -73,7 +73,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
         <section>
           <section>
             <div className='row'>
-              <div className='col-md-4 p-0 album-over-order-sm-2'>
+              <div className='col-md-4 p-md-0 album-over-order-sm-2'>
                 <img
                     className='album-cover-image'
                   src='/static/img/new/album-cover.jpg'
@@ -87,7 +87,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                   </button>
                 </div>
               </div>
-              <div className='col-md-8 p-0 album-over-order-sm-1'>
+              <div className='col-md-8 p-md-0 album-over-order-sm-1'>
                 <div className='album-cover'>
                   <div className='album-cover-content'>
                     <p>This Week's Featured Bet</p>
@@ -169,7 +169,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                     <div className='col-md-4 col-lg-3'>
                       <div className='single-service'>
                         <div className='part-1'>
-                          <div className='service-icon'>📈</div>
+                          <div className='service-icon'>&#128200;</div>
                           <h3 className='title text-dark'>First Week Sales</h3>
                           <p className='description'>
                             Place bets on the first week album sales of your
@@ -182,7 +182,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                     <div className='col-md-4 col-lg-3'>
                       <div className='single-service'>
                         <div className='part-1'>
-                          <img src='/static/img/new/Screenshot2.png' style={{width:"30px"}} />
+                          <div className='service-icon'>&#129518;</div>
                           <h3 className='title text-dark'>Over / Under</h3>
                           <p className='description'>
                             Place bets on whether an album will beat or fall
@@ -195,7 +195,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                     <div className='col-md-4 col-lg-3'>
                       <div className='single-service'>
                         <div className='part-1'>
-                          <img src='/static/img/new/Screenshot3.png' style={{width:"30px"}} />
+                          <div className='service-icon'>&#128302;</div>
                           <h3 className='title text-dark'>Futures</h3>
                           <p className='description'>
                             Look into your crystal ball and bet on future events
@@ -230,7 +230,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
             <div className='container'>
               <div className='row'>
                 <div className='col-md-12 text-center'>
-                  <div className='fav-artist-content'>
+                  <div className='get-ready-started-content'>
                     <p>Sign Up & Place Your Bets</p>
                     <h1>Ready to get started?</h1>
                     <div>

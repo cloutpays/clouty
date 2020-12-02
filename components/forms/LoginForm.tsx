@@ -218,8 +218,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             </button>
           </div>
           {signUp && (
-            <div className='mt-4'>
-              <a href='/login' className='f5 link dim black db '>
+            <div className='mt-4 login-links'>
+              <a href='/login' className='f5 link dim black db'>
                 Already have an account?{' '}
                 <span className='fw5 link no-underline bb bw1 dim '>
                     Log in
@@ -228,7 +228,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             </div>
           )}
           {signUp && (
-            <div className='pa0 ma0 f5  black mt-4'>
+            <div className='pa0 ma0 f5  black mt-4 login-links'>
               By clicking "Submit" confirms you're age 18+ and agree to our{' '}
               <a
                 className='fw5 link no-underline bb bw1 dim black'

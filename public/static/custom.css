@@ -1,9 +1,10 @@
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif !important;
     overflow-x: hidden;
 }
 
 /* web screen custom css start */
+
 .navbar {
     font-size: 18px;
     z-index: 9999;
@@ -289,6 +290,43 @@ body {
     margin-top: 1.5rem;
 }
 
+.get-ready-started-content {
+    padding: 4rem 0 2rem 0;
+}
+
+.get-ready-started-content p {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.get-ready-started-content h1 {
+    font-size: 4vw;
+    font-weight: 700;
+    letter-spacing: -2.25px;
+}
+
+.get-ready-started-content span {
+    font-size: 15px;
+}
+
+.get-ready-started-content button {
+    background: #692699 0% 0% no-repeat padding-box;
+    box-shadow: 0px 8px 24px #6926994D;
+    border-radius: 4px;
+    opacity: 1;
+    color: #ffffff;
+    margin-top: 1.5rem;
+}
+
+.get-ready-started-content button:hover {
+    background: #111111 0% 0% no-repeat padding-box;
+    box-shadow: 0px 16px 24px #69269933;
+    border-radius: 4px;
+    opacity: 1;
+    color: #ffffff;
+    margin-top: 1.5rem;
+}
+
 .fav-artist {
     position: relative;
 }
@@ -298,6 +336,16 @@ body {
     right: 0;
     width: 39vw;
     height: 55vw;
+}
+
+.lh-copy a:hover {
+    text-decoration: none;
+    color: #111111;
+}
+
+.login-links a:hover {
+    text-decoration: none;
+    color: #111111;
 }
 
 /*home page services start */
@@ -480,7 +528,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 /*About section*/
 
 .about-banner-content {
-    padding: 10rem 4rem;
+    padding: 13vw 9vw;
 }
 
 .about-banner-content p {
@@ -655,7 +703,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     color: #000;
     background: #E9E9E9;
     border: 0;
-    padding: .8rem 0;
+    padding: .8rem 1rem;
     }
 
 .signup-form label {
@@ -666,7 +714,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 .signup-form input {
     color: #000;
     background: #E9E9E9;
-    padding: .7rem .5rem;
+    padding: .8rem 1rem;
     border: 0;
 }
 
@@ -698,7 +746,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 }
 
 .game-container {
-    padding: 4rem 4rem;
+    padding: 4rem 1rem 0 1rem;
 }
 
 .game-container .card {
@@ -822,13 +870,11 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 
 /*Game card*/
 
-.masonry { /* Masonry container */
-    -webkit-column-count: 4;
-    -moz-column-count:4;
-    column-count: 4;
-    -webkit-column-gap: 1em;
-    -moz-column-gap: 1em;
-    column-gap: 1em;
+.masonry {
+    /* Masonry container */
+    -webkit-column-count: 2;
+    -moz-column-count:2;
+    column-count: 2;
     margin: 1.5em;
     padding: 0;
     -moz-column-gap: 1.5em;
@@ -1189,7 +1235,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     /*about page mobile start*/
 
     .about-banner-content {
-        padding: 11rem 1rem;
+        padding: 7rem 1rem;
     }
 
     .about-banner-content h1 {
@@ -1234,6 +1280,21 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     }
 
     .about-fav-artist-content button {
+        width: 100%;
+        padding: .8rem;
+        border: 0;
+    }
+
+    .get-ready-started-content p {
+        font-weight: bold;
+    }
+
+    .get-ready-started-content h1 {
+        font-size: 50px;
+        letter-spacing: -1.25px;
+    }
+
+    .get-ready-started-content button {
         width: 100%;
         padding: .8rem;
         border: 0;
@@ -1600,7 +1661,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     /*about page mobile start*/
 
     .about-banner-content {
-        padding: 11rem 1rem;
+        padding: 7rem 1rem;
     }
 
     .about-banner-content h1 {
@@ -1645,6 +1706,21 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     }
 
     .about-fav-artist-content button {
+        width: 100%;
+        padding: .8rem;
+        border: 0;
+    }
+
+    .get-ready-started-content p {
+        font-weight: bold;
+    }
+
+    .get-ready-started-content h1 {
+        font-size: 50px;
+        letter-spacing: -1.25px;
+    }
+
+    .get-ready-started-content button {
         width: 100%;
         padding: .8rem;
         border: 0;

@@ -77,7 +77,6 @@ export default class MyDocument extends Document {
         </Head>
         <body
           className={classNames({
-            'sans-serif': true,
             'near-white': dark,
             'near-black': !dark,
             'bg-black-90': dark,

@@ -15,7 +15,7 @@ const Games = ({ questions }) => {
     <Wrapper data={data}>
       <section>
         <div className='row'>
-          <div className='col-md-4 p-0 album-over-order-sm-2'>
+          <div className='col-md-4 p-md-0 album-over-order-sm-2'>
             <img
                 className='album-cover-image'
                 src='/static/img/new/album-cover.jpg'
@@ -29,7 +29,7 @@ const Games = ({ questions }) => {
               </button>
             </div>
           </div>
-          <div className='col-md-8 p-0 album-over-order-sm-1'>
+          <div className='col-md-8 p-md-0 album-over-order-sm-1'>
             <div className='album-cover'>
               <div className='album-cover-content'>
                 <p>This Week's Featured Bet</p>
