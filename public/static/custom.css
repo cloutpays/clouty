@@ -254,7 +254,11 @@ body {
 }
 
 .fav-artist-content {
-    padding: 10rem 0;
+    padding: 13rem 0 4rem 0;
+}
+
+.fav-artist-content .content-text {
+    padding: 0 6.5rem;
 }
 
 .fav-artist-content p {
@@ -433,7 +437,7 @@ body {
 
 /* Main Footer */
 footer .main-footer{
-    padding: 20px 0;
+    padding: 5rem 0 2rem 0;
     background: #E9E9E9;
 }
 footer .main-footer h5 {
@@ -1091,6 +1095,10 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
         font-weight: 800;
     }
 
+    .fav-artist-content .content-text {
+        padding: 0;
+    }
+
     .fav-artist-content span {
         font-size: 18px;
     }
@@ -1515,6 +1523,10 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
     .fav-artist-content h1 {
         font-size: 50px;
         font-weight: 800;
+    }
+
+    .fav-artist-content .content-text {
+        padding: 0rem;
     }
 
     .fav-artist-content span {

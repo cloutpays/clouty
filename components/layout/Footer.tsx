@@ -124,7 +124,7 @@ const Footer: React.FC<DarkModeProps> = () => {
               <div className='widget no-box justify-between widget-footer'>
                 <img
                   height='80'
-                  src='/static/img/new/footer-logo-transparent.png'
+                  src='/static/img/new/logo-web.svg'
                 />
                 <p className='footer-copyright-content'>© Clouty 2020 Packaged with care.</p>
               </div>

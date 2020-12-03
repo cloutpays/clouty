@@ -44,6 +44,7 @@ export default class MyDocument extends Document {
           <meta name='description' content='Clouty™: Rap, Reimagined' />
           <meta name='viewport' content='width=device-width, initial-scale=1' />
           <link rel='home' href='https://getclouty.com/' />
+          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
           <meta property='og:type' content='website' />
           <meta
             property='og:image'

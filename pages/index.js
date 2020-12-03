@@ -149,7 +149,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                   <div className='fav-artist-content'>
                     <p>Types Of Betting</p>
                     <h1>How it works</h1>
-                    <div  className='text-left'>
+                    <div  className='content-text text-left'>
                       <span>
                         For an artist to qualify for one of our contests, their
                         music must be on either the Big 3: Apple Music, Spotify,
