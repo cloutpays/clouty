@@ -24,6 +24,10 @@
       "dest": "server/handlers/post.js"
     },
     {
+      "src": "/api/connexus",
+      "dest": "server/handlers/get.js"
+    },
+    {
       "src": "/api/setCredit",
       "methods": ["POST"],
       "dest": "server/handlers/post.js"
