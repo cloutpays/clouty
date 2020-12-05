@@ -1,5 +1,5 @@
 import { getCookie, getCookieFromBrowser } from '../lib/session';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
 import classNames from 'classnames';
 let dark = false;
@@ -20,7 +20,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html lang='en'>
+      <Html lang='en'>
         <Head>
           <link
             rel='stylesheet'
@@ -102,7 +102,7 @@ export default class MyDocument extends Document {
             integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl'
             crossOrigin='anonymous'></script>
         </body>
-      </html>
+      </Html>
     );
   }
 }
