@@ -15,6 +15,7 @@ const {
   allPayoutsApi,
   getAllTransactionsApi,
   getUserTransactionsApi,
+  processConnexusApi,
 } = require('../helpers/stripe');
 const { send } = require('micro');
 
@@ -23,6 +24,9 @@ const getApi = (fn) => async (req, res) => {
     const parse = req.url.split('/');
     console.log(`get api/${parse[2]}`);
     switch (`api/${parse[2]}`) {
+
+      case 'api/connexus':
+        return await fn(processConnexusApi(req,res))
       case 'api/submissions':
         return await fn(submissionsRetrieveApi(req, res));
       case 'api/transactions':

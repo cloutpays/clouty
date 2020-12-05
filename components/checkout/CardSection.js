@@ -2,65 +2,40 @@ import { stripeClient } from '../../lib/helpers';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-const Checkout = (props) => {
-  const [stripe, setStripe] = useState(null);
+const Checkout = ({user}) => {
   const [amount, setAmount] = useState(0);
-  const [sessionId, setSessionId] = useState(0);
-
-  useEffect(() => setStripe(window.Stripe(stripeClient)), []);
-
-  const getSession = async (amount) => {
-    const sessionId = await axios.get(
-      `/api/checkout/${amount}/${props.user._id}`,
-    );
-    setSessionId(sessionId.data.id);
-  };
-
-  const updateAmount = async (amount) => {
-    setAmount(amount);
-    await getSession(amount);
-  };
-  const goToCheckout = () => {
-    stripe
-      .redirectToCheckout({
-        sessionId,
-      })
-      .then(function(result) {
-        console.log(result);
-      });
-  };
 
   return (
     <main className='black-80'>
       <dl className='dib '>
         <div className='flex f3 f2-ns flex-wrap'>
           <a
-            onClick={() => updateAmount(1)}
+            onClick={() => setAmount(1)}
             className='noselect grow outline dim pa3 ma2'>
             <strong>$1</strong>
           </a>
           <a
-            onClick={() => updateAmount(10)}
+            onClick={() => setAmount(10)}
             className='noselect grow outline dim pa3 ma2'>
             <strong>$10</strong>
           </a>
           <a
-            onClick={() => updateAmount(25)}
+            onClick={() => setAmount(25)}
             className='noselect grow outline dim pa3 ma2'>
             <strong>$25</strong>
           </a>
           <a
-            onClick={() => updateAmount(50)}
+            onClick={() => setAmount(50)}
             className='noselect grow outline dim pa3 ma2'>
             <strong>$50</strong>
           </a>
           <a
-            onClick={() => updateAmount(75)}
+            onClick={() => setAmount(75)}
             className='noselect grow outline dim pa3 ma2'>
             <strong>$75</strong>
           </a>
           <a
-            onClick={() => updateAmount(100)}
+            onClick={() => setAmount(100)}
             className='noselect grow outline dim pa3 ma2'>
             <strong>$100</strong>
           </a>
@@ -72,11 +47,22 @@ const Checkout = (props) => {
           <dd className='f3 f2-ns b ml0'>${amount}</dd>
         </dl>
       </div>
-      {sessionId !== 0 && (
+      {amount> 0 && (
         <div
-          onClick={goToCheckout}
           className='f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box'>
-          <span className='pr1'>Next</span>
+          <form action="https://api.connexus.fi/apiv1/bridge" method="post">
+            <input type="hidden" name="amount" value={amount}/>
+            <input type="hidden" name="customParm" value={user._id}/>
+            <input type="hidden" name="pluginKey" value="fa835a8d-9ea4-4ea5-89e7-6811e5cf3a71"/>
+            <input type="hidden" name="merchantTrackingNumber" value="test"/>
+            <div class="cxs-btn">
+              <button id="cxs-btn-default" type="submit">
+                <span id="cxs-span">
+                  <strong>PAY WITH</strong>
+                </span>
+              </button>
+            </div>
+          </form>
           <svg
             className='w1'
             data-icon='chevronRight'

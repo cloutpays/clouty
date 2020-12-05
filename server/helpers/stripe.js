@@ -14,6 +14,9 @@ import { payoutEmailContent } from '../emailTemplates';
 
 import { updateUser } from './user';
 
+export const processConnexusApi =wrapAsync(async (req, db) => {
+  console.log(req.url)
+})
 const updateStripeUser = async (paymentIntent, db) => {
   const newUser = await db.collection(user).updateOne(
     { _id: paymentIntent.metadata.userId },
