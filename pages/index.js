@@ -96,9 +96,11 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                       <button className='btn btn-default bet-now mr-3'>
                         Bet Now
                       </button>
+                      <a href='/games'>
                       <button className='btn btn-default all-bet'>
                         View All Bets
                       </button>
+                      </a>
                     </div>
                   </div>
                 </div>
