@@ -26,7 +26,7 @@ export const processConnexusApi =async (req, res) => {
     { _id: customParm },
     {
       $inc: {
-        'stripe.user.balance': parseFloat(CXStransactionAmount)*100,
+        'stripe.user.balance': parseInt(CXStransactionAmount)*100,
       },
     },
     { returnOriginal: false },
