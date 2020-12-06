@@ -49,14 +49,12 @@ const updateStripeUser = async (paymentIntent, db) => {
   return newUser.value;
 };
 
-export const getAllTransactionsApi = wrapAsync(async () => {
+export const getAllTransactionsApi = wrapAsync(async (req, db) => {
   const charges = [];
-  await stripe.charges
-    .list({ limit: 100, created: { gt: 1584300632 } })
-    .autoPagingEach(function(charge) {
-      charges.push(charge);
-    });
-  return charges;
+  return db
+  .collection(balance)
+  .find()
+  .toArray();
 });
 
 export const setCreditApi = wrapAsync(async (req, db) => {
