@@ -15,12 +15,17 @@ const {
   allPayoutsApi,
   getAllTransactionsApi,
   getUserTransactionsApi,
+  processConnexusApi,
 } = require('../helpers/stripe');
 const { send } = require('micro');
 
 const getApi = (fn) => async (req, res) => {
   try {
-    const parse = req.url.split('/');
+    //handle payment
+    if(req.url.split('?')[0] === '/api/connexus'){
+      return await fn(processConnexusApi(req,res))
+    }
+    let parse = req.url.split('/');
     console.log(`get api/${parse[2]}`);
     switch (`api/${parse[2]}`) {
       case 'api/submissions':
