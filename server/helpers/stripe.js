@@ -1,5 +1,8 @@
 const { parse } = require('url');
 const { json } = require('micro');
+const redirect = require("micro-redirect");
+const connect = require('./db');
+
 import { ObjectId } from 'mongodb';
 import {
   balance,
@@ -12,7 +15,8 @@ import { payoutEmailContent } from '../emailTemplates';
 
 import { updateUser } from './user';
 
-export const processConnexusApi =wrapAsync(async (req, db) => {
+export const processConnexusApi =async (req, res) => {
+  const db = await connect();
   const queries = req.url.split('?')[1]
   const transaction = JSON.parse('{"' + decodeURI(queries).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
   const { CXStransactionAmount,customParm } = transaction
@@ -27,8 +31,11 @@ export const processConnexusApi =wrapAsync(async (req, db) => {
     },
     { returnOriginal: false },
   );
-  return newUser.value;
-})
+  const statusCode = 302;
+  const location = "/user";
+  return redirect(res, statusCode, location);
+}
+
 const updateStripeUser = async (paymentIntent, db) => {
   const newUser = await db.collection(user).updateOne(
     { _id: paymentIntent.metadata.userId },
