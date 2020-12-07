@@ -1,60 +1,47 @@
 const { parse } = require('url');
 const { json } = require('micro');
-const redirect = require("micro-redirect");
+const redirect = require('micro-redirect');
 const connect = require('./db');
 
 import { ObjectId } from 'mongodb';
-import {
-  balance,
-  payout,
-  sendEmail,
-  user,
-  wrapAsync,
-} from '../helpers';
+import { balance, payout, sendEmail, user, wrapAsync } from '../helpers';
 import { payoutEmailContent } from '../emailTemplates';
 
 import { updateUser } from './user';
 
-export const processConnexusApi =async (req, res) => {
+export const processConnexusApi = async (req, res) => {
   const db = await connect();
-  const queries = req.url.split('?')[1]
-  const transaction = JSON.parse('{"' + decodeURI(queries).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
-  const { CXStransactionAmount,customParm } = transaction
+  const queries = req.url.split('?')[1];
+  const transaction = JSON.parse(
+    '{"' +
+      decodeURI(queries)
+        .replace(/"/g, '\\"')
+        .replace(/&/g, '","')
+        .replace(/=/g, '":"') +
+      '"}',
+  );
+  const { CXStransactionAmount, customParm } = transaction;
 
   await db.collection(balance).insertOne(transaction);
   await db.collection(user).updateOne(
     { _id: customParm },
     {
       $inc: {
-        'stripe.user.balance': parseInt(CXStransactionAmount)*100,
+        'stripe.user.balance': parseInt(CXStransactionAmount) * 100,
       },
     },
     { returnOriginal: false },
   );
   const statusCode = 302;
-  const location = "/user";
+  const location = '/user';
   return redirect(res, statusCode, location);
-}
-
-const updateStripeUser = async (paymentIntent, db) => {
-  const newUser = await db.collection(user).updateOne(
-    { _id: paymentIntent.metadata.userId },
-    {
-      $inc: {
-        'stripe.user.balance': paymentIntent.amount,
-      },
-    },
-    { returnOriginal: false },
-  );
-  return newUser.value;
 };
 
 export const getAllTransactionsApi = wrapAsync(async (req, db) => {
-  const charges = [];
   return db
-  .collection(balance)
-  .find()
-  .toArray();
+    .collection(balance)
+    .find()
+    .toArray();
 });
 
 export const setCreditApi = wrapAsync(async (req, db) => {
@@ -124,25 +111,4 @@ export const allPayoutsApi = wrapAsync(async (req, db) => {
     .collection(payout)
     .find()
     .toArray();
-});
-
-
-export const hookApi = wrapAsync(async (req, db) => {
-  const data = await json(req);
-  switch (data.type) {
-    case 'payment_intent.succeeded':
-      await db.collection(balance).insertOne(data.data.object);
-      await stripe.customers.update(
-        data.data.object.customer,
-        {
-          balance: data.data.object.amount,
-        },
-        (err) => {
-          if (err) return err;
-        },
-      );
-      return updateStripeUser(data.data.object, db);
-    default:
-      return true;
-  }
 });
