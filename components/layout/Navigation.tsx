@@ -91,11 +91,9 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
               <li className='mr2 mr4-ns'>Sign up </li>
             </a> */}
             <li className='mr2 mr4-ns underline-hover'>
-              <Link href='/login'>
                 <a href='/login' className={`${navLinks}`}>
                   Login
                 </a>
-              </Link>
             </li>
           </>
         )}
