@@ -135,9 +135,13 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                     <button className='btn btn-default'>View All Bets</button>
                   </div>
                 </div>
-                <img
+                <img className='web-image'
                   src='/static/img/new/Benefits-Duotone-Image.jpg'
                   width='300'
+                />
+                <img className='mobile-image'
+                    src='/static/img/new/Benefits-Duotone-Image-mobile.jpg'
+                    width='300'
                 />
               </div>
             </div>

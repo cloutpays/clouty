@@ -340,11 +340,16 @@ body {
     position: relative;
 }
 
-.fav-artist img {
+.fav-artist .web-image {
     position: absolute;
     right: 0;
     width: 39vw;
     height: 55vw;
+    display: block;
+}
+
+.fav-artist .mobile-image {
+    display: none;
 }
 
 .lh-copy a:hover {
@@ -1082,12 +1087,22 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
         margin: .5rem 0 4rem 0;
     }
 
-    .fav-artist img {
+    .fav-artist .web-image {
+        display: none;
         position: relative;
         width: 100%;
         height: auto;
         margin-top: 4rem;
         margin-bottom: 5rem;
+    }
+
+    .fav-artist .mobile-image {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 4rem;
+        margin-bottom: 5rem;
+        display: block;
     }
 
     .fav-artist-content {
@@ -1512,7 +1527,17 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
         margin: .5rem 3rem 4rem 0;
     }
 
-    .fav-artist img {
+    .fav-artist .web-image {
+        display: none;
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 4rem;
+        margin-bottom: 5rem;
+    }
+
+    .fav-artist .mobile-image {
+        display: block;
         position: relative;
         width: 100%;
         height: auto;
