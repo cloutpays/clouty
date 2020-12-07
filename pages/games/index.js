@@ -56,51 +56,55 @@ const Games = ({ questions }) => {
               </div>
               <div className="masonry">
                 {questions
-                  .sort(sortGames)
-                  .filter((curr, ind) => ind !== 13)
-                  .map((game) => {
-                    const gameClosed = new Date(game.endDate) < new Date();
-                    const gameButtonText = !game.answer
-                      ? gameClosed
-                        ? 'Game Ended'
-                        : 'Place Your Bet'
-                      : 'See Results';
-                    const activeLink = `/games/${game.slug}`;
-                    return (
-                      <div key={activeLink} className='item'>
-                      <div className='card'>
-                        <div className='card-body'>
-                          <p className='game-id'>{`Game #${game.question}`}</p>
-                          <h2 className='game-title'>{game.title}</h2>
-                          <p className='game-des'>{game.description}</p>
-                          <p className='game-des'>{game.details}</p>
-                          <a href={activeLink}>
-                            <button
-                                type='submit'
-                                className='btn btn-outline-default'>
-                              {gameButtonText}
-                            </button>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    );
-                  })
-                  .reverse()}
+                    .sort(sortGames)
+                    .filter((curr, ind) => ind !== 13)
+                    .map((game) => {
+                      const gameClosed = new Date(game.endDate) < new Date();
+                      const gameButtonText = !game.answer
+                          ? gameClosed
+                              ? 'Game Ended'
+                              : 'Place Your Bet'
+                          : 'See Results';
+                      const activeLink = `/games/${game.slug}`;
+                      return (
+                          <div key={activeLink} className='item'>
+                            <div className="item-shadow">
+                              <div className='card'>
+                                <div className='card-body'>
+                                  <p className='game-id'>{`Game #${game.question}`}</p>
+                                  <h2 className='game-title'>{game.title}</h2>
+                                  <p className='game-des'>{game.description}</p>
+                                  <p className='game-des'>{game.details}</p>
+                                  <a href={activeLink}>
+                                    <button
+                                        type='submit'
+                                        className='btn btn-outline-default'>
+                                      {gameButtonText}
+                                    </button>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      );
+                    })
+                    .reverse()}
                 <div className='item'>
-                  <div className='card bet-mind-card'>
-                    <div className='card-body text-center'>
-                      <h1>Have a bet in mind?</h1>
-                      <div>
-                        <p className='game-des'>
-                          If your bet idea makes the cut, we'll offer it and
-                          reward you with a $10 credit towards betting!
-                        </p>
+                  <div className="item-shadow">
+                    <div className='card bet-mind-card'>
+                      <div className='card-body text-center'>
+                        <h1>Have a bet in mind?</h1>
+                        <div>
+                          <p className='game-des'>
+                            If your bet idea makes the cut, we'll offer it and
+                            reward you with a $10 credit towards betting!
+                          </p>
+                        </div>
+                        <button className='btn btn-default border-0'>Submit Bet</button>
                       </div>
-                      <button className='btn btn-default border-0'>Submit Bet</button>
                     </div>
                   </div>
-              </div>
+                </div>
               </div>
             </div>
           </div>

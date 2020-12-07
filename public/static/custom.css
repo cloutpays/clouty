@@ -5,6 +5,11 @@ body {
 
 /* web screen custom css start */
 
+.item-shadow {
+    box-shadow: 0px 8px 16px #6926994D;
+    border-radius: 8px;
+}
+
 .navbar {
     font-size: 18px;
     z-index: 9999;
@@ -756,7 +761,6 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
 .game-container .card {
     background-image: url("/cloudy_design/image/card-bg.jpg");
     background: #692699 0% 0% no-repeat padding-box;
-    box-shadow: 0px 8px 16px #6926994D;
     mix-blend-mode: multiply;
     border-radius: 8px;
     opacity: 1;
