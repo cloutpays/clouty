@@ -97,6 +97,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
           </thead>
           <tbody className='lh-copy'>
             {transactions
+              .filter((curr: any) => curr.billing_details)
               .map((curr: any, ind: any) => {
                 return (
                   <tr key={ind}>
