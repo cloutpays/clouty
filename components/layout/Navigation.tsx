@@ -30,14 +30,9 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
           <a className='navbar-brand' href='/'>
             <img
               className='logo-mobile'
-              height='50'
               src='/static/img/new/logo-mobile.svg'
             />
-            <img
-              className='logo-web'
-              height='50'
-              src='/static/img/new/logo-web.svg'
-            />
+            <img className='logo-web' src='/static/img/new/logo-web.svg' />
           </a>
           <button
             className='navbar-toggler homepage-nav-toggler'
@@ -51,22 +46,22 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
           </button>
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav mr-auto'>
-              <li className='nav-item mobile-nav-item-home '>
+              <li className='nav-item links mobile-nav-item-home '>
                 <a className='nav-link' href='/'>
                   Home
                 </a>
               </li>
-              <li className='nav-item'>
+              <li className='nav-item links'>
                 <a className='nav-link' href='/about'>
                   About <span className='sr-only'>(current)</span>
                 </a>
               </li>
-              <li className='nav-item'>
+              <li className='nav-item links'>
                 <a className='nav-link' href='/games'>
                   Games
                 </a>
               </li>
-              <li className='nav-item'>
+              <li className='nav-item links'>
                 <a className='nav-link' href='/terms'>
                   Terms
                 </a>
@@ -106,20 +101,20 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
               <li className='mr2 mr4-ns'>Sign up </li>
             </a> */}
                   <li className='nav-item' id='nav-login'>
-                    <a href='/login' className='nav-link'>
-                      Login
+                    <a href='/login' className='nav-link login-btn'>
+                      Log In
                     </a>
                   </li>
                   <li className='nav-item' id='nav-signup'>
                     <a
-                      className='nav-link btn btn-sm btn-dark py-1 px-4 text-white mt-2'
+                      className='nav-link btn btn-sm btn-dark text-white mt-2'
                       href='/signup'>
                       Sign Up
                     </a>
                   </li>
                   <li className='nav-item' id='mobile-nav-login'>
-                    <a href='/login' className='nav-link'>
-                      Login
+                    <a href='/login' className='nav-link login-btn'>
+                      Log In
                     </a>
                   </li>
                 </>

@@ -13,8 +13,8 @@ const Footer: React.FC<DarkModeProps> = () => {
     <footer id='footer' className='footer-1'>
       <div className='main-footer widgets-dark typo-light'>
         <div className='container'>
-          <div className='row'>
-            <div className='col-xs-12 col-sm-6 col-md-3'>
+          <div className='footer-flex'>
+            <div className='contact'>
               <div className='widget subscribe no-box'>
                 <h5 className='widget-title'>
                   Be the first to know
@@ -26,13 +26,9 @@ const Footer: React.FC<DarkModeProps> = () => {
                 </p>
                 <label className='footer-input-label'>Email address</label>
                 <div className='input-group mb-3'>
-                  <input
-                    type='text'
-                    className='form-control footer-input'
-                  />
+                  <input type='text' className='form-control footer-input' />
                   <div className='input-group-append'>
-                    <span
-                      className='text-white input-group-text submit-btn-footer'>
+                    <span className='text-white input-group-text submit-btn-footer'>
                       {' '}
                       Submit{' '}
                     </span>
@@ -40,7 +36,7 @@ const Footer: React.FC<DarkModeProps> = () => {
                 </div>
               </div>
             </div>
-            <div className='col-xs-12 col-sm-6 col-md-2'>
+            <div className='folow'>
               <div className='widget no-box'>
                 <h5 className='widget-title'>
                   Follow Us
@@ -60,7 +56,7 @@ const Footer: React.FC<DarkModeProps> = () => {
                 </ul>
               </div>
             </div>
-            <div className='col-sm-6 col-md-2 col-6'>
+            <div className='pages'>
               <div className='widget no-box'>
                 <ul className='thumbnail-widget'>
                   <li>
@@ -91,7 +87,7 @@ const Footer: React.FC<DarkModeProps> = () => {
                 </ul>
               </div>
             </div>
-            <div className='col-sm-6 col-md-2 col-6'>
+            <div className='links'>
               <div className='widget no-box'>
                 <ul className='thumbnail-widget'>
                   <li>
@@ -119,14 +115,14 @@ const Footer: React.FC<DarkModeProps> = () => {
                 </ul>
               </div>
             </div>
-
-            <div className='col-xs-12 col-sm-12 col-md-2'>
+            <div className='logo'>
               <div className='widget no-box justify-between widget-footer'>
-                <img
-                  height='80'
-                  src='/static/img/new/logo-web.svg'
-                />
-                <p className='footer-copyright-content'>© Clouty 2020 Packaged with care.</p>
+                <img height='80' src='/static/img/new/logo-web.svg' />
+                <p className='footer-copyright-content'>
+                  © Clouty 2020
+                  <br />
+                  Packaged with care.
+                </p>
               </div>
             </div>
           </div>

@@ -18,64 +18,12 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
   return (
     <div>
       <Wrapper data={data}>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-7'>
-              <div className='banner-content'>
-                <p>Welcome to Clouty</p>
-                <h1>The 🌎's first music betting platform.</h1>
-                <div>
-                  <span>
-                    We host live bets about the latest releases and predictions
-                    in the rap game. Sign up today and receive a free $2 credit
-                    towards your bets and no fees for all bets!
-                  </span>
-                </div>
-                <a href='/signup'>
-                  <button className='btn btn-default'>Sign Up</button>
-                </a>
-                <a href='/signup'>
-                  <button className='btn btn-default login-mobile'>Log In</button>
-                </a>
-              </div>
-            </div>
-          </div>
-          <section className='top-banner-right-mobile'>
-            <div className='row'>
-              <div className='col-md-12 p-0'>
-                <img
-                    width='100%'
-                    src='/static/img/new/line-horizontal.jpg'
-                /><img
-                    className='background-banner-image-mobile'
-                    src='/static/img/new/banner-right-mobile.jpg'
-                />
-                <img
-                    className='background-mobile-image-mobile'
-                    src='/static/img/new/mobile-frame.png'
-                />
-              </div>
-            </div>
-          </section>
-          <img
-              className='banner-line-vertical'
-              src='/static/img/new/line-vertical.jpg'
-          />
-          <img
-            className='background-banner-image'
-            src='/static/img/new/banner-right.jpg'
-          />
-          <img
-            className='background-mobile-image'
-            src='/static/img/new/mobile-frame.png'
-          />
-        </div>
         <section>
           <section>
             <div className='row'>
               <div className='col-md-4 p-md-0 album-over-order-sm-2'>
                 <img
-                    className='album-cover-image'
+                  className='album-cover-image'
                   src='/static/img/new/album-cover.jpg'
                 />
                 <div className='bet-button-group-mobile'>
@@ -91,9 +39,9 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                 <div className='album-cover'>
                   <div className='album-cover-content'>
                     <p>This Week's Featured Bet</p>
-                    <h3>#Verzuz returns with Gucci Mane vs. Jeezy Battle</h3>
+                    <h3>#Verzuz returns with Gucci Mane vs. Jeezy</h3>
                     <div className='bet-button-group'>
-                      <button className='btn btn-default bet-now mr-3'>
+                      <button className='btn btn-default bet-now'>
                         Bet Now
                       </button>
                       <button className='btn btn-default all-bet'>
@@ -118,32 +66,37 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
             </div>
           </section>
           <section className='fav-artist'>
-            <div className='container'>
-              <div className='row'>
-                <div className='col-md-6'>
-                  <div className='fav-artist-content'>
-                    <p>Bet On Your Favorite Artists</p>
-                    <h1>Put your money where your ears are.</h1>
-                    <div className='pr-md-5'>
-                      <span>
-                        Clouty is the first and only platform where you can
-                        place bets and earn money on your favorite artists,
-                        events, and albums. Are you ready to put your money
-                        where your ears are?
-                      </span>
-                    </div>
-                    <button className='btn btn-default'>View All Bets</button>
-                  </div>
-                </div>
-                <img className='web-image'
-                  src='/static/img/new/Benefits-Duotone-Image.jpg'
-                  width='300'
-                />
-                <img className='mobile-image'
-                    src='/static/img/new/Benefits-Duotone-Image-mobile.jpg'
-                    width='300'
-                />
+            <div className='fav-artist-content'>
+              <p>Bet On Your Favorite Artists</p>
+              <h1>
+                Put your money
+                <br></br>
+                where your ears are.
+              </h1>
+              <div className='mb-56'>
+                <span>
+                  Clouty is the first and only platform where you can place bets
+                  and
+                  <br></br>
+                  earn money on your favorite artists, events, and albums. Are
+                  you
+                  <br></br>
+                  ready to put your money where your ears are?
+                </span>
               </div>
+              <button className='btn btn-default'>View All Bets</button>
+            </div>
+            <div>
+              <img
+                className='web-image'
+                src='/static/img/new/Benefits-Duotone-Image.jpg'
+                width='300'
+              />
+              <img
+                className='mobile-image'
+                src='/static/img/new/Benefits-Duotone-Image-mobile.jpg'
+                width='300'
+              />
             </div>
           </section>
           <section>
@@ -153,7 +106,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                   <div className='fav-artist-content'>
                     <p>Types Of Betting</p>
                     <h1>How it works</h1>
-                    <div  className='content-text text-left'>
+                    <div className='content-text text-left'>
                       <span>
                         For an artist to qualify for one of our contests, their
                         music must be on either the Big 3: Apple Music, Spotify,
@@ -322,19 +275,19 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
               })}
             </div>
           </article> */}
-          <p className={`${styles.paragraph}`}>
-            {/* <h2 className='f2 f-subheadline-l measure lh-title fw8'>
+          {/* <p className={`${styles.paragraph}`}> */}
+          {/* <h2 className='f2 f-subheadline-l measure lh-title fw8'>
             How It Works
           </h2>
           Welcome to{' '} */}
-            {/* <a
+          {/* <a
             href='/about'
             alt='Ableton Push 2'
             title='Ableton Push 2'
             className={`${styles.link}`}>
             Clouty
           </a> */}
-          </p>
+          {/* </p> */}
           {/* <h2>Weekly Contents</h2>
         <p className={`${styles.paragraph}`}>
           These questions will be regarding releases and predictions in the rap
