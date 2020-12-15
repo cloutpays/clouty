@@ -301,7 +301,6 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
 };
 
 Home.getInitialProps = async ({ req }) => {
-  return {};
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
   const res = await axios.get(`${apiURL}/api/questions`);
