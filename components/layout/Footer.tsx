@@ -57,65 +57,65 @@ const Footer: React.FC<DarkModeProps> = () => {
               </div>
             </div>
             <div className='mobile-disp'>
-            <div className='pages'>
-              <div className='widget no-box'>
-                <ul className='thumbnail-widget'>
-                  <li>
-                    <div className='thumb-content'>
-                      <a href="{{ route('sign_up.option') }}">Home</a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className='thumb-content'>
-                      <a href="{{ route('teacher.find') }}">About</a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className='thumb-content'>
-                      <a href="{{ route('discussion.index') }}">Games</a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className='thumb-content'>
-                      <a href="{{ route('discussion.index') }}">Sign Up</a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className='thumb-content'>
-                      <a href='#.'>Log In</a>
-                    </div>
-                  </li>
-                </ul>
+              <div className='pages'>
+                <div className='widget no-box'>
+                  <ul className='thumbnail-widget'>
+                    <li>
+                      <div className='thumb-content'>
+                        <a href="{{ route('sign_up.option') }}">Home</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div className='thumb-content'>
+                        <a href="{{ route('teacher.find') }}">About</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div className='thumb-content'>
+                        <a href="{{ route('discussion.index') }}">Games</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div className='thumb-content'>
+                        <a href="{{ route('discussion.index') }}">Sign Up</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div className='thumb-content'>
+                        <a href='#.'>Log In</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div className='links'>
-              <div className='widget no-box'>
-                <ul className='thumbnail-widget'>
-                  <li>
-                    <div className='thumb-content'>
-                      <a href="{{ route('sign_up.option') }}">FAQ</a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className='thumb-content'>
-                      <a href="{{ route('teacher.find') }}">Terms</a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className='thumb-content'>
-                      <a href="{{ route('discussion.index') }}">
-                        Privacy Policy
-                      </a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className='thumb-content'>
-                      <a href="{{ route('discussion.index') }}">Newsletter</a>
-                    </div>
-                  </li>
-                </ul>
+              <div className='links'>
+                <div className='widget no-box'>
+                  <ul className='thumbnail-widget'>
+                    <li>
+                      <div className='thumb-content'>
+                        <a href="{{ route('sign_up.option') }}">FAQ</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div className='thumb-content'>
+                        <a href="{{ route('teacher.find') }}">Terms</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div className='thumb-content'>
+                        <a href="{{ route('discussion.index') }}">
+                          Privacy Policy
+                        </a>
+                      </div>
+                    </li>
+                    <li>
+                      <div className='thumb-content'>
+                        <a href="{{ route('discussion.index') }}">Newsletter</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
             </div>
             <div className='logo'>
               <div className='widget no-box justify-between widget-footer'>
