@@ -11,9 +11,15 @@ html {
     box-shadow: 0px 8px 16px #6926994D;
     border-radius: 8px;
 }
+.btn-default{
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+}
 .center.flex .row{
     margin: 0;
 }
+
 .navbar {
     font-size: 1.125rem;
     z-index: 9999;
@@ -119,9 +125,10 @@ html {
 .background-mobile-image {
     position: absolute;
     right: 14vw;
-    top: 3vw;
+    transform: translate(0, -50%);
+    top: 52%;
     width: 24vw;
-    height: 92.7vh;
+    height:auto;
 
 }
 
@@ -654,7 +661,6 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;}
 .about-banner-content p {
     font-size: 18px;
     font-weight: 400;
-    text-align: justify;
     text-justify: inter-word;
 }
 
@@ -1035,6 +1041,7 @@ display: flex;
     -webkit-transition:1s ease all;
 }
 .item img{max-width:100%;}
+
 @media screen and (max-width: 1750px){
     .heading-container{
         max-width: 100%;
@@ -1052,8 +1059,8 @@ display: flex;
         font-size: 5rem;
     }
     .background-mobile-image{
-        height: 84.7vh;
-        top: 55%;
+        height: auto;
+        top: 50%;
         transform: translate(0, -50%);
     }
     .banner-content{
@@ -1095,6 +1102,9 @@ display: flex;
     .fav-artist-content {
         margin-left: 5rem;
     }
+    .banner-content span{
+        font: normal normal 1.1rem/1.688rem 'Inter', sans-serif;
+    }
     .section-services .col-lg-3.col-md-4{
         flex: 0 0 50%;
         max-width: 40%;
@@ -1118,6 +1128,9 @@ display: flex;
 @media screen and (max-width: 768px){
     .places-featured-images img:not(:last-child) {
         margin-right: 7.75rem;
+    }
+    .banner-content p{
+        font-size: 1.4rem;
     }
     .places-featured-images img{
         width: 15rem;
@@ -1183,6 +1196,9 @@ display: flex;
 /* small screen custom css start*/
 
 @media screen and (max-width: 480px) {
+    .navbar{
+        padding: 2rem;
+    }
     /*    Home page mobile start   */
     .banner-line-vertical, .background-banner-image, .background-mobile-image {
         display: none;
@@ -1630,6 +1646,7 @@ display: flex;
     .banner-line-vertical, .background-banner-image, .background-mobile-image {
         display: none;
     }
+ 
     .pos-rel{
         height: 100%;
     }
@@ -2101,8 +2118,37 @@ display: flex;
         -webkit-column-count: 1;
         column-count: 1;
     }
+    .places-featured-images img:not(:last-child){
+        margin-right: auto;
+    }
+    .navbar-collapse{
+        margin-top: 10.75rem;
+    }
+    .navbar-collapse .navbar-nav  li.links{
+        padding-left: 0;
+        margin-bottom: 3rem;
+    }
+    .navbar-collapse .navbar-nav  li .nav-link{
+        font-size: 2.5rem;
+    }
+    .navbar-collapse #mobile-nav-login{
+        padding-top: 4rem;
+        margin-top: 0;
+    }
+    .navbar-collapse .navbar-nav .nav-link.login-btn{
+        color: #111111;
+    }
     .heading-container{
         margin: 0;
+    }
+    .album-cover{
+        padding: 3.5rem 0rem;
+    }
+    .places-featured{
+        padding: 0 15px;
+    }
+    .places-featured h5{
+        font-size: 23px;
     }
     .banner-content p{
         margin-top: 5rem;
@@ -2166,6 +2212,28 @@ display: flex;
     .widget.subscribe p{
         display: none;
     }
+    .navbar-brand{
+        height: 40px;
+        width: 40px;
+    }
+    .logo-mobile{
+        width: 100%;
+        height: 100%;
+    }
+    .navbar-collapse  .navbar-nav #nav-signup a{
+        margin-left: 0!important;
+        font-size: 1.125rem;
+    }
+    .navbar-collapse  .navbar-nav li{
+        width: 100%;
+    }
+    .footer-flex .logo .widget.no-box{
+        margin-bottom: 0;
+    }
+    .widget.no-box{
+        margin-bottom: 80px;
+    }
+  
 }
 @media screen and (max-width: 375px){
     .fav-artist-content{
@@ -2192,6 +2260,18 @@ display: flex;
     .get-ready-started-content h1
     {
         font-size: 46px;
+    }
+  
+    .banner-content button,
+    .banner-content .login-mobile,
+    .bet-button-group-mobile .bet-now,
+    .bet-button-group-mobile .read-more,
+    .fav-artist-content button,
+    .get-ready-started-content button{
+        font-size: 14px;
+    }
+    .footer-copyright-content{
+        font-size: 11px !important;
     }
 }
 

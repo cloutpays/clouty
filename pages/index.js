@@ -12,6 +12,7 @@ import classnames from 'classnames';
 const data = {
   description: 'Make money while putting your intuition on the line.',
   header: `Welcome to Clouty`,
+  home_page: true
 };
 
 const Home = ({ questions, darkMode, loggedIn, album }) => {
