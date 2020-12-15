@@ -7,14 +7,15 @@ const data = {
 };
 const Home = () => (
   <Wrapper data={data}>
-    <div style={{backgroundColor: "#EFE8F4", marginTop: "-8vw"}}>
+    <div className='about-page' style={{backgroundColor: "#EFE8F4", marginTop: "-8vw"}}>
       <div className='row'>
         <div className='col-md-12'>
+          <div className="d-flex-about">
           <div className='about-banner-content'>
             <div className='row'>
               <div className='col-md-6'>
                 <p>Our Story</p>
-                <h1>We are the first of our kind. 🥇</h1>
+                <h1>We're the first <br></br>  of our kind. 🥇</h1>
               </div>
             </div>
             <div className='row'>
@@ -41,14 +42,15 @@ const Home = () => (
             </div>
             <button className='btn btn-default'>Contact Us</button>
           </div>
+          </div>
         </div>
       </div>
     </div>
     <section className='about-service'>
-      <div className='container'>
+      <div className='about-container'>
         <div className='row'>
           <div className='col-md-3 title'>
-            <h1>Our Mission At Clouty</h1>
+            <h1>Our Mission <br></br> At Clouty</h1>
           </div>
           <div className='col-md-9'>
             <div className='row'>

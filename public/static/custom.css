@@ -603,7 +603,7 @@ footer .fa {
 .widget.no-box{	padding: 0;	background-color: transparent;	margin-bottom: 40px;
     box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; -o-box-shadow: none;}
 .widget.subscribe p{	margin-bottom: 2rem;}
-.widget li a{	color: #000000;}
+.widget li a{	color: #111111;}
 .widget-title {margin-bottom: 1.688rem; color: #692699}
 .widget-title.text-center span,.widget-title.text-center span::after {margin-left: auto;margin-right:auto;left: 0;right: 0;}
 .widget .badge{	float: right;	background: #7f7f7f;}
@@ -655,18 +655,36 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;}
 /*About section*/
 
 .about-banner-content {
-    padding: 13vw 9vw;
-}
+    max-width: 1456px;
 
+}
+.about-banner-content .col-md-6{
+    padding: 0;
+}
+.d-flex-about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.about-container{
+    max-width: 1456px;
+    margin: auto;
+}
 .about-banner-content p {
     font-size: 18px;
     font-weight: 400;
+    margin-right: 50px;
     text-justify: inter-word;
 }
-
+.about-container{
+    max-width: 1456px;
+}
 .about-banner-content h1 {
     font-size: 70px;
     font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     letter-spacing: -2.25px;
 }
 
@@ -680,7 +698,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;}
     border-radius: 4px;
     opacity: 1;
     color: #ffffff;
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;
 }
 
 .about-banner-content button:hover {
@@ -709,7 +727,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;}
 }
 
 .about-service {
-    padding: 5rem 0;
+    padding: 10rem 0 .5rem 0;
 }
 
 .about-service-item h5 {
@@ -717,13 +735,16 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;}
     color: #111111;
     opacity: 1;
     font-weight: 500;
+    margin-bottom: 2rem;
+    font: normal normal bold 27px/36px 'Inter' , sans-serif;
 }
-
+.about-service-item{
+    margin-bottom: 5rem;
+    margin-right: 3rem;
+}
 .about-service-item p {
-    font-size: 16px;
     font-weight: 400;
-    text-align: justify;
-    text-justify: inter-word;
+    font: normal normal normal 18px/27px 'Inter' , sans-serif;
 }
 
 .about-fav-artist-content {
@@ -1053,10 +1074,36 @@ display: flex;
     .banner-content{
         padding: 6.5vw 0 0 0;
     }
+    .about-banner-content{
+        padding: 13vw 10vw;
+        max-width: 100%;
+    }
+    .about-container{
+        padding: 0 10vw;
+        max-width: 100%;
+    }
+    .d-flex-about{
+        height: auto;
+    }
 }
 @media screen and (max-width: 1200px){
     .banner-content h1{
         font-size: 5rem;
+    }
+    .about-banner-content h1{
+        font-size: 5.375rem;
+    }
+    .about-service-item h5{
+        font-size: 25px;
+    }
+    .about-service .title h1{
+        font-size: 35px;
+    }
+    .about-service-item p{
+        font-size: 15px;
+    }
+    .about-banner-content p{
+        font-size: 15px;
     }
     .background-mobile-image{
         height: auto;
@@ -1082,6 +1129,19 @@ display: flex;
 @media screen and (max-width: 900px){
     .banner-content{
         padding: 0;
+    }
+    .about-page{
+        margin-top: 0!important;
+    }
+    .about-banner-content{
+        padding: 8vw 5vw;
+    }
+    .about-container{
+        padding: 0 6vw;
+    }
+    .about-service .title h1{
+        font-size: 28px;
+        margin: 0;
     }
     .banner-content h1{
         font-size: 3.5rem;
@@ -1126,6 +1186,18 @@ display: flex;
     }
 }
 @media screen and (max-width: 768px){
+    .about-service .title h1{
+        font-size: 23px;
+    }
+    .about-banner-content h1{
+        font-size: 4.375rem;
+    }
+    .about-service-item h5{
+        font-size: 20px;
+    }
+    .about-service-item p{
+        font: normal normal normal 15px/22px 'Inter' , sans-serif;
+    }
     .places-featured-images img:not(:last-child) {
         margin-right: 7.75rem;
     }
@@ -1646,7 +1718,19 @@ display: flex;
     .banner-line-vertical, .background-banner-image, .background-mobile-image {
         display: none;
     }
- 
+    .about-banner-content p{
+        margin-right: 0;
+        margin-bottom:  2.5rem;
+    }
+    .about-container .col-md-6{
+        padding: 0;
+    }
+    .navbar{
+        padding: 1rem 2.25rem 2rem 2.25rem;
+    }
+    .about-container{
+        padding: 0 1.5vw;
+    }
     .pos-rel{
         height: 100%;
     }
@@ -1994,7 +2078,7 @@ display: flex;
     }
 
     .about-banner-content h1 {
-        font-size: 52px;
+        font-size: 50px;
     }
 
     .about-banner-content button {
@@ -2010,12 +2094,16 @@ display: flex;
         transform-origin: 20% 40%;
         color: #692699;
         font-size: 38px;
+        margin-bottom: 2.5rem;
         font-weight: 800;
         letter-spacing: -1px;
     }
-
+    .about-service-item{
+        margin-bottom: 2.625rem;
+        margin-right: 0;
+    }
     .about-service {
-        padding: 3rem 0;
+        padding: 3rem 0 0 0;
     }
 
     .about-service-item h5 {
@@ -2113,6 +2201,9 @@ display: flex;
     }
 }
 @media only screen and (max-width: 480px) {
+    .about-service{
+        padding: 5rem 0 0 0;
+    }
     .masonry {
         -moz-column-count: 1;
         -webkit-column-count: 1;
@@ -2271,7 +2362,7 @@ display: flex;
         font-size: 14px;
     }
     .footer-copyright-content{
-        font-size: 11px !important;
+        font-size: 14px !important;
     }
 }
 
