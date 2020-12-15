@@ -11,7 +11,9 @@ html {
     box-shadow: 0px 8px 16px #6926994D;
     border-radius: 8px;
 }
-
+.center.flex .row{
+    margin: 0;
+}
 .navbar {
     font-size: 1.125rem;
     z-index: 9999;
@@ -107,7 +109,7 @@ html {
     opacity: 1;
 }
 .background-banner-image img{
- width: 104%;
+ width: 100%;
  height: 100%;
 }
 .pos-rel{
@@ -968,6 +970,9 @@ display: flex;
 .footer-flex .folow{
     margin-right: 10.19rem;
 }
+.footer-flex .mobile-disp{
+    display: flex;
+}
 .footer-flex .pages{
     margin-right: 1.5rem;
 }
@@ -1042,13 +1047,110 @@ display: flex;
         padding: 6.5vw 0 0 0;
     }
 }
-@media only screen and (max-width: 480px) {
-    .masonry {
-        -moz-column-count: 1;
-        -webkit-column-count: 1;
-        column-count: 1;
+@media screen and (max-width: 1200px){
+    .banner-content h1{
+        font-size: 5rem;
+    }
+    .background-mobile-image{
+        height: 84.7vh;
+        top: 55%;
+        transform: translate(0, -50%);
+    }
+    .banner-content{
+        padding: 6vw 0 0 0;
+    }
+    br{
+        display: none;
+    }
+    .album-cover h3{
+        font-size: 2.8vw;
+    }
+    .album-cover p{
+        font-size: 1.7rem;
+    }
+    .fav-artist-content{
+        margin-left: 15rem;
     }
 }
+@media screen and (max-width: 900px){
+    .banner-content{
+        padding: 0;
+    }
+    .banner-content h1{
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .banner-content button{
+        margin-top: 3rem;
+    }
+    .album-cover-content{
+        margin-left: 7rem;
+    }
+    .album-cover p{
+        margin-bottom: 2rem;
+    }
+    .album-cover .bet-now{
+        margin-right: 1.5rem;
+    }
+    .fav-artist-content {
+        margin-left: 5rem;
+    }
+    .section-services .col-lg-3.col-md-4{
+        flex: 0 0 50%;
+        max-width: 40%;
+        margin-bottom: 1.5rem;
+    }
+    .section-services .row{
+        justify-content: center;
+    }
+    .footer-flex .contact,
+    .footer-flex .folow,
+    .footer-flex .links {
+        margin-right: 5.13rem;
+    }
+    footer .main-footer{
+        padding: 5.5rem 0 4.938rem 0;
+    }
+    .navbar{
+        align-items: center;
+    }
+}
+@media screen and (max-width: 768px){
+    .places-featured-images img:not(:last-child) {
+        margin-right: 7.75rem;
+    }
+    .places-featured-images img{
+        width: 15rem;
+    }
+    .places-featured{
+        height: 34.75rem;
+    }
+    .footer-flex{
+        display: block;
+    }
+    .footer-flex .contact, .footer-flex .folow, .footer-flex .logo{
+        width: 65%;
+        margin-right: 0;
+        margin: auto;
+    }
+    .footer-flex .links, .footer-flex .pages{
+        width: 25%;
+        vertical-align: top;
+        margin-right: 0;
+        display: inline-block;
+    }
+    .footer-flex .mobile-disp{
+        display: flex;
+        justify-content: center;
+    }
+    .submit-btn-footer{
+        padding: 0.75rem 1.5rem;
+    }
+    .footer-input{
+        height: 4rem;
+    }
+}
+
 
 @media only screen and (min-width: 500px) and (max-width: 768px){
     .masonry {
@@ -1523,10 +1625,17 @@ display: flex;
     }
 }
 
-@media screen and (min-width: 481px) and (max-width: 767px) {
+@media screen and (max-width: 767px) {
     /*    Home page mobile start   */
     .banner-line-vertical, .background-banner-image, .background-mobile-image {
         display: none;
+    }
+    .pos-rel{
+        height: 100%;
+    }
+    .heading-container{
+        margin: 0 14.188rem;
+        display: block;
     }
     .background-banner-image-mobile {
         position: relative;
@@ -1554,10 +1663,11 @@ display: flex;
     .banner-content h1 {
         font-size: 50px;
         font-weight: 800;
+        margin-bottom: 2rem;
     }
 
     .banner-content span {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .banner-content button {
@@ -1567,6 +1677,7 @@ display: flex;
         padding: .8rem;
         font-size: 18px;
         border: 0;
+        margin-bottom: 1.5rem;
     }
 
     .banner-content .login-mobile {
@@ -1585,6 +1696,7 @@ display: flex;
     }
     .album-over-order-sm-2 {
         order: 2;
+        padding: 0;
     }
 
     .album-cover {
@@ -1594,6 +1706,7 @@ display: flex;
 
     .album-cover h3 {
         font-size: 38px;
+        margin-bottom: 2rem;
     }
 
     .album-cover-content {
@@ -1607,7 +1720,7 @@ display: flex;
         opacity: 1;
         color: #ffffff;
         border: 2px solid #692699;
-        margin-top: 1.5rem;
+        margin-top: 2rem;
         width: 100%;
         padding: .8rem;
         font-size: 18px;
@@ -1626,7 +1739,8 @@ display: flex;
         border-radius: 4px;
         opacity: 1;
         color: #000000;
-        margin-top: 1.5rem;
+        margin-top: 2rem;
+        background: transparent;
         width: 100%;
         padding: .8rem;
         font-size: 18px;
@@ -1638,6 +1752,9 @@ display: flex;
         border-radius: 4px;
         opacity: 1;
         color: #ffffff;
+    }
+    .fav-artist{
+        display: block;
     }
 
     .bet-button-group {
@@ -1680,11 +1797,13 @@ display: flex;
         display: block;
         position: relative;
         width: 100%;
-        height: 150vw;
+        height: 100%;
         margin-top: 4rem;
         margin-bottom: 5rem;
     }
-
+    .container{
+        max-width: 100%;
+    }
     .fav-artist-content {
         padding: 2rem 0;
     }
@@ -1705,6 +1824,8 @@ display: flex;
     .fav-artist-content button {
         width: 100%;
         padding: .8rem;
+        font-weight: 500;
+        font-size: 18px;
     }
 
     .section-services .single-service {
@@ -1749,7 +1870,7 @@ display: flex;
         right: 4px;
         border-radius: .3rem !important;
         top: 10%;
-        font-size: 16px;
+        font-size: 11px;
         color: #111 !important;
         font-weight: bold;
     }
@@ -1762,15 +1883,25 @@ display: flex;
 
     .widget.no-box ul {
         line-height: 2.5;
+        width: 100%;
         padding-left: 0 !important;
     }
-
+    .footer-flex .links, .footer-flex .pages{
+        width: 32%;
+    }
+    .footer-flex .logo .widget.no-box{
+        align-items: center;
+    }
+   
+    .footer-flex .widget li .thumb-content{
+        margin-bottom: 0;
+    }
     .widget-footer {
         display: flex;
     }
 
     .footer-copyright-content {
-        font-size: 21px !important;
+        font-size: 16px !important;
         padding: 0 0 0 11rem;
     }
 
@@ -1905,6 +2036,8 @@ display: flex;
         width: 100%;
         padding: .8rem;
         border: 0;
+        font-size: 18px;
+        font-weight: 500;
     }
 
     .album-cover h3 {
@@ -1962,3 +2095,103 @@ display: flex;
         margin-top: 4rem;
     }
 }
+@media only screen and (max-width: 480px) {
+    .masonry {
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+    .heading-container{
+        margin: 0;
+    }
+    .banner-content p{
+        margin-top: 5rem;
+    }
+    .banner-content{
+        padding: 0 1.5rem;
+    }
+    .top-banner-right-mobile .row{
+        margin: 0;
+    }
+    .background-mobile-image-mobile{
+        transform: translate3d(-44%, 67%, 0);
+    }
+    .album-cover-content{
+        margin: 0;
+    }
+    .places-featured{
+        margin-top: 9rem;
+    }
+    .fav-artist-content{
+        margin-bottom: 6rem;
+    }
+    .places-featured{
+        height: 100%;
+    }
+    .section-services .col-lg-3.col-md-4{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .section-services{
+        margin-top: 0;
+    }
+    .places-featured-images img{
+        display: block;
+        margin: 6rem auto;
+        width: 20rem;
+    }
+    .section-services .single-service {
+        margin: 0;
+        min-height: auto;
+    }
+    .footer-flex .contact, .footer-flex .folow, .footer-flex .logo{
+        width: 100%;
+    }
+    .footer-flex .mobile-disp{
+        justify-content: flex-start;
+    }
+    .widget li a{
+        font-size: 1.5rem;
+    }
+    footer .main-footer h5{
+        font-size: 2rem;
+    }
+    footer .fa{
+        font-size: 20px;
+    }
+    .fav-artist-content{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .widget.subscribe p{
+        display: none;
+    }
+}
+@media screen and (max-width: 375px){
+    .fav-artist-content{
+        padding: 2rem;
+    }
+    .col-md-12.text-center{
+        padding: 0;
+    }
+    .col-md-12.text-center .fav-artist-content{
+        padding: 0;
+    }
+    .footer-flex{
+        padding: 0 9px;
+    }
+    .footer-flex .links, .footer-flex .pages{
+        width: 50%;
+    }
+    .footer-copyright-content{
+        padding: 0 0 0 5rem;
+    }
+    .banner-content h1,
+    .fav-artist-content h1,
+    .fav-artist-content h1,
+    .get-ready-started-content h1
+    {
+        font-size: 46px;
+    }
+}
+

@@ -89,16 +89,12 @@ export default class Wrapper extends Component {
               <div className='banner-content'>
                 <p>Welcome to Clouty</p>
                 <h1>
-                  The 🌎's first music
-                  <br></br>
-                  betting platform.
+                  The 🌎's first music <br></br> betting platform.
                 </h1>
                 <div>
                   <span>
                     We host live bets about the latest releases and predictions
-                    in the rap game.Sign up
-                    <br></br>
-                    today and receive a free $2 credit towards your bets and no
+                    in the rap game.Sign up  <br></br> today and receive a free $2 credit towards your bets and no
                     fees for all bets!
                   </span>
                 </div>

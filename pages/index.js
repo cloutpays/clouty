@@ -69,19 +69,13 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
             <div className='fav-artist-content'>
               <p>Bet On Your Favorite Artists</p>
               <h1>
-                Put your money
-                <br></br>
-                where your ears are.
+                Put your money <br></br> where your ears are.
               </h1>
               <div className='mb-56'>
                 <span>
                   Clouty is the first and only platform where you can place bets
-                  and
-                  <br></br>
-                  earn money on your favorite artists, events, and albums. Are
-                  you
-                  <br></br>
-                  ready to put your money where your ears are?
+                  and <br></br> earn money on your favorite artists, events, and albums. Are
+                  you <br></br> ready to put your money where your ears are?
                 </span>
               </div>
               <button className='btn btn-default'>View All Bets</button>
@@ -123,7 +117,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                 </div>
                 <div className='section-services'>
                   <div className='row'>
-                    <div className='col-md-4 col-lg-3'>
+                    <div className='col-md-4 col-lg-3 col-sm-6'>
                       <div className='single-service'>
                         <div className='part-1'>
                           <div className='service-icon'>&#128200;</div>
@@ -136,7 +130,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                         </div>
                       </div>
                     </div>
-                    <div className='col-md-4 col-lg-3'>
+                    <div className='col-md-4 col-lg-3 col-sm-6'>
                       <div className='single-service'>
                         <div className='part-1'>
                           <div className='service-icon'>&#129518;</div>
@@ -149,7 +143,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                         </div>
                       </div>
                     </div>
-                    <div className='col-md-4 col-lg-3'>
+                    <div className='col-md-4 col-lg-3 col-sm-6'>
                       <div className='single-service'>
                         <div className='part-1'>
                           <div className='service-icon'>&#128302;</div>
@@ -162,7 +156,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                         </div>
                       </div>
                     </div>
-                    <div className='col-md-4 col-lg-3'>
+                    <div className='col-md-4 col-lg-3 col-sm-6'>
                       <div className='single-service'>
                         <div className='part-1'>
                           <div className='service-icon'>🎙️</div>
@@ -193,7 +187,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
                     <div>
                       <span>
                         You're just minutes away from placing your first ever
-                        music bet.
+                        music bet. 
                         <br />
                         We'll even give you $2 free when you sign up!
                       </span>
@@ -306,6 +300,7 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
 };
 
 Home.getInitialProps = async ({ req }) => {
+  return {};
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
   const res = await axios.get(`${apiURL}/api/questions`);

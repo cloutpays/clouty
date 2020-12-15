@@ -56,6 +56,7 @@ const Footer: React.FC<DarkModeProps> = () => {
                 </ul>
               </div>
             </div>
+            <div className='mobile-disp'>
             <div className='pages'>
               <div className='widget no-box'>
                 <ul className='thumbnail-widget'>
@@ -114,6 +115,7 @@ const Footer: React.FC<DarkModeProps> = () => {
                   </li>
                 </ul>
               </div>
+            </div>
             </div>
             <div className='logo'>
               <div className='widget no-box justify-between widget-footer'>
