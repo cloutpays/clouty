@@ -42,9 +42,7 @@ const Confirmation = () => (
                         <p className={`${styles.paragraph}`}>
           All pay outs will be dispersed through one of our three channels.
           Winnings can be used for future gameplay.
-          <span role='img' aria-label='Bulleye'>
-            🎯‍
-          </span>
+        
         </p>
                         </div>
                       </div>
