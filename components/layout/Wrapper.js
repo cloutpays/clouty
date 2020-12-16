@@ -138,7 +138,7 @@ export default class Wrapper extends Component {
           { this.renderHomePageHeader() }
         </div>
         <div className='center flex'>
-          <main className={`mb5 w-100 ${cls}`}>{content}</main>
+          <main className={` w-100 ${cls}`}>{content}</main>
         </div>
         <Footer darkMode={darkMode} />
       </div>

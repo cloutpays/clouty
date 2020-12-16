@@ -245,15 +245,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
               time.
             </div>
           )}
-          <div className='lh-copy mt3'>
+          <div className='margin-actions'>
             {!signUp && (
               <div>
                 <Link href='/user/pw-forget'>
-                  <a className='fw5 link f5 bb bw1 dim black'>
-                    Forgot password?
+                  <a className='link forgot bb bw1 dim black'>
+                    Forgot your password?
                   </a>
                 </Link>
-                <a href='/signup' className='f5 link dim black db mt-3'>
+                <a href='/signup' className='f5 signUp link dim black db mt-3'>
                   Don't have an account?{' '}
                   <span className='fw5 link no-underline bb bw1 dim '>
                     Sign Up

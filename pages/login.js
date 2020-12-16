@@ -7,16 +7,13 @@ const data = {
 };
 const Login = () => (
   <Wrapper data={data}>
-    <div className='container'>
-      <div className='row'>
-        <div className='col-md-6'>
-          <div className='login-banner-content pl-5 pr-5 login-content-mobile'>
+    <div className='login-page'>
+    <div className='login-container'>
+          <div className='login-banner-content login-content-mobile'>
             <h1>Log In</h1>
             <p style={{ color: '#692699' }}>Welcome back to Clouty</p>
             <LoginForm mode={'login'} />
           </div>
-        </div>
-      </div>
       <section className='login-top-banner-right-mobile'>
         <div className='row'>
           <div className='col-md-12 p-0'>
@@ -27,11 +24,12 @@ const Login = () => (
           </div>
         </div>
       </section>
+    </div>
+    <div  className='login-background-banner-image d-none d-sm-none d-md-block'> 
       <img
-        className='login-background-banner-image d-none d-sm-none d-md-block'
-        src='/static/img/new/banner-right.jpg'
-        width='528'
+        src='/static/img/new/banner-right-mobile.jpg'
       />
+      </div>
     </div>
   </Wrapper>
 );

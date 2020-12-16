@@ -240,20 +240,45 @@ html {
 .about-cover .bet-button-group {
     display: block;
 }
+.login-page{
+    position: relative;
+    display: flex;
+}
 
-.login-banner-content {
-    padding: 0.5vw 13vw 3vw 0 !important;
+.login-container{
+    max-width: 420px;
+    width: 420px;
+    margin: auto auto auto 232px;
+}
+.login-container .measure{
+    max-width: 420px;
+    width: 420px;
+    margin: 0;
+}
+.login-container .margin-actions{
+    margin-top: 48px;
+}
+.login-container .forgot{
+    font: normal normal normal 18px/27px 'Inter', sans-serif;
+}
+.login-container .signUp{
+    margin-top: 24px!important;
+    font: normal normal normal 18px/27px 'Inter', sans-serif;
+}
+.login-banner-content .no-underline{
+    font-size: 18px;
 }
 
 .login-banner-content p {
     font-size: 18px;
     font-weight: 500;
+    margin-bottom: 64px;
 }
 
 .login-banner-content h1 {
-    font-size: 4.5vw;
-    font-weight: 700;
-    letter-spacing: -2.25px;
+    font: normal normal bold 90px/99px 'Inter', sans-serif;
+    margin-bottom: 32px;
+    margin-top: 0;
 }
 
 .login-banner-content span {
@@ -261,14 +286,15 @@ html {
 }
 
 .login-background-banner-image {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: auto;
-    width: 27.3vw;
-    opacity: 1;
+    margin-top: -90px;
+    height: 100vh;
+    width: 50vw;
 }
-
+.login-background-banner-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .login-banner-content input{
     color: #000;
     background: #E9E9E9;
@@ -1101,6 +1127,36 @@ display: flex;
     font-size: 17px;
 }
 @media screen and (max-width: 1750px){
+    .login-container .margin-actions{
+        margin-top: 3rem;
+    }
+    .login-container{
+        max-width: 26.25rem;
+        width: 26.25rem;
+        margin: auto auto auto 14.5rem;
+    }
+    .login-banner-content p{
+        font-size: 1.125rem;
+        margin-bottom: 4rem;
+    }
+    .login-container .forgot{
+        font: normal normal normal 1.125rem/1.688rem 'Inter', sans-serif;
+    }
+    .login-banner-content h1{
+        font: normal normal bold 5.625rem/6.188rem 'Inter', sans-serif;
+        margin-bottom: 2rem;
+    }
+    .login-container .signUp{
+        margin-top: 1.5rem!important;
+        font: normal normal normal 1.125rem/1.688rem 'Inter', sans-serif;
+    }
+    .login-container .measure{
+        max-width:  26.25rem;
+        width: 26.25rem;
+    }
+    .login-banner-content .no-underline{
+        font-size: 1.125rem;
+    }
     .heading-container{
         max-width: 100%;
         margin: 0  16.188rem;
@@ -1223,6 +1279,9 @@ display: flex;
 @media screen and (max-width: 900px){
     .banner-content{
         padding: 0;
+    }
+    .login-container{
+        margin: auto;
     }
     .about-page{
         margin-top: 0!important;
@@ -1661,10 +1720,6 @@ display: flex;
 
     /* Login page mobile start*/
 
-    .login-content-mobile {
-        padding: 0 !important;
-    }
-
     .login-banner-content h1 {
         font-size: 45px;
     }
@@ -1811,6 +1866,15 @@ display: flex;
 }
 
 @media screen and (max-width: 767px) {
+    .login-container .signUp{
+        margin-bottom: 5rem;
+    }
+    .login-page{
+        margin-top: 5rem;
+    }
+    .login-banner-content button{
+        width: 100%;
+    }
     /*    Home page mobile start   */
     .banner-line-vertical, .background-banner-image, .background-mobile-image {
         display: none;
@@ -1823,7 +1887,7 @@ display: flex;
         padding: 0;
     }
     .navbar{
-        padding: 1rem 2.25rem 2rem 2.25rem;
+        padding: 1rem 1.5rem 2rem 1.5rem;
     }
     .about-container{
         padding: 0 1.5vw;
@@ -2143,9 +2207,6 @@ display: flex;
 
     /* Login page mobile start*/
 
-    .login-content-mobile {
-        padding: 0 !important;
-    }
 
     .login-banner-content h1 {
         font-size: 45px;
@@ -2308,6 +2369,21 @@ display: flex;
     
 }
 @media only screen and (max-width: 480px) {
+    .login-container .measure{
+        max-width: 100%;
+        width: 100%;
+    }
+    .login-page{
+        display: inherit;
+    }
+    .login-container{
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+    }
+    .login-content-mobile{
+        padding: 0 1.5rem;
+    }
     .about-service{
         padding: 5rem 0 0 0;
     }
