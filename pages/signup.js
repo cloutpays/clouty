@@ -22,7 +22,7 @@ const Login = () => (
         <div className='card'>
           <div className='card-body text-center'>
             <h2>Hey There! 👋</h2>
-            <p>Your free $2 credit is waiting for you inside.</p>
+            <p>Your free $2 credit is <br></br> waiting for you inside.</p>
             <button className='btn btn-default'>Claim Your Free Credit</button>
             <div className=''>
               <a href='#'>Credit Disclosure</a>
@@ -31,16 +31,12 @@ const Login = () => (
         </div>
       </section>
       <section className='signup-form'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-6 offset-md-3'>
+        <div className='signup-container'>
               <h1>Get started playing Clouty</h1>
               <p>
                 Enjoy no fees on all bets for a limited time!
               </p>
               <LoginForm mode={'signup'} />
-            </div>
-          </div>
         </div>
       </section>
     </div>

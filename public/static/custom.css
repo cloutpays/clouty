@@ -707,7 +707,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;}
     border-radius: 4px;
     opacity: 1;
     color: #ffffff;
-    margin-top: 1.5rem;
+
 }
 
 
@@ -784,61 +784,82 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;}
 }
 
 .signup-banner .card {
-    width: 22rem;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 16px 24px #11111126;
     border-radius: 8px;
     opacity: 1;
-    padding: 2em;
+    padding: 72px 124px;
     border: 0;
     position: absolute;
     transform: translate3d(-50%,-50%, 0);
     left: 50%;
     z-index: 9999;
 }
-
+.card-body{
+    padding: 0;
+}
 .signup-banner button {
     background: #692699 0% 0% no-repeat padding-box;
     box-shadow: 0px 8px 24px #6926994D;
     border-radius: 4px;
     opacity: 1;
+    margin-bottom: 24px;
     color: #ffffff;
 }
 
 .signup-banner .card-body h2 {
-    font-size: 26px;
-    font-weight: 700;
+    font: normal normal bold 40px/48px 'Inter' , sans-serif;
+    margin-bottom: 2rem;
 }
 
 .signup-banner .card-body p {
-    font-weight: 600;
-    font-size: 18px;
-    margin-top: 1rem;
+    font: normal normal bold 27px/36px 'Inter' , sans-serif;
+    margin-bottom: 3rem;
+    font-weight: 500;
 }
 
 .signup-banner .card-body a {
-    font-size: 14px;
+    font-size: 18px;
     color: #111111;
     text-decoration: underline;
 }
 
 .signup-form {
-    margin-top: 15rem;
+    margin-top: 21rem;
 }
-
+.signup-container{
+    max-width: 864px;
+    margin: auto;
+}
+.signup-container .measure{
+    max-width: 568px;
+}
+.signup-container .measure .col-md-6{
+    padding: 0;
+}
+.signup-container .measure .form-flex input{
+    width: 272px;
+}
 .signup-form h1 {
-    font-weight: 700;
+    font: normal normal bold 60px/72px 'Inter' , sans-serif;
     letter-spacing: -1px;
     color: #111111;
+    text-align: center;
     opacity: 1;
+    padding-top: 120px; 
+    margin-bottom: 32px;
 }
-
+.signup-form .form-flex{
+    display: flex;
+    justify-content: space-between;
+}
 .signup-form p {
     letter-spacing: 0px;
     color: #111111;
+    text-align: center;
     opacity: 1;
-    font-size: 18px;
-    margin-bottom: 5rem;
+    font: normal normal bold 27px/36px'Inter' , sans-serif;
+    margin-bottom: 84px;
 }
 
 .signup-form-list h1 {
@@ -863,8 +884,22 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;}
     background: #E9E9E9;
     padding: .8rem 1rem;
     border: 0;
+    height: 56px;
 }
+.signup-form .have-account a{
+    margin-top: 56px;
+    font: normal normal normal 18px/27px 'Inter', sans-serif;
 
+}
+.signup-form .have-account{ 
+font: normal normal normal 18px/27px 'Inter', sans-serif;
+}
+.signup-form .terms,
+.signup-form .terms a{
+    margin-top: 24px;
+    font-size: 12px;
+    font: normal normal medium 12px/18px 'Inter', sans-serif!important;
+}
 .signup-form input:focus{
     color: #000 !important;
     background: #E9E9E9;
@@ -1062,7 +1097,9 @@ display: flex;
     -webkit-transition:1s ease all;
 }
 .item img{max-width:100%;}
-
+.signup-form input{
+    font-size: 17px;
+}
 @media screen and (max-width: 1750px){
     .heading-container{
         max-width: 100%;
@@ -1085,6 +1122,59 @@ display: flex;
     .d-flex-about{
         height: auto;
     }
+}
+@media screen and (max-width: 1365px){
+    .signup-banner .card-body h2{
+        font: normal normal bold  2.5rem/3rem 'Inter' , sans-serif;
+    }
+    .signup-banner .card-body p{
+        font: normal normal bold  1.688rem/2.25rem 'Inter' , sans-serif;
+    }
+    .signup-banner .card-body a{
+        font-size: 1.125rem;
+    }
+    .signup-banner .card{
+        padding: 4.5rem 7.75rem;
+    }
+    .signup-form h1{
+        font: normal normal bold 3.75rem/4.5rem 'Inter' , sans-serif;
+        padding-top: 7.5rem;
+        margin-bottom:  2rem;
+    }
+    .signup-form p{
+        font: normal normal bold  1.688rem/2.25rem'Inter' , sans-serif;
+        margin-bottom: 5.25rem;
+    }
+  
+    .signup-form input{
+        height: 3.5rem;
+    }
+    .signup-form label{
+        font-size: 1.125rem;
+    }
+    .signup-form .have-account a{
+        margin-top:  3.5rem;
+        font: normal normal normal 1.125rem/1.688rem 'Inter', sans-serif;
+    }
+    .signup-form .terms,
+    .signup-form .terms a{
+        font-size:  0.75rem;
+        margin-top: 1.5rem;
+        font: normal normal medium  0.75rem/1.125rem 'Inter', sans-serif!important;
+    }
+    .signup-container .measure{
+        width: 35.5rem;
+    }
+    .signup-container .measure .first-name{
+        margin-right: 0.75rem;
+    }
+    .signup-container .measure .form-flex input{
+        width: 100%;
+    }
+    .signup-container .measure .last-name{
+        margin-left: 0.75rem;
+    }
+    
 }
 @media screen and (max-width: 1200px){
     .banner-content h1{
@@ -1112,6 +1202,9 @@ display: flex;
     }
     .banner-content{
         padding: 6vw 0 0 0;
+    }
+    .signup-banner .card-body p br{
+        display: block;
     }
     br{
         display: none;
@@ -2199,6 +2292,16 @@ display: flex;
         border-top: 1px solid #111;
         margin-top: 4rem;
     }
+    .signup-form .form-flex{
+        display: block;
+    }
+    .signup-container .measure .first-name{
+        margin-right: 0;
+    }
+    .signup-container .measure .last-name{
+        margin-left: 0;
+    }
+    
 }
 @media only screen and (max-width: 480px) {
     .about-service{
@@ -2327,6 +2430,12 @@ display: flex;
   
 }
 @media screen and (max-width: 375px){
+    .signup-container{
+        padding: 0 1.188rem;
+    }
+    .signup-container .measure{
+        width: auto;
+    }
     .fav-artist-content{
         padding: 2rem;
     }
@@ -2363,6 +2472,14 @@ display: flex;
     }
     .footer-copyright-content{
         font-size: 14px !important;
+    }
+}
+@media screen and (max-width: 350px){
+    .signup-form{
+        margin-top: 13.5rem;
+    }
+    .signup-banner .card {
+        padding: 2.5rem 5.75rem;
     }
 }
 

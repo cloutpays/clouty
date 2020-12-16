@@ -124,13 +124,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             {signUp ? (
               <>
                 {' '}
-                <div className='row'>
-                  <div className='col-md-6'>
+                <div className='form-flex'>
+                  <div className='first-name'>
                     <label className='db fw6 lh-copy f6' htmlFor='first-name'>
                       First Name
                     </label>
                     <input
-                      className='form-control'
+                      className='form-control '
                       type='name'
                       value={firstName}
                       onChange={(event) =>
@@ -138,7 +138,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                       }
                     />
                   </div>
-                  <div className='col-md-6'>
+                  <div className='last-name'>
                     <label className='db fw6 lh-copy f6' htmlFor='last-name'>
                       Last Name
                     </label>
@@ -211,14 +211,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           </fieldset>
           <div className={signUp ? 'text-center' : ''}>
             <button
-              className='btn btn-primary'
+              className='btn btn-default'
               onClick={signUp ? handleSignUp : handleLogin}>
               {loading && <i className='fa fa-spinner fa-spin' />}
               {signUp ? signUpText : signInText}
             </button>
           </div>
           {signUp && (
-            <div className='mt-4 login-links'>
+            <div className='login-links have-account'>
               <a href='/login' className='f5 link dim black db'>
                 Already have an account?{' '}
                 <span className='fw5 link no-underline bb bw1 dim '>
@@ -228,7 +228,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             </div>
           )}
           {signUp && (
-            <div className='pa0 ma0 f5  black mt-4 login-links'>
+            <div className='pa0 ma0  terms  black login-links'>
               By clicking "Submit" confirms you're age 18+ and agree to our{' '}
               <a
                 className='fw5 link no-underline bb bw1 dim black'
