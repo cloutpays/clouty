@@ -1122,8 +1122,6 @@ display: flex;
     .d-flex-about{
         height: auto;
     }
-}
-@media screen and (max-width: 1365px){
     .signup-banner .card-body h2{
         font: normal normal bold  2.5rem/3rem 'Inter' , sans-serif;
     }
@@ -1174,6 +1172,9 @@ display: flex;
     .signup-container .measure .last-name{
         margin-left: 0.75rem;
     }
+}
+@media screen and (max-width: 1365px){
+    
     
 }
 @media screen and (max-width: 1200px){
@@ -1363,6 +1364,9 @@ display: flex;
 @media screen and (max-width: 480px) {
     .navbar{
         padding: 2rem;
+    }
+    .signup-form button{
+        width: 100%;
     }
     /*    Home page mobile start   */
     .banner-line-vertical, .background-banner-image, .background-mobile-image {
