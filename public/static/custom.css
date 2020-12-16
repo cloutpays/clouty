@@ -1445,6 +1445,9 @@ display: flex;
 /* small screen custom css start*/
 
 @media screen and (max-width: 480px) {
+    .center.flex{
+        height: auto;
+    }
     .confirmation-page{
         padding: 3rem 4.125rem;
     }
