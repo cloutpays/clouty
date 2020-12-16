@@ -17,7 +17,6 @@ const data = {
 
 const Home = ({ questions, darkMode, loggedIn, album }) => {
   return (
-    <div>
       <Wrapper data={data}>
         <section>
           <section>
@@ -296,7 +295,6 @@ const Home = ({ questions, darkMode, loggedIn, album }) => {
         </section>
         {/* <img width='300px' height='300px' src='/static/img/dare.png' /> */}
       </Wrapper>
-    </div>
   );
 };
 

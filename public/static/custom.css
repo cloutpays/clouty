@@ -5,7 +5,30 @@ body {
 html {
     font-size: 62.5%;
   }
+  html, body {
+    height: 100%;
+    margin: 0px;
+  }
+  #__next{
+      height: 100%;
+  }
+  
+  .confirm-page {
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+  .center.flex{
+    height: inherit;
+  }
 /* web screen custom css start */
+.confirmation-page{
+      max-width: 91rem;
+      margin: auto;
+      margin-bottom: 72px;
+}
 
 .item-shadow {
     box-shadow: 0px 8px 16px #6926994D;
@@ -856,6 +879,7 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;}
 .signup-container{
     max-width: 864px;
     margin: auto;
+    margin-bottom:  15.69rem;
 }
 .signup-container .measure{
     max-width: 568px;
@@ -1421,6 +1445,12 @@ display: flex;
 /* small screen custom css start*/
 
 @media screen and (max-width: 480px) {
+    .confirmation-page{
+        padding: 3rem 4.125rem;
+    }
+    .confirmation-page p{
+        font-size: 1.125rem;
+    }
     .navbar{
         padding: 2rem;
     }
@@ -1866,8 +1896,12 @@ display: flex;
 }
 
 @media screen and (max-width: 767px) {
+
     .login-container .signUp{
         margin-bottom: 5rem;
+    }
+    .signup-container{
+        margin-bottom: 9.69rem;
     }
     .login-page{
         margin-top: 5rem;

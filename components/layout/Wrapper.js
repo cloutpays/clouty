@@ -109,6 +109,7 @@ export default class Wrapper extends Component {
 
   render() {
     const isHomePage = this.props.data.home_page;
+    const isConfirmationPage = this.props.data.confirmation_page;
     const darkMode = getCookieFromBrowser('dark_mode') === 'true';
     const { data, user, className, children: content } = this.props;
     const title = data.title
@@ -120,7 +121,7 @@ export default class Wrapper extends Component {
       : 'Fantasy gameplay at the intersection of data, music and finance.';
 
     return (
-      <div>
+      <div className={isConfirmationPage ? 'confirm-page' : ''}>
         <Head>
           <title>{title}</title>
           <meta name='description' content={description} />

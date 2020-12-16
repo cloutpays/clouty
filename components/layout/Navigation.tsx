@@ -24,7 +24,6 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
     'near-white': darkMode,
   })}`;
   return (
-    <div>
       <section className='top-banner'>
         <nav className='navbar navbar-expand-lg navbar-light bg-light'>
           <a className='navbar-brand' href='/'>
@@ -123,7 +122,6 @@ const Navigation: React.FC<Navigation> = ({ darkMode, router }) => {
           </div>
         </nav>
       </section>
-    </div>
   );
 };
 
