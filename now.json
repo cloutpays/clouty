@@ -176,11 +176,13 @@
       "STRIPE_SECRET_PROD": "@stripe-secret-prod",
       "NODEMAILER": "@nodemailer",
       "SPOTIFY_CLIENT_ID": "@spotify-client-id",
-      "SPOTIFY_CLIENT_SECRET": "@spotify-client-secret"
+      "SPOTIFY_CLIENT_SECRET": "@spotify-client-secret",
+      "CONTENTFUL_ACCESS_TOKEN": "@contentful-access-token"
     }
   },
   "env": {
     "TWILIO_SID": "@twilio-sid",
+    "CONTENTFUL_ACCESS_TOKEN": "@contentful-access-token",
     "SPOTIFY_CLIENT_ID": "@spotify-client-id",
     "SPOTIFY_CLIENT_SECRET": "@spotify-client-secret",
     "TWILIO_TOKEN": "@twilio-token",
