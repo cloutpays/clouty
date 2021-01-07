@@ -44,12 +44,12 @@ const Footer: React.FC<DarkModeProps> = () => {
                 </h5>
                 <ul className='social-footer2'>
                   <li className=''>
-                    <a target='_blank' href='#'>
+                    <a target='_blank' href='https://instagram.com/clouty.io'>
                       <i className='fa fa-instagram' />
                     </a>
                   </li>
                   <li className=''>
-                    <a href='#' target='_blank'>
+                    <a href='https://twitter.com/cloutyio' target='_blank'>
                       <i className='fa fa-twitter' />
                     </a>
                   </li>
@@ -62,27 +62,27 @@ const Footer: React.FC<DarkModeProps> = () => {
                   <ul className='thumbnail-widget'>
                     <li>
                       <div className='thumb-content'>
-                        <a href="{{ route('sign_up.option') }}">Home</a>
+                        <a href='/'>Home</a>
                       </div>
                     </li>
                     <li>
                       <div className='thumb-content'>
-                        <a href="{{ route('teacher.find') }}">About</a>
+                        <a href='/about'>About</a>
                       </div>
                     </li>
                     <li>
                       <div className='thumb-content'>
-                        <a href="{{ route('discussion.index') }}">Games</a>
+                        <a href='/games'>Games</a>
                       </div>
                     </li>
                     <li>
                       <div className='thumb-content'>
-                        <a href="{{ route('discussion.index') }}">Sign Up</a>
+                        <a href='/signup'>Sign Up</a>
                       </div>
                     </li>
                     <li>
                       <div className='thumb-content'>
-                        <a href='#.'>Log In</a>
+                        <a href='/login'>Log In</a>
                       </div>
                     </li>
                   </ul>
@@ -93,24 +93,22 @@ const Footer: React.FC<DarkModeProps> = () => {
                   <ul className='thumbnail-widget'>
                     <li>
                       <div className='thumb-content'>
-                        <a href="{{ route('sign_up.option') }}">FAQ</a>
+                        <a href='/faq'>FAQ</a>
                       </div>
                     </li>
                     <li>
                       <div className='thumb-content'>
-                        <a href="{{ route('teacher.find') }}">Terms</a>
+                        <a href='/terms'>Terms</a>
                       </div>
                     </li>
                     <li>
                       <div className='thumb-content'>
-                        <a href="{{ route('discussion.index') }}">
-                          Privacy Policy
-                        </a>
+                        <a href='/terms'>Privacy Policy</a>
                       </div>
                     </li>
                     <li>
                       <div className='thumb-content'>
-                        <a href="{{ route('discussion.index') }}">Newsletter</a>
+                        <a href='https://clouty.substack.com/'>Newsletter</a>
                       </div>
                     </li>
                   </ul>
@@ -121,8 +119,7 @@ const Footer: React.FC<DarkModeProps> = () => {
               <div className='widget no-box justify-between widget-footer'>
                 <img height='80' src='/static/img/new/logo-web.svg' />
                 <p className='footer-copyright-content'>
-                  © Clouty 2020
-                  <br />
+                  © Clouty 2020. <br />
                   Packaged with care.
                 </p>
               </div>
