@@ -16,6 +16,7 @@
     "classnames": "^2.2.6",
     "cleave.js": "^1.5.3",
     "co": "^4.6.0",
+    "contentful": "^8.1.7",
     "date-fns": "^2.8.1",
     "dotenv": "^8.2.0",
     "emoji-mart": "^2.11.1",
