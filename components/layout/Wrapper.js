@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Router from 'next/router';
 
-
 Router.onRouteChangeStart = () => {
   NProgress.start();
 };
@@ -45,65 +44,65 @@ export default class Wrapper extends Component {
   }
 
   renderHomePageHeader() {
-    if ( this.props.data.home_page) {
+    if (this.props.data.home_page) {
       return (
         <div>
-        <div>
-        <img
-          className='banner-line-vertical'
-          src='/static/img/new/line-vertical.jpg'
-        />
-        <div className='background-banner-image'>
-          <img src='/static/img/new/banner-right.jpg' />
-        </div>
-        <img
-          className='background-mobile-image'
-          src='/static/img/new/mobile-frame1.png'
-        />
-      </div>
-      <div className='heading-container'>
-        <div>
-          <div className='banner-content'>
-            <p>Welcome to Clouty</p>
-            <h1>
-              The 🌎's first music <br></br> betting platform.
-            </h1>
+          <div>
+            <img
+              className='banner-line-vertical'
+              src='/static/img/new/line-vertical.jpg'
+            />
+            <div className='background-banner-image'>
+              <img src='/static/img/new/banner-right.jpg' />
+            </div>
+            <img
+              className='background-mobile-image'
+              src='/static/img/new/mobile-frame1.png'
+            />
+          </div>
+          <div className='heading-container'>
             <div>
-              <span>
-                We host live bets about the latest releases and predictions
-                in the rap game.Sign up  <br></br> today and receive a free $2 credit towards your bets and no
-                fees for all bets!
-              </span>
+              <div className='banner-content'>
+                <p>Welcome to Clouty</p>
+                <h1>
+                  The 🌎&apos;s first music <br></br> betting platform.
+                </h1>
+                <div>
+                  <span>
+                    We host live bets about the latest releases and predictions
+                    in the rap game. Sign up <br></br> today and receive a free
+                    $2 credit towards your bets and no fees for all bets!
+                  </span>
+                </div>
+                <a href='/signup'>
+                  <button className='btn btn-default'>Sign Up</button>
+                </a>
+                <a href='/signup'>
+                  <button className='btn btn-default login-mobile'>
+                    Log In
+                  </button>
+                </a>
+              </div>
             </div>
-            <a href='/signup'>
-              <button className='btn btn-default'>Sign Up</button>
-            </a>
-            <a href='/signup'>
-              <button className='btn btn-default login-mobile'>
-                Log In
-              </button>
-            </a>
+            <div></div>
+            <section className='top-banner-right-mobile'>
+              <div className='row'>
+                <div className='col-md-12 p-0'>
+                  <img width='100%' src='/static/img/new/line-horizontal.jpg' />
+                  <img
+                    className='background-banner-image-mobile'
+                    src='/static/img/new/banner-right-mobile.jpg'
+                  />
+                  <img
+                    className='background-mobile-image-mobile'
+                    src='/static/img/new/mobile-frame.png'
+                  />
+                </div>
+              </div>
+            </section>
           </div>
         </div>
-        <div></div>
-        <section className='top-banner-right-mobile'>
-          <div className='row'>
-            <div className='col-md-12 p-0'>
-              <img width='100%' src='/static/img/new/line-horizontal.jpg' />
-              <img
-                className='background-banner-image-mobile'
-                src='/static/img/new/banner-right-mobile.jpg'
-              />
-              <img
-                className='background-mobile-image-mobile'
-                src='/static/img/new/mobile-frame.png'
-              />
-            </div>
-          </div>
-        </section>
-      </div>
-      </div>
-      )
+      );
     }
   }
 
@@ -133,10 +132,10 @@ export default class Wrapper extends Component {
           />
           <meta name='twitter:description' content={description} />
         </Head>
-          <div  className={isHomePage ? 'pos-rel' : ''} >
+        <div className={isHomePage ? 'pos-rel' : ''}>
           <Navigation user={user} darkMode={darkMode} router={Router} />
           {/* {this.renderHeader()} */}
-          { this.renderHomePageHeader() }
+          {this.renderHomePageHeader()}
         </div>
         <div className='center flex'>
           <main className={` w-100 ${cls}`}>{content}</main>
