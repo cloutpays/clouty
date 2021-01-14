@@ -17,4 +17,3 @@ Access to repo, clout and good hip hop acumen
 ## Authors
 
 - **Ebrima Jobe** - _Co-founder_ 
-- **Julius Buckley** - _Co-founder_

@@ -1,40 +1,47 @@
-const stripe = require('stripe')(stripeSecret);
 const { parse } = require('url');
 const { json } = require('micro');
+const redirect = require('micro-redirect');
+const connect = require('./db');
+
 import { ObjectId } from 'mongodb';
-import {
-  balance,
-  payout,
-  sendEmail,
-  stripeSecret,
-  user,
-  wrapAsync,
-} from '../helpers';
+import { balance, payout, sendEmail, user, wrapAsync } from '../helpers';
 import { payoutEmailContent } from '../emailTemplates';
 
 import { updateUser } from './user';
 
-const updateStripeUser = async (paymentIntent, db) => {
-  const newUser = await db.collection(user).updateOne(
-    { _id: paymentIntent.metadata.userId },
+export const processConnexusApi = async (req, res) => {
+  const db = await connect();
+  const queries = req.url.split('?')[1];
+  const transaction = JSON.parse(
+    '{"' +
+      decodeURI(queries)
+        .replace(/"/g, '\\"')
+        .replace(/&/g, '","')
+        .replace(/=/g, '":"') +
+      '"}',
+  );
+  const { CXStransactionAmount, customParm } = transaction;
+
+  await db.collection(balance).insertOne(transaction);
+  await db.collection(user).updateOne(
+    { _id: customParm },
     {
       $inc: {
-        'stripe.user.balance': paymentIntent.amount,
+        'stripe.user.balance': parseInt(CXStransactionAmount) * 100,
       },
     },
     { returnOriginal: false },
   );
-  return newUser.value;
+  const statusCode = 302;
+  const location = '/user';
+  return redirect(res, statusCode, location);
 };
 
-export const getAllTransactionsApi = wrapAsync(async () => {
-  const charges = [];
-  await stripe.charges
-    .list({ limit: 100, created: { gt: 1584300632 } })
-    .autoPagingEach(function(charge) {
-      charges.push(charge);
-    });
-  return charges;
+export const getAllTransactionsApi = wrapAsync(async (req, db) => {
+  return db
+    .collection(balance)
+    .find()
+    .toArray();
 });
 
 export const setCreditApi = wrapAsync(async (req, db) => {
@@ -104,52 +111,4 @@ export const allPayoutsApi = wrapAsync(async (req, db) => {
     .collection(payout)
     .find()
     .toArray();
-});
-
-export const stripeApi = wrapAsync(async (req) => {
-  const { query } = parse(req.url, true);
-  const { id, userId } = query;
-
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    payment_intent_data: {
-      metadata: {
-        userId,
-      },
-    },
-    line_items: [
-      {
-        name: 'Clouty Pays',
-        description: 'Add to balance',
-        images: ['https://getclouty.com/static/img/clouty-04.png'],
-        amount: parseInt(id) * 100,
-        currency: 'usd',
-        quantity: 1,
-      },
-    ],
-    success_url: `http://${req.headers.host}/user`,
-    cancel_url: `http://${req.headers.host}/user/balance`,
-  });
-
-  return session;
-});
-
-export const hookApi = wrapAsync(async (req, db) => {
-  const data = await json(req);
-  switch (data.type) {
-    case 'payment_intent.succeeded':
-      await db.collection(balance).insertOne(data.data.object);
-      await stripe.customers.update(
-        data.data.object.customer,
-        {
-          balance: data.data.object.amount,
-        },
-        (err) => {
-          if (err) return err;
-        },
-      );
-      return updateStripeUser(data.data.object, db);
-    default:
-      return true;
-  }
 });

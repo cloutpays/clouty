@@ -2,7 +2,12 @@ import axios from 'axios';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { formatDate, formatPrice } from '../../lib/helpers';
+import {
+  formatConnexDate,
+  formatConnexEmail,
+  formatDate,
+  formatPrice,
+} from '../../lib/helpers';
 
 interface SubmissionsProps {
   submissions: any;
@@ -98,27 +103,28 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
           <tbody className='lh-copy'>
             {transactions
               .map((curr: any, ind: any) => {
+                const link = curr.customParm;
                 return (
                   <tr key={ind}>
                     <td className='pv3 pr3 bb b--black-20' key='date'>
-                      {formatDate(new Date(0).setUTCSeconds(curr.created))}
+                      {formatConnexDate(curr.CXStransactionDate)}
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='name'>
                       <a
                         className='no-underline dim black b'
-                        href={`/dashboard/manage/${curr.metadata.userId}`}>
-                        {curr.billing_details.name}
+                        href={`/dashboard/manage/${link}`}>
+                        {curr.CXScustomerName}
                       </a>
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='email'>
                       <a
                         className='no-underline dim black b'
-                        href={`/dashboard/manage/${curr.metadata.userId}`}>
-                        {curr.billing_details.email}
+                        href={`/dashboard/manage/${link}`}>
+                        {formatConnexEmail(curr.CXScustomerEmail)}
                       </a>
                     </td>
                     <td className='pv3 pr3 bb b--black-20' key='date'>
-                      {formatPrice(curr.amount / 100)}
+                      {formatPrice(curr.CXStransactionAmount)}
                     </td>
                   </tr>
                 );
