@@ -42,9 +42,11 @@ const Home = ({ latestPost }) => {
                   <h3>{latestPost.description}</h3>
                   <div className='bet-button-group'>
                     <button className='btn btn-default bet-now'>Bet Now</button>
-                    <button className='btn btn-default all-bet'>
-                      View All Bets
-                    </button>
+                    <a href='/games'>
+                      <button className='btn btn-default all-bet'>
+                        View All Bets
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
