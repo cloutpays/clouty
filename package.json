@@ -16,6 +16,7 @@
     "classnames": "^2.2.6",
     "cleave.js": "^1.5.3",
     "co": "^4.6.0",
+    "contentful": "^8.1.7",
     "date-fns": "^2.8.1",
     "dotenv": "^8.2.0",
     "emoji-mart": "^2.11.1",
@@ -40,7 +41,8 @@
     "spotify-web-api-node": "^4.0.0",
     "stripe": "^8.8.0",
     "twilio": "^3.37.1",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.7.4",

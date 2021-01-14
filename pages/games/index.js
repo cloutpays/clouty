@@ -1,12 +1,12 @@
 import { sortGames } from '../../lib/helpers';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import axios from 'axios';
+const contentful = require('contentful');
 
-const Games = ({ questions }) => {
+const Games = ({ questions, latestPost }) => {
   const data = {
     title: 'Games',
     header: 'Selected games and contests.',
@@ -14,87 +14,101 @@ const Games = ({ questions }) => {
   };
   return (
     <Wrapper data={data}>
-      <section className='ma3 ma4-l flex flex-wrap'>
-        <div key='createGame' className='pv2 pa2-ns w-100 w-50-ns'>
-          <Link href='/games/create'>
-            <a className='no-underline'>
-              <div className='white br2 shadow-4 grow pa3 pa4-ns h-100 contact-card'>
-                <h1 className='f4 mt0 fw7'>
-                  <span role='img' aria-label='User Submission'>
-                    🗳
-                  </span>{' '}
-                  Want to create a game?
-                </h1>
-                <p>If it&apos;s good, we will add it to our weekly games.</p>
-                <p>Sound good?</p>
-                <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                  Create Game<span className='pl1 sans-serif'>→</span>
-                </span>
-              </div>
-            </a>
-          </Link>
-        </div>
-        {questions
-          .sort(sortGames)
-          .map((game, ind) => {
-            const gameClosed = new Date(game.endDate) < new Date();
-            const gameButtonText = !game.answer
-              ? gameClosed
-                ? 'Game Ended'
-                : 'Play Game'
-              : 'See Results';
-            const activeLink = `/games/${game.slug}`;
-            const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
-            return (
-              <>
-                <div
-                  key={`work-${game.question}`}
-                  className='pv2 pa2-ns w-100 w-50-ns'>
-                  <Link href={activeLink}>
-                    <a href={activeLink} className='no-underline white'>
-                      <div className={cardClass}>
-                        <h1 className='f4 mt0 fw7'>
-                          <span role='img' aria-label={game.emoji_name}>
-                            {game.emoji}
-                          </span>{' '}
-                          {`Game #${game.question}`}
-                        </h1>
-                        <p>{game.description}</p>
-                        <p className='f6 fw6'>{game.details}</p>
-                        <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                          {gameButtonText}
-                          <span className='pl1 sans-serif'>→</span>
-                        </span>
-                      </div>
-                    </a>
-                  </Link>
+      <section>
+        <div className='row'>
+          <div className='col-md-4 p-md-0 album-over-order-sm-2'>
+            <img className='album-cover-image' src={`http:${latestPost.url}`} />
+            <div className='bet-button-group-mobile'>
+              <a href='/games'>
+                <button className='btn btn-default bet-now mr-3 border-0'>
+                  Bet Now
+                </button>
+              </a>
+              <button className='btn btn-default read-more'>Read More</button>
+            </div>
+          </div>
+          <div className='col-md-8 p-md-0 album-over-order-sm-1'>
+            <div className='album-cover'>
+              <div className='album-cover-content'>
+                <p>This Week&apos;s Featured Bet</p>
+                <h3>{latestPost.description}</h3>
+                <div className='bet-button-group'>
+                  <button className='btn btn-default bet-now mr-3'>
+                    Bet Now
+                  </button>
+                  <button className='btn btn-default all-bet'>
+                    View All Bets
+                  </button>
                 </div>
-                {ind === 13 && (
-                  <div key='contact' className='pv2 pa2-ns w-100 w-50-ns'>
-                    <Link href='/grammys'>
-                      <a href='/grammys' className='no-underline'>
-                        <div className='white br2 shadow-4 grow pa3 pa4-ns h-100 grammy'>
-                          <h1 className='f4 mt0 fw7'>
-                            <span role='img' aria-label='User Submission'>
-                              🏆
-                            </span>{' '}
-                            2020 Grammy Awards
-                          </h1>
-                          <p>Check out our bets for the 62nd Grammy’s!</p>
-                          <p>Click to enter and see who won </p>
-                          <span className='bg-white-30 pv1 ph2 f7 f6-ns br-pill b'>
-                            View Results
-                            <span className='pl1 sans-serif'>→</span>
-                          </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className='game-section'>
+        <div className='container'>
+          <div className='game-container'>
+            <div className='row'>
+              <div className='col-md-12 text-center'>
+                <p className='game-list-main-title'>Our Active Bets</p>
+              </div>
+              <div className='masonry'>
+                {questions
+                  .sort(sortGames)
+                  .filter((curr, ind) => ind !== 13)
+                  .map((game) => {
+                    const gameClosed = new Date(game.endDate) < new Date();
+                    const gameButtonText = !game.answer
+                      ? gameClosed
+                        ? 'Game Ended'
+                        : 'Place Your Bet'
+                      : 'See Results';
+                    const activeLink = `/games/${game.slug}`;
+                    return (
+                      <div key={activeLink} className='item'>
+                        <div className='item-shadow'>
+                          <div className='card'>
+                            <div className='card-body'>
+                              <p className='game-id'>{`Game #${game.question}`}</p>
+                              <h2 className='game-title'>{game.title}</h2>
+                              <p className='game-des'>{game.description}</p>
+                              <p className='game-des'>{game.details}</p>
+                              <a href={activeLink}>
+                                <button
+                                  type='submit'
+                                  className='btn btn-outline-default'>
+                                  {gameButtonText}
+                                </button>
+                              </a>
+                            </div>
+                          </div>
                         </div>
-                      </a>
-                    </Link>
+                      </div>
+                    );
+                  })
+                  .reverse()}
+                <div className='item'>
+                  <div className='item-shadow'>
+                    <div className='card bet-mind-card'>
+                      <div className='card-body text-center'>
+                        <h1>Have a bet in mind?</h1>
+                        <div>
+                          <p className='game-des'>
+                            If your bet idea makes the cut, we&apos;ll offer it
+                            and reward you with a $10 credit towards betting!
+                          </p>
+                        </div>
+                        <button className='btn btn-default border-0'>
+                          Submit Bet
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                )}
-              </>
-            );
-          })
-          .reverse()}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </Wrapper>
   );
@@ -105,7 +119,27 @@ Games.getInitialProps = async ({ req }) => {
   const apiURL = `${origin}`;
   const res = await axios.get(`${apiURL}/api/questions`);
   const questions = res.data;
+  const client = contentful.createClient({
+    space: '74q51vemgz9l',
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  });
+  let latestPost = await client
+    .getEntries()
+    .then((entry) => {
+      const { items } = entry;
+      const {
+        fields: {
+          file: { url },
+        },
+      } = items[0].fields.image;
+      const description = items[0].fields.description;
+
+      return { url, description };
+    })
+    .catch((err) => console.log(err));
+
   return {
+    latestPost,
     questions: questions.filter(
       (game) => game.gameType === 'game' || game.gameType === 'fill-in-blank',
     ),
@@ -113,6 +147,7 @@ Games.getInitialProps = async ({ req }) => {
 };
 Games.propTypes = {
   questions: PropTypes.array,
+  latestPost: PropTypes.object,
 };
 
 export default Games;

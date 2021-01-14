@@ -24,7 +24,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [signUpText, setSignUpText] = useState<string>('Sign Up');
+  const [signUpText, setSignUpText] = useState<string>('Submit');
   const [signInText, setSignInText] = useState<string>('Sign In');
 
   const [error, setError] = useState<string>('');
@@ -36,7 +36,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
     setLoading(true);
     if (!(email && password)) {
       setError('Please fill in email and password');
-      setSignUpText('Sign Up');
+      setSignUpText('Submit');
       return;
     }
     let isError = false;
@@ -47,7 +47,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
         isError = true;
         setLoading(false);
         setError(message);
-        setSignUpText('Sign Up');
+        setSignUpText('Submit');
       })
       .then((result: any) => {
         if (isError) {
@@ -124,36 +124,40 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             {signUp ? (
               <>
                 {' '}
-                <div className='mt1'>
-                  <label className='db fw6 lh-copy f6' htmlFor='first-name'>
-                    First Name
-                  </label>
-                  <input
-                    className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
-                    type='name'
-                    value={firstName}
-                    onChange={(event) =>
-                      setFirstName(event.currentTarget.value)
-                    }
-                  />
-                </div>
-                <div className='mv3'>
-                  <label className='db fw6 lh-copy f6' htmlFor='last-name'>
-                    Last Name
-                  </label>
-                  <input
-                    className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
-                    type='name'
-                    value={lastName}
-                    onChange={(event) => setLastName(event.currentTarget.value)}
-                  />
+                <div className='form-flex'>
+                  <div className='first-name'>
+                    <label className='db fw6 lh-copy f6' htmlFor='first-name'>
+                      First Name
+                    </label>
+                    <input
+                      className='form-control '
+                      type='name'
+                      value={firstName}
+                      onChange={(event) =>
+                        setFirstName(event.currentTarget.value)
+                      }
+                    />
+                  </div>
+                  <div className='last-name'>
+                    <label className='db fw6 lh-copy f6' htmlFor='last-name'>
+                      Last Name
+                    </label>
+                    <input
+                      className='form-control'
+                      type='name'
+                      value={lastName}
+                      onChange={(event) =>
+                        setLastName(event.currentTarget.value)
+                      }
+                    />
+                  </div>
                 </div>
                 <div className='mv3'>
                   <label className='db fw6 lh-copy f6' htmlFor='user-name'>
                     User Name
                   </label>
                   <input
-                    className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                    className='form-control'
                     onChange={(event) => setUserName(event.currentTarget.value)}
                     value={userName}
                     placeholder='@ '
@@ -164,7 +168,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                     Phone Number
                   </label>
                   <Cleave
-                    className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                    className='form-control'
                     onChange={(event) =>
                       setPhoneNumber(event.currentTarget.value)
                     }
@@ -181,7 +185,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                 Email
               </label>
               <input
-                className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                className='form-control'
                 type='email'
                 value={email}
                 onChange={(event) => {
@@ -198,63 +202,63 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                 Password
               </label>
               <input
-                className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                className='form-control'
                 type='password'
                 value={password}
                 onChange={(event) => setPassword(event.currentTarget.value)}
               />
             </div>
-            {signUp && (
-              <label className='pa0 ma0 f5  black '>
-                By clicking "Sign Up" confirms you're age 18+ and agree to our{' '}
-                <a
-                  className='fw5 link no-underline bb bw1 dim black'
-                  href='/terms'>
-                  Terms
-                </a>{' '}
-                &{' '}
-                <a
-                  className='fw5 link no-underline bb bw1 dim black'
-                  href='/terms'>
-                  Privacy Policy
-                </a>
-                . You may receive SMS Notifications from us and can opt out any
-                time.
-              </label>
-            )}
-            {signUp && (
-              <div className='mt2'>
-                <a href='/login' className='f5 link dim black db'>
-                  Already have an account?{' '}
-                  <span className='fw5 link no-underline bb bw1 dim '>
-                    Sign in
-                  </span>
-                </a>
-              </div>
-            )}
           </fieldset>
-          <div>
+          <div className={signUp ? 'text-center' : ''}>
             <button
-              className='b ph3 pv2 link input-reset ba b--black bg-transparent grow pointer f6 dib '
+              className='btn btn-default'
               onClick={signUp ? handleSignUp : handleLogin}>
               {loading && <i className='fa fa-spinner fa-spin' />}
               {signUp ? signUpText : signInText}
             </button>
           </div>
-          <div className='lh-copy mt3'>
+          {signUp && (
+            <div className='login-links have-account'>
+              <a href='/login' className='f5 link dim black db'>
+                Already have an account?{' '}
+                <span className='fw5 link no-underline bb bw1 dim '>
+                    Log in
+                  </span>
+              </a>
+            </div>
+          )}
+          {signUp && (
+            <div className='pa0 ma0  terms  black login-links'>
+              By clicking "Submit" confirms you're age 18+ and agree to our{' '}
+              <a
+                className='fw5 link no-underline bb bw1 dim black'
+                href='/terms'>
+                Terms
+              </a>{' '}
+              &{' '}
+              <a
+                className='fw5 link no-underline bb bw1 dim black'
+                href='/terms'>
+                Privacy Policy
+              </a>
+              . You may receive SMS Notifications from us and can opt out any
+              time.
+            </div>
+          )}
+          <div className='margin-actions'>
             {!signUp && (
               <div>
-                <a href='/signup' className='f5 link dim black db'>
+                <Link href='/user/pw-forget'>
+                  <a className='link forgot bb bw1 dim black'>
+                    Forgot your password?
+                  </a>
+                </Link>
+                <a href='/signup' className='f5 signUp link dim black db mt-3'>
                   Don't have an account?{' '}
                   <span className='fw5 link no-underline bb bw1 dim '>
                     Sign Up
                   </span>
                 </a>
-                <Link href='/user/pw-forget'>
-                  <a className='fw5 link f5 bb bw1 dim black'>
-                    Forgot password?
-                  </a>
-                </Link>
               </div>
             )}
           </div>

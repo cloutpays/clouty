@@ -1,4 +1,3 @@
-import { styles } from '../constants/styles';
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 
@@ -8,62 +7,122 @@ const data = {
 };
 const Home = () => (
   <Wrapper data={data}>
-    <section className='ma3 ma4-l'>
-      <p className={`${styles.paragraph}`}>
-        The idea was initially birthed in December &apos;19, after our founder,
-        David Umeh discovered an artist from Maryland, named{' '}
-        <a
-          target='_blank'
-          rel='noopener noreferrer'
-          href='https://www.instagram.com/foggieraw'
-          alt='Foggie Raw'
-          title='Foggie Raw'
-          className={`${styles.link}`}>
-          Foggie Raw
-        </a>
-        . Upon hearing this artists&apos; music along others like{' '}
-        <a
-          target='_blank'
-          rel='noopener noreferrer'
-          href='https://www.instagram.com/ankhnasty/'
-          alt='Ankhlejohn'
-          title='Ankhlejohn'
-          className={`${styles.link}`}>
-          Ankhlejohn
-        </a>
-        , David knew that both of their cadence’s and presence had a serious
-        shot at making it into the big leagues. Being an avid listener and
-        creator of music himself, David also was a member of a large iMessage
-        Group chat where nothing but music was discussed and debated.
-      </p>
-      <p className={`${styles.paragraph}`}>
-        David recalls vividly sharing his sentiments for Foggie&apos;s music in
-        the group chat and asking them to check him out.{' '}
-        <span role='img' aria-label='Bulleye'>
-          🎯‍
-        </span>
-        He then went on to say, &quot;This guy is gonna blow....if I could put
-        my money on it, I would.&quot;
-      </p>
-      <p className={`${styles.paragraph}`}>
-        It then dawned on him that there was no platform, where as in sports,
-        where people could actually put their money where their mouth is and
-        base their predictions on things that would happen in music. He then
-        vowed to himself (and the group chat) that he would be the first person
-        to properly execute a platform of this nature.
-        <span role='img' aria-label='Sparkles'>
-          ✨
-        </span>
-      </p>
-      <p className={`${styles.paragraph}`}>
-        All inquiries:{' '}
-        <a href='mailto:info@clouty.io ' className={`${styles.link}`}>
-          info@clouty.io
-        </a>{' '}
-        <span role='img' aria-label='Bulleye'>
-          🎯‍
-        </span>
-      </p>
+    <div className='about-page' style={{backgroundColor: "#EFE8F4", marginTop: "-8vw"}}>
+      <div className='row'>
+        <div className='col-md-12'>
+          <div className="d-flex-about">
+          <div className='about-banner-content'>
+            <div className='row'>
+              <div className='col-md-6'>
+                <p>Our Story</p>
+                <h1>We're the first <br></br>  of our kind. 🥇</h1>
+              </div>
+            </div>
+            <div className='row'>
+              <div className='col-md-6'>
+                <p>
+                  Clouty was born December 2019 when our founder, David Umeh
+                  discovered the artists Foggieraw and Ankhlejohn. Upon hearing
+                  their cadences and presence he knew they had serious shot at
+                  making it big. In a large group-chat where nothing but music
+                  was discussed and debated, he went on to say,
+                  &ldquo;<strong>This guy is gonna blow....if I could put my money on it, I
+                  would.</strong>&ldquo;
+                </p>
+              </div>
+              <div className='col-md-6'>
+                <p>
+                  Upon hearing their cadences and presence he knew they had
+                  serious shot at making it big. In a large group-chat where
+                  nothing but music was discussed and debated, he went on to
+                  say, <strong>The first and only platform when audiophiles could put
+                  their money where their ears are.</strong>
+                </p>
+              </div>
+            </div>
+            <button className='btn btn-default'>Contact Us</button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section className='about-service'>
+      <div className='about-container'>
+        <div className='row'>
+          <div className='col-md-3 title'>
+            <h1>Our Mission <br></br> At Clouty</h1>
+          </div>
+          <div className='col-md-9'>
+            <div className='row'>
+              <div className='col-md-6'>
+                <div className='about-service-item'>
+                  <h5>Clarity</h5>
+                  <p>
+                    Creative conversion buzz seed money twitter alpha release
+                    analytics termsheet MVP early adopters long tail
+                    business-to-consumer strategy. Series A financing paradigm
+                    shift growth hacking bootstrapping seed money.
+                  </p>
+                </div>
+              </div>
+              <div className='col-md-6'>
+                <div className='about-service-item'>
+                  <h5>Simplicity</h5>
+                  <p>
+                    Creative conversion buzz seed money twitter alpha release
+                    analytics termsheet MVP early adopters long tail
+                    business-to-consumer strategy. Series A financing paradigm
+                    shift growth hacking bootstrapping seed money.
+                  </p>
+                </div>
+              </div>
+              <div className='col-md-6'>
+                <div className='about-service-item'>
+                  <h5>Clarity</h5>
+                  <p>
+                    Creative conversion buzz seed money twitter alpha release
+                    analytics termsheet MVP early adopters long tail
+                    business-to-consumer strategy. Series A financing paradigm
+                    shift growth hacking bootstrapping seed money.
+                  </p>
+                </div>
+              </div>
+              <div className='col-md-6'>
+                <div className='about-service-item'>
+                  <h5>Simplicity</h5>
+                  <p>
+                    Creative conversion buzz seed money twitter alpha release
+                    analytics termsheet MVP early adopters long tail
+                    business-to-consumer strategy. Series A financing paradigm
+                    shift growth hacking bootstrapping seed money.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-md-12 text-center'>
+            <div className='get-ready-started-content'>
+              <p>Sign Up & Place Your Bets</p>
+              <h1>Ready to get started?</h1>
+              <div>
+                <span>
+                  You're just minutes away from placing your first ever music
+                  bet.
+                  <br />
+                  We'll even give you $2 free when you sign up!
+                </span>
+              </div>
+              <button className='btn btn-default'>Sign Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </Wrapper>
 );
