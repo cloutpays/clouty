@@ -104,6 +104,11 @@
       "dest": "server/handlers/post.js"
     },
     {
+      "src": "/api/newSub/(.*)",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js?email=$1"
+    },
+    {
       "src": "/api/user/(.*)",
       "methods": ["GET"],
       "dest": "server/handlers/get.js?id=$1"
