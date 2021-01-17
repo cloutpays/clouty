@@ -164,7 +164,7 @@ export const dbRefresh = wrapAsync(async (req, db) => {
 
   return true;
 });
-export const sendEmail = async (email, content) => {
+export const sendEmail = async (email, content, subscriberEmail = null) => {
   try {
     // Generate test SMTP service account from ethereal.email
 
@@ -178,7 +178,9 @@ export const sendEmail = async (email, content) => {
         pass: process.env.NODEMAILER, // generated ethereal password
       },
     });
-    const message = content.content;
+    const message = subscriberEmail
+      ? content.content(subscriberEmail)
+      : content.content;
     for (var key in email) {
       await transporter.sendMail({
         from: `"Clouty" <info@clouty.io>`, // sender address
