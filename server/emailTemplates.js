@@ -1450,3 +1450,8 @@ export const welcomeEmailContent = {
   
   `,
 };
+
+export const newSubscriberContent = {
+  subject: 'New Subscriber',
+  content: (email) => `${email}`,
+};
