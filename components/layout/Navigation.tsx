@@ -61,6 +61,11 @@ const Navigation: React.FC<Navigation> = ({ router }) => {
               </li>
             )}
             <li className='nav-item links mobile-nav-item-home '>
+              <a className='nav-link' href='/about'>
+                About
+              </a>
+            </li>
+            <li className='nav-item links mobile-nav-item-home '>
               <a className='nav-link' href='/games'>
                 Games
               </a>
