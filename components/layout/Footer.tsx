@@ -1,4 +1,5 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 
 interface DarkModeProps {
   darkMode: boolean;
@@ -8,6 +9,14 @@ const Footer: React.FC<DarkModeProps> = () => {
   //   setCookie('dark_mode', !darkMode);
   //   window.location.href = '/';
   // };
+  const [emailAddress, setEmailAddress] = useState('');
+  const [submit, setSubmit] = useState(false);
+
+  const sendEmail = async (email: string) => {
+    setSubmit(true);
+    axios.post(`/api/newSub/${email}`);
+    setEmailAddress('');
+  };
 
   return (
     <footer id='footer' className='footer-1'>
@@ -26,12 +35,21 @@ const Footer: React.FC<DarkModeProps> = () => {
                 </p>
                 <label className='footer-input-label'>Email address</label>
                 <div className='input-group mb-3'>
-                  <input type='text' className='form-control footer-input' />
+                  <input
+                    type='text'
+                    className='form-control footer-input'
+                    value={emailAddress}
+                    onChange={(event) => {
+                      setSubmit(false);
+                      setEmailAddress(event.target.value);
+                    }}
+                  />
                   <div className='input-group-append'>
-                    <span className='text-white input-group-text submit-btn-footer'>
-                      {' '}
-                      Submit{' '}
-                    </span>
+                    <button
+                      onClick={() => sendEmail(emailAddress)}
+                      className='text-white input-group-text submit-btn-footer'>
+                      {` ${submit ? 'Thank you!' : 'Submit'} `}
+                    </button>
                   </div>
                 </div>
               </div>

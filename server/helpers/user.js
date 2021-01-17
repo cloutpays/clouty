@@ -1,5 +1,5 @@
+import { newSubscriberContent, welcomeEmailContent } from '../emailTemplates';
 import { sendEmail, stripeSecret, user, wrapAsync } from '../helpers';
-import { welcomeEmailContent } from '../emailTemplates';
 const { json } = require('micro');
 const { parse } = require('url');
 const stripe = require('stripe')(stripeSecret);
@@ -10,6 +10,12 @@ export const userRetrieveApi = wrapAsync(async function(req, db) {
   return await db.collection(user).findOne({ _id: id });
 });
 
+export const newSubscriberApi = wrapAsync(async function(req) {
+  const {
+    query: { email },
+  } = parse(req.url, true);
+  return await sendEmail(['umeh@clouty.io'], newSubscriberContent, email);
+});
 export const updateUser = async (firebaseUser, db) => {
   const newUser = await db.collection(user).findOneAndUpdate(
     { _id: firebaseUser.firebase.uid },
