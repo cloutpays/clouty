@@ -574,21 +574,20 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                                 P
                               </span>
                             )}
-                          {typeof curr.won === 'undefined' &&
-                            game.gameType === 'fill-in-blank' && (
-                              <>
-                                <span
-                                  onClick={() => winBet(curr)}
-                                  className='bg-green dim noselect ph1 mt2 mr2 fw8 f5 white'>
-                                  W
-                                </span>
-                                <span
-                                  onClick={() => loseBet(curr)}
-                                  className='bg-red dim  noselect ph1 mt2 fw8 f5 white'>
-                                  L
-                                </span>
-                              </>
-                            )}
+                          {typeof curr.won === 'undefined' && (
+                            <>
+                              <span
+                                onClick={() => winBet(curr)}
+                                className='bg-green dim noselect ph1 mt2 mr2 fw8 f5 white'>
+                                W
+                              </span>
+                              <span
+                                onClick={() => loseBet(curr)}
+                                className='bg-red dim  noselect ph1 mt2 fw8 f5 white'>
+                                L
+                              </span>
+                            </>
+                          )}
                           {typeof curr.won !== 'undefined' && curr.won && (
                             <>
                               <span className='bg-green ph1 mt2 fw8 f5 white'>
