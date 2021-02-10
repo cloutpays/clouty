@@ -23,7 +23,7 @@ const Home = ({ latestPost }) => {
                 src={`http:${latestPost.url}`}
               />
               <div className='bet-button-group-mobile'>
-                <a href='/games'>
+                <a href={`/games`}>
                   <button className='btn btn-default bet-now mr-3'>
                     Bet Now
                   </button>
@@ -41,8 +41,10 @@ const Home = ({ latestPost }) => {
                   <p>This Week&apos;s Featured Bet</p>
                   <h3>{latestPost.description}</h3>
                   <div className='bet-button-group'>
-                    <button className='btn btn-default bet-now'>Bet Now</button>
                     <a href='/games'>
+                      <button className='btn btn-default bet-now'>
+                        Bet Now
+                      </button>
                       <button className='btn btn-default all-bet'>
                         View All Bets
                       </button>
