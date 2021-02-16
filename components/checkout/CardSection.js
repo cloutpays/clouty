@@ -1,8 +1,6 @@
-import { stripeClient } from '../../lib/helpers';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-const Checkout = ({user}) => {
+import React, { useState } from 'react';
+const Checkout = ({ user }) => {
   const [amount, setAmount] = useState(0);
 
   return (
@@ -47,17 +45,20 @@ const Checkout = ({user}) => {
           <dd className='f3 f2-ns b ml0'>${amount}</dd>
         </dl>
       </div>
-      {amount> 0 && (
-        <div
-          className='f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box'>
-          <form action="https://api.connexus.fi/apiv1/bridge" method="post">
-            <input type="hidden" name="amount" value={amount}/>
-            <input type="hidden" name="customParm" value={user._id}/>
-            <input type="hidden" name="pluginKey" value="fa835a8d-9ea4-4ea5-89e7-6811e5cf3a71"/>
-            <input type="hidden" name="merchantTrackingNumber" value="test"/>
-            <div class="cxs-btn">
-              <button id="cxs-btn-default" type="submit">
-                <span id="cxs-span">
+      {amount > 0 && (
+        <div className='f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box'>
+          <form action='https://api.connexus.fi/apiv1/bridge' method='post'>
+            <input type='hidden' name='amount' value={amount} />
+            <input type='hidden' name='customParm' value={user._id} />
+            <input
+              type='hidden'
+              name='pluginKey'
+              value='fa835a8d-9ea4-4ea5-89e7-6811e5cf3a71'
+            />
+            <input type='hidden' name='merchantTrackingNumber' value='clouty' />
+            <div className='cxs-btn'>
+              <button id='cxs-btn-default' type='submit'>
+                <span id='cxs-span'>
                   <strong>PAY WITH</strong>
                 </span>
               </button>
