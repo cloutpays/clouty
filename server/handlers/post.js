@@ -12,7 +12,6 @@ const {
 const { userApi, newSubscriberApi } = require('../helpers/user');
 const { send } = require('micro');
 const { hookApi, payoutApi, setCreditApi } = require('../helpers/stripe');
-const { spotifyApi, spotifyRefreshApi } = require('../helpers');
 
 const postApi = (fn) => async (req, res) => {
   try {
@@ -34,10 +33,6 @@ const postApi = (fn) => async (req, res) => {
         return await fn(userApi(req, res));
       case 'api/newSub':
         return await fn(newSubscriberApi(req, res));
-      case 'api/spotify':
-        return await fn(spotifyApi(req, res));
-      case 'api/spotifyRefresh':
-        return await fn(spotifyRefreshApi(req, res));
       case 'api/winBet':
         return await fn(winBetApi(req, res));
       case 'api/loseBet':

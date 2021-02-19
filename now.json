@@ -68,16 +68,6 @@
       "dest": "server/handlers/get.js"
     },
     {
-      "src": "/api/spotify",
-      "methods": ["POST"],
-      "dest": "server/handlers/post.js"
-    },
-    {
-      "src": "/api/spotifyRefresh",
-      "methods": ["POST"],
-      "dest": "server/handlers/post.js"
-    },
-    {
       "src": "/api/users",
       "methods": ["GET"],
       "dest": "server/handlers/get.js"
@@ -179,31 +169,18 @@
       "FIREBASE_APP_ID": "@firebase-app-id",
       "FIREBASE_API_KEY_DEV": "@firebase-api-key-dev",
       "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
-      "STRIPE_CLIENT_DEV": "@stripe-client-dev",
-      "STRIPE_SECRET_DEV": "@stripe-secret-dev",
-      "STRIPE_CLIENT_PROD": "@stripe-client-prod",
-      "STRIPE_SECRET_PROD": "@stripe-secret-prod",
-      "NODEMAILER": "@nodemailer",
-      "SPOTIFY_CLIENT_ID": "@spotify-client-id",
-      "SPOTIFY_CLIENT_SECRET": "@spotify-client-secret",
-      "CONTENTFUL_ACCESS_TOKEN": "@contentful-access-token"
+      "NODEMAILER": "@nodemailer"
     }
   },
   "env": {
     "TWILIO_SID": "@twilio-sid",
     "CONTENTFUL_ACCESS_TOKEN": "@contentful-access-token",
-    "SPOTIFY_CLIENT_ID": "@spotify-client-id",
-    "SPOTIFY_CLIENT_SECRET": "@spotify-client-secret",
     "TWILIO_TOKEN": "@twilio-token",
     "MONGO": "@mongo",
     "FIREBASE_API_KEY": "@firebase-api-key",
     "FIREBASE_API_KEY_DEV": "@firebase-api-key-dev",
     "FIREBASE_APP_ID": "@firebase-app-id",
     "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
-    "STRIPE_CLIENT_DEV": "@stripe-client-dev",
-    "STRIPE_SECRET_DEV": "@stripe-secret-dev",
-    "STRIPE_CLIENT_PROD": "@stripe-client-prod",
-    "STRIPE_SECRET_PROD": "@stripe-secret-prod",
     "NODEMAILER": "@nodemailer"
   }
 }

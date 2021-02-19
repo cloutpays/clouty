@@ -1,8 +1,7 @@
 import { newSubscriberContent, welcomeEmailContent } from '../emailTemplates';
-import { sendEmail, stripeSecret, user, wrapAsync } from '../helpers';
+import { sendEmail, user, wrapAsync } from '../helpers';
 const { json } = require('micro');
 const { parse } = require('url');
-const stripe = require('stripe')(stripeSecret);
 
 export const userRetrieveApi = wrapAsync(async function(req, db) {
   const { query } = parse(req.url, true);
@@ -43,12 +42,10 @@ export const userApi = wrapAsync(async function(req, db) {
 
   if (userData.new) {
     userData.admin = false;
-    const stripeUser = await stripe.customers.create({
-      email: userData.firebase.email,
-    });
+
     await sendEmail([userData.firebase.email], welcomeEmailContent);
     userData.stripe = {
-      user: { ...stripeUser, credit: 200 },
+      user: { credit: 200 },
     };
     userData.new = false;
   }
