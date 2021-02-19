@@ -126,8 +126,7 @@ const Home = ({ latestPost }) => {
                         <div className='service-icon'>&#128200;</div>
                         <h3 className='title text-dark'>First Week Sales</h3>
                         <p className='description'>
-                          Place bets on the first week album sales of your
-                          favorite rappers.
+                          Place bets on the first week abum sales of any artist
                         </p>
                         <a href='#'>Place Your Bet</a>
                       </div>
@@ -139,8 +138,8 @@ const Home = ({ latestPost }) => {
                         <div className='service-icon'>&#129518;</div>
                         <h3 className='title text-dark'>Over / Under</h3>
                         <p className='description'>
-                          Place bets on whether an album will beat or fall under
-                          a certain metric.
+                          Over/Under bets are a value provided for many
+                          statistical categories
                         </p>
                         <a href='#'>Place Your Bet</a>
                       </div>
@@ -152,8 +151,8 @@ const Home = ({ latestPost }) => {
                         <div className='service-icon'>&#128302;</div>
                         <h3 className='title text-dark'>Futures</h3>
                         <p className='description'>
-                          Look into your crystal ball and bet on future events
-                          in the rap game.
+                          Bet on specific predictions ranging from release
+                          dates, subject content, record length and features
                         </p>
                         <a href='#'>Place Your Bet</a>
                       </div>
@@ -165,8 +164,8 @@ const Home = ({ latestPost }) => {
                         <div className='service-icon'>🎙️</div>
                         <h3 className='title text-dark'>Live Events</h3>
                         <p className='description'>
-                          Bet on live events like the Grammys and Billboard
-                          Music Awards.
+                          Our moneyline is a straight up bet on the outline of
+                          award show categories and concert set-lists
                         </p>
                         <a href='#'>Place Your Bet</a>
                       </div>

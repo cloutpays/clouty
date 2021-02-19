@@ -70,8 +70,8 @@ export default class Wrapper extends Component {
                 <div>
                   <span>
                     We host live bets about the latest releases and predictions
-                    in the rap game. Sign up <br></br> today and receive a free
-                    $2 credit towards your bets and no fees for all bets!
+                    in music. Sign up <br></br> today and receive a free $2
+                    credit towards your bets and no fees for all bets!
                   </span>
                 </div>
                 <a href='/signup'>
