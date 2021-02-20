@@ -1,10 +1,5 @@
 const connect = require('./helpers/db');
 const cors = require('micro-cors')();
-const SpotifyWebApi = require('spotify-web-api-node');
-var spotifyFetchApi = new SpotifyWebApi({
-  clientId: process.env.SPOTIFY_CLIENT_ID,
-  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-});
 
 const nodemailer = require('nodemailer');
 const client = require('twilio')(
@@ -41,14 +36,6 @@ export const balance = dev
   : staging
   ? 'balance_staging'
   : 'balance_prod';
-export const spotify = dev
-  ? 'spotify_dev'
-  : staging
-  ? 'spotify_staging'
-  : 'spotify_prod';
-export const stripeSecret = dev
-  ? process.env.STRIPE_SECRET_DEV
-  : process.env.STRIPE_SECRET_PROD;
 
 export const wrapAsync = (handler) => async (req, res) => {
   const db = await connect();
@@ -64,60 +51,6 @@ export const wrapAsync = (handler) => async (req, res) => {
       .catch((error) => res.status(500).json({ error: error.message })),
   );
 };
-
-export const spotifyRefreshApi = wrapAsync(async (req, db) => {
-  await spotifyFetchApi
-    .clientCredentialsGrant()
-    .then(function(result) {
-      console.log(
-        'It worked! Your access token is: ' + result.body.access_token,
-      );
-      spotifyFetchApi.setAccessToken(result.body.access_token);
-    })
-    .catch(function(err) {
-      console.log(
-        'If this is printed, it probably means that you used invalid ' +
-          'clientId and clientSecret values. Please check!',
-      );
-      console.log('Hint: ');
-      console.log(err);
-    });
-  let album;
-  await spotifyFetchApi
-    .getPlaylist('37i9dQZF1DX0XUsuxWHRQd')
-    .then((data) => {
-      album = data.body.tracks.items
-        .map((curr) => {
-          console.log(curr);
-          return {
-            artist: curr.track.artists[0].name,
-            image: curr.track.album.images[0].url,
-            album: curr.track.name,
-            spotify: curr.track.external_urls.spotify,
-          };
-        })
-        .slice(0, 12);
-    })
-    .catch((err) => {
-      console.log('err', err);
-    });
-  console.log(album);
-  return await db.collection('spotify').updateOne(
-    {},
-    {
-      $set: {
-        project: album,
-      },
-    },
-    { upsert: true, returnOriginal: false },
-  );
-});
-export const spotifyApi = wrapAsync(async (req, db) => {
-  return await db
-    .collection('spotify')
-    .find()
-    .toArray();
-});
 export const dbRefresh = wrapAsync(async (req, db) => {
   const usersProd = await db
     .collection('user_prod')
