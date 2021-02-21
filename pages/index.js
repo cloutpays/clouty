@@ -128,7 +128,7 @@ const Home = ({ latestPost }) => {
                         <p className='description'>
                           Place bets on the first week abum sales of any artist
                         </p>
-                        <a href='#'>Place Your Bet</a>
+                        <a href='/games'>Place Your Bet</a>
                       </div>
                     </div>
                   </div>
