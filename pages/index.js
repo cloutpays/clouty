@@ -46,7 +46,7 @@ const Home = ({ latestPost }) => {
                         Bet Now
                       </button>
                       <button className='btn btn-default all-bet'>
-                        View All Bets
+                        <a href='/games'>View All Bets</a>
                       </button>
                     </a>
                   </div>
