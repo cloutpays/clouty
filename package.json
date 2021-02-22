@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "now dev",
-    "start": "now --local-config now.staging.json"
+    "dev": "vercel dev",
+    "start": "vercel --local-config now.staging.json"
   },
   "dependencies": {
     "@types/classnames": "^2.2.10",
