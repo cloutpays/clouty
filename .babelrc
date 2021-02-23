@@ -4,6 +4,8 @@
     // support: option ?? { val: '', key: 'none' }
     "@babel/plugin-proposal-nullish-coalescing-operator",
     // support: user?.address
-    "@babel/plugin-proposal-optional-chaining"
+    "@babel/plugin-proposal-optional-chaining",
+    // required for styled-components not to glitch out, another fix would be to update Next.js
+    ["styled-components", { "ssr": true }]
   ]
 }
