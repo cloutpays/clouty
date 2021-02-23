@@ -1,5 +1,5 @@
 import { getCookie, getCookieFromBrowser } from '../lib/session';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import React from 'react';
 import classNames from 'classnames';
 let dark = false;
@@ -20,7 +20,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html lang='en'>
+      <Html lang='en'>
         <Head>
           <link
             rel='stylesheet'
@@ -44,7 +44,10 @@ export default class MyDocument extends Document {
           <meta name='description' content='Clouty™: Rap, Reimagined' />
           <meta name='viewport' content='width=device-width, initial-scale=1' />
           <link rel='home' href='https://getclouty.com/' />
-          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+          <link
+            href='https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap'
+            rel='stylesheet'
+          />
           <meta property='og:type' content='website' />
           <meta
             property='og:image'
@@ -102,7 +105,7 @@ export default class MyDocument extends Document {
             integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl'
             crossOrigin='anonymous'></script>
         </body>
-      </html>
+      </Html>
     );
   }
 }
