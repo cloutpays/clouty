@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vercel dev",
-    "start": "vercel --local-config now.staging.json"
+    "dev": "now dev",
+    "start": "now --local-config now.staging.json"
   },
   "dependencies": {
     "@types/classnames": "^2.2.10",
     "@types/cleave.js": "^1.4.1",
     "@types/emoji-mart": "^2.11.0",
+    "@types/styled-components": "^5.1.7",
     "@zeit/next-css": "^1.0.1",
     "axios": "^0.19.0",
     "babel-runtime": "^6.26.0",
@@ -39,6 +40,7 @@
     "react-responsive-modal": "^4.0.1",
     "react-stripe-elements": "^6.0.1",
     "stripe": "^8.8.0",
+    "styled-components": "^5.2.1",
     "twilio": "^3.37.1",
     "url": "^0.11.0",
     "yarn": "^1.22.10"
