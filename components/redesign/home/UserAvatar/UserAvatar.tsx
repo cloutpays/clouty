@@ -7,7 +7,7 @@ interface IProps {
   uri?: string;
 }
 
-const UserAvatar: React.FC<IProps> = (props: IProps) => (
+const UserAvatar: React.FC<IProps> = () => (
   <El.OuterContainer>
     <AvatarFrame src='/static/img/redesign/avatarFrame.png' />
   </El.OuterContainer>
