@@ -16,9 +16,7 @@ interface BetContainerProps extends HTMLProps<HTMLDivElement> {
   imageUri: string;
 }
 
-export const BetContainer = styled.div.attrs(
-  (props: BetContainerProps) => ({}),
-)<BetContainerProps>`
+export const BetContainer = styled.div<BetContainerProps>`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
