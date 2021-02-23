@@ -25,7 +25,7 @@ interface IProps extends React.HTMLProps<HTMLElement> {
 }
 
 const History: React.FC<IProps> = (props: IProps) => {
-  const { games, balance, compact, style } = props;
+  const { games, balance, style } = props;
 
   const generateData = () => {
     if (games) {
