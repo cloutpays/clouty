@@ -141,7 +141,7 @@ const Home = ({ latestPost }) => {
                           Over/Under bets are a value provided for many
                           statistical categories
                         </p>
-                        <a href='#'>Place Your Bet</a>
+                        <a href='/games'>Place Your Bet</a>
                       </div>
                     </div>
                   </div>
@@ -154,7 +154,7 @@ const Home = ({ latestPost }) => {
                           Bet on specific predictions ranging from release
                           dates, subject content, record length and features
                         </p>
-                        <a href='#'>Place Your Bet</a>
+                        <a href='/games'>Place Your Bet</a>
                       </div>
                     </div>
                   </div>
@@ -167,7 +167,7 @@ const Home = ({ latestPost }) => {
                           Our moneyline is a straight up bet on the outline of
                           award show categories and concert set-lists
                         </p>
-                        <a href='#'>Place Your Bet</a>
+                        <a href='/games'>Place Your Bet</a>
                       </div>
                     </div>
                   </div>
@@ -194,7 +194,10 @@ const Home = ({ latestPost }) => {
                       We&apos;ll even give you $2 free when you sign up!
                     </span>
                   </div>
-                  <button className='btn btn-default'>Sign Up</button>
+                  <a href='/signup'>
+                    {' '}
+                    <button className='btn btn-default'>Sign Up</button>
+                  </a>
                 </div>
               </div>
             </div>
