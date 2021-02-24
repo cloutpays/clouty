@@ -1,10 +1,10 @@
 import React from 'react';
-import History from '../../../components/redesign/History';
-import BalanceBox from '../../../components/redesign/home/BalanceBox';
-import FeaturedBets from '../../../components/redesign/home/FeaturedBets';
-import UserAvatar from '../../../components/redesign/home/UserAvatar';
-import PageWrapper from '../../../components/redesign/PageWrapper';
-import * as El from './styles';
+import History from '../../components/redesign/History';
+import BalanceBox from '../../components/redesign/home/BalanceBox';
+import FeaturedBets from '../../components/redesign/home/FeaturedBets';
+import * as El from '../../components/redesign/home/styles';
+import UserAvatar from '../../components/redesign/home/UserAvatar';
+import PageWrapper from '../../components/redesign/PageWrapper';
 
 interface IProps {
   header?: string;
