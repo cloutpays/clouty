@@ -1,6 +1,5 @@
 import React from 'react';
 import History from '../../components/redesign/History';
-import * as El from '../../components/redesign/home/styles';
 import PageWrapper from '../../components/redesign/PageWrapper';
 
 interface IProps {
