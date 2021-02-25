@@ -51,3 +51,10 @@ export const HistorySections = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
 `;
+
+export const HistoryBox = styled.div`
+  flex: 1;
+  &:first-child {
+    padding-right: 20px;
+  }
+`;

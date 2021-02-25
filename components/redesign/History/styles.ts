@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const OuterContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 49%;
+  width: 100%;
   padding-top: 42px;
   padding-bottom: 42px;
   padding-left: 48px;
@@ -13,7 +13,13 @@ export const OuterContainer = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     margin-bottom: 42px;
+    background: transparent;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
   }
+  margin-bottom: 32px;
 `;
 
 export const Header = styled.div`

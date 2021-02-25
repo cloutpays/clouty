@@ -71,6 +71,7 @@ export const CreateBetBox = styled.div`
   padding-right: 32px;
   height: 100%;
   width: 218px;
+  border-radius: 8.12759px;
   @media (max-width: 768px) {
     width: 154px;
   }
@@ -118,4 +119,5 @@ export const Category = styled.span`
   font-weight: bold;
   flex: 0;
   box-shadow: 0px 0px 44px rgba(123, 91, 187, 0.6);
+  border-radius: 7px;
 `;
