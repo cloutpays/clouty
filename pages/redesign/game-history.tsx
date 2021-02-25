@@ -8,7 +8,7 @@ interface IProps {
   children: React.ReactChildren;
 }
 
-const GameHistory: React.FC<IProps> = (props: IProps) => {
+const GameHistory: React.FC<IProps> = () => {
   return (
     <PageWrapper active='Home' header='Games History' pageMode='modal'>
       <History
