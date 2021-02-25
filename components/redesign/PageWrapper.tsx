@@ -9,9 +9,9 @@ interface IProps {
   header?: string;
   active?: string;
   showUserGreeting?: boolean;
-  extended?: boolean;
   goBack?: () => void;
   children?: React.ReactNode;
+  pageMode?: 'standard' | 'modal';
 }
 
 // TODO: After merging redesign into main paths, change those values accordingly
@@ -48,10 +48,19 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
       </Link>
     ));
 
+  const generateContent = () => {
+    switch (props.pageMode) {
+      case 'modal':
+        return <El.ModalContainer>{props.children}</El.ModalContainer>;
+      default:
+        return <El.InnerContainer>{props.children}</El.InnerContainer>;
+    }
+  };
+
   return (
     <El.OuterContainer>
       <El.GlobalStyle />
-      <El.Header>
+      <El.Header extended={props.pageMode === 'modal'}>
         <El.DesktopNavigation>
           <El.Logo />
           <El.ButtonBar>{generateButtons()}</El.ButtonBar>
@@ -63,11 +72,11 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
               <strong>Jason Todd!</strong>
             </>
           ) : (
-            props.header
+            <strong>{props.header}</strong>
           )}
         </El.HeaderText>
       </El.Header>
-      <El.InnerContainer>{props.children}</El.InnerContainer>
+      {generateContent()}
     </El.OuterContainer>
   );
 };

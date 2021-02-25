@@ -45,35 +45,39 @@ const Home: React.FC<IProps> = (props: IProps) => {
           ]}
         />
         <El.HistorySections>
-          <History
-            games={(new Array(5) as any).fill(
-              {
-                id: 1,
-                artist: 'The Weekend',
-                description: 'Number of tracks on new album',
-                bet: '11',
-                date: new Date(),
-                credits: '390.00',
-                imageUri:
-                  'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2016%2F12%2Fdeath-grips-mc-ride-stefan-burnett-solo-exhibition-slow-culture.jpg?q=90&w=1400&cbr=1&fit=max',
-              },
-              0,
-              10,
-            )}
-          />
-          <History
-            balance={(new Array(5) as any).fill(
-              {
-                id: 1,
-                operation: 'Payout',
-                description: 'Account ending ****4362',
-                date: new Date(),
-                amount: '100.00',
-              },
-              0,
-              10,
-            )}
-          />
+          <El.HistoryBox>
+            <History
+              games={(new Array(5) as any).fill(
+                {
+                  id: 1,
+                  artist: 'The Weekend',
+                  description: 'Number of tracks on new album',
+                  bet: '11',
+                  date: new Date(),
+                  credits: '390.00',
+                  imageUri:
+                    'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2016%2F12%2Fdeath-grips-mc-ride-stefan-burnett-solo-exhibition-slow-culture.jpg?q=90&w=1400&cbr=1&fit=max',
+                },
+                0,
+                10,
+              )}
+            />
+          </El.HistoryBox>
+          <El.HistoryBox>
+            <History
+              balance={(new Array(5) as any).fill(
+                {
+                  id: 1,
+                  operation: 'Payout',
+                  description: 'Account ending ****4362',
+                  date: new Date(),
+                  amount: '100.00',
+                },
+                0,
+                10,
+              )}
+            />
+          </El.HistoryBox>
         </El.HistorySections>
       </El.FeaturedBetsBox>
     </PageWrapper>

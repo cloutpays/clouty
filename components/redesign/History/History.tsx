@@ -20,6 +20,7 @@ interface IProps extends React.HTMLProps<HTMLElement> {
     date: Date;
   }[];
   compact?: boolean;
+  noHeader?: boolean;
   // TODO: Type this
   style?: any;
 }
@@ -71,10 +72,14 @@ const History: React.FC<IProps> = (props: IProps) => {
 
   return (
     <El.OuterContainer style={style}>
-      <El.Header>
-        <El.Title>{props.games ? 'Game History' : 'Balance History'}</El.Title>
-        <El.SeeMoreButton src='/static/img/redesign/rightArrow.svg' />
-      </El.Header>
+      {!props.noHeader && (
+        <El.Header>
+          <El.Title>
+            {props.games ? 'Game History' : 'Balance History'}
+          </El.Title>
+          <El.SeeMoreButton src='/static/img/redesign/rightArrow.svg' />
+        </El.Header>
+      )}
       <El.DataBox>{generateData()}</El.DataBox>
     </El.OuterContainer>
   );

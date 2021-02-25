@@ -46,7 +46,28 @@ export const InnerContainer = styled.main`
   }
 `;
 
-export const Header = styled.header`
+export const ModalContainer = styled.main`
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  max-width: 695px;
+  width: 100%;
+  top: 175px;
+  @media (max-width: 768px) {
+    position: relative;
+    max-width: 1170px;
+    width: 100%;
+    top: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+`;
+
+export const Header = styled.header<
+  React.HTMLProps<HTMLElement> & { extended?: boolean }
+>`
   font-family: 'Wonder Unit Sans';
   margin-left: 7px;
   margin-right: 7px;
@@ -55,7 +76,7 @@ export const Header = styled.header`
   width: 100%;
   @media (max-width: 768px) {
     margin-top: 7px;
-    padding-bottom: 50px;
+    padding-bottom: ${(props) => (props.extended ? '0' : '50px')};
   }
   background: linear-gradient(
       279.54deg,
@@ -68,6 +89,10 @@ export const Header = styled.header`
   border-bottom-left-radius: 32px;
   border-bottom-right-radius: 32px;
   box-shadow: 0px 4px 250px 0px rgba(126, 94, 188, 0.9);
+  height: ${(props) => (props.extended ? '288px' : 'unset')};
+  @media (max-width: 768px) {
+    height: unset;
+  }
 `;
 
 export const DesktopNavigation = styled.div`
