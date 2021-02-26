@@ -17,10 +17,10 @@ interface IProps {
 // TODO: After merging redesign into main paths, change those values accordingly
 const links: { name: string; path: string }[] = [
   { name: 'Home', path: '/redesign/home' },
-  { name: 'Account Settings', path: '/user/info' },
+  { name: 'Account Settings', path: '/redesign/account-settings' },
   { name: 'Payouts', path: '/payouts' },
   { name: 'Add to Balance', path: '/user/balance' },
-  { name: 'Our Active Bets', path: '/games' },
+  { name: 'Our Active Bets', path: '/redesign/games' },
   { name: 'Create Your Bet', path: '/games/create' },
 ];
 

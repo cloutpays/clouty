@@ -48,8 +48,16 @@ export const DataBox = styled.div`
   width: 100%;
 `;
 
-export const DatumBox = styled.div`
+export const CompactDataBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
+`;
+
+export const DatumBox = styled.div<{ compact?: boolean }>`
+  width: ${(props) => (props.compact ? '50%' : '100%')};
+  margin-bottom: ${(props) => (props.compact ? '55px' : '0')};
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -100,7 +108,7 @@ export const DatumDesc = styled.span`
   font-weight: 500;
   font-size: 15px;
   letter-spacing: 0.01em;
-  width: 70%;
+  width: 80%;
 `;
 
 export const DatumAdditional = styled.div`
