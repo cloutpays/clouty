@@ -8,6 +8,7 @@ export const OuterContainer = styled.div`
   position: relative;
   align-items: stretch;
   border-radius: 9px;
+  box-shadow: 0px 0px 168px rgba(255, 255, 255, 0.17);
   background: linear-gradient(
       284.11deg,
       rgba(239, 158, 158, 0.2) 4.67%,
@@ -28,7 +29,6 @@ export const LeftContainer = styled.div`
   padding: 24px;
   background: #1b1a1a;
   border-radius: 9px;
-  box-shadow: 0px 0px 168px rgba(255, 255, 255, 0.17);
 `;
 
 export const RightContainer = styled(LeftContainer)`

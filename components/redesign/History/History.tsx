@@ -26,48 +26,31 @@ interface IProps extends React.HTMLProps<HTMLElement> {
 }
 
 const History: React.FC<IProps> = (props: IProps) => {
-  const { games, balance, style } = props;
+  const { games, balance, style, compact } = props;
 
   const generateData = () => {
-    if (games) {
-      return games.map((game) => (
-        <El.DatumBox key={game.id}>
+    return (games || balance || ([] as any)).map((data: any) => (
+      <El.DatumBox key={data.id} compact={compact}>
+        {!compact && (
           <El.DatumIndicator>
             <El.DatumIndicatorPoint />
             <El.DatumIndicatorLine />
           </El.DatumIndicator>
-          <El.GamePreview src={game.imageUri} />
-          <El.DatumInfo>
-            <El.DatumName>{game.artist}</El.DatumName>
-            <El.DatumDesc>{game.description}</El.DatumDesc>
-            <El.GameBet>{game.bet}</El.GameBet>
-          </El.DatumInfo>
+        )}
+        {games && <El.GamePreview src={data.imageUri} />}
+        <El.DatumInfo>
+          <El.DatumName>{data.artist || data.operation}</El.DatumName>
+          <El.DatumDesc>{data.description}</El.DatumDesc>
+          {games && !compact && <El.GameBet>{data.bet}</El.GameBet>}
+        </El.DatumInfo>
+        {!compact && (
           <El.DatumAdditional>
-            <El.DatumCredits>${game.credits}</El.DatumCredits>
-            <El.DatumDate>{'Feb 23' || game.date.toDateString()}</El.DatumDate>
+            <El.DatumCredits>${data.credits || data.amount}</El.DatumCredits>
+            <El.DatumDate>{'Feb 23' || data.date.toDateString()}</El.DatumDate>
           </El.DatumAdditional>
-        </El.DatumBox>
-      ));
-    }
-    if (balance) {
-      return balance.map((bal) => (
-        <El.DatumBox key={bal.id}>
-          <El.DatumIndicator>
-            <El.DatumIndicatorPoint />
-            <El.DatumIndicatorLine />
-          </El.DatumIndicator>
-          <El.DatumInfo>
-            <El.DatumName>{bal.operation}</El.DatumName>
-            <El.DatumDesc>{bal.description}</El.DatumDesc>
-          </El.DatumInfo>
-          <El.DatumAdditional>
-            <El.DatumCredits>${bal.amount}</El.DatumCredits>
-            <El.DatumDate>{'Feb 23' || bal.date.toDateString()}</El.DatumDate>
-          </El.DatumAdditional>
-        </El.DatumBox>
-      ));
-    }
-    return null;
+        )}
+      </El.DatumBox>
+    ));
   };
 
   return (
@@ -80,7 +63,11 @@ const History: React.FC<IProps> = (props: IProps) => {
           <El.SeeMoreButton src='/static/img/redesign/rightArrow.svg' />
         </El.Header>
       )}
-      <El.DataBox>{generateData()}</El.DataBox>
+      {compact ? (
+        <El.CompactDataBox>{generateData()}</El.CompactDataBox>
+      ) : (
+        <El.DataBox>{generateData()}</El.DataBox>
+      )}
     </El.OuterContainer>
   );
 };

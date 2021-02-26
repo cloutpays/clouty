@@ -3,11 +3,25 @@ import styled from 'styled-components';
 
 export const OuterContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  height: 238px;
+  flex-direction: column;
+  width: 100%;
   justify-content: space-between;
   flex-wrap: wrap;
   @media (max-width: 768px) {
+    flex-wrap: nowrap;
+  }
+`;
+
+export const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 238px;
+  width: 100%;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
     display: none;
   }
 `;
@@ -18,6 +32,7 @@ interface BetContainerProps extends HTMLProps<HTMLDivElement> {
 
 export const BetContainer = styled.div<BetContainerProps>`
   display: flex;
+  flex: 0 0 auto;
   flex-direction: row;
   align-items: flex-end;
   height: 100%;
@@ -35,12 +50,9 @@ export const BetContainer = styled.div<BetContainerProps>`
   font-weight: bold;
   font-size: 16px;
   transition: all 0.2s ease;
-  &:hover {
-    transform: translateY(5px);
-    cursor: pointer;
-  }
+  margin-right: 11px;
   @media (max-width: 768px) {
-    width: 154px;
+    width: 160px;
   }
 `;
 
@@ -52,6 +64,9 @@ export const CategoriesBox = styled.div`
   justify-content: space-around;
   align-items: flex-start;
   border-radius: 7px;
+  @media (max-width: 1170px) {
+    display: none;
+  }
 `;
 
 export const CategoriesHeader = styled.span`
@@ -61,8 +76,20 @@ export const CategoriesHeader = styled.span`
   font-weight: bold;
 `;
 
+export const HorizontalCategoriesHeader = styled.span`
+  display: none;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: bold;
+  @media (max-width: 1170px) {
+    display: flex;
+  }
+  margin-top: 36px;
+`;
+
 export const CreateBetBox = styled.div`
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -72,9 +99,7 @@ export const CreateBetBox = styled.div`
   height: 100%;
   width: 218px;
   border-radius: 8.12759px;
-  @media (max-width: 768px) {
-    width: 154px;
-  }
+  margin-right: 11px;
 `;
 
 export const CreateBetHeader = styled.span`
@@ -120,4 +145,29 @@ export const Category = styled.span`
   flex: 0;
   box-shadow: 0px 0px 44px rgba(123, 91, 187, 0.6);
   border-radius: 7px;
+`;
+
+export const HorizontalCategoriesBox = styled.div`
+  display: none;
+  @media (max-width: 1170px) {
+    display: flex;
+  }
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+`;
+
+export const HorizontalCategory = styled.span`
+  flex: 0 0 auto;
+  box-shadow: 0px 0px 44px rgba(123, 91, 187, 0.6);
+  border-radius: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  margin: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 27px;
+  margin-bottom: 27px;
 `;

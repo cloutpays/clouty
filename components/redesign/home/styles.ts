@@ -50,6 +50,9 @@ export const HistorySections = styled.div`
   margin-bottom: 80px;
   justify-content: space-between;
   flex-wrap: wrap;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const HistoryBox = styled.div`
