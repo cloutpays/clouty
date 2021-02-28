@@ -1,5 +1,6 @@
 import React from 'react';
 import BigHeader from '../../components/redesign/BigHeader';
+import Button from '../../components/redesign/Button';
 import ModalBackground from '../../components/redesign/ModalBackground';
 import PageWrapper from '../../components/redesign/PageWrapper';
 import TextInput from '../../components/redesign/TextInput';
@@ -22,6 +23,11 @@ const AccountSettings: React.FC<IProps> = () => {
         <TextInput label='Last Name' />
         <TextInput label='Email Address' />
         <TextInput label='Phone Number' />
+        <Button
+          style={{ marginTop: '46px' }}
+          iconUri='/static/img/redesign/checkmark.svg'>
+          Save
+        </Button>
       </ModalBackground>
     </PageWrapper>
   );

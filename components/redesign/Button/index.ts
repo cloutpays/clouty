@@ -1,1 +1,1 @@
-export { default } from './BigHeader';
+export { default } from './Button';
