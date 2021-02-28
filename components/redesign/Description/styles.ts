@@ -6,6 +6,6 @@ export const OuterContainer = styled.span`
   font-weight: bold;
   letter-spacing: 0.01em;
   margin: 0;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   margin-top: 10px;
 `;

@@ -6,4 +6,9 @@ export const OuterContainer = styled.h1`
   letter-spacing: 0.01em;
   margin: 0;
   margin-bottom: 20px;
+  @media (max-width: 768px) {
+    position: absolute;
+    top: -110px;
+    left: 25px;
+  }
 `;

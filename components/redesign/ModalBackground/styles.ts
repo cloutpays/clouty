@@ -6,9 +6,11 @@ export const OuterContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: #232323;
-  @media (max-width: 768px) {
-    background: transparent;
-  }
   border-radius: 7px;
   padding: 60px;
+  @media (max-width: 768px) {
+    background: transparent;
+    padding: 25px;
+  }
+  padding-bottom: 120px;
 `;

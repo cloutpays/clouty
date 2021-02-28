@@ -1,18 +1,35 @@
 import styled from 'styled-components';
 
-export const OuterContainer = styled.a`
-  padding-top: 19px;
-  padding-bottom: 19px;
-  padding-left: 35px;
-  padding-right: 35px;
-  background: #7b5bbb;
-  border-radius: 50px;
+export const OuterContainer = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
   justify-content: space-between;
-  align-self: center;
+  @media (max-width: 768px) {
+    overflow-x: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+`;
+
+export const Option = styled.a`
+  width: 172px;
+  height: 111px;
+  background: #121111;
+  border-radius: 9px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
+  position: relative;
+  flex: 0 0 auto;
+  @media (max-width: 768px) {
+    margin-right: 8px;
+  }
 `;
 
 export const Text = styled.span`
@@ -23,8 +40,16 @@ export const Text = styled.span`
   flex: 1;
 `;
 
-export const Icon = styled.img`
-  height: 15px;
-  flex: 0;
-  padding-right: 26px;
+export const Icon = styled.img.attrs((props: { icon: any }) => ({
+  src: '/static/img/redesign/paymentOptions/' + props.icon + '.svg',
+}))<React.HTMLProps<HTMLImageElement> & { icon: any }>`
+  height: 24px;
+`;
+
+export const Checkmark = styled.img`
+  height: 12px;
+  width: 17px;
+  position: absolute;
+  left: 17px;
+  top: 17px;
 `;
