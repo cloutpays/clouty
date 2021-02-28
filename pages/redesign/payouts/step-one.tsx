@@ -45,7 +45,10 @@ const AccountSettings: React.FC<IProps> = () => {
           <TextInput label={getLabel(chosen)} onChange={(v) => setValue(v)} />
         )}
         <Link href='/redesign/payouts/step-two'>
-          <ModalButton iconUri='/static/img/redesign/rightArrowLong.svg' />
+          <ModalButton
+            iconUri='/static/img/redesign/rightArrowLong.svg'
+            disabled={!value}
+          />
         </Link>
       </ModalBackground>
     </PageWrapper>
