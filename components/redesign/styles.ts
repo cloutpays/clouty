@@ -65,6 +65,27 @@ export const ModalContainer = styled.main`
   }
 `;
 
+export const LegacyContainer = styled.main`
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  max-width: 695px;
+  width: 100%;
+  top: 175px;
+  background: white;
+  border-radius: 7px;
+  @media (max-width: 768px) {
+    position: relative;
+    max-width: 1170px;
+    width: 100%;
+    top: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+`;
+
 export const Header = styled.header<
   React.HTMLProps<HTMLElement> & { extended?: boolean }
 >`
@@ -91,7 +112,7 @@ export const Header = styled.header<
   box-shadow: 0px 4px 250px 0px rgba(126, 94, 188, 0.9);
   height: ${(props) => (props.extended ? '288px' : 'unset')};
   @media (max-width: 768px) {
-    height: unset;
+    height: ${(props) => (props.extended ? '217px' : 'unset')};
   }
 `;
 
@@ -124,11 +145,16 @@ export const Button = styled.a<ButtonProps>`
   color: white;
   text-decoration: none;
   letter-spacing: 0.01em;
+  cursor: pointer;
   &:hover {
     text-decoration: none;
     opacity: 100%;
     color: white;
   }
+`;
+
+export const ButtonIcon = styled.img`
+  height: 19px;
 `;
 
 export const Logo = styled.img.attrs(() => ({

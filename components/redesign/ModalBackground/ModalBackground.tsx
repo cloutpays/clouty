@@ -4,7 +4,7 @@ import * as El from './styles';
 interface IProps extends React.HTMLProps<HTMLElement> {}
 
 const ModalBackground: React.FC<IProps> = (props: IProps) => (
-  <El.OuterContainer>{props.children}</El.OuterContainer>
+  <El.OuterContainer style={props.style}>{props.children}</El.OuterContainer>
 );
 
 export default ModalBackground;

@@ -11,17 +11,24 @@ interface IProps {
   showUserGreeting?: boolean;
   goBack?: () => void;
   children?: React.ReactNode;
-  pageMode?: 'standard' | 'modal';
+  pageMode?: 'standard' | 'modal' | 'legacy';
+  /*
+    "standard" is the dashboard-like layout
+    "modal" is the one used for all other pages
+    "legacy" is a wrapper around pre-redesign pages
+      to make them (sort of) fit the new layout
+  */
 }
 
 // TODO: After merging redesign into main paths, change those values accordingly
 const links: { name: string; path: string }[] = [
   { name: 'Home', path: '/redesign/home' },
-  { name: 'Account Settings', path: '/redesign/account-settings' },
-  { name: 'Payouts', path: '/payouts' },
-  { name: 'Add to Balance', path: '/user/balance' },
+  { name: 'Payouts', path: '/redesign/payouts/step-one' },
+  { name: 'Add to Balance', path: '/redesign/add-to-balance' },
   { name: 'Our Active Bets', path: '/redesign/games' },
   { name: 'Create Your Bet', path: '/games/create' },
+  // { name: 'Account Settings', path: '/redesign/account-settings' },
+  // Account Settings button uses a different button than the rest, because of that it's handled separately inside the render function
 ];
 
 // TODO: Figure out proper typings for those, as TS doesn't seem to like them
@@ -52,6 +59,8 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
     switch (props.pageMode) {
       case 'modal':
         return <El.ModalContainer>{props.children}</El.ModalContainer>;
+      case 'legacy':
+        return <El.LegacyContainer>{props.children}</El.LegacyContainer>;
       default:
         return <El.InnerContainer>{props.children}</El.InnerContainer>;
     }
@@ -63,7 +72,14 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
       <El.Header extended={props.pageMode === 'modal'}>
         <El.DesktopNavigation>
           <El.Logo />
-          <El.ButtonBar>{generateButtons()}</El.ButtonBar>
+          <El.ButtonBar>
+            {generateButtons()}
+            <Link href='/redesign/account-settings' passHref={true}>
+              <El.Button active={props.active === 'Account Settings'}>
+                <El.ButtonIcon src='/static/img/redesign/accountSettings.svg' />
+              </El.Button>
+            </Link>
+          </El.ButtonBar>
         </El.DesktopNavigation>
         <El.HeaderText>
           {props.showUserGreeting ? (

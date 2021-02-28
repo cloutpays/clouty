@@ -31,7 +31,7 @@ export const Label = styled.span`
     background-color: #1b1a1a;
   }
   padding-left: 15px;
-  padding-right: 50px;
+  padding-right: 15px;
   position: absolute;
   left: 35px;
   top: 0;

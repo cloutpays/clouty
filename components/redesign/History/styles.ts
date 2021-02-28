@@ -57,6 +57,9 @@ export const CompactDataBox = styled.div`
 
 export const DatumBox = styled.div<{ compact?: boolean }>`
   width: ${(props) => (props.compact ? '50%' : '100%')};
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   margin-bottom: ${(props) => (props.compact ? '55px' : '0')};
   display: flex;
   flex-direction: row;
@@ -109,6 +112,9 @@ export const DatumDesc = styled.span`
   font-size: 15px;
   letter-spacing: 0.01em;
   width: 80%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const DatumAdditional = styled.div`
