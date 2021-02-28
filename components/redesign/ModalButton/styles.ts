@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
 export const OuterContainer = styled.a`
-  padding-top: 19px;
-  padding-bottom: 19px;
-  padding-left: 35px;
-  padding-right: 35px;
+  width: 92px;
+  height: 92px;
   background: #7b5bbb;
-  border-radius: 50px;
+  border-radius: 50%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-self: center;
   align-items: center;
   cursor: pointer;
+  position: absolute;
+  bottom: -46px;
 `;
 
 export const Text = styled.span`
@@ -20,11 +20,10 @@ export const Text = styled.span`
   font-size: 18px;
   letter-spacing: 0.01em;
   text-align: center;
-  flex: 1;
+  flex: 0;
 `;
 
 export const Icon = styled.img`
-  height: 15px;
+  height: 9px;
   flex: 0;
-  padding-right: 26px;
 `;
