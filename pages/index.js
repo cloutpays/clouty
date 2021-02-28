@@ -46,7 +46,7 @@ const Home = ({ latestPost }) => {
                         Bet Now
                       </button>
                       <button className='btn btn-default all-bet'>
-                        View All Bets
+                        <a href='/games'>View All Bets</a>
                       </button>
                     </a>
                   </div>
@@ -126,9 +126,9 @@ const Home = ({ latestPost }) => {
                         <div className='service-icon'>&#128200;</div>
                         <h3 className='title text-dark'>First Week Sales</h3>
                         <p className='description'>
-                          Place bets on the first week abum sales of any artist
+                          Bet on the first week abum sales of any artist.
                         </p>
-                        <a href='#'>Place Your Bet</a>
+                        <a href='/games'>Place Your Bet</a>
                       </div>
                     </div>
                   </div>
@@ -138,8 +138,8 @@ const Home = ({ latestPost }) => {
                         <div className='service-icon'>&#129518;</div>
                         <h3 className='title text-dark'>Over / Under</h3>
                         <p className='description'>
-                          Over/Under bets are a value provided for many
-                          statistical categories
+                          Bet Over/Under on a variety of statistics, such as
+                          album sales, streams, and more.
                         </p>
                         <a href='#'>Place Your Bet</a>
                       </div>
@@ -164,8 +164,8 @@ const Home = ({ latestPost }) => {
                         <div className='service-icon'>🎙️</div>
                         <h3 className='title text-dark'>Live Events</h3>
                         <p className='description'>
-                          Our moneyline is a straight up bet on the outline of
-                          award show categories and concert set-lists
+                          Bet on the outcome of award show categories and
+                          concert set-lists
                         </p>
                         <a href='#'>Place Your Bet</a>
                       </div>
