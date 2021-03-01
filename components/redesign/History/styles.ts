@@ -4,10 +4,10 @@ export const OuterContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 42px;
-  padding-bottom: 42px;
-  padding-left: 48px;
-  padding-right: 48px;
+  padding-top: 37px;
+  padding-bottom: 37px;
+  padding-left: 43px;
+  padding-right: 43px;
   background-color: #242323;
   border-radius: 7px;
   @media (max-width: 768px) {
@@ -40,6 +40,7 @@ export const Title = styled.span`
 export const SeeMoreButton = styled.img`
   width: 26px;
   height: 9px;
+  cursor: pointer;
 `;
 
 export const DataBox = styled.div`
@@ -55,16 +56,18 @@ export const CompactDataBox = styled.div`
   width: 100%;
 `;
 
-export const DatumBox = styled.div<{ compact?: boolean }>`
+export const DatumBox = styled.div<{ compact?: boolean; onClick?: any }>`
   width: ${(props) => (props.compact ? '50%' : '100%')};
+  margin-bottom: ${(props) => (props.compact ? '55px' : '0')};
   @media (max-width: 768px) {
     width: 100%;
   }
-  margin-bottom: ${(props) => (props.compact ? '55px' : '0')};
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
+  padding: 5px;
+  cursor: pointer;
 `;
 
 export const DatumIndicator = styled.div`
@@ -85,7 +88,7 @@ export const DatumIndicatorPoint = styled.div`
 
 export const DatumIndicatorLine = styled.div`
   width: 1px;
-  height: 90px;
+  flex: 1;
   background: white;
   opacity: 20%;
   margin-bottom: 8px;
@@ -111,7 +114,8 @@ export const DatumDesc = styled.span`
   font-weight: 500;
   font-size: 15px;
   letter-spacing: 0.01em;
-  width: 80%;
+  width: 100%;
+  word-break: break-word;
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -143,6 +147,7 @@ export const DatumDate = styled.span`
   letter-spacing: 0.01em;
   font-weight: 500;
   margin-top: 7px;
+  padding-bottom: 52px;
 `;
 
 export const GameBet = styled.span`

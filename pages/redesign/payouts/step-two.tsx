@@ -128,7 +128,8 @@ const StepTwo: React.FC<IProps> = (props: IProps) => {
         <El.Error>{error}</El.Error>
         <ModalButton
           iconUri='/static/img/redesign/rightArrowLong.svg'
-          disabled={!amount || error.length > 0}
+          disabled={!amount || error.length > 0 || loading}
+          onClick={handleSubmit}
         />
       </ModalBackground>
     </PageWrapper>

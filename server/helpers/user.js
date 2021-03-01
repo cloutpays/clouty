@@ -53,7 +53,7 @@ export const setInfoApi = wrapAsync(async function(req, db) {
   let data = await json(req);
   const uid = req.query && req.query.id;
   if (!uid || !data.info) {
-    console.log('no uid or no avatar');
+    console.log('no uid or no info');
     return false;
   }
 

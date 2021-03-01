@@ -1,8 +1,8 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-    html {
-        background: #1b1a1a;
+    html, body {
+        background: #1b1a1a !important;
     };
     @font-face {
         font-family: "Wonder Unit Sans";
@@ -24,13 +24,16 @@ export const OuterContainer = styled.main`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
   background-color: #1b1a1a;
   align-items: center;
   color: white;
   @media (max-width: 768px) {
     padding-left: 7px;
     padding-right: 7px;
+    &.scrollblock {
+      height: 100%;
+      overflow: hidden;
+    }
   }
 `;
 
@@ -62,6 +65,7 @@ export const ModalContainer = styled.main`
     padding-right: 8px;
     padding-top: 36px;
     padding-bottom: 36px;
+    margin-bottom: 200px;
   }
 `;
 
@@ -127,6 +131,43 @@ export const DesktopNavigation = styled.div`
   }
 `;
 
+export const MobileNavigation = styled.div`
+  display: none;
+  position: absolute;
+  width: 100%;
+  top: 40px;
+  left: 0;
+  padding-left: 48px;
+  padding-right: 48px;
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }
+  @media (max-width: 420px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+`;
+
+export const HamburgerButton = styled.img`
+  cursor: pointer;
+  height: 20px;
+`;
+
+export const ArrowButton = styled.img`
+  cursor: pointer;
+  height: 9px;
+  margin-top: 5px;
+`;
+
+export const CogButton = styled.img`
+  cursor: pointer;
+  height: 23px;
+  margin-top: -2px;
+`;
+
+export const DummyButton = styled.div``;
+
 export const ButtonBar = styled.nav`
   display: flex;
   flex-direction: row;
@@ -179,4 +220,71 @@ export const HeaderText = styled.h1`
   strong {
     font-weight: bold;
   }
+`;
+
+export const DrawerOverlay = styled.nav`
+  display: none;
+  @media (max-width: 768px) {
+    display: flex;
+  }
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: calc(100vw - 60px);
+  max-width: 356px;
+  height: 100vh;
+  background: rgba(128, 97, 189, 0.55);
+  backdrop-filter: blur(45px);
+  padding-left: 34px;
+  padding-top: 80px;
+  flex-direction: column;
+  transition: 0.7s ease all;
+  &.hideme {
+    left: calc(-100vw + 60px);
+    transition: 0.7s ease all;
+  }
+`;
+
+export const DrawerHeader = styled.h2`
+  font-family: 'Wonder Unit Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 35px;
+  line-height: 35px;
+  letter-spacing: 0.01em;
+  margin-bottom: 56px;
+`;
+
+export const CloseDrawer = styled.img`
+  width: 30px;
+  height: 30px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+`;
+
+export const DrawerButton = styled.a<ButtonProps>`
+  opacity: ${(props) => (props.active ? '100%' : '65%')};
+  font-size: 18px;
+  font-family: 'Wonder Unit Sans';
+  margin-bottom: 46px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    opacity: 100%;
+    color: white;
+  }
+`;
+
+export const DrawerDecoration = styled.div`
+  width: 50px;
+  height: 1px;
+  border-radius: 50px;
+  box-sizing: border-box;
+  background-color: white;
+  margin-bottom: 56px;
 `;

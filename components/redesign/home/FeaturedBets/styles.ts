@@ -51,6 +51,7 @@ export const BetContainer = styled.div<BetContainerProps>`
   font-size: 16px;
   transition: all 0.2s ease;
   margin-right: 11px;
+  cursor: pointer;
   @media (max-width: 768px) {
     width: 160px;
   }
@@ -61,7 +62,6 @@ export const CategoriesBox = styled.div`
   flex-direction: column;
   height: 100%;
   width: 218px;
-  justify-content: space-around;
   align-items: flex-start;
   border-radius: 7px;
   @media (max-width: 1170px) {
@@ -74,6 +74,7 @@ export const CategoriesHeader = styled.span`
   flex-direction: column;
   font-size: 18px;
   font-weight: bold;
+  margin-top: 4px;
 `;
 
 export const HorizontalCategoriesHeader = styled.span`
@@ -145,6 +146,8 @@ export const Category = styled.span`
   flex: 0;
   box-shadow: 0px 0px 44px rgba(123, 91, 187, 0.6);
   border-radius: 7px;
+  margin-top: 10px;
+  cursor: pointer;
 `;
 
 export const HorizontalCategoriesBox = styled.div`
@@ -170,4 +173,5 @@ export const HorizontalCategory = styled.span`
   font-weight: bold;
   margin-top: 27px;
   margin-bottom: 27px;
+  cursor: pointer;
 `;

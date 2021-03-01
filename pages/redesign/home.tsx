@@ -1,17 +1,14 @@
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import History from '../../components/redesign/History';
 import BalanceBox from '../../components/redesign/home/BalanceBox';
 import FeaturedBets from '../../components/redesign/home/FeaturedBets';
 import * as El from '../../components/redesign/home/styles';
 import UserAvatar from '../../components/redesign/home/UserAvatar';
 import PageWrapper from '../../components/redesign/PageWrapper';
-import {
-  calculateTotalPayout,
-  calculateTotalPayoutWithCredits,
-} from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
 
 const contentful = require('contentful');
@@ -91,21 +88,29 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     amount: p.amount,
   }));
 
+  // Getting images for submission data
+  const images: any[] = (
+    await client.getEntries({ content_type: 'game' })
+  ).items.map((i: any) => ({
+    id: i.fields.gameId,
+    imageUrl: i.fields.image.fields.file.url,
+  }));
+
   // Getting submissions data
   const submissionsRes = await axios.get(
     `${apiURL}/api/userSubmissions/${user}`,
   );
   const submissions = submissionsRes.data.map((sub: any) => {
     return {
-      id: sub.question.slug,
-      artist: sub.title,
-      description: sub.question.question,
-      bet: sub.answer,
-      date: sub.date,
-      credits: sub.usedCredit
-        ? calculateTotalPayoutWithCredits(sub.odds, sub.wager)
-        : calculateTotalPayout(sub.odds, sub.wager),
-      imageUri: '',
+      id: sub._id || '',
+      artist: sub.title || (sub.question ? `Game #${sub.question}` : 'Game'),
+      description: '',
+      bet: sub.answer || '',
+      date: sub.date || new Date(),
+      credits: sub.wager,
+      imageUri:
+        images.find((i) => i.id === sub.question)?.imageUrl ||
+        '/static/img/redesign/logoUmbrellaOnly.svg',
     };
   });
 
@@ -128,6 +133,7 @@ const Home: React.FC<IProps> = (props: IProps) => {
   const { userInfo, questions, payouts, submissions, userAvatar } = props;
   const fileInputRef = React.useRef<HTMLInputElement | null>(null);
   const [avatar, setAvatar] = useState(userAvatar);
+  const router = useRouter();
 
   const updateAvatar = () => {
     fileInputRef.current?.click();
@@ -165,23 +171,42 @@ const Home: React.FC<IProps> = (props: IProps) => {
         <BalanceBox
           balance={props.balance.toFixed(2)}
           credit={props.credit.toFixed(0)}
+          onAdd={() => router.push('/redesign/add-to-balance')}
         />
       </El.UserInfoBox>
       <El.FeaturedBetsBox>
         <El.SectionHeader>
           <El.SectionHeaderText>Weeks Featured Bets</El.SectionHeaderText>
-          <El.SeeAllButton>See All</El.SeeAllButton>
+          <El.SeeAllButton onClick={() => router.push('/redesign/games')}>
+            See All
+          </El.SeeAllButton>
         </El.SectionHeader>
         <FeaturedBets
-          categories={['Certified Lover Boy', 'Beat Box', 'New Music Friday']}
+          categories={[
+            { label: 'Over/under', filter: 'game' },
+            { label: 'Prop bet', filter: 'fill-in-blank' },
+          ]}
           bets={questions}
+          onClickCategory={(filter) =>
+            router.push('/redesign/games?filter=' + filter)
+          }
+          onCreateBet={() => router.push('/games/create')}
+          onVisitBet={(id: string) =>
+            router.push('/redesign/bet/step-one?id=' + id)
+          }
         />
         <El.HistorySections>
           <El.HistoryBox>
-            <History games={submissions} />
+            <History
+              games={submissions.slice(0, 5)}
+              onClickMore={() => router.push('/redesign/game-history')}
+            />
           </El.HistoryBox>
           <El.HistoryBox>
-            <History balance={payouts} />
+            <History
+              balance={payouts.slice(0, 5)}
+              onClickMore={() => router.push('/redesign/balance-history')}
+            />
           </El.HistoryBox>
         </El.HistorySections>
       </El.FeaturedBetsBox>
