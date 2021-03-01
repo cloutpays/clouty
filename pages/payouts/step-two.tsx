@@ -3,14 +3,14 @@ import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import BigHeader from '../../../components/redesign/BigHeader';
-import BigMoney from '../../../components/redesign/BigMoney';
-import Description from '../../../components/redesign/Description';
-import ModalBackground from '../../../components/redesign/ModalBackground';
-import ModalButton from '../../../components/redesign/ModalButton';
-import PageWrapper from '../../../components/redesign/PageWrapper';
-import * as El from '../../../components/redesign/payouts/styles';
-import { getCookie } from '../../../lib/session';
+import BigHeader from '../../components/redesign/BigHeader';
+import BigMoney from '../../components/redesign/BigMoney';
+import Description from '../../components/redesign/Description';
+import ModalBackground from '../../components/redesign/ModalBackground';
+import ModalButton from '../../components/redesign/ModalButton';
+import PageWrapper from '../../components/redesign/PageWrapper';
+import * as El from '../../components/redesign/payouts/styles';
+import { getCookie } from '../../lib/session';
 
 interface IProps {
   user: any;
@@ -46,7 +46,7 @@ const StepTwo: React.FC<IProps> = (props: IProps) => {
   };
 
   if (!router.query.choice || !router.query.target) {
-    router.push('/redesign/payouts/step-one');
+    router.push('/payouts/step-one');
   }
 
   const choiceMap = (choice?: any) => {

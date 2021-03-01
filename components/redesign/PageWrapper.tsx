@@ -24,11 +24,11 @@ interface IProps {
 
 // TODO: After merging redesign into main paths, change those values accordingly
 const links: { name: string; path: string }[] = [
-  { name: 'Home', path: '/redesign/home' },
-  { name: 'Payouts', path: '/redesign/payouts/step-one' },
-  { name: 'Add to Balance', path: '/redesign/add-to-balance' },
-  { name: 'Our Active Bets', path: '/redesign/games' },
-  { name: 'Create Your Bet', path: '/games/create' },
+  { name: 'Home', path: '/home' },
+  { name: 'Payouts', path: '/payouts/step-one' },
+  { name: 'Add to Balance', path: '/add-to-balance' },
+  { name: 'Our Active Bets', path: '/games' },
+  { name: 'Create Your Bet', path: '/create-game' },
   // { name: 'Account Settings', path: '/redesign/account-settings' },
   // Account Settings button uses a different button than the rest, because of that it's handled separately inside the render function
 ];
@@ -89,7 +89,7 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
             onClick={() => setShowDrawer(true)}
           />
           <El.CogButton
-            onClick={() => router.push('/redesign/account-settings')}
+            onClick={() => router.push('/account-settings')}
             src='/static/img/redesign/accountSettings.svg'
           />
         </>
@@ -99,7 +99,7 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
         <>
           <El.ArrowButton
             src='/static/img/redesign/leftArrowNav.svg'
-            onClick={() => router.push('/redesign/home')}
+            onClick={() => router.push('/home')}
           />
           <El.DummyButton />
         </>
@@ -116,7 +116,7 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
           <El.Logo />
           <El.ButtonBar>
             {generateButtons()}
-            <Link href='/redesign/account-settings' passHref={true}>
+            <Link href='/account-settings' passHref={true}>
               <El.Button active={props.active === 'Account Settings'}>
                 <El.ButtonIcon src='/static/img/redesign/accountSettings.svg' />
               </El.Button>

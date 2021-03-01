@@ -9,7 +9,11 @@ interface IProps {
 
 const UserAvatar: React.FC<IProps> = (props: IProps) => (
   <El.OuterContainer>
-    {props.base64 ? <El.Avatar src={props.base64} /> : <El.Empty />}
+    {props.base64 ? (
+      <El.Avatar style={{ backgroundImage: `url('${props.base64}')` }} />
+    ) : (
+      <El.Empty />
+    )}
     <AvatarFrame
       src='/static/img/redesign/avatarFrame.png'
       onClick={props.onClick}

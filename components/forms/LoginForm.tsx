@@ -65,7 +65,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             })
             .then(() => {
               setCookie('id_token', result.user.uid);
-              Router.push('/user');
+              Router.push('/home');
             });
         }
       });
@@ -105,7 +105,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             if (user.admin) {
               setCookie('id_token_a', true);
             }
-            Router.push('/user');
+            Router.push('/home');
           });
       });
   };
@@ -222,8 +222,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
               <a href='/login' className='f5 link dim black db'>
                 Already have an account?{' '}
                 <span className='fw5 link no-underline bb bw1 dim '>
-                    Log in
-                  </span>
+                  Log in
+                </span>
               </a>
             </div>
           )}

@@ -3,13 +3,13 @@ import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import History from '../../components/redesign/History';
-import BalanceBox from '../../components/redesign/home/BalanceBox';
-import FeaturedBets from '../../components/redesign/home/FeaturedBets';
-import * as El from '../../components/redesign/home/styles';
-import UserAvatar from '../../components/redesign/home/UserAvatar';
-import PageWrapper from '../../components/redesign/PageWrapper';
-import { getCookie } from '../../lib/session';
+import History from '../components/redesign/History';
+import BalanceBox from '../components/redesign/home/BalanceBox';
+import FeaturedBets from '../components/redesign/home/FeaturedBets';
+import * as El from '../components/redesign/home/styles';
+import UserAvatar from '../components/redesign/home/UserAvatar';
+import PageWrapper from '../components/redesign/PageWrapper';
+import { getCookie } from '../lib/session';
 
 const contentful = require('contentful');
 
@@ -171,13 +171,13 @@ const Home: React.FC<IProps> = (props: IProps) => {
         <BalanceBox
           balance={props.balance.toFixed(2)}
           credit={props.credit.toFixed(0)}
-          onAdd={() => router.push('/redesign/add-to-balance')}
+          onAdd={() => router.push('/add-to-balance')}
         />
       </El.UserInfoBox>
       <El.FeaturedBetsBox>
         <El.SectionHeader>
           <El.SectionHeaderText>Weeks Featured Bets</El.SectionHeaderText>
-          <El.SeeAllButton onClick={() => router.push('/redesign/games')}>
+          <El.SeeAllButton onClick={() => router.push('/games')}>
             See All
           </El.SeeAllButton>
         </El.SectionHeader>
@@ -187,25 +187,21 @@ const Home: React.FC<IProps> = (props: IProps) => {
             { label: 'Prop bet', filter: 'fill-in-blank' },
           ]}
           bets={questions}
-          onClickCategory={(filter) =>
-            router.push('/redesign/games?filter=' + filter)
-          }
+          onClickCategory={(filter) => router.push('/games?filter=' + filter)}
           onCreateBet={() => router.push('/games/create')}
-          onVisitBet={(id: string) =>
-            router.push('/redesign/bet/step-one?id=' + id)
-          }
+          onVisitBet={(id: string) => router.push('/bet/step-one?id=' + id)}
         />
         <El.HistorySections>
           <El.HistoryBox>
             <History
               games={submissions.slice(0, 5)}
-              onClickMore={() => router.push('/redesign/game-history')}
+              onClickMore={() => router.push('/game-history')}
             />
           </El.HistoryBox>
           <El.HistoryBox>
             <History
               balance={payouts.slice(0, 5)}
-              onClickMore={() => router.push('/redesign/balance-history')}
+              onClickMore={() => router.push('/balance-history')}
             />
           </El.HistoryBox>
         </El.HistorySections>

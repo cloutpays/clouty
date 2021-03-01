@@ -3,14 +3,14 @@ import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import BigHeader from '../../../components/redesign/BigHeader';
-import Button from '../../../components/redesign/Button';
-import Description from '../../../components/redesign/Description';
-import ModalBackground from '../../../components/redesign/ModalBackground';
-import ModalButton from '../../../components/redesign/ModalButton';
-import PageWrapper from '../../../components/redesign/PageWrapper';
-import TextInput from '../../../components/redesign/TextInput';
-import { getCookie } from '../../../lib/session';
+import BigHeader from '../../components/redesign/BigHeader';
+import Button from '../../components/redesign/Button';
+import Description from '../../components/redesign/Description';
+import ModalBackground from '../../components/redesign/ModalBackground';
+import ModalButton from '../../components/redesign/ModalButton';
+import PageWrapper from '../../components/redesign/PageWrapper';
+import TextInput from '../../components/redesign/TextInput';
+import { getCookie } from '../../lib/session';
 
 interface IProps {
   user: any;
@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const betId = ctx.query.id;
   if (!betId) {
     // Redirect logged out users to login page
-    ctx.res.setHeader('Location', '/redesign/games');
+    ctx.res.setHeader('Location', '/games');
     ctx.res.statusCode = 302;
     ctx.res.end();
   }
@@ -91,7 +91,7 @@ const BetStepOne: React.FC<IProps> = (props: IProps) => {
         </div>
         <Link
           href={{
-            pathname: '/redesign/bet/step-two',
+            pathname: '/bet/step-two',
             query: {
               value: value.value,
               odds: value.odds,

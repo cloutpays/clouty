@@ -2,9 +2,9 @@ import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import React from 'react';
-import History from '../../components/redesign/History';
-import PageWrapper from '../../components/redesign/PageWrapper';
-import { getCookie } from '../../lib/session';
+import History from '../components/redesign/History';
+import PageWrapper from '../components/redesign/PageWrapper';
+import { getCookie } from '../lib/session';
 
 interface IProps {
   submissions: any[];
