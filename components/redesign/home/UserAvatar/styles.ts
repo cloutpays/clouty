@@ -19,13 +19,16 @@ export const AvatarFrame = styled.img`
   }
 `;
 
-export const Avatar = styled.img`
+export const Avatar = styled.div`
   width: 104px;
   height: 104px;
   position: absolute;
   right: 14px;
   top: -4px;
   border-radius: 52px;
+  background-color: black;
+  background-position: center;
+  background-size: cover;
   @media (max-width: 768px) {
     top: unset;
     right: calc(50% - 75px);

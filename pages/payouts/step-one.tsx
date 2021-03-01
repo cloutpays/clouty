@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
-import BigHeader from '../../../components/redesign/BigHeader';
-import Description from '../../../components/redesign/Description';
-import ModalBackground from '../../../components/redesign/ModalBackground';
-import ModalButton from '../../../components/redesign/ModalButton';
-import PageWrapper from '../../../components/redesign/PageWrapper';
-import PaymentMethodList from '../../../components/redesign/payouts/PaymentMethodList';
-import TextInput from '../../../components/redesign/TextInput';
-import { PaymentMethod } from '../../../constants/types';
+import BigHeader from '../../components/redesign/BigHeader';
+import Description from '../../components/redesign/Description';
+import ModalBackground from '../../components/redesign/ModalBackground';
+import ModalButton from '../../components/redesign/ModalButton';
+import PageWrapper from '../../components/redesign/PageWrapper';
+import PaymentMethodList from '../../components/redesign/payouts/PaymentMethodList';
+import TextInput from '../../components/redesign/TextInput';
+import { PaymentMethod } from '../../constants/types';
 
 interface IProps {
   header?: string;
@@ -46,7 +46,7 @@ const AccountSettings: React.FC<IProps> = () => {
         )}
         <Link
           href={{
-            pathname: '/redesign/payouts/step-two',
+            pathname: '/payouts/step-two',
             query: { choice: chosen, target: value },
           }}>
           <ModalButton

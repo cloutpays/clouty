@@ -63,9 +63,7 @@ const Games: React.FC<IProps> = (props: IProps) => {
         noHeader={true}
         compact={true}
         games={props.games}
-        onClickGame={(id: string) =>
-          router.push('/redesign/bet/step-one?id=' + id)
-        }
+        onClickGame={(id: string) => router.push('/bet/step-one?id=' + id)}
       />
     </PageWrapper>
   );

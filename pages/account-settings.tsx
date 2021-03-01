@@ -2,12 +2,12 @@ import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import React, { useState } from 'react';
-import BigHeader from '../../components/redesign/BigHeader';
-import Button from '../../components/redesign/Button';
-import ModalBackground from '../../components/redesign/ModalBackground';
-import PageWrapper from '../../components/redesign/PageWrapper';
-import TextInput from '../../components/redesign/TextInput';
-import { getCookie } from '../../lib/session';
+import BigHeader from '../components/redesign/BigHeader';
+import Button from '../components/redesign/Button';
+import ModalBackground from '../components/redesign/ModalBackground';
+import PageWrapper from '../components/redesign/PageWrapper';
+import TextInput from '../components/redesign/TextInput';
+import { getCookie } from '../lib/session';
 
 interface IProps {
   user: any;
