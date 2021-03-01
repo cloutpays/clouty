@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 // @ts-ignore
 import NProgress from 'nprogress';
-import React from 'react';
+import React, { useState } from 'react';
 import * as El from './styles';
 
 interface IProps {
@@ -12,6 +12,7 @@ interface IProps {
   userName?: string;
   goBack?: () => void;
   children?: React.ReactNode;
+  forceUnextended?: boolean;
   pageMode?: 'standard' | 'modal' | 'legacy';
   /*
     "standard" is the dashboard-like layout
@@ -49,10 +50,22 @@ Router.onRouteChangeError = () => {
 };
 
 const PageWrapper: React.FC<IProps> = (props: IProps) => {
+  const router = useRouter();
+  const [showDrawer, setShowDrawer] = useState(false);
+
   const generateButtons = () =>
     links.map((link) => (
       <Link href={link.path} key={link.path} passHref={true}>
         <El.Button active={link.name === props.active}>{link.name}</El.Button>
+      </Link>
+    ));
+
+  const generateDrawerButtons = () =>
+    links.map((link) => (
+      <Link href={link.path} key={link.path} passHref={true}>
+        <El.DrawerButton active={link.name === props.active}>
+          {link.name}
+        </El.DrawerButton>
       </Link>
     ));
 
@@ -67,10 +80,38 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
     }
   };
 
+  const generateMobileNav = () => {
+    if (!props.pageMode || props.pageMode === 'standard') {
+      return (
+        <>
+          <El.HamburgerButton
+            src='/static/img/redesign/hamburger.svg'
+            onClick={() => setShowDrawer(true)}
+          />
+          <El.CogButton
+            onClick={() => router.push('/redesign/account-settings')}
+            src='/static/img/redesign/accountSettings.svg'
+          />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <El.ArrowButton
+            src='/static/img/redesign/leftArrowNav.svg'
+            onClick={() => router.push('/redesign/home')}
+          />
+          <El.DummyButton />
+        </>
+      );
+    }
+  };
+
   return (
-    <El.OuterContainer>
+    <El.OuterContainer className={showDrawer ? 'scrollblock' : undefined}>
       <El.GlobalStyle />
-      <El.Header extended={props.pageMode === 'modal'}>
+      <El.Header
+        extended={!props.forceUnextended && props.pageMode === 'modal'}>
         <El.DesktopNavigation>
           <El.Logo />
           <El.ButtonBar>
@@ -92,8 +133,18 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
             <strong>{props.header}</strong>
           )}
         </El.HeaderText>
+        <El.MobileNavigation>{generateMobileNav()}</El.MobileNavigation>
       </El.Header>
       {generateContent()}
+      <El.DrawerOverlay className={showDrawer ? undefined : 'hideme'}>
+        <El.CloseDrawer
+          src='/static/img/redesign/close.svg'
+          onClick={() => setShowDrawer(false)}
+        />
+        <El.DrawerHeader>Navigation</El.DrawerHeader>
+        <El.DrawerDecoration />
+        {generateDrawerButtons()}
+      </El.DrawerOverlay>
     </El.OuterContainer>
   );
 };

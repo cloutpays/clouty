@@ -26,10 +26,14 @@ export const Option = styled.span`
   font-family: 'Wonder Unit Sans';
   font-size: 15px;
   padding: 15px;
+  flex: 0 0 auto;
   background-color: #1b1a1a;
   box-shadow: 0px 0px 44px rgba(88, 88, 88, 0.6);
   border-radius: 7px;
   margin-right: 14px;
+  @media (max-width: 768px) {
+    margin-right: 7px;
+  }
   &:last-child {
     margin-right: 0;
   }

@@ -21,6 +21,7 @@ export const SectionHeader = styled.div`
   justify-content: space-between;
   margin-top: 42px;
   margin-bottom: 35px;
+  align-items: center;
 `;
 
 export const SectionHeaderText = styled.h2`
@@ -59,5 +60,8 @@ export const HistoryBox = styled.div`
   flex: 1;
   &:first-child {
     padding-right: 20px;
+  }
+  @media (max-width: 768px) {
+    padding-right: 0 !important;
   }
 `;

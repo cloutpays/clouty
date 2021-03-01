@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
+import { useRouter } from 'next/router';
 import React from 'react';
+import BigHeader from '../../components/redesign/BigHeader';
 import History from '../../components/redesign/History';
 import PageWrapper from '../../components/redesign/PageWrapper';
 
@@ -29,15 +31,17 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }),
   );
 
+  const filter = ctx.query.filter;
+
   const games = res.data
     .filter(
-      (game: any) =>
-        game.gameType === 'game' || game.gameType === 'fill-in-blank',
+      (game: any) => !filter || game.gameType === filter,
+      //game.gameType === 'game' || game.gameType === 'fill-in-blank',
     )
     .reverse()
     .map((q: any) => {
       return {
-        id: q.slug,
+        id: q.slug || '0',
         artist: q.title,
         description: q.description,
         date: q.date,
@@ -51,9 +55,18 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 };
 
 const Games: React.FC<IProps> = (props: IProps) => {
+  const router = useRouter();
   return (
     <PageWrapper active='Our Active Bets' header='Games' pageMode='modal'>
-      <History noHeader={true} compact={true} games={props.games} />
+      <BigHeader>Our Active Bets</BigHeader>
+      <History
+        noHeader={true}
+        compact={true}
+        games={props.games}
+        onClickGame={(id: string) =>
+          router.push('/redesign/bet/step-one?id=' + id)
+        }
+      />
     </PageWrapper>
   );
 };

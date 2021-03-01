@@ -35,6 +35,22 @@ const AccountSettings: React.FC<IProps> = (props: IProps) => {
   const [firstName, setFirstName] = useState(info.firstName);
   const [lastName, setLastName] = useState(info.lastName);
   const [phoneNumber, setPhoneNumber] = useState(info.phoneNumber);
+  const [loading, setLoading] = useState(false);
+
+  const onSend = async () => {
+    setLoading(true);
+    try {
+      await axios({
+        method: 'POST',
+        url: '/api/setInfo/' + props.user._id,
+        data: { info: { firstName, lastName, phoneNumber } },
+      });
+    } catch (e) {
+      setLoading(false);
+    }
+    setLoading(false);
+  };
+
   return (
     <PageWrapper
       active='Account Settings'
@@ -64,7 +80,9 @@ const AccountSettings: React.FC<IProps> = (props: IProps) => {
           onChange={setPhoneNumber}
         />
         <Button
+          onClick={onSend}
           style={{ marginTop: '46px' }}
+          disabled={loading}
           iconUri='/static/img/redesign/checkmark.svg'>
           Save
         </Button>
