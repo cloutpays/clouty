@@ -117,6 +117,7 @@ export default class Wrapper extends Component {
   shouldUseRedesign = () => {
     if (!ENABLE_REDESIGN_WRAPPER) return false;
     if (this.props.data.home_page) return false;
+    if (this.props.data.ignoreWrapper) return false;
     return true;
   };
 

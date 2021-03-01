@@ -4,6 +4,7 @@ import Wrapper from '../components/layout/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
+  ignoreWrapper: true,
 };
 const Login = () => (
   <Wrapper data={data}>

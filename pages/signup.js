@@ -1,7 +1,4 @@
-import { styles } from '../constants/styles';
-import DisclaimerModal from '../components/DisclaimerModal';
 import LoginForm from '../components/forms/LoginForm';
-import classnames from 'classnames';
 
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
@@ -9,6 +6,7 @@ import Wrapper from '../components/layout/Wrapper';
 const data = {
   description: 'Make money while putting your intuition on the line.',
   header: `Start Playing Clouty`,
+  ignoreWrapper: true,
 };
 const Login = () => (
   <Wrapper data={data}>
@@ -22,7 +20,9 @@ const Login = () => (
         <div className='card'>
           <div className='card-body text-center'>
             <h2>Hey There! 👋</h2>
-            <p>Your free $2 credit is <br></br> waiting for you inside.</p>
+            <p>
+              Your free $2 credit is <br></br> waiting for you inside.
+            </p>
             <button className='btn btn-default'>Claim Your Free Credit</button>
             <div className=''>
               <a href='#'>Credit Disclosure</a>
@@ -32,11 +32,9 @@ const Login = () => (
       </section>
       <section className='signup-form'>
         <div className='signup-container'>
-              <h1>Get started playing Clouty</h1>
-              <p>
-                Enjoy no fees on all bets for a limited time!
-              </p>
-              <LoginForm mode={'signup'} />
+          <h1>Get started playing Clouty</h1>
+          <p>Enjoy no fees on all bets for a limited time!</p>
+          <LoginForm mode={'signup'} />
         </div>
       </section>
     </div>

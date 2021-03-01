@@ -5,10 +5,12 @@ interface IProps {
   defaultValue?: string;
   label?: string;
   onChange?: (value: string) => void;
+  disabled?: boolean;
+  style?: any;
 }
 
 const TextInput: React.FC<IProps> = (props: IProps) => {
-  const { defaultValue, label } = props;
+  const { defaultValue, label, disabled, style } = props;
   const [value, setValue] = useState(defaultValue || '');
 
   const onChange = (event: any) => {
@@ -18,7 +20,13 @@ const TextInput: React.FC<IProps> = (props: IProps) => {
 
   return (
     <El.OuterContainer>
-      <El.InputContainer type='text' value={value} onChange={onChange} />
+      <El.InputContainer
+        type='text'
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+        style={style}
+      />
       {label && <El.Label>{label}</El.Label>}
     </El.OuterContainer>
   );

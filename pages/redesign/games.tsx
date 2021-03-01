@@ -1,34 +1,59 @@
+import axios from 'axios';
+import { GetServerSideProps } from 'next';
+import absoluteUrl from 'next-absolute-url';
 import React from 'react';
 import History from '../../components/redesign/History';
 import PageWrapper from '../../components/redesign/PageWrapper';
 
+const contentful = require('contentful');
+
 interface IProps {
-  header?: string;
-  goBack?: () => void;
-  children: React.ReactChildren;
+  games: any[];
 }
 
-const Games: React.FC<IProps> = () => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { origin } = absoluteUrl(ctx.req);
+  const apiURL = `${origin}`;
+
+  // Getting active bets
+  const res = await axios.get(`${apiURL}/api/questions`);
+  const client = contentful.createClient({
+    space: '74q51vemgz9l',
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  });
+
+  const images = (await client.getEntries({ content_type: 'game' })).items.map(
+    (i: any) => ({
+      id: i.fields.gameId,
+      imageUrl: i.fields.image.fields.file.url,
+    }),
+  );
+
+  const games = res.data
+    .filter(
+      (game: any) =>
+        game.gameType === 'game' || game.gameType === 'fill-in-blank',
+    )
+    .reverse()
+    .map((q: any) => {
+      return {
+        id: q.slug,
+        artist: q.title,
+        description: q.description,
+        date: q.date,
+        imageUri:
+          images.find((i: any) => i.id === q._id)?.imageUrl ||
+          '/static/img/redesign/logoUmbrellaOnly.svg',
+      };
+    });
+
+  return { props: { games } };
+};
+
+const Games: React.FC<IProps> = (props: IProps) => {
   return (
     <PageWrapper active='Our Active Bets' header='Games' pageMode='modal'>
-      <History
-        noHeader={true}
-        compact={true}
-        games={(new Array(7) as any).fill(
-          {
-            id: 1,
-            artist: 'The Weekend',
-            description: 'Number of tracks on new album',
-            bet: '11',
-            date: new Date(),
-            credits: '390.00',
-            imageUri:
-              'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2016%2F12%2Fdeath-grips-mc-ride-stefan-burnett-solo-exhibition-slow-culture.jpg?q=90&w=1400&cbr=1&fit=max',
-          },
-          0,
-          10,
-        )}
-      />
+      <History noHeader={true} compact={true} games={props.games} />
     </PageWrapper>
   );
 };

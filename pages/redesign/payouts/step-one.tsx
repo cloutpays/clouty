@@ -44,7 +44,11 @@ const AccountSettings: React.FC<IProps> = () => {
         {chosen && (
           <TextInput label={getLabel(chosen)} onChange={(v) => setValue(v)} />
         )}
-        <Link href='/redesign/payouts/step-two'>
+        <Link
+          href={{
+            pathname: '/redesign/payouts/step-two',
+            query: { choice: chosen, target: value },
+          }}>
           <ModalButton
             iconUri='/static/img/redesign/rightArrowLong.svg'
             disabled={!value}

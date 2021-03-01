@@ -73,6 +73,7 @@ export const LegacyContainer = styled.main`
   width: 100%;
   top: 175px;
   background: white;
+  color: black;
   border-radius: 7px;
   @media (max-width: 768px) {
     position: relative;

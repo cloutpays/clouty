@@ -9,6 +9,19 @@ export const HorizontalScrollable = styled.div`
   margin-top: 40px;
 `;
 
+export const Error = styled.span`
+  text-align: center;
+  font-family: 'Wonder Unit Sans';
+  position: absolute;
+  font-size: 12px;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  @media (max-width: 768px) {
+    bottom: 0;
+  }
+`;
+
 export const Option = styled.span`
   font-family: 'Wonder Unit Sans';
   font-size: 15px;
