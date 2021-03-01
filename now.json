@@ -161,6 +161,16 @@
       "src": "/api/question/(.*)",
       "methods": ["DELETE"],
       "dest": "server/handlers/delete.js?id=$1"
+    },
+    {
+      "src": "/api/setAvatar/(.*)",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js?id=$1"
+    },
+    {
+      "src": "/api/setInfo/(.*)",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js?id=$1"
     }
   ],
   "build": {

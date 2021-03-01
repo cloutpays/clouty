@@ -9,6 +9,7 @@ interface IProps {
   header?: string;
   active?: string;
   showUserGreeting?: boolean;
+  userName?: string;
   goBack?: () => void;
   children?: React.ReactNode;
   pageMode?: 'standard' | 'modal' | 'legacy';
@@ -85,7 +86,7 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
           {props.showUserGreeting ? (
             <>
               {'Hello, '}
-              <strong>Jason Todd!</strong>
+              <strong>{props.userName || 'user'}!</strong>
             </>
           ) : (
             <strong>{props.header}</strong>

@@ -3,13 +3,17 @@ import * as El from './styles';
 import { AvatarFrame } from './styles';
 
 interface IProps {
-  // TODO: Make this required
-  uri?: string;
+  base64?: string;
+  onClick?: () => void;
 }
 
-const UserAvatar: React.FC<IProps> = () => (
+const UserAvatar: React.FC<IProps> = (props: IProps) => (
   <El.OuterContainer>
-    <AvatarFrame src='/static/img/redesign/avatarFrame.png' />
+    {props.base64 ? <El.Avatar src={props.base64} /> : <El.Empty />}
+    <AvatarFrame
+      src='/static/img/redesign/avatarFrame.png'
+      onClick={props.onClick}
+    />
   </El.OuterContainer>
 );
 

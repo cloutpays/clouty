@@ -124,7 +124,7 @@ Games.getInitialProps = async ({ req }) => {
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
   });
   let latestPost = await client
-    .getEntries()
+    .getEntries({ content_type: 'latestPost' })
     .then((entry) => {
       const { items } = entry;
       const {
