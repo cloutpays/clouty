@@ -54,7 +54,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 const GameHistory: React.FC<IProps> = (props: IProps) => {
   return (
     <PageWrapper
-      active='Home'
+      active=''
       header='Games History'
       pageMode='modal'
       forceUnextended={true}>

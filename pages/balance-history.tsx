@@ -7,7 +7,7 @@ import PageWrapper from '../components/redesign/PageWrapper';
 import { getCookie } from '../lib/session';
 
 interface IProps {
-  submissions: any[];
+  payouts: any[];
   user: any;
 }
 
@@ -28,25 +28,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
 
-  // Getting submissions data
-  const submissionsRes = await axios.get(
-    `${apiURL}/api/userSubmissions/${user}`,
-  );
-  const submissions = submissionsRes.data.map((sub: any) => {
-    return {
-      id: sub._id || '',
-      artist: sub.title || (sub.question ? `Game #${sub.question}` : 'Game'),
-      description: '',
-      bet: sub.answer || '',
-      date: sub.date || new Date(),
-      credits: sub.wager,
-      imageUri: '/static/img/redesign/logoUmbrellaOnly.svg',
-    };
-  });
+  // Getting payouts data
+  const payoutsRes = await axios.get(`${apiURL}/api/userPayouts/${user}`);
+  const payouts = payoutsRes.data.map((p: any, index: number) => ({
+    id: index,
+    operation: 'Payout',
+    description: p.preferred,
+    date: p.date,
+    amount: p.amount,
+  }));
 
   return {
     props: {
-      submissions,
+      payouts,
       userObj,
     },
   };
@@ -54,11 +48,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 const GameHistory: React.FC<IProps> = (props: IProps) => {
   return (
     <PageWrapper
-      active='Home'
-      header='Games History'
+      active=''
+      header='Balance History'
       pageMode='modal'
       forceUnextended={true}>
-      <History noHeader={true} games={props.submissions} />
+      <History noHeader={true} balance={props.payouts} />
     </PageWrapper>
   );
 };
