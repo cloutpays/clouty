@@ -1,5 +1,5 @@
 import { getCookie } from '../../../lib/session';
-import { instance } from '../../lib/helpers'
+import { instance } from '../../../lib/helpers'
 import AdminPage from '../../../hoc/adminPage';
 import CreateGameForm from '../../../components/forms/CreateGameForm';
 import PropTypes from 'prop-types';
