@@ -1,4 +1,4 @@
-import { formatPrice, grammyRender } from '../../lib/helpers';
+import { formatPrice, grammyRender, instance } from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
@@ -7,7 +7,6 @@ import SecuredPage from '../../hoc/securedPage';
 import SignUpForm from '../../components/gameplay/SignUpForm';
 import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
-import axios from 'axios';
 
 const Games = ({ game, user }) => {
   const title =
@@ -73,9 +72,9 @@ Games.getInitialProps = async (ctx) => {
     req,
   } = ctx;
   const { origin: apiURL } = absoluteUrl(req);
-  const { data: question } = await axios.get(`${apiURL}/api/question/${game}`);
+  const { data: question } = await instance.get(`${apiURL}/api/question/${game}`);
   const user = getCookie('id_token', ctx.req);
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userRes = await instance.get(`${apiURL}/api/user/${user}`);
 
   const userObj = userRes.data;
   return {

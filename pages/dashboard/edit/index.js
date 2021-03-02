@@ -1,11 +1,10 @@
-import { grammyRender, sortGames } from '../../../lib/helpers';
+import { grammyRender, instance, sortGames } from '../../../lib/helpers';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
 import adminPage from '../../../hoc/adminPage';
-import axios from 'axios';
 const Games = ({ questions }) => {
   const data = {
     title: 'Edit',
@@ -79,7 +78,7 @@ const Games = ({ questions }) => {
 Games.getInitialProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
-  const res = await axios.get(`${apiURL}/api/questions`);
+  const res = await instance.get(`${apiURL}/api/questions`);
   const questions = res.data;
   return { questions };
 };

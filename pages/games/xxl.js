@@ -6,7 +6,7 @@ import { XXLForm } from '../../components/forms/XXLForm';
 import React from 'react';
 import Wrapper from '../../components/layout/Wrapper';
 // import absoluteUrl from 'next-absolute-url';
-// import axios from 'axios';
+// import {instance} from '../../lib/helpers';
 
 const Games = () => {
   const data = {
@@ -46,9 +46,9 @@ const Games = () => {
 //   req,
 // } = ctx;
 // const { origin: apiURL } = absoluteUrl(req);
-// const { data: question } = await axios.get(`${apiURL}/api/question/${game}`);
+// const { data: question } = await instance.get(`${apiURL}/api/question/${game}`);
 // const userID = getCookie('id_token', ctx.req);
-// const { data: user } = await axios.get(`${apiURL}/api/user/${userID}`);
+// const { data: user } = await instance.get(`${apiURL}/api/user/${userID}`);
 // return {
 // game: question[0],
 // user,

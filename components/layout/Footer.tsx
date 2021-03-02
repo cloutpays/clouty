@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useState } from 'react';
+import { instance } from '../../lib/helpers';
 
 interface DarkModeProps {
   darkMode: boolean;
@@ -14,7 +14,7 @@ const Footer: React.FC<DarkModeProps> = () => {
 
   const sendEmail = async (email: string) => {
     setSubmit(true);
-    axios.post(`/api/newSub/${email}`);
+    instance.post(`/api/newSub/${email}`);
     setEmailAddress('');
   };
 

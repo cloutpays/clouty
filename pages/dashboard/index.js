@@ -1,4 +1,4 @@
-import { formatPrice } from '../../lib/helpers';
+import { formatPrice, instance } from '../../lib/helpers';
 import AdminDashboard from '../../components/admin/AdminDashboard';
 import AdminPage from '../../hoc/adminPage';
 import Link from 'next/link';
@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
-import axios from 'axios';
 
 const Dashboard = ({
   entries,
@@ -100,11 +99,16 @@ const Dashboard = ({
 Dashboard.getInitialProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
-  const res = await axios.get(`${apiURL}/api/submissions`);
-  const payoutsRes = await axios.get(`${apiURL}/api/allUserPayouts`);
-  const questionsRes = await axios.get(`${apiURL}/api/questions`);
-  const usersRes = await axios.get(`${apiURL}/api/users`);
-  const transactionsRes = await axios.get(`${apiURL}/api/transactions`);
+
+  const res = await instance.get(`${apiURL}/api/submissions`);
+  const payoutsRes = await instance.get(`${apiURL}/api/allUserPayouts`);
+  const questionsRes = await instance.get(`${apiURL}/api/questions`);
+  const usersRes = await instance.get(`${apiURL}/api/users`, {
+    headers: {
+      Authorization: 'Bearer ' + process.env.API_KEY, //the token is a variable which holds the token
+    },
+  });
+  const transactionsRes = await instance.get(`${apiURL}/api/transactions`);
   const payouts = payoutsRes.data;
   const questions = questionsRes.data;
   const transactions = transactionsRes.data;

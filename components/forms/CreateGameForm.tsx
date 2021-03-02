@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 import Router from 'next/router';
@@ -10,6 +9,7 @@ import {
   formatDate,
   formatPrice,
   formatPriceWithFractionDigits,
+  instance,
 } from '../../lib/helpers';
 interface Option {
   value: string;
@@ -142,11 +142,11 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
       userId,
     };
     if (isUserSubmission) {
-      axios.post('/api/userQuestions', submission).then(() => {
+      instance.post('/api/userQuestions', submission).then(() => {
         Router.push('/games/create/confirmation');
       });
     } else {
-      axios.post('/api/question', submission).then(() => {
+      instance.post('/api/question', submission).then(() => {
         Router.push('/dashboard/edit');
       });
     }
@@ -166,7 +166,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     setOptions(updatedOptions);
   };
   const removeGame = () => {
-    axios.delete(`/api/question/${currentGame.slug}`).then(() => {
+    instance.delete(`/api/question/${currentGame.slug}`).then(() => {
       Router.push('/dashboard/edit');
     });
   };
@@ -175,7 +175,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     renderEmoji();
   };
   const closeGame = () =>
-    axios.post(`/api/endQuestion/${currentGame.slug}`).then(() => {
+    instance.post(`/api/endQuestion/${currentGame.slug}`).then(() => {
       Router.push('/dashboard/edit');
     });
 
@@ -189,7 +189,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   };
 
   const winBet = (bet: Submissions) => {
-    axios
+    instance
       .post('/api/winBet', {
         submission: bet,
       })
@@ -198,7 +198,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
       });
   };
   const loseBet = (bet: Submissions) => {
-    axios
+    instance
       .post('/api/loseBet', {
         submission: bet,
       })

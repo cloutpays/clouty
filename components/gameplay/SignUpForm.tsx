@@ -1,6 +1,6 @@
-import axios from 'axios';
 import Router from 'next/router';
 import React, { useState } from 'react';
+import { instance } from '../../lib/helpers';
 import Question from './Question';
 interface SignUpFormProps {
   game: any;

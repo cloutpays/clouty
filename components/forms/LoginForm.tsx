@@ -6,8 +6,8 @@ import Link from 'next/link';
 import Router from 'next/router';
 import React, { useState } from 'react';
 import Firebase from '../../lib/firebase';
+import { instance } from '../../lib/helpers';
 import { setCookie } from '../../lib/session';
-
 interface LoginFormProps {
   email: string;
   password: string;
@@ -54,7 +54,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           return setLoading(false);
         }
         if (typeof result !== 'undefined') {
-          axios
+          instance
             .post('/api/user', {
               data: {
                 firebase: result.user,
@@ -98,7 +98,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
           return;
         }
         setCookie('id_token', result.user.uid);
-        axios
+        instance
           .post('/api/user', { data: { firebase: result.user } })
           .then((res: AxiosResponse) => {
             const user = res.data;
@@ -222,8 +222,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
               <a href='/login' className='f5 link dim black db'>
                 Already have an account?{' '}
                 <span className='fw5 link no-underline bb bw1 dim '>
-                    Log in
-                  </span>
+                  Log in
+                </span>
               </a>
             </div>
           )}

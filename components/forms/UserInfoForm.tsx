@@ -1,8 +1,8 @@
-import axios from 'axios';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import Cleave from 'cleave.js/react';
 import Router from 'next/router';
 import React, { useState } from 'react';
+import { instance } from '../../lib/helpers';
 
 interface UserInfoProps {
   firstName: string;
@@ -37,7 +37,7 @@ const UserInfoForm: React.FC<UserInfoProps> = ({ user }) => {
       },
     };
     event.preventDefault();
-    await axios
+    await instance
       .post('/api/user', {
         data: userSubmission,
       })

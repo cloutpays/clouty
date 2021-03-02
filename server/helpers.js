@@ -7,7 +7,7 @@ const client = require('twilio')(
   process.env.TWILIO_TOKEN,
 );
 
-export const dev = false;
+export const dev = true;
 
 export const staging = false;
 export const question = dev

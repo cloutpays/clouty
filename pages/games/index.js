@@ -1,9 +1,8 @@
-import { sortGames } from '../../lib/helpers';
+import { instance, sortGames } from '../../lib/helpers';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
-import axios from 'axios';
 const contentful = require('contentful');
 
 const Games = ({ questions, latestPost }) => {
@@ -117,7 +116,7 @@ const Games = ({ questions, latestPost }) => {
 Games.getInitialProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
-  const res = await axios.get(`${apiURL}/api/questions`);
+  const res = await instance.get(`${apiURL}/api/questions`);
   const questions = res.data;
   const client = contentful.createClient({
     space: '74q51vemgz9l',

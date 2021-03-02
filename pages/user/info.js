@@ -1,11 +1,11 @@
 import { getCookie } from '../../lib/session';
+import { instance } from '../../lib/helpers';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SecuredPage from '../../hoc/securedPage';
 import UserInfoForm from '../../components/forms/UserInfoForm';
 import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
-import axios from 'axios';
 
 const Terms = (ctx) => {
   const { user } = ctx;
@@ -34,7 +34,7 @@ Terms.getInitialProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
   const apiURL = `${origin}`;
   const user = getCookie('id_token', ctx.req);
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userRes = await instance.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
   return { userId: userRes._id, user: userObj };
 };

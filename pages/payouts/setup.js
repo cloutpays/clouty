@@ -1,4 +1,5 @@
 import { getCookie } from '../../lib/session';
+import { instance } from '../../lib/helpers';
 import PayoutForm from '../../components/forms/PayoutForm';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -6,7 +7,6 @@ import SecuredPage from '../../hoc/securedPage';
 import UserDashNavigation from '../../components/layout/UserDashNavigation';
 import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
-import axios from 'axios';
 
 const PayoutSettings = ({ user, submissions }) => {
   const data = {
@@ -50,9 +50,9 @@ PayoutSettings.getInitialProps = async (ctx) => {
   const apiURL = `${origin}`;
   const user = getCookie('id_token', ctx.req);
 
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userRes = await instance.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
-  const submissionsRes = await axios.get(
+  const submissionsRes = await instance.get(
     `${apiURL}/api/userSubmissions/${user}`,
   );
   const submissions = submissionsRes.data;

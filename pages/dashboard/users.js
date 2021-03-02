@@ -1,10 +1,9 @@
-import { formatDate, formatPrice } from '../../lib/helpers';
+import { formatDate, formatPrice, instance } from '../../lib/helpers';
 import AdminPage from '../../hoc/adminPage';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
-import axios from 'axios';
 
 const Dashboard = ({ users }) => {
   const data = {
@@ -106,8 +105,8 @@ const Dashboard = ({ users }) => {
 Dashboard.getInitialProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
-  const submissionsRes = await axios.get(`${apiURL}/api/submissions`);
-  const userRes = await axios.get(`${apiURL}/api/users`);
+  const submissionsRes = await instance.get(`${apiURL}/api/submissions`);
+  const userRes = await instance.get(`${apiURL}/api/users`);
   const submissions = submissionsRes.data;
   const users = userRes.data.map((curr) => {
     return {

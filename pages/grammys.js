@@ -1,10 +1,10 @@
 import { grammyRender } from '../lib/helpers';
+import { instance } from '../../lib/helpers';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
-import axios from 'axios';
 
 const Grammys = ({ questions }) => {
   const data = {
@@ -74,7 +74,7 @@ const Grammys = ({ questions }) => {
 Grammys.getInitialProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
-  const res = await axios.get(`${apiURL}/api/questions`);
+  const res = await instance.get(`${apiURL}/api/questions`);
   const questions = res.data;
   return { questions: questions.filter((game) => game.gameType === 'grammy') };
 };

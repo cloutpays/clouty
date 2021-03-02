@@ -1,8 +1,8 @@
-import axios from 'axios';
 import Link from 'next/link';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { formatPrice } from '../../lib/helpers';
+import { instance } from '../../lib/helpers';
+import { formatPrice, instance } from '../../lib/helpers';
 import { removeCookie } from '../../lib/session';
 
 interface NavigationProps {
@@ -21,7 +21,7 @@ const Navigation: React.FC<NavigationProps> = ({ balance, user }) => {
   };
   useEffect(() => {
     const getBalance = async () => {
-      const currentUser = await axios.get(`/api/user/${user._id}`);
+      const currentUser = await instance.get(`/api/user/${user._id}`);
       const updateBalance = currentUser?.data?.stripe?.user?.balance ?? 0;
       setIsLoading(false);
       setUserBalance(updateBalance);
