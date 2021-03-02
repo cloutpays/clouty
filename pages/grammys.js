@@ -1,5 +1,4 @@
-import { grammyRender } from '../lib/helpers';
-import { instance } from '../../lib/helpers';
+import { grammyRender, instance } from '../lib/helpers';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';

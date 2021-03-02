@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { instance } from '../../lib/helpers';
 import { formatPrice, instance } from '../../lib/helpers';
 import { removeCookie } from '../../lib/session';
 
