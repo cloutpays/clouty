@@ -1,4 +1,4 @@
-import { instance } from '../../lib/helpers';
+import { instance } from '../../../lib/helpers';
 import GameTable from '../../../components/admin/GameTable';
 import PropTypes from 'prop-types';
 import React from 'react';
