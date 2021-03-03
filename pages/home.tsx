@@ -183,8 +183,9 @@ const Home: React.FC<IProps> = (props: IProps) => {
         </El.SectionHeader>
         <FeaturedBets
           categories={[
-            { label: 'Over/under', filter: 'game' },
+            { label: 'Over/Under', filter: 'game' },
             { label: 'Prop bet', filter: 'fill-in-blank' },
+            { label: "Grammy's", filter: 'normal' },
           ]}
           bets={questions}
           onClickCategory={(filter) => router.push('/games?filter=' + filter)}

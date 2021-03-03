@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import BigHeader from '../../components/redesign/BigHeader';
 import BigMoney from '../../components/redesign/BigMoney';
@@ -51,6 +52,8 @@ const StepTwo: React.FC<IProps> = (props: IProps) => {
   const [error, setError] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
 
+  const router = useRouter();
+
   const tryToSetAmount = (a: number) => {
     if (a <= (user.stripe.user.balance + user.stripe.user.credit) / 100) {
       setAmount(a);
@@ -89,7 +92,11 @@ const StepTwo: React.FC<IProps> = (props: IProps) => {
       <ModalBackground>
         <BigHeader>Place a Bet</BigHeader>
         <Description style={{ fontWeight: 500 }}>Select your wager</Description>
-        <BigMoney amount={amount} onEdit={tryToSetAmount} />
+        <BigMoney
+          amount={amount}
+          error={error.length > 0}
+          onEdit={tryToSetAmount}
+        />
         <El.HorizontalScrollable>
           {AMOUNTS.map((a) => {
             return a === amount ? (
@@ -124,7 +131,13 @@ const StepTwo: React.FC<IProps> = (props: IProps) => {
               {props.bet.description || 'Bet description.'}
             </El.InfoSmall>
             <El.InnerSeparator />
-            <ModalButton onClick={() => setModalOpen(false)}>Close</ModalButton>
+            <ModalButton
+              onClick={() => {
+                //setModalOpen(false);
+                router.push('/home');
+              }}>
+              Close
+            </ModalButton>
           </El.InnerOver>
         </ModalOverPage>
       )}

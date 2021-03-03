@@ -73,6 +73,8 @@ export const InnerOver = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  padding-left: 15px;
+  padding-right: 15px;
 `;
 
 export const InnerSeparator = styled.div`

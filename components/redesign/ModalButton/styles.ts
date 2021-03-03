@@ -16,7 +16,7 @@ export const OuterContainer = styled.a`
   padding-right: 37px;
   @media (max-width: 768px) {
     position: fixed;
-    bottom: 85px;
+    bottom: 40px;
   }
 `;
 
@@ -40,6 +40,7 @@ export const Text = styled.span`
   text-align: center;
   flex: 1;
   font-family: 'Wonder Unit Sans';
+  white-space: nowrap;
 `;
 
 export const Icon = styled.img`
