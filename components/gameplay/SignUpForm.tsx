@@ -64,7 +64,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
         question: game.question,
       };
       event.preventDefault();
-      await axios({
+      await instance({
         method: 'post',
         url: '/api/submission',
         data: { userSubmission, user },
