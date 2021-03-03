@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import React, { useRef, useState } from 'react';
@@ -9,6 +8,7 @@ import ModalBackground from '../components/redesign/ModalBackground';
 import ModalButton from '../components/redesign/ModalButton';
 import PageWrapper from '../components/redesign/PageWrapper';
 import * as El from '../components/redesign/payouts/styles';
+import { instance } from '../lib/helpers';
 import { getCookie } from '../lib/session';
 
 interface IProps {
@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     ctx.res.statusCode = 302;
     ctx.res.end();
   }
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userRes = await instance.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
   return { props: { user: userObj } };
 };

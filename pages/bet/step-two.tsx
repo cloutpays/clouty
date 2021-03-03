@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import { useRouter } from 'next/router';
@@ -11,6 +10,7 @@ import ModalButton from '../../components/redesign/ModalButton';
 import ModalOverPage from '../../components/redesign/ModalOverPage';
 import PageWrapper from '../../components/redesign/PageWrapper';
 import * as El from '../../components/redesign/payouts/styles';
+import { instance } from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
 
 interface IProps {
@@ -35,14 +35,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     ctx.res.end();
   }
 
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userRes = await instance.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
 
   const value = ctx.query.value;
   const odds = ctx.query.odds;
   const id = ctx.query.id;
 
-  const betRes = await axios.get(`${apiURL}/api/question/${id}`);
+  const betRes = await instance.get(`${apiURL}/api/question/${id}`);
   return { props: { user: userObj, value, odds, id, bet: betRes.data[0] } };
 };
 
@@ -78,7 +78,7 @@ const StepTwo: React.FC<IProps> = (props: IProps) => {
       question: id,
     };
 
-    await axios({
+    await instance({
       method: 'POST',
       url: '/api/submission',
       data: { userSubmission, user: props.user },

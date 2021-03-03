@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import { useRouter } from 'next/router';
@@ -9,6 +8,7 @@ import FeaturedBets from '../components/redesign/home/FeaturedBets';
 import * as El from '../components/redesign/home/styles';
 import UserAvatar from '../components/redesign/home/UserAvatar';
 import PageWrapper from '../components/redesign/PageWrapper';
+import { instance } from '../lib/helpers';
 import { getCookie } from '../lib/session';
 
 const contentful = require('contentful');
@@ -39,14 +39,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     ctx.res.end();
   }
 
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userRes = await instance.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
   const balance = (userObj?.stripe?.user?.balance ?? 0) / 100;
   const credit = (userObj?.stripe?.user?.credit ?? 0) / 100;
 
   // Getting active bets
   /*
-  const res = await axios.get(`${apiURL}/api/questions`);
+  const res = await instance.get(`${apiURL}/api/questions`);
   const questions = res.data.filter(
     (game: any) =>
       game.gameType === 'game' || game.gameType === 'fill-in-blank',
@@ -76,10 +76,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     });
 
   // Getting transactions data
-  // const transactions = await axios.get(`${apiURL}/api/userPayouts/${user}`);
+  // const transactions = await instance.get(`${apiURL}/api/userPayouts/${user}`);
 
   // Getting payouts data
-  const payoutsRes = await axios.get(`${apiURL}/api/userPayouts/${user}`);
+  const payoutsRes = await instance.get(`${apiURL}/api/userPayouts/${user}`);
   const payouts = payoutsRes.data.slice(0, 5).map((p: any, index: number) => ({
     id: index,
     operation: 'Payout',
@@ -97,7 +97,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }));
 
   // Getting submissions data
-  const submissionsRes = await axios.get(
+  const submissionsRes = await instance.get(
     `${apiURL}/api/userSubmissions/${user}`,
   );
   const submissions = submissionsRes.data.map((sub: any) => {
@@ -144,7 +144,7 @@ const Home: React.FC<IProps> = (props: IProps) => {
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = () => {
-      axios({
+      instance({
         method: 'POST',
         url: props.avatarUpdateUrl,
         data: { avatar: reader.result },

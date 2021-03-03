@@ -1,9 +1,9 @@
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import React from 'react';
 import History from '../components/redesign/History';
 import PageWrapper from '../components/redesign/PageWrapper';
+import { instance } from '../lib/helpers';
 import { getCookie } from '../lib/session';
 
 interface IProps {
@@ -25,11 +25,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     ctx.res.end();
   }
 
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userRes = await instance.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
 
   // Getting submissions data
-  const submissionsRes = await axios.get(
+  const submissionsRes = await instance.get(
     `${apiURL}/api/userSubmissions/${user}`,
   );
   const submissions = submissionsRes.data.map((sub: any) => {

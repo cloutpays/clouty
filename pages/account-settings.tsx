@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import React, { useState } from 'react';
@@ -7,6 +6,7 @@ import Button from '../components/redesign/Button';
 import ModalBackground from '../components/redesign/ModalBackground';
 import PageWrapper from '../components/redesign/PageWrapper';
 import TextInput from '../components/redesign/TextInput';
+import { instance } from '../lib/helpers';
 import { getCookie } from '../lib/session';
 
 interface IProps {
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     ctx.res.end();
   }
 
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userRes = await instance.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
   return { props: { user: userObj } };
 };
@@ -40,7 +40,7 @@ const AccountSettings: React.FC<IProps> = (props: IProps) => {
   const onSend = async () => {
     setLoading(true);
     try {
-      await axios({
+      await instance({
         method: 'POST',
         url: '/api/setInfo/' + props.user._id,
         data: { info: { firstName, lastName, phoneNumber } },
