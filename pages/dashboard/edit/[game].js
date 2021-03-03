@@ -1,11 +1,11 @@
 import { getCookie } from '../../../lib/session';
+import { instance } from '../../../lib/helpers'
 import AdminPage from '../../../hoc/adminPage';
 import CreateGameForm from '../../../components/forms/CreateGameForm';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
-import axios from 'axios';
 
 const Games = ({ game, questions, submissions, houseBalance, userId }) => {
   const data = {
@@ -36,9 +36,9 @@ Games.getInitialProps = async ({ query, req }) => {
     { data: questions },
     { data: submissions },
   ] = await Promise.all([
-    axios.get(`${apiURL}/api/question/${game}`),
-    axios.get(`${apiURL}/api/questions`),
-    axios.get(`${apiURL}/api/gameSubmissions/${game}`),
+    instance.get(`${apiURL}/api/question/${game}`),
+    instance.get(`${apiURL}/api/questions`),
+    instance.get(`${apiURL}/api/gameSubmissions/${game}`),
   ]);
   const userId = getCookie('id_token', req);
   const houseBalance = submissions.reduce((acc, curr) => {

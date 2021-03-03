@@ -1,6 +1,6 @@
-import axios from 'axios';
 import Router from 'next/router';
 import React, { useState } from 'react';
+import { instance } from '../../lib/helpers';
 import Question from './Question';
 interface SignUpFormProps {
   game: any;
@@ -64,7 +64,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ game, user }) => {
         question: game.question,
       };
       event.preventDefault();
-      await axios({
+      await instance({
         method: 'post',
         url: '/api/submission',
         data: { userSubmission, user },

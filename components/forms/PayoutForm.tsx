@@ -1,9 +1,8 @@
-import axios from 'axios';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import Cleave from 'cleave.js/react';
 import Router from 'next/router';
-
 import React, { useState } from 'react';
+import { instance } from '../../lib/helpers';
 interface PayoutFormProps {
   user: any;
   submissions: any;
@@ -65,7 +64,7 @@ const PayoutForm: React.FC<PayoutFormProps> = ({ user, submissions }) => {
           date,
         },
       };
-      await axios({
+      await instance({
         method: 'post',
         url: '/api/payout',
         data: { data: userSubmission },

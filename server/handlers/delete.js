@@ -6,6 +6,9 @@ const { send } = require('micro');
 const postApi = (fn) => async (req, res) => {
   try {
     const parse = req.url.split('/');
+    if (req.headers.authorization != 'Bearer ' + process.env.API_KEY) {
+      return res.status(403).json({ error: 'No credentials sent!' });
+    }
     switch (`${parse[2]}`) {
       case 'question':
         return await fn(questionRemoveApi(req, res));

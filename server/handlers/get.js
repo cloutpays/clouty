@@ -22,11 +22,14 @@ const { send } = require('micro');
 const getApi = (fn) => async (req, res) => {
   try {
     //handle payment
-    if(req.url.split('?')[0] === '/api/connexus'){
-      return await fn(processConnexusApi(req,res))
+    if (req.url.split('?')[0] === '/api/connexus') {
+      return await fn(processConnexusApi(req, res));
     }
     let parse = req.url.split('/');
     console.log(`get api/${parse[2]}`);
+    if (req.headers.authorization != 'Bearer ' + process.env.API_KEY) {
+      return res.status(403).json({ error: 'No credentials sent!' });
+    }
     switch (`api/${parse[2]}`) {
       case 'api/submissions':
         return await fn(submissionsRetrieveApi(req, res));

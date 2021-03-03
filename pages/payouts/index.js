@@ -1,4 +1,4 @@
-import { formatDate } from '../../lib/helpers';
+import { formatDate, instance } from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -6,7 +6,6 @@ import SecuredPage from '../../hoc/securedPage';
 import UserDashNavigation from '../../components/layout/UserDashNavigation';
 import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
-import axios from 'axios';
 
 const Terms = ({ balance, payouts, user }) => {
   const data = {
@@ -88,9 +87,9 @@ Terms.getInitialProps = async (ctx) => {
   const apiURL = `${origin}`;
 
   const user = getCookie('id_token', ctx.req);
-  const payoutsRes = await axios.get(`${apiURL}/api/userPayouts/${user}`);
+  const payoutsRes = await instance.get(`${apiURL}/api/userPayouts/${user}`);
   const payouts = payoutsRes.data;
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userRes = await instance.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
 
   return {
