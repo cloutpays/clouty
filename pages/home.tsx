@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const userRes = await axios.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
-  const balance = userObj?.stripe?.user?.balance ?? 0;
+  const balance = (userObj?.stripe?.user?.balance ?? 0) / 100;
   const credit = (userObj?.stripe?.user?.credit ?? 0) / 100;
 
   // Getting active bets
