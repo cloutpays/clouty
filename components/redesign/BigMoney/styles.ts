@@ -16,7 +16,7 @@ export const Editable = styled.input`
   font-size: 70px;
   font-weight: 300;
   letter-spacing: 0.01em;
-  text-align: left;
+  text-align: center;
   font-family: 'Wonder Unit Sans';
   border: none;
   background: transparent;

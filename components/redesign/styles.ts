@@ -27,6 +27,8 @@ export const OuterContainer = styled.main`
   background-color: #1b1a1a;
   align-items: center;
   color: white;
+  padding-left: 15px;
+  padding-right: 15px;
   @media (max-width: 768px) {
     padding-left: 7px;
     padding-right: 7px;
