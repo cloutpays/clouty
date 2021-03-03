@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         id: q.slug || '0',
         artist: q.title || '',
         description: q.description || '',
-        date: q.date || new Date(),
+        date: q.date || '',
         imageUri:
           images.find((i: any) => i.id === q._id)?.imageUrl ||
           '/static/img/redesign/logoUmbrellaOnly.svg',

@@ -34,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     id: index || '0',
     operation: 'Payout',
     description: p.preferred || '',
-    date: p.date || new Date(),
+    date: p.date || '',
     amount: p.amount || 0,
   }));
 

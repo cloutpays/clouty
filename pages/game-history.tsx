@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       artist: sub.title || (sub.question ? `Game #${sub.question}` : 'Game'),
       description: '',
       bet: sub.answer || '',
-      date: sub.date || new Date(),
+      date: sub.date || '',
       credits: sub.wager,
       imageUri: '/static/img/redesign/logoUmbrellaOnly.svg',
     };
