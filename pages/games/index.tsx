@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import { useRouter } from 'next/router';
@@ -6,6 +5,7 @@ import React from 'react';
 import BigHeader from '../../components/redesign/BigHeader';
 import History from '../../components/redesign/History';
 import PageWrapper from '../../components/redesign/PageWrapper';
+import { instance } from '../../lib/helpers';
 
 const contentful = require('contentful');
 
@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const apiURL = `${origin}`;
 
   // Getting active bets
-  const res = await axios.get(`${apiURL}/api/questions`);
+  const res = await instance.get(`${apiURL}/api/questions`);
   const client = contentful.createClient({
     space: '74q51vemgz9l',
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,

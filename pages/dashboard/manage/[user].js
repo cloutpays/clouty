@@ -4,13 +4,13 @@ import {
   formatDate,
   formatPrice,
   formatPriceWithFractionDigits,
+  instance
 } from '../../../lib/helpers';
 import AdminPage from '../../../hoc/adminPage';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Wrapper from '../../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
-import axios from 'axios';
 
 const Dashboard = ({
   submissions,
@@ -34,7 +34,7 @@ const Dashboard = ({
     user.stripe.user.credit / 100,
   );
   const setCredit = async () => {
-    await axios
+    await instance
       .post(`/api/setCredit`, {
         data: {
           credit: {
@@ -287,14 +287,14 @@ Dashboard.getInitialProps = async (ctx) => {
   const { user } = query;
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
-  const submissionsRes = await axios.get(
+  const submissionsRes = await instance.get(
     `${apiURL}/api/userSubmissions/${user}`,
   );
-  const payoutsRes = await axios.get(`${apiURL}/api/userPayouts/${user}`);
+  const payoutsRes = await instance.get(`${apiURL}/api/userPayouts/${user}`);
   const payouts = payoutsRes.data;
-  const stripeRes = await axios.get(`${apiURL}/api/userTransactions/${user}`);
+  const stripeRes = await instance.get(`${apiURL}/api/userTransactions/${user}`);
   const stripe = stripeRes.data;
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userRes = await instance.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
   const submissions = submissionsRes.data;
   const wonWagers = submissions

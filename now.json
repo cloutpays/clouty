@@ -179,7 +179,8 @@
       "FIREBASE_APP_ID": "@firebase-app-id",
       "FIREBASE_API_KEY_DEV": "@firebase-api-key-dev",
       "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
-      "NODEMAILER": "@nodemailer"
+      "NODEMAILER": "@nodemailer",
+      "API_KEY" : "@api-key"
     }
   },
   "env": {
@@ -191,6 +192,7 @@
     "FIREBASE_API_KEY_DEV": "@firebase-api-key-dev",
     "FIREBASE_APP_ID": "@firebase-app-id",
     "FIREBASE_APP_ID_DEV": "@firebase-app-id-dev",
-    "NODEMAILER": "@nodemailer"
+    "NODEMAILER": "@nodemailer",
+      "API_KEY" : "@api-key"
   }
 }

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -7,6 +6,7 @@ import {
   formatConnexEmail,
   formatDate,
   formatPrice,
+  instance,
 } from '../../lib/helpers';
 
 interface SubmissionsProps {
@@ -24,7 +24,7 @@ const AdminDashboard: React.FC<SubmissionsProps> = ({
 
   const clearRequest = async (request: any) => {
     request.cleared = true;
-    await axios({
+    await instance({
       method: 'post',
       url: '/api/payout',
       data: { data: { payoutRequest: { ...request, cleared: true } } },

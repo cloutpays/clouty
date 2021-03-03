@@ -1,11 +1,11 @@
 import { getCookie } from '../../lib/session';
+import { instance } from '../../lib/helpers';
 import AdminPage from '../../hoc/adminPage';
 import CreateGameForm from '../../components/forms/CreateGameForm';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../../components/layout/Wrapper';
 import absoluteUrl from 'next-absolute-url';
-import axios from 'axios';
 
 const CreateGame = ({ questions, userId }) => {
   const data = {
@@ -23,7 +23,7 @@ const CreateGame = ({ questions, userId }) => {
 CreateGame.getInitialProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
   const apiURL = `${origin}`;
-  const res = await axios.get(`${apiURL}/api/questions`);
+  const res = await instance.get(`${apiURL}/api/questions`);
   const questions = await res.data;
   const userId = getCookie('id_token', req);
   return { questions, userId };

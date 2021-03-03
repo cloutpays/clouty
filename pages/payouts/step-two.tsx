@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import absoluteUrl from 'next-absolute-url';
 import { useRouter } from 'next/router';
@@ -10,6 +9,7 @@ import ModalBackground from '../../components/redesign/ModalBackground';
 import ModalButton from '../../components/redesign/ModalButton';
 import PageWrapper from '../../components/redesign/PageWrapper';
 import * as El from '../../components/redesign/payouts/styles';
+import { instance } from '../../lib/helpers';
 import { getCookie } from '../../lib/session';
 
 interface IProps {
@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const apiURL = `${origin}`;
   const user = getCookie('id_token', ctx.req);
 
-  const userRes = await axios.get(`${apiURL}/api/user/${user}`);
+  const userRes = await instance.get(`${apiURL}/api/user/${user}`);
   const userObj = userRes.data;
   return { props: { user: userObj } };
 };
@@ -98,7 +98,7 @@ const StepTwo: React.FC<IProps> = (props: IProps) => {
         date,
       },
     };
-    await axios({
+    await instance({
       method: 'post',
       url: '/api/payout',
       data: { data: userSubmission },

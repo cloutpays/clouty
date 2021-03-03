@@ -22,7 +22,9 @@ const postApi = (fn) => async (req, res) => {
   try {
     const parse = req.url.split('/');
     console.log(`post api/${parse[2]}`);
-
+    if (req.headers.authorization != 'Bearer ' + process.env.API_KEY) {
+      return res.status(403).json({ error: 'No credentials sent!' });
+    }
     switch (`api/${parse[2]}`) {
       case 'api/submission':
         return await fn(gameSubmitApi(req, res));
