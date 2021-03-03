@@ -31,11 +31,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Getting payouts data
   const payoutsRes = await axios.get(`${apiURL}/api/userPayouts/${user}`);
   const payouts = payoutsRes.data.map((p: any, index: number) => ({
-    id: index,
+    id: index || '0',
     operation: 'Payout',
-    description: p.preferred,
-    date: p.date,
-    amount: p.amount,
+    description: p.preferred || '',
+    date: p.date || new Date(),
+    amount: p.amount || 0,
   }));
 
   return {

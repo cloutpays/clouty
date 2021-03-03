@@ -42,9 +42,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     .map((q: any) => {
       return {
         id: q.slug || '0',
-        artist: q.title,
-        description: q.description,
-        date: q.date,
+        artist: q.title || '',
+        description: q.description || '',
+        date: q.date || new Date(),
         imageUri:
           images.find((i: any) => i.id === q._id)?.imageUrl ||
           '/static/img/redesign/logoUmbrellaOnly.svg',
