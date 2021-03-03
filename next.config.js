@@ -12,5 +12,6 @@ module.exports = withCSS({
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
     FIREBASE_APP_ID_DEV: process.env.FIREBASE_APP_ID_DEV,
     ENV: process.env.ENV,
+    API_KEY: process.env.API_KEY,
   },
 });
