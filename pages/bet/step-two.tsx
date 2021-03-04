@@ -49,6 +49,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 const StepTwo: React.FC<IProps> = (props: IProps) => {
   const { value, odds, user, id } = props;
   const [amount, setAmount] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -64,6 +65,7 @@ const StepTwo: React.FC<IProps> = (props: IProps) => {
   };
 
   const placeBet = async () => {
+    setLoading(true);
     if (!value) return;
 
     const userSubmission = {
@@ -85,8 +87,9 @@ const StepTwo: React.FC<IProps> = (props: IProps) => {
     });
 
     setModalOpen(true);
+    setLoading(false);
   };
-
+  const betText = loading ? 'Processing' : 'Place a Bet';
   return (
     <PageWrapper active='Our Active Bets' header='Step Two' pageMode='modal'>
       <ModalBackground>
@@ -109,11 +112,11 @@ const StepTwo: React.FC<IProps> = (props: IProps) => {
           })}
         </El.HorizontalScrollable>
         <ModalButton
-          iconUri='/static/img/redesign/checkmark.svg'
+          iconUri={!loading ? '/static/img/redesign/checkmark.svg' : ''}
           iconHeight={15}
           onClick={placeBet}
           disabled={!amount}>
-          Place Bet
+          {loading && <i className='fa fa-spinner fa-spin' />} {betText}
         </ModalButton>
         <El.Error>{error}</El.Error>
       </ModalBackground>
