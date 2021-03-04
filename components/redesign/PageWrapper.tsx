@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
-// @ts-ignore
 import NProgress from 'nprogress';
 import React, { useState } from 'react';
+// @ts-ignore
 import * as El from './styles';
 
 interface IProps {
@@ -24,11 +24,10 @@ interface IProps {
 
 // TODO: After merging redesign into main paths, change those values accordingly
 const links: { name: string; path: string }[] = [
-  { name: 'Home', path: '/home' },
-  { name: 'Payouts', path: '/payouts/step-one' },
-  { name: 'Add to Balance', path: '/add-to-balance' },
   { name: 'Our Active Bets', path: '/games' },
   { name: 'Create Your Bet', path: '/create-game' },
+  { name: 'Add to Balance', path: '/add-to-balance' },
+  { name: 'Payouts', path: '/payouts/step-one' },
   // { name: 'Account Settings', path: '/redesign/account-settings' },
   // Account Settings button uses a different button than the rest, because of that it's handled separately inside the render function
 ];
@@ -113,7 +112,9 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
       <El.Header
         extended={!props.forceUnextended && props.pageMode === 'modal'}>
         <El.DesktopNavigation>
-          <El.Logo />
+          <a href='/home'>
+            <El.Logo />
+          </a>
           <El.ButtonBar>
             {generateButtons()}
             <Link href='/account-settings' passHref={true}>
