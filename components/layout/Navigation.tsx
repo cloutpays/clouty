@@ -11,7 +11,7 @@ interface NavProps {
 
 const Navigation: React.FC<NavProps> = ({ router }) => {
   useEffect(() => {
-    if (router.router && isLoggedIn) {
+    if (router.router && router.router.route === '/' && isLoggedIn) {
       router.push('/home');
     }
   }, [router]);
