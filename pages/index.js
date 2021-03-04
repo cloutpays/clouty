@@ -45,8 +45,10 @@ const Home = ({ latestPost }) => {
                       <button className='btn btn-default bet-now'>
                         Bet Now
                       </button>
+                    </a>
+                    <a href='/games'>
                       <button className='btn btn-default all-bet'>
-                        <a href='/games'>View All Bets</a>
+                        View All Bets
                       </button>
                     </a>
                   </div>
@@ -212,7 +214,7 @@ Home.getInitialProps = async ({ req }) => {
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
   });
   let latestPost = await client
-    .getEntries()
+    .getEntries({ content_type: 'latestPost' })
     .then((entry) => {
       const { items } = entry;
       const {

@@ -3,11 +3,18 @@ import { initGA, logPageView } from '../../lib/helpers';
 import { styles } from '../../constants/styles';
 import Footer from './Footer';
 import Head from 'next/head';
-import NProgress from 'nprogress';
+// import NProgress from 'nprogress';
 import Navigation from './Navigation';
+import PageWrapper from '../redesign/PageWrapper';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Router from 'next/router';
+
+// Should redesign wrapper be used (displays old pages embedded in the new layout)
+const ENABLE_REDESIGN_WRAPPER = true;
+
+/*
+// Removed because the new PageWrapper integrates this
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -20,6 +27,7 @@ Router.onRouteChangeComplete = () => {
 Router.onRouteChangeError = () => {
   NProgress.done();
 };
+*/
 
 export default class Wrapper extends Component {
   componentDidMount() {
@@ -106,6 +114,13 @@ export default class Wrapper extends Component {
     }
   }
 
+  shouldUseRedesign = () => {
+    if (!ENABLE_REDESIGN_WRAPPER) return false;
+    if (this.props.data.home_page) return false;
+    if (this.props.data.ignoreWrapper) return false;
+    return true;
+  };
+
   render() {
     const isHomePage = this.props.data.home_page;
     const isConfirmationPage = this.props.data.confirmation_page;
@@ -118,6 +133,28 @@ export default class Wrapper extends Component {
     const description = data.description
       ? data.description
       : 'Fantasy gameplay at the intersection of data, music and finance.';
+
+    if (this.shouldUseRedesign())
+      return (
+        <div style={{ backgroundColor: '#1b1a1a', height: '100%' }}>
+          <Head>
+            <title>{title}</title>
+            <meta name='description' content={description} />
+            <meta property='og:title' content={title} />
+            <meta property='og:description' content={description} />
+            <meta
+              name='twitter:title'
+              content={`The 🌎's first music betting platform.`}
+            />
+            <meta name='twitter:description' content={description} />
+          </Head>
+          <PageWrapper
+            pageMode='legacy'
+            header={title.replace(/Clouty \|/, '')}>
+            {content}
+          </PageWrapper>
+        </div>
+      );
 
     return (
       <div className={isConfirmationPage ? 'confirm-page' : ''}>

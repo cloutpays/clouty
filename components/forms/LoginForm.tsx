@@ -65,7 +65,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             })
             .then(() => {
               setCookie('id_token', result.user.uid);
-              Router.push('/user');
+              Router.push('/home');
             });
         }
       });
@@ -105,7 +105,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
             if (user.admin) {
               setCookie('id_token_a', true);
             }
-            Router.push('/user');
+            Router.push('/home');
           });
       });
   };
