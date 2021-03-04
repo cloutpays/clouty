@@ -1,15 +1,21 @@
 import Link from 'next/link';
 import { SingletonRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { getCookieFromBrowser, removeCookie } from '../../lib/session';
 
-interface Navigation {
+interface NavProps {
   user: any;
   darkMode: boolean;
   router: SingletonRouter;
 }
 
-const Navigation: React.FC<Navigation> = ({ router }) => {
+const Navigation: React.FC<NavProps> = ({ router }) => {
+  useEffect(() => {
+    if (router.router && isLoggedIn) {
+      router.push('/home');
+    }
+  }, [router]);
+
   const handleLogout = () => {
     removeCookie('id_token');
     removeCookie('id_token_a');
