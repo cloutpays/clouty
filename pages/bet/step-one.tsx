@@ -45,17 +45,25 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return { props: { user: userObj, bet: betRes.data[0] } };
 };
 
-const BetStepOne: React.FC<IProps> = (props: IProps) => {
+const BetStepOne: React.FC<IProps> = ({ bet, user }: IProps) => {
   const [value, setValue] = useState({} as any);
-
+  const gameClosed = bet.answer ? true : false;
   return (
-    <PageWrapper active='Our Active Bets' header='Step One' pageMode='modal'>
+    <PageWrapper
+      active='Our Active Bets'
+      header={gameClosed ? 'Game Closed' : 'Place a Bet'}
+      pageMode='modal'>
       <ModalBackground>
-        <BigHeader>Place a Bet</BigHeader>
+        <BigHeader>{bet.title}</BigHeader>
         <Description style={{ fontWeight: 500 }}>
-          {props.bet.description || "Bet couldn't be loaded, please try again."}
+          {bet.description || "Bet couldn't be loaded, please try again."}
         </Description>
-        {props.bet.description && props.bet.gameType === 'fill-in-blank' && (
+        {gameClosed && (
+          <Description style={{ fontWeight: 500 }}>
+            {`The winning bet was: ${bet.answer}`}
+          </Description>
+        )}
+        {!gameClosed && bet.description && bet.gameType === 'fill-in-blank' && (
           <TextInput
             label='Your Bet'
             onChange={(v) => setValue({ value: v, odds: '' })}
@@ -67,9 +75,10 @@ const BetStepOne: React.FC<IProps> = (props: IProps) => {
             justifyContent: 'space-around',
             flexWrap: 'wrap',
           }}>
-          {props.bet.description &&
-            props.bet.gameType === 'game' &&
-            props.bet.options.map((o: any) => (
+          {!gameClosed &&
+            bet.description &&
+            bet.gameType === 'game' &&
+            bet.options.map((o: any) => (
               <Button
                 key={o.value}
                 style={{
@@ -89,20 +98,22 @@ const BetStepOne: React.FC<IProps> = (props: IProps) => {
               </Button>
             ))}
         </div>
-        <Link
-          href={{
-            pathname: '/bet/step-two',
-            query: {
-              value: value.value,
-              odds: value.odds,
-              id: props.bet.question,
-            },
-          }}>
-          <ModalButton
-            iconUri='/static/img/redesign/rightArrowLong.svg'
-            disabled={!value || !value.value}
-          />
-        </Link>
+        {!gameClosed && (
+          <Link
+            href={{
+              pathname: '/bet/step-two',
+              query: {
+                value: value.value,
+                odds: value.odds,
+                id: bet.question,
+              },
+            }}>
+            <ModalButton
+              iconUri='/static/img/redesign/rightArrowLong.svg'
+              disabled={!value || !value.value}
+            />
+          </Link>
+        )}
       </ModalBackground>
     </PageWrapper>
   );
