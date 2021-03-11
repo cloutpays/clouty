@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Getting user info
   const user = getCookie('id_token', ctx.req);
 
-  if (!user) {
+  if (!user || 'undefined') {
     // Redirect logged out users to login page
     ctx.res.setHeader('Location', '/login');
     ctx.res.statusCode = 302;
