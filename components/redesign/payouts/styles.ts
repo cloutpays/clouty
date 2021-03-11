@@ -70,6 +70,7 @@ export const InfoSmall = styled(Info)`
 `;
 
 export const InnerOver = styled.div`
+  background: black;
   position: relative;
   display: flex;
   flex-direction: column;
