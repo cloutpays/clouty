@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return { props: { user: userObj, bet: betRes.data[0] } };
 };
 
-const BetStepOne: React.FC<IProps> = ({ bet, user }: IProps) => {
+const BetStepOne: React.FC<IProps> = ({ bet }: IProps) => {
   const [value, setValue] = useState({} as any);
   const gameClosed = bet.answer ? true : false;
   return (
