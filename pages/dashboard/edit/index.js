@@ -32,9 +32,6 @@ const Games = ({ questions }) => {
                       <a href={activeLink} className='no-underline white'>
                         <div className={cardClass}>
                           <h1 className='f4 mt0 fw7'>
-                            <span role='img' aria-label={game.emoji_name}>
-                              {game.emoji}
-                            </span>{' '}
                             {`${
                               game.gameType === 'game' ||
                               game.gameType === 'fill-in-blank'

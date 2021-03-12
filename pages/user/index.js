@@ -67,9 +67,6 @@ const Terms = ({ balance, submissions, user }) => {
                           <a href={activeLink} className='no-underline white'>
                             <div className={cardClass}>
                               <h1 className='f4 mt0 fw7'>
-                                <span role='img' aria-label={game.emoji_name}>
-                                  {game.emoji}
-                                </span>{' '}
                                 {`Game #${game.question.question}`}
                               </h1>
                               <p className='mb2'>{game.question.description}</p>

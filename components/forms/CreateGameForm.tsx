@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import 'emoji-mart/css/emoji-mart.css';
 import Router from 'next/router';
 import React, { useState } from 'react';
 import {
@@ -24,8 +23,6 @@ interface CreateGameFormProps {
   houseBalance: number;
   options: Option[];
   description: string;
-  emoji: string;
-  showEmojiKeyboard: boolean;
   gameType: string;
   title: string;
   slug: string;

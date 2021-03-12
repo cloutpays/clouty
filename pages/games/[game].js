@@ -13,7 +13,7 @@ const Games = ({ game, user }) => {
     game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
   const data = {
     title,
-    header: `${game.emoji} ${title}`,
+    header: `${title}`,
     description: 'Selected games and contests.',
   };
   const gameClosed = new Date(game.endDate) < new Date();

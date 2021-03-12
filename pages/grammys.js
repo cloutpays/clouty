@@ -31,12 +31,7 @@ const Grammys = ({ questions }) => {
               <Link href={activeLink}>
                 <a href={activeLink} className='no-underline white'>
                   <div className={cardClass}>
-                    <h1 className='f4 mt0 fw7'>
-                      <span role='img' aria-label={game.emoji_name}>
-                        {game.emoji}
-                      </span>{' '}
-                      {`${game.question}`}
-                    </h1>
+                    <h1 className='f4 mt0 fw7'>{`${game.question}`}</h1>
                     {grammyRender(game)}
                     {game.answer && (
                       <>
