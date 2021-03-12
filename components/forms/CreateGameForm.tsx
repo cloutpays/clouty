@@ -66,6 +66,8 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   const [loading, setLoading] = useState<boolean>(false);
   const newGame = game ? false : true;
   const grammy = category === 'grammy';
+  const overUnder = category === 'over-under';
+  const propBet = category === 'prop-bet';
   const normal = gameType === 'game';
   const fillInBlank = gameType === 'fill-in-blank';
   const number = newGame
@@ -222,6 +224,28 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
                 )}`}
                 onClick={() => setCategory('grammy')}>
                 Grammys
+              </span>
+              <span
+                className={`b ph2 mr2 pv2 input-reset ba b--black  grow pointer f6 ${classnames(
+                  {
+                    'bg-transparent': !propBet,
+                    'bg-black': propBet,
+                    white: propBet,
+                  },
+                )}`}
+                onClick={() => setCategory('prop-bet')}>
+                Prop bet
+              </span>
+              <span
+                className={`b ph2 mr2 pv2 input-reset ba b--black  grow pointer f6 ${classnames(
+                  {
+                    'bg-transparent': !overUnder,
+                    'bg-black': overUnder,
+                    white: overUnder,
+                  },
+                )}`}
+                onClick={() => setCategory('over-under')}>
+                Over/Under
               </span>
             </div>
             <div className='mt3'>

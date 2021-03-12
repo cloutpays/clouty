@@ -48,8 +48,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   // Getting active bets
   /*
-  const res = await instance.get(`${apiURL}/api/questions`);
-  const questions = res.data.filter(
+  const res = await instance.get(`${apiURL}/api/latestQuestions`);
+  const latestQuestions = res.data.filter(
     (game: any) =>
       game.gameType === 'game' || game.gameType === 'fill-in-blank',
   );
@@ -143,7 +143,7 @@ const Home: React.FC<IProps> = (props: IProps) => {
     userInfo,
     latestQuestions,
     payouts,
-    questions,
+    // questions,
     submissions,
     userAvatar,
   } = props;
@@ -199,9 +199,9 @@ const Home: React.FC<IProps> = (props: IProps) => {
         </El.SectionHeader>
         <FeaturedBets
           categories={[
-            { label: 'Over/Under', filter: 'game' },
-            { label: 'Prop bet', filter: 'fill-in-blank' },
-            { label: "Grammy's", filter: 'normal' },
+            { label: 'Over/Under', filter: 'over-under' },
+            { label: 'Prop bet', filter: 'prop-bet' },
+            { label: "Grammy's", filter: 'grammy' },
           ]}
           bets={latestQuestions}
           onClickCategory={(filter) => router.push('/games?filter=' + filter)}
