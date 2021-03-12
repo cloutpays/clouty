@@ -48,7 +48,7 @@ const Terms = ({ balance, submissions, user }) => {
                 submissions
                   .map((game, ind) => {
                     const activeLink = `/games/${game.question.slug}`;
-                    const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100  ${game.question.class}`;
+                    const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100  $`;
 
                     const gameButtonText =
                       typeof game.won === 'undefined'

@@ -23,7 +23,7 @@ const Games = ({ questions }) => {
                 const gameClosed = new Date(game.endDate) < new Date();
 
                 const activeLink = `/dashboard/edit/${game.slug}`;
-                const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
+                const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow trillectro`;
                 return (
                   <div
                     key={`work-${game.slug}`}

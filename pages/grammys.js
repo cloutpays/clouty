@@ -25,7 +25,7 @@ const Grammys = ({ questions }) => {
         {questions.map((game) => {
           const gameButtonText = !game.answer ? 'Play Game' : 'See Results';
           const activeLink = `/games/${game.slug}`;
-          const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
+          const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow`;
           return (
             <div key={`work-${game.name}`} className='pv2 pa2-ns w-100 w-50-ns'>
               <Link href={activeLink}>
