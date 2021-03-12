@@ -1,7 +1,6 @@
 import { formatPrice, instance } from '../../lib/helpers';
 import AdminDashboard from '../../components/admin/AdminDashboard';
 import AdminPage from '../../hoc/adminPage';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../../components/layout/Wrapper';
@@ -61,30 +60,26 @@ const Dashboard = ({
           </dl>
         </article>
         <div className='flex'>
-          <Link href='/dashboard/create'>
-            <a className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
-              Create Game
-            </a>
-          </Link>
-          <Link href='/dashboard/edit'>
-            <a
-              href='/dashboard/edit'
-              className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
-              Manage Games
-            </a>
-          </Link>
-          <Link href='/dashboard/users'>
-            <a
-              href='/dashboard/users'
-              className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
-              Manage Users
-            </a>
-          </Link>
-          <Link href='/dashboard/users/games'>
-            <a className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
-              Manage User Submissions
-            </a>
-          </Link>
+          <a
+            href='/dashboard/create'
+            className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
+            Create Game
+          </a>
+          <a
+            href='/dashboard/edit'
+            className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
+            Manage Games
+          </a>
+          <a
+            href='/dashboard/users'
+            className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
+            Manage Users
+          </a>
+          <a
+            href='/dashboard/users/games'
+            className='f6 mr2 link dim ph3 pv2 mb2 dib white bg-black'>
+            Manage User Submissions
+          </a>
         </div>
         <AdminDashboard
           payouts={payouts}
