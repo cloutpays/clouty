@@ -1,16 +1,17 @@
-import { Picker } from 'emoji-mart';
+import classnames from 'classnames';
 import 'emoji-mart/css/emoji-mart.css';
 import Router from 'next/router';
 import React, { useState } from 'react';
 import {
   calculateTotalPayout,
   calculateTotalPayoutWithCredits,
-  colorways,
   formatDate,
   formatPrice,
   formatPriceWithFractionDigits,
   instance,
 } from '../../lib/helpers';
+import { GameProps, Submissions } from '../../lib/types';
+
 interface Option {
   value: string;
   odds: string;
@@ -19,39 +20,6 @@ interface Question {
   gameType: string;
 }
 
-interface Submissions {
-  _id: string;
-  email: string;
-  phoneNumber: string;
-  wager: number;
-  question: string;
-  userId: string;
-  handle: string;
-  won: boolean;
-  name: string;
-  odds: string;
-  details: string;
-  date: string;
-  answer: string;
-  usedCredit: boolean;
-}
-
-interface GameProps {
-  options: Option[];
-  description: string;
-  emoji: string;
-  showEmojiKeyboard: boolean;
-  slug: string;
-  number: string;
-  answer: string;
-  class: string;
-  title: string;
-  details: string;
-  extendedAnswer: string;
-  gameType: string;
-  question: string;
-  game: GameProps;
-}
 interface CreateGameFormProps {
   houseBalance: number;
   options: Option[];
@@ -78,11 +46,10 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   userId,
   submissions,
   houseBalance,
-}) => {
+}: CreateGameFormProps) => {
   const [description, setDescription] = useState<string>(
     game ? game.description : '',
   );
-  const [emoji, setEmoji] = useState<any>(game ? game.emoji : '🏆');
   const [title, setTitle] = useState<any>(game ? game.title : '');
   const [answer, setAnswer] = useState<any>(game ? game.answer : '');
   const [extendedAnswer, setExtendedAnswer] = useState<any>(
@@ -92,17 +59,15 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
   const [options, setOptions] = useState<any[]>(game ? game.options : []);
   const [details, setDetails] = useState<string>(game ? game.details : '');
   const [gameType, setGameType] = useState<string>(game ? game.gameType : '');
-  const [showEmojiKeyboard, setShowEmojiKeyboard] = useState<boolean>(false);
+  const [category, setCategory] = useState<string>(game ? game.category : '');
   const [answerVisible, setAnswerVisible] = useState<boolean>(
     game && game.answer ? true : false,
   );
   const [loading, setLoading] = useState<boolean>(false);
-  const [colorway, setColorway] = useState<string>(
-    game ? game.class : 'trillectro',
-  );
   const newGame = game ? false : true;
-  const grammy = game && game.gameType === 'grammy';
-
+  const grammy = category === 'grammy';
+  const normal = gameType === 'game';
+  const fillInBlank = gameType === 'fill-in-blank';
   const number = newGame
     ? (
         questions.filter((curr) => curr.gameType !== 'grammy').length + 4
@@ -110,76 +75,58 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     : game.question;
 
   const slug = !newGame ? game.slug : number;
-  const currentGame = {
+
+  const currentGame: GameProps = {
     description,
-    emoji: emoji.native ? emoji.native : emoji,
     options,
     slug,
     title,
-    class: colorway,
     answer,
     extendedAnswer,
     gameType,
+    category,
+    date: new Date(),
     details,
+    userId,
     question: number,
   };
 
   const handleSubmit = async () => {
     setLoading(true);
-    const submission = {
-      description,
-      emoji: emoji.native ? emoji.native : emoji,
-      options,
-      answer,
-      details,
-      gameType,
-      title,
-      slug,
-      date: new Date(),
-      extendedAnswer: answer,
-      class: colorway,
-      question: number,
-      userId,
-    };
+
     if (isUserSubmission) {
-      instance.post('/api/userQuestions', submission).then(() => {
+      instance.post('/api/userQuestions', currentGame).then(() => {
         Router.push('/games/create/confirmation');
       });
     } else {
-      instance.post('/api/question', submission).then(() => {
+      instance.post('/api/question', currentGame).then(() => {
         Router.push('/dashboard/edit');
       });
     }
   };
-  const changeColor = () => {
-    const color = colorways[Math.floor(Math.random() * colorways.length)];
-    setColorway(color);
-  };
+
   const addOption = () => {
     const updatedOptions = [{ odds: 0, value: option }, ...(true && options)];
     setOptions(updatedOptions);
     setOption('');
   };
+
   const setOdds = (odds: string, value: string) => {
     const updatedOptions = options.filter((curr) => curr.value !== value);
     updatedOptions.push({ odds, value });
     setOptions(updatedOptions);
   };
+
   const removeGame = () => {
     instance.delete(`/api/question/${currentGame.slug}`).then(() => {
       Router.push('/dashboard/edit');
     });
   };
-  const emojiSet = (e: any) => {
-    setEmoji(e);
-    renderEmoji();
-  };
+
   const closeGame = () =>
     instance.post(`/api/endQuestion/${currentGame.slug}`).then(() => {
       Router.push('/dashboard/edit');
     });
-
-  const renderEmoji = () => setShowEmojiKeyboard(!showEmojiKeyboard);
 
   const addAnswer = () => setAnswerVisible(!answerVisible);
 
@@ -197,6 +144,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
         Router.push('/dashboard/edit');
       });
   };
+
   const loseBet = (bet: Submissions) => {
     instance
       .post('/api/loseBet', {
@@ -206,6 +154,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
         Router.push('/dashboard/edit');
       });
   };
+
   const removeOption = (event: React.MouseEvent<HTMLElement>) => {
     const deleteIndex = event.currentTarget.getAttribute('data-option-index');
     const updatedOptions = [...options];
@@ -228,203 +177,186 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
     <div className='ma3 ma4-l mw8'>
       <article className='ph4 pb4 black-80'>
         <form action='sign-up_submit' method='get' acceptCharset='utf-8'>
-          {!showEmojiKeyboard && (
-            <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
-              <legend className='ph0 mh0 fw6 clip'>Sign Up</legend>
+          <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
+            <legend className='ph0 mh0 fw6 clip'>Sign Up</legend>
+            <div className='mt3'>
+              <label className='db fw4 mb2 lh-copy f6' htmlFor='email-address'>
+                Game Type
+              </label>
+              <>
+                <span
+                  className={`b ph2 mr2 pv2 input-reset ba b--black  grow pointer f6 ${classnames(
+                    {
+                      'bg-transparent': !normal,
+                      'bg-black': normal,
+                      white: normal,
+                    },
+                  )}`}
+                  onClick={() => setGameType('game')}>
+                  Normal
+                </span>{' '}
+                <span
+                  className={`b ph2 mr2 pv2 input-reset ba b--black  grow pointer f6 ${classnames(
+                    {
+                      'bg-transparent': !fillInBlank,
+                      'bg-black': fillInBlank,
+                      white: fillInBlank,
+                    },
+                  )}`}
+                  onClick={() => setGameType('fill-in-blank')}>
+                  Fill In The Blank
+                </span>
+              </>
+            </div>
+            <div className='mt3'>
+              <label className='db fw4 mb2 lh-copy f6' htmlFor='email-address'>
+                Category
+              </label>
+              <span
+                className={`b ph2 mr2 pv2 input-reset ba b--black  grow pointer f6 ${classnames(
+                  {
+                    'bg-transparent': !grammy,
+                    'bg-black': grammy,
+                    white: grammy,
+                  },
+                )}`}
+                onClick={() => setCategory('grammy')}>
+                Grammys
+              </span>
+            </div>
+            <div className='mt3'>
+              <label className='db fw4 lh-copy f6'>Game Title</label>
+              <textarea
+                id='comment'
+                name='comment'
+                className='db h3 border-box hover-black w-100 measure ba b--black pa2 br2 mb2'
+                aria-describedby='comment-desc'
+                value={title}
+                onChange={(event) => setTitle(event.currentTarget.value)}
+              />
+            </div>
+            <div className='mt3'>
+              <label className='db fw4 lh-copy f6' htmlFor='email-address'>
+                Game Question
+              </label>
+              <textarea
+                id='comment'
+                name='comment'
+                className='db h4 border-box hover-black w-100 measure ba b--black pa2 br2 mb2'
+                aria-describedby='comment-desc'
+                value={description}
+                onChange={(event) => setDescription(event.currentTarget.value)}
+              />
+            </div>
+            {!isUserSubmission && (
               <div className='mt3'>
-                <label
-                  className='db fw4 mb2 lh-copy f6'
-                  htmlFor='email-address'>
-                  Game Type
+                <label className='db fw4 lh-copy f6' htmlFor='email-address'>
+                  Game Details
                 </label>
-
-                {gameType === '' && (
-                  <>
-                    <span
-                      className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
-                      onClick={() => setGameType('game')}>
-                      Normal
-                    </span>{' '}
-                    <span
-                      className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
-                      onClick={() => setGameType('fill-in-blank')}>
-                      Fill In The Blank
-                    </span>
-                  </>
-                )}
-                {gameType === 'game' && (
-                  <span
-                    className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
-                    onClick={() => setGameType('game')}>
-                    Normal
-                  </span>
-                )}
-                {gameType === 'fill-in-blank' && (
-                  <span
-                    className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
-                    onClick={() => setGameType('fill-in-blank')}>
-                    Fill In The Blank
-                  </span>
-                )}
-              </div>
-              <div className='mt3'>
-                <label className='db fw4 lh-copy f6'>Game Title</label>
                 <textarea
                   id='comment'
                   name='comment'
                   className='db h3 border-box hover-black w-100 measure ba b--black pa2 br2 mb2'
                   aria-describedby='comment-desc'
-                  value={title}
-                  onChange={(event) => setTitle(event.currentTarget.value)}
+                  value={details}
+                  onChange={(event) => setDetails(event.currentTarget.value)}
                 />
               </div>
+            )}
+            {normal && (
               <div className='mt3'>
-                <label className='db fw4 lh-copy f6' htmlFor='email-address'>
-                  Game Question
+                <label className='db fw4 lh-copy f6' htmlFor='password'>
+                  Option
                 </label>
-                <textarea
-                  id='comment'
-                  name='comment'
-                  className='db h4 border-box hover-black w-100 measure ba b--black pa2 br2 mb2'
-                  aria-describedby='comment-desc'
-                  value={description}
-                  onChange={(event) =>
-                    setDescription(event.currentTarget.value)
-                  }
+                <input
+                  className='b pa2 input-reset ba bg-transparent'
+                  type='text'
+                  value={option}
+                  onChange={(event) => setOption(event.currentTarget.value)}
                 />
+                <div className='mt3'>
+                  <span
+                    className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
+                    onClick={addOption}>
+                    Add Option
+                  </span>
+                </div>
               </div>
-              {!isUserSubmission && (
-                <div className='mt3'>
-                  <label className='db fw4 lh-copy f6' htmlFor='email-address'>
-                    Game Details
-                  </label>
-                  <textarea
-                    id='comment'
-                    name='comment'
-                    className='db h3 border-box hover-black w-100 measure ba b--black pa2 br2 mb2'
-                    aria-describedby='comment-desc'
-                    value={details}
-                    onChange={(event) => setDetails(event.currentTarget.value)}
-                  />
-                </div>
-              )}
-              {gameType === 'game' && (
-                <div className='mt3'>
-                  <label className='db fw4 lh-copy f6' htmlFor='password'>
-                    Option
-                  </label>
-                  <input
-                    className='b pa2 input-reset ba bg-transparent'
-                    type='text'
-                    value={option}
-                    onChange={(event) => setOption(event.currentTarget.value)}
-                  />
-                  <div className='mt3'>
-                    <span
-                      className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
-                      onClick={addOption}>
-                      Add Option
-                    </span>
-                  </div>
-                </div>
-              )}
-              {!answerVisible && gameType === 'game' && (
-                <div className='mt3'>
-                  <strong>Options:</strong>
-                  {options
-                    .sort((a, b) => {
-                      if (a.value > b.value) return 1;
-                      if (b.value > a.value) return -1;
+            )}
+            {!answerVisible && normal && (
+              <div className='mt3'>
+                <strong>Options:</strong>
+                {options
+                  .sort((a, b) => {
+                    if (a.value > b.value) return 1;
+                    if (b.value > a.value) return -1;
 
-                      return 0;
-                    })
-                    .map((opt, index) => {
-                      return (
-                        <div data-option-index={index} key={index}>
-                          <div className='flex'>
-                            <div
-                              onClick={removeOption}
-                              className='f4 fw9 link dim ph2 pv2 mv1 dib white bg-red'>
-                              X
-                            </div>
-                            <div className={'ma2'}>{opt.value}</div>
-                            <input
-                              className='b mv1 w3 h-10  input-reset ba bg-transparent'
-                              type='text'
-                              value={opt.odds}
-                              onChange={(event) =>
-                                setOdds(event.currentTarget.value, opt.value)
-                              }
-                            />
-                          </div>
-                        </div>
-                      );
-                    })}
-                </div>
-              )}
-              {answerVisible && (
-                <div className='mt3'>
-                  <strong>Select Answer:</strong>
-                  {options.map((opt, index) => {
+                    return 0;
+                  })
+                  .map((opt, index) => {
                     return (
-                      <div
-                        data-option-index={index}
-                        onClick={() => setAnswer(opt.value)}
-                        key={index}>
+                      <div data-option-index={index} key={index}>
                         <div className='flex'>
-                          {opt.value !== answer ? (
-                            <div className='f6 link dim ph2 pv2 mb2 dib white bg-blue'>
-                              +
-                            </div>
-                          ) : (
-                            <div className='f6 link dim ph2 pv2 mb2 dib white bg-green'>
-                              :)
-                            </div>
-                          )}
+                          <div
+                            onClick={removeOption}
+                            className='f4 fw9 link dim ph2 pv2 mv1 dib white bg-red'>
+                            X
+                          </div>
                           <div className={'ma2'}>{opt.value}</div>
+                          <input
+                            className='b mv1 w3 h-10  input-reset ba bg-transparent'
+                            type='text'
+                            value={opt.odds}
+                            onChange={(event) =>
+                              setOdds(event.currentTarget.value, opt.value)
+                            }
+                          />
                         </div>
                       </div>
                     );
                   })}
-                  <div className='mt3'>
-                    <label className='db fw4 lh-copy f6' htmlFor='password'>
-                      Extended Answer
-                    </label>
-                    <input
-                      className='b pa2 input-reset ba bg-transparent'
-                      value={extendedAnswer}
-                      onChange={(event) =>
-                        setExtendedAnswer(event.currentTarget.value)
-                      }
-                    />
-                  </div>
-                </div>
-              )}
-            </fieldset>
-          )}
-          {showEmojiKeyboard && (
-            <div className='dt mw9 center pv4 pv5-m '>
-              <div className='dtc v-top'>
-                <Picker onSelect={emojiSet} />
               </div>
-            </div>
-          )}
+            )}
+            {answerVisible && (
+              <div className='mt3'>
+                <strong>Select Answer:</strong>
+                {options.map((opt, index) => {
+                  return (
+                    <div
+                      data-option-index={index}
+                      onClick={() => setAnswer(opt.value)}
+                      key={index}>
+                      <div className='flex'>
+                        {opt.value !== answer ? (
+                          <div className='f6 link dim ph2 pv2 mb2 dib white bg-blue'>
+                            +
+                          </div>
+                        ) : (
+                          <div className='f6 link dim ph2 pv2 mb2 dib white bg-green'>
+                            :)
+                          </div>
+                        )}
+                        <div className={'ma2'}>{opt.value}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+                <div className='mt3'>
+                  <label className='db fw4 lh-copy f6' htmlFor='password'>
+                    Extended Answer
+                  </label>
+                  <input
+                    className='b pa2 input-reset ba bg-transparent'
+                    value={extendedAnswer}
+                    onChange={(event) =>
+                      setExtendedAnswer(event.currentTarget.value)
+                    }
+                  />
+                </div>
+              </div>
+            )}
+          </fieldset>
           <div className='flex'>
-            <div className='mt3'>
-              <span
-                className='b mr2 ph2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
-                onClick={changeColor}>
-                Change Color
-              </span>
-            </div>
-
-            <div className='mt3'>
-              <span
-                className='b ph2 mr2 pv2 input-reset ba b--black bg-transparent grow pointer f6'
-                onClick={renderEmoji}>
-                Set Emoji
-              </span>
-            </div>
             {answerVisible && (
               <div className='mt3'>
                 <span
@@ -447,14 +379,10 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
         </form>
       </article>
       <section className='flex flex-wrap'>
-        <div key={'work'} className='pv2 pa2-ns w-100 w-100-ns'>
+        <div className='pv2 pa2-ns w-100 w-100-ns'>
           <a className='no-underline white'>
-            <div
-              className={`white br2 shadow-4 pa3 pa4-ns h-100 ${currentGame.class}`}>
+            <div className={'white br2 shadow-4 pa3 pa4-ns h-100 trillectro'}>
               <h1 className='f4 mt0 fw7'>
-                <span role='img' aria-label={currentGame.emoji}>
-                  {currentGame.emoji}
-                </span>
                 {`${
                   currentGame.gameType !== 'grammy'
                     ? `Game #${currentGame.question}`
@@ -463,7 +391,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({
               </h1>
               <p>
                 {grammy
-                  ? game.description.split('/').map((curr, i) => {
+                  ? description.split('/').map((curr, i) => {
                       return (
                         <div key={i} className='mv2'>
                           {curr.split(',')[0]} -{' '}
