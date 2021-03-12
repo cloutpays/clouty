@@ -21,7 +21,7 @@ interface IProps {
   bet: any;
 }
 
-const AMOUNTS = [50, 100, 250, 500, 1000];
+const AMOUNTS = [2, 5, 10, 25, 50];
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
