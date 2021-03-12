@@ -48,7 +48,7 @@ const Terms = ({ balance, submissions, user }) => {
                 submissions
                   .map((game, ind) => {
                     const activeLink = `/games/${game.question.slug}`;
-                    const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100  ${game.question.class}`;
+                    const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100  $`;
 
                     const gameButtonText =
                       typeof game.won === 'undefined'
@@ -67,9 +67,6 @@ const Terms = ({ balance, submissions, user }) => {
                           <a href={activeLink} className='no-underline white'>
                             <div className={cardClass}>
                               <h1 className='f4 mt0 fw7'>
-                                <span role='img' aria-label={game.emoji_name}>
-                                  {game.emoji}
-                                </span>{' '}
                                 {`Game #${game.question.question}`}
                               </h1>
                               <p className='mb2'>{game.question.description}</p>

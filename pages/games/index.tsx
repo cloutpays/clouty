@@ -6,11 +6,13 @@ import BigHeader from '../../components/redesign/BigHeader';
 import History from '../../components/redesign/History';
 import PageWrapper from '../../components/redesign/PageWrapper';
 import { instance } from '../../lib/helpers';
+import { GameProps } from '../../lib/types';
 
 const contentful = require('contentful');
 
 interface IProps {
   games: any[];
+  filter: string;
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -31,13 +33,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }),
   );
 
-  const filter = ctx.query.filter;
-
+  const filter = ctx.query?.filter;
   const games = res.data
-    .filter(
-      (game: any) => !filter || game.gameType === filter,
-      //game.gameType === 'game' || game.gameType === 'fill-in-blank',
-    )
+    .filter((game: GameProps) => !filter || game.category === filter)
     .reverse()
     .map((q: any) => {
       return {
@@ -45,6 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         artist: q.title || '',
         description: q.description || '',
         date: q.date || '',
+        gameType: q.gameType,
         imageUri:
           images.find((i: any) => i.id === q._id)?.imageUrl ||
           '/static/img/redesign/logoUmbrellaOnly.svg',
@@ -54,15 +53,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return { props: { games } };
 };
 
-const Games: React.FC<IProps> = (props: IProps) => {
+const Games: React.FC<IProps> = ({ games }: IProps) => {
   const router = useRouter();
   return (
-    <PageWrapper active='Our Active Bets' header='Games' pageMode='modal'>
+    <PageWrapper active='Our Active Bets' header={'Games'} pageMode='modal'>
       <BigHeader>Our Active Bets</BigHeader>
       <History
         noHeader={true}
         compact={true}
-        games={props.games}
+        games={games}
         onClickGame={(id: string) => router.push('/bet/step-one?id=' + id)}
       />
     </PageWrapper>

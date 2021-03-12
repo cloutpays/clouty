@@ -1,7 +1,6 @@
 import { AxiosResponse } from 'axios';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import Cleave from 'cleave.js/react';
-import 'emoji-mart/css/emoji-mart.css';
 import Link from 'next/link';
 import Router from 'next/router';
 import React, { useState } from 'react';

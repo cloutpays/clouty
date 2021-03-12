@@ -13,7 +13,7 @@ const Games = ({ game, user }) => {
     game.gameType === 'grammy' ? game.question : `Game #${game.question}`;
   const data = {
     title,
-    header: `${game.emoji} ${title}`,
+    header: `${title}`,
     description: 'Selected games and contests.',
   };
   const gameClosed = new Date(game.endDate) < new Date();
@@ -41,7 +41,7 @@ const Games = ({ game, user }) => {
           className='pv2 pa2-ns w-100 center w-80-ns'>
           <a className='no-underline white'>
             <div
-              className={`white br2 shadow-4 pa3 pa4-ns h-100 ${game.class}`}>
+              className={`white br2 shadow-4 pa3 pa4-ns h-100 `}>
               <p>{description}</p>
               <p className='f6 fw6'>{game.details}</p>
               {!game.answer && !gameClosed && (

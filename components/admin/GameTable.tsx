@@ -1,29 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
 import { formatDate } from '../../lib/helpers';
-
-interface Option {
-  value: string;
-  key: string;
-}
-
-interface Game {
-  description: string;
-  emoji: string;
-  options: [Option];
-  answer: string;
-  type: string;
-  gameType: string;
-  slug: string;
-  extendedAnswer: string;
-  class: string;
-  question: string;
-  userId: string;
-  date: any;
-}
+import { GameProps, Option } from '../../lib/types';
 
 interface GameTableProps {
-  games: Game[];
+  games: GameProps[];
 }
 
 const TABLE_HEADERS = [
@@ -33,7 +14,7 @@ const TABLE_HEADERS = [
   { name: 'User ID', id: 3 },
 ];
 
-const GameTable: React.FC<GameTableProps> = ({ games }) => {
+const GameTable: React.FC<GameTableProps> = ({ games }: GameTableProps) => {
   return (
     <>
       <table className='f6 w-100 mw8 center' cellSpacing='0'>

@@ -92,9 +92,13 @@ const History: React.FC<IProps> = (props: IProps) => {
         </El.Header>
       )}
       {compact ? (
-        <El.CompactDataBox>{generateData()}</El.CompactDataBox>
+        <El.CompactDataBox>
+          {generateData()} {!games?.length && 'Nothing to show right now :('}
+        </El.CompactDataBox>
       ) : (
-        <El.DataBox>{generateData()}</El.DataBox>
+        <El.DataBox>
+          {generateData()} {!games?.length && 'Nothing to show right now :('}
+        </El.DataBox>
       )}
     </El.OuterContainer>
   );

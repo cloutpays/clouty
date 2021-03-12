@@ -10,6 +10,7 @@ import UserAvatar from '../components/redesign/home/UserAvatar';
 import PageWrapper from '../components/redesign/PageWrapper';
 import { instance } from '../lib/helpers';
 import { getCookie } from '../lib/session';
+import { GameProps, SubmissionProps } from '../lib/types';
 
 const contentful = require('contentful');
 
@@ -17,6 +18,7 @@ interface IProps {
   userInfo: any;
   balance: number;
   credit: number;
+  latestQuestions: any[];
   questions: any[];
   payouts: any[];
   submissions: any[];
@@ -32,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Getting user info
   const user = getCookie('id_token', ctx.req);
 
-  if (!user) {
+  if (!user || user === 'undefined') {
     // Redirect logged out users to login page
     ctx.res.setHeader('Location', '/login');
     ctx.res.statusCode = 302;
@@ -46,8 +48,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   // Getting active bets
   /*
-  const res = await instance.get(`${apiURL}/api/questions`);
-  const questions = res.data.filter(
+  const res = await instance.get(`${apiURL}/api/latestQuestions`);
+  const latestQuestions = res.data.filter(
     (game: any) =>
       game.gameType === 'game' || game.gameType === 'fill-in-blank',
   );
@@ -59,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || '',
   });
 
-  const questions = await client
+  const latestQuestions = await client
     .getEntries({ content_type: 'latestPost' })
     .then((entries: any) => {
       const { items } = entries;
@@ -88,6 +90,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     amount: p.amount,
   }));
 
+  // Getting questions data
+  const questionRes = await instance.get(`${apiURL}/api/questions`);
+  const questions: GameProps[] = questionRes.data;
+
   // Getting images for submission data
   const images: any[] = (
     await client.getEntries({ content_type: 'game' })
@@ -100,11 +106,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const submissionsRes = await instance.get(
     `${apiURL}/api/userSubmissions/${user}`,
   );
-  const submissions = submissionsRes.data.map((sub: any) => {
+  const submissions = submissionsRes.data.map((sub: SubmissionProps) => {
     return {
       id: sub._id || '',
-      artist: sub.title || (sub.question ? `Game #${sub.question}` : 'Game'),
       description: '',
+      game: questions.filter(
+        (question) => question.question === sub.question,
+      )[0],
       bet: sub.answer || '',
       date: sub.date || new Date(),
       credits: sub.wager,
@@ -120,9 +128,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       userAvatar: userObj.avatar || '',
       balance,
       credit,
-      questions,
+      latestQuestions,
       payouts,
       submissions,
+      questions,
       avatarUpdateUrl: `${apiURL}/api/setAvatar/${user}`,
       userObj,
     },
@@ -130,7 +139,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 };
 
 const Home: React.FC<IProps> = (props: IProps) => {
-  const { userInfo, questions, payouts, submissions, userAvatar } = props;
+  const {
+    userInfo,
+    latestQuestions,
+    payouts,
+    // questions,
+    submissions,
+    userAvatar,
+  } = props;
   const fileInputRef = React.useRef<HTMLInputElement | null>(null);
   const [avatar, setAvatar] = useState(userAvatar);
   const router = useRouter();
@@ -183,11 +199,11 @@ const Home: React.FC<IProps> = (props: IProps) => {
         </El.SectionHeader>
         <FeaturedBets
           categories={[
-            { label: 'Over/Under', filter: 'game' },
-            { label: 'Prop bet', filter: 'fill-in-blank' },
-            { label: "Grammy's", filter: 'normal' },
+            { label: 'Over/Under', filter: 'over-under' },
+            { label: 'Prop bet', filter: 'prop-bet' },
+            { label: "Grammy's", filter: 'grammy' },
           ]}
-          bets={questions}
+          bets={latestQuestions}
           onClickCategory={(filter) => router.push('/games?filter=' + filter)}
           onCreateBet={() => router.push('/games/create')}
           onVisitBet={(id: string) => router.push('/bet/step-one?id=' + id)}

@@ -23,7 +23,7 @@ const Games = ({ questions }) => {
                 const gameClosed = new Date(game.endDate) < new Date();
 
                 const activeLink = `/dashboard/edit/${game.slug}`;
-                const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow ${game.class}`;
+                const cardClass = `white br2 shadow-4 pa3 pa4-ns h-100 grow trillectro`;
                 return (
                   <div
                     key={`work-${game.slug}`}
@@ -32,9 +32,6 @@ const Games = ({ questions }) => {
                       <a href={activeLink} className='no-underline white'>
                         <div className={cardClass}>
                           <h1 className='f4 mt0 fw7'>
-                            <span role='img' aria-label={game.emoji_name}>
-                              {game.emoji}
-                            </span>{' '}
                             {`${
                               game.gameType === 'game' ||
                               game.gameType === 'fill-in-blank'
