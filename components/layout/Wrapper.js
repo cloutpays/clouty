@@ -86,9 +86,7 @@ export default class Wrapper extends Component {
                   <button className='btn btn-default'>Sign Up</button>
                 </a>
                 <a href='/login'>
-                  <button className='btn btn-default login-mobile'>
-                    Log In
-                  </button>
+                  <button className='btn btn-default '>Log In</button>
                 </a>
               </div>
             </div>
