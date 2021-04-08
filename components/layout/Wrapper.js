@@ -82,7 +82,7 @@ export default class Wrapper extends Component {
                     credit towards your bets and no fees for all bets!
                   </span>
                 </div>
-                <a href='/signup'>
+                <a href='/signup' style={{ 'padding-right': '1.5rem' }}>
                   <button className='btn btn-default'>Sign Up</button>
                 </a>
                 <a href='/login'>
