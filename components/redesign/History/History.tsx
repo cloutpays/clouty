@@ -67,7 +67,7 @@ const History: React.FC<IProps> = (props: IProps) => {
         {games && <El.GamePreview src={data.imageUri} />}
         <El.DatumInfo>
           <El.DatumName>
-            {data.artist || data.operation || data.game.title}
+            {data.artist || data.operation || data.game?.title}
           </El.DatumName>
           <El.DatumDesc>{data.description}</El.DatumDesc>
           {games && !compact && (
