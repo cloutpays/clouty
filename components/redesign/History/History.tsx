@@ -1,4 +1,5 @@
 import React from 'react';
+import { GameProps } from '../../../lib/types';
 import * as El from './styles';
 
 const months = [
@@ -26,6 +27,7 @@ interface IProps extends React.HTMLProps<HTMLElement> {
     date: Date;
     credits: string;
     imageUri: string;
+    game: GameProps;
   }[];
   balance?: {
     id: string;
@@ -64,7 +66,9 @@ const History: React.FC<IProps> = (props: IProps) => {
         )}
         {games && <El.GamePreview src={data.imageUri} />}
         <El.DatumInfo>
-          <El.DatumName>{data.artist || data.operation}</El.DatumName>
+          <El.DatumName>
+            {data.artist || data.operation || data.game.title}
+          </El.DatumName>
           <El.DatumDesc>{data.description}</El.DatumDesc>
           {games && !compact && <El.GameBet>{data.bet}</El.GameBet>}
         </El.DatumInfo>
