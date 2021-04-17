@@ -70,7 +70,9 @@ const History: React.FC<IProps> = (props: IProps) => {
             {data.artist || data.operation || data.game.title}
           </El.DatumName>
           <El.DatumDesc>{data.description}</El.DatumDesc>
-          {games && !compact && <El.GameBet>{data.bet}</El.GameBet>}
+          {games && !compact && (
+            <El.GameBet>{`Your Bet: ${data.bet}`}</El.GameBet>
+          )}
         </El.DatumInfo>
         {!compact && (
           <El.DatumAdditional>
