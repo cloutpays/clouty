@@ -2,8 +2,17 @@ import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import React, { useState } from 'react';
+import { getCookieFromBrowser, removeCookie } from '../../lib/session';
 // @ts-ignore
 import * as El from './styles';
+
+const handleLogout = () => {
+  removeCookie('id_token');
+  removeCookie('id_token_a');
+  Router.push('/');
+};
+const isLoggedIn = getCookieFromBrowser('id_token') ? true : false;
+// const isAdmin = getCookieFromBrowser('id_token_a') ? true : false;
 
 interface IProps {
   header?: string;
@@ -117,6 +126,7 @@ const PageWrapper: React.FC<IProps> = (props: IProps) => {
           </a>
           <El.ButtonBar>
             {generateButtons()}
+            {isLoggedIn && <El.Button onClick={handleLogout}>Logout</El.Button>}
             <Link href='/account-settings' passHref={true}>
               <El.Button active={props.active === 'Account Settings'}>
                 <El.ButtonIcon src='/static/img/redesign/accountSettings.svg' />
