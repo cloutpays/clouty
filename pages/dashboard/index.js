@@ -18,6 +18,7 @@ const Dashboard = ({
   transactions,
   dayWagers,
   houseBalance,
+  waitlist,
 }) => {
   const data = {
     title: 'Dashboard',
@@ -54,9 +55,13 @@ const Dashboard = ({
             <dd className='f6 f5-ns b ml0'>Total Wagers</dd>
             <dd className='f3 f2-ns b ml0'>{formatPrice(totalWager)}</dd>
           </dl>
-          <dl className='dib'>
+          <dl className='dib mr5'>
             <dd className='f6 f5-ns b ml0'>Users</dd>
             <dd className='f3 f2-ns b ml0'>{users.length}</dd>
+          </dl>
+          <dl className='dib'>
+            <dd className='f6 f5-ns b ml0'>Waitlist</dd>
+            <dd className='f3 f2-ns b ml0'>{waitlist.length}</dd>
           </dl>
         </article>
         <div className='flex'>
@@ -104,10 +109,12 @@ Dashboard.getInitialProps = async ({ req }) => {
     },
   });
   const transactionsRes = await instance.get(`${apiURL}/api/transactions`);
+  const waitlistRes = await instance.get(`${apiURL}/api/waitlist`);
   const payouts = payoutsRes.data;
   const questions = questionsRes.data;
   const transactions = transactionsRes.data;
   const users = usersRes.data;
+  const waitlist = waitlistRes.data;
   const entries = res.data;
   let yesterday = new Date().setDate(new Date().getDate() - 1);
   const wonWagers = entries
@@ -125,6 +132,7 @@ Dashboard.getInitialProps = async ({ req }) => {
     questions,
     users,
     payouts,
+    waitlist,
     transactions,
     lostBets: entries.filter(
       (curr) => typeof curr.won === 'boolean' && !curr.won,
@@ -145,6 +153,7 @@ Dashboard.propTypes = {
   questions: PropTypes.array,
   payouts: PropTypes.array,
   transactions: PropTypes.array,
+  waitlist: PropTypes.array,
   users: PropTypes.array,
   totalWager: PropTypes.number,
   lostBets: PropTypes.number,
