@@ -1,5 +1,5 @@
 import { newSubscriberContent, welcomeEmailContent } from '../emailTemplates';
-import { sendEmail, user, wrapAsync } from '../helpers';
+import { sendEmail, user, waitlist, wrapAsync } from '../helpers';
 const { json } = require('micro');
 const { parse } = require('url');
 
@@ -9,12 +9,27 @@ export const userRetrieveApi = wrapAsync(async function(req, db) {
   return await db.collection(user).findOne({ _id: id });
 });
 
+export const userWaitlistAddApi = wrapAsync(async function(req, db) {
+  const {
+    query: { email },
+  } = parse(req.url, true);
+  return await db.collection(waitlist).insertOne({ email });
+});
+
+export const userWaitlistRetrieveApi = wrapAsync(async function(req, db) {
+  return await db
+    .collection(waitlist)
+    .find()
+    .toArray();
+});
+
 export const newSubscriberApi = wrapAsync(async function(req) {
   const {
     query: { email },
   } = parse(req.url, true);
   return await sendEmail(['umeh@clouty.io'], newSubscriberContent, email);
 });
+
 export const updateUser = async (firebaseUser, db) => {
   const newUser = await db.collection(user).findOneAndUpdate(
     { _id: firebaseUser.firebase.uid },

@@ -143,6 +143,16 @@
       "dest": "server/handlers/post.js?id=$1&amount=$2"
     },
     {
+      "src": "/api/waitlist",
+      "methods": ["GET"],
+      "dest": "server/handlers/get.js"
+    },
+    {
+      "src": "/api/waitlist",
+      "methods": ["POST"],
+      "dest": "server/handlers/post.js"
+    },
+    {
       "src": "/api/allUserPayouts",
       "methods": ["GET"],
       "dest": "server/handlers/get.js"
