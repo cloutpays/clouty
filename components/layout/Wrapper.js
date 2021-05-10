@@ -3,7 +3,6 @@ import { initGA, logPageView } from '../../lib/helpers';
 import { styles } from '../../constants/styles';
 import Footer from './Footer';
 import Head from 'next/head';
-// import NProgress from 'nprogress';
 import Navigation from './Navigation';
 import PageWrapper from '../redesign/PageWrapper';
 import PropTypes from 'prop-types';
