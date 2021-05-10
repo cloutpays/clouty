@@ -26,6 +26,11 @@ export const cloutpays = dev
   ? 'cloutpays_staging'
   : 'cloutpays_prod';
 export const user = dev ? 'user_dev' : staging ? 'user_staging' : 'user_prod';
+export const waitlist = dev
+  ? 'waitlist_dev'
+  : staging
+  ? 'waitlist_staging'
+  : 'waitlist_prod';
 export const payout = dev
   ? 'payout_dev'
   : staging

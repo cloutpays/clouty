@@ -8,7 +8,11 @@ const {
   gameSubmissionsRetrieveApi,
   userQuestionRetrieveApi,
 } = require('../helpers/game');
-const { userRetrieveApi, usersApi } = require('../helpers/user');
+const {
+  userRetrieveApi,
+  usersApi,
+  userWaitlistRetrieveApi,
+} = require('../helpers/user');
 const {
   stripeApi,
   payoutsByUserApi,
@@ -41,6 +45,8 @@ const getApi = (fn) => async (req, res) => {
         return await fn(gameSubmissionsRetrieveApi(req, res));
       case 'api/userSubmissions':
         return await fn(userSubmissionsRetrieveApi(req, res));
+      case 'api/waitlist':
+        return await fn(userWaitlistRetrieveApi(req, res));
       case 'api/userPayouts':
         return await fn(payoutsByUserApi(req, res));
       case 'api/allUserPayouts':

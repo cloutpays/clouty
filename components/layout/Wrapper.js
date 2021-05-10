@@ -1,13 +1,12 @@
 import { getCookieFromBrowser } from '../../lib/session';
-import { initGA, logPageView } from '../../lib/helpers';
-import { styles } from '../../constants/styles';
+import { initGA, instance, logPageView } from '../../lib/helpers';
+// import { styles } from '../../constants/styles';
 import Footer from './Footer';
 import Head from 'next/head';
-// import NProgress from 'nprogress';
 import Navigation from './Navigation';
 import PageWrapper from '../redesign/PageWrapper';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Router from 'next/router';
 
 // Should redesign wrapper be used (displays old pages embedded in the new layout)
@@ -29,30 +28,38 @@ Router.onRouteChangeError = () => {
 };
 */
 
-export default class Wrapper extends Component {
-  componentDidMount() {
+const Wrapper = (props) => {
+  const [emailAddress, setEmailAddress] = useState('');
+  const [submit, setSubmit] = useState(false);
+
+  const sendEmail = async (email) => {
+    setSubmit(true);
+    instance.post(`/api/waitlist?email=${email}`);
+  };
+
+  useEffect(() => {
     if (!window.GA_INITIALIZED) {
       initGA();
       window.GA_INITIALIZED = true;
     }
     logPageView();
-  }
+  }, []);
 
-  renderHeader() {
-    if (this.props.data.header) {
-      return (
-        <header className={`${styles.wrapper}`}>
-          <div className='mt5 mb4'>
-            <h2 className={`${styles.h2}`}>{this.props.data.header}</h2>
-          </div>
-        </header>
-      );
-    }
-    return null;
-  }
+  // const renderHeader = () => {
+  //   if (props.data.header) {
+  //     return (
+  //       <header className={`${styles.wrapper}`}>
+  //         <div className='mt5 mb4'>
+  //           <h2 className={`${styles.h2}`}>{props.data.header}</h2>
+  //         </div>
+  //       </header>
+  //     );
+  //   }
+  //   return null;
+  // };
 
-  renderHomePageHeader() {
-    if (this.props.data.home_page) {
+  const renderHomePageHeader = () => {
+    if (props.data.home_page) {
       return (
         <div>
           <div>
@@ -77,17 +84,28 @@ export default class Wrapper extends Component {
                 </h1>
                 <div>
                   <span>
-                    We host live bets about the latest releases and predictions
-                    in music. Sign up <br></br> today and receive a free $2
-                    credit towards your bets and no fees for all bets!
+                    We created a music prediction market by turning realtime
+                    music metrics into tradeable indexes. Join the waitlist to
+                    be admitted into our growing list of beta users.
                   </span>
                 </div>
-                <a href='/signup' style={{ 'padding-right': '1.5rem' }}>
-                  <button className='btn btn-default'>Sign Up</button>
-                </a>
-                <a href='/login'>
-                  <button className='btn btn-default '>Log In</button>
-                </a>
+                <div className='flex my-4 py-4'>
+                  <input
+                    type='text'
+                    className='form-control'
+                    placeholder='Enter Email Address'
+                    value={emailAddress}
+                    onChange={(event) => {
+                      setSubmit(false);
+                      setEmailAddress(event.target.value);
+                    }}
+                  />
+                  <button
+                    onClick={() => sendEmail(emailAddress)}
+                    className='text-white  '>
+                    {` ${submit ? 'Thanks!' : 'Submit'} `}
+                  </button>
+                </div>
               </div>
             </div>
             <div></div>
@@ -110,52 +128,30 @@ export default class Wrapper extends Component {
         </div>
       );
     }
-  }
+  };
 
-  shouldUseRedesign = () => {
+  const shouldUseRedesign = () => {
     if (!ENABLE_REDESIGN_WRAPPER) return false;
-    if (this.props.data.home_page) return false;
-    if (this.props.data.ignoreWrapper) return false;
+    if (props.data.home_page) return false;
+    if (props.data.ignoreWrapper) return false;
     return true;
   };
 
-  render() {
-    const isHomePage = this.props.data.home_page;
-    const isConfirmationPage = this.props.data.confirmation_page;
-    const darkMode = getCookieFromBrowser('dark_mode') === 'true';
-    const { data, user, className, children: content } = this.props;
-    const title = data.title
-      ? `Clouty | ${data.title}`
-      : `The 🌎's first music betting platform`;
-    const cls = className ? `${className}` : '';
-    const description = data.description
-      ? data.description
-      : 'Fantasy gameplay at the intersection of data, music and finance.';
+  const isHomePage = props.data.home_page;
+  const isConfirmationPage = props.data.confirmation_page;
+  const darkMode = getCookieFromBrowser('dark_mode') === 'true';
+  const { data, user, className, children: content } = props;
+  const title = data.title
+    ? `Clouty | ${data.title}`
+    : `The 🌎's first music betting platform`;
+  const cls = className ? `${className}` : '';
+  const description = data.description
+    ? data.description
+    : 'Fantasy gameplay at the intersection of data, music and finance.';
 
-    if (this.shouldUseRedesign())
-      return (
-        <div style={{ backgroundColor: '#1b1a1a', height: '100%' }}>
-          <Head>
-            <title>{title}</title>
-            <meta name='description' content={description} />
-            <meta property='og:title' content={title} />
-            <meta property='og:description' content={description} />
-            <meta
-              name='twitter:title'
-              content={`The 🌎's first music betting platform.`}
-            />
-            <meta name='twitter:description' content={description} />
-          </Head>
-          <PageWrapper
-            pageMode='legacy'
-            header={title.replace(/Clouty \|/, '')}>
-            {content}
-          </PageWrapper>
-        </div>
-      );
-
+  if (shouldUseRedesign())
     return (
-      <div className={isConfirmationPage ? 'confirm-page' : ''}>
+      <div style={{ backgroundColor: '#1b1a1a', height: '100%' }}>
         <Head>
           <title>{title}</title>
           <meta name='description' content={description} />
@@ -167,19 +163,37 @@ export default class Wrapper extends Component {
           />
           <meta name='twitter:description' content={description} />
         </Head>
-        <div className={isHomePage ? 'pos-rel' : ''}>
-          <Navigation user={user} darkMode={darkMode} router={Router} />
-          {/* {this.renderHeader()} */}
-          {this.renderHomePageHeader()}
-        </div>
-        <div className='center flex'>
-          <main className={` w-100 ${cls}`}>{content}</main>
-        </div>
-        <Footer darkMode={darkMode} />
+        <PageWrapper pageMode='legacy' header={title.replace(/Clouty \|/, '')}>
+          {content}
+        </PageWrapper>
       </div>
     );
-  }
-}
+
+  return (
+    <div className={isConfirmationPage ? 'confirm-page' : ''}>
+      <Head>
+        <title>{title}</title>
+        <meta name='description' content={description} />
+        <meta property='og:title' content={title} />
+        <meta property='og:description' content={description} />
+        <meta
+          name='twitter:title'
+          content={`The 🌎's first music betting platform.`}
+        />
+        <meta name='twitter:description' content={description} />
+      </Head>
+      <div className={isHomePage ? '' : ''}>
+        <Navigation user={user} darkMode={darkMode} router={Router} />
+        {/* {renderHeader()} */}
+        {renderHomePageHeader()}
+      </div>
+      <div className='center flex'>
+        <main className={` w-100 ${cls}`}>{content}</main>
+      </div>
+      <Footer darkMode={darkMode} />
+    </div>
+  );
+};
 
 Wrapper.propTypes = {
   className: PropTypes.string,
@@ -187,3 +201,5 @@ Wrapper.propTypes = {
   user: PropTypes.object,
   children: PropTypes.node,
 };
+
+export default Wrapper;

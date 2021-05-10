@@ -14,18 +14,19 @@ const {
   newSubscriberApi,
   setAvatarApi,
   setInfoApi,
+  userWaitlistAddApi,
 } = require('../helpers/user');
 const { send } = require('micro');
 const { hookApi, payoutApi, setCreditApi } = require('../helpers/stripe');
 
 const postApi = (fn) => async (req, res) => {
   try {
-    const parse = req.url.split('/');
-    console.log(`post api/${parse[2]}`);
+    const parse = req.url.split('/')[2].split('?')[0];
+    console.log(`post api/${parse}`);
     if (req.headers.authorization != 'Bearer ' + process.env.API_KEY) {
       return res.status(403).json({ error: 'No credentials sent!' });
     }
-    switch (`api/${parse[2]}`) {
+    switch (`api/${parse}`) {
       case 'api/submission':
         return await fn(gameSubmitApi(req, res));
       case 'api/question':
@@ -50,6 +51,8 @@ const postApi = (fn) => async (req, res) => {
         return await fn(loseBetApi(req, res));
       case 'api/payout':
         return await fn(payoutApi(req, res));
+      case 'api/waitlist':
+        return await fn(userWaitlistAddApi(req, res));
       case 'api/hooks':
         return await fn(hookApi(req, res));
       case 'api/dbRefresh':
