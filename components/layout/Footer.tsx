@@ -93,11 +93,11 @@ const Footer: React.FC<DarkModeProps> = () => {
                         <a href='/games'>Games</a>
                       </div>
                     </li>
-                    <li>
+                    {/* <li>
                       <div className='thumb-content'>
                         <a href='/signup'>Sign Up</a>
                       </div>
-                    </li>
+                    </li> */}
                     <li>
                       <div className='thumb-content'>
                         <a href='/login'>Log In</a>
