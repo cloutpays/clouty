@@ -94,13 +94,13 @@ const Navigation: React.FC<NavProps> = ({ router }) => {
                     Log In
                   </a>
                 </li>
-                <li className='nav-item' id='nav-signup'>
+                {/* <li className='nav-item' id='nav-signup'>
                   <a
                     className='nav-link btn btn-sm btn-dark text-white mt-2'
                     href='/signup'>
                     Sign Up
                   </a>
-                </li>
+                </li> */}
                 <li className='nav-item' id='mobile-nav-login'>
                   <a href='/login' className='nav-link login-btn'>
                     Log In

@@ -252,12 +252,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ mode }) => {
                     Forgot your password?
                   </a>
                 </Link>
-                <a href='/signup' className='f5 signUp link dim black db mt-3'>
+                {/* <a href='/signup' className='f5 signUp link dim black db mt-3'>
                   Don't have an account?{' '}
                   <span className='fw5 link no-underline bb bw1 dim '>
                     Sign Up
                   </span>
-                </a>
+                </a> */}
               </div>
             )}
           </div>
