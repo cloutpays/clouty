@@ -31,7 +31,7 @@ export const newSubscriberApi = wrapAsync(async function(req) {
 });
 
 export const updateUser = async (firebaseUser, db) => {
-  const newUser = await db.collection(user).findOneAndUpdate(
+  const newUser = await db.collection(user).updateOne(
     { _id: firebaseUser.firebase.uid },
     {
       $set: { ...firebaseUser, updatedAt: Math.floor(new Date() / 1000) },
@@ -52,7 +52,7 @@ export const setAvatarApi = wrapAsync(async function(req, db) {
   try {
     await db
       .collection(user)
-      .findOneAndUpdate(
+      .updateOne(
         { _id: uid },
         { $set: { avatar: data.avatar } },
         { upsert: false },
@@ -82,7 +82,7 @@ export const setInfoApi = wrapAsync(async function(req, db) {
   try {
     await db
       .collection(user)
-      .findOneAndUpdate(
+      .updateOne(
         { _id: uid },
         { $set: { info: data.info } },
         { upsert: false },
