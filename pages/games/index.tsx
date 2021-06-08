@@ -5,9 +5,9 @@ import React from 'react';
 import BigHeader from '../../components/redesign/BigHeader';
 import History from '../../components/redesign/History';
 import PageWrapper from '../../components/redesign/PageWrapper';
-import { instance } from '../../lib/helpers';
+import { instance, redirect } from '../../lib/helpers';
+import { getCookie } from '../../lib/session';
 import { GameProps } from '../../lib/types';
-
 const contentful = require('contentful');
 
 interface IProps {
@@ -18,6 +18,12 @@ interface IProps {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req);
   const apiURL = `${origin}`;
+
+  const isLoggedIn = getCookie('id_token', ctx.req) ? true : false;
+
+  if (!isLoggedIn) {
+    redirect(ctx, '/login');
+  }
 
   // Getting active bets
   const res = await instance.get(`${apiURL}/api/questions`);
