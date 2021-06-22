@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { instance } from '../../lib/helpers';
+import { getCurrentYear, instance } from '../../lib/helpers';
 
 interface DarkModeProps {
   darkMode: boolean;
@@ -30,8 +30,9 @@ const Footer: React.FC<DarkModeProps> = () => {
                   <span />
                 </h5>
                 <p>
-                  Be the first to find out about the latest bets when you sign
-                  up for our newsletter. Short reads and no spam.
+                  Clouty aims to be &quot;DCM&quot;, under CFTC jurisdiction,
+                  pending approval. Be the first to find out about the latest
+                  when you sign up for our newsletter. Short reads and no spam.
                 </p>
                 <label className='footer-input-label'>Email address</label>
                 <div className='input-group mb-3'>
@@ -137,7 +138,7 @@ const Footer: React.FC<DarkModeProps> = () => {
               <div className='widget no-box justify-between widget-footer'>
                 <img height='80' src='/static/img/new/logo-web.svg' />
                 <p className='footer-copyright-content'>
-                  © Clouty 2020. <br />
+                  © Clouty {getCurrentYear}. <br />
                   Packaged with care.
                 </p>
               </div>

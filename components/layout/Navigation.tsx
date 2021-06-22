@@ -73,7 +73,7 @@ const Navigation: React.FC<NavProps> = ({ router }) => {
             </li>
             <li className='nav-item links mobile-nav-item-home '>
               <a className='nav-link' href='/games'>
-                Games
+                Markets
               </a>
             </li>
             {isLoggedIn && (

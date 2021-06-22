@@ -38,7 +38,7 @@ const Home = ({ latestPost }) => {
             <div className='col-md-8 p-md-0 album-over-order-sm-1'>
               <div className='album-cover'>
                 <div className='album-cover-content'>
-                  <p>This Week&apos;s Featured Bet</p>
+                  <p>This Week&apos;s Featured Market</p>
                   <h3>{latestPost.description}</h3>
                   <div className='bet-button-group'>
                     <a href='/games'>
@@ -71,19 +71,19 @@ const Home = ({ latestPost }) => {
         </section>
         <section className='fav-artist'>
           <div className='fav-artist-content'>
-            <p>Bet On Your Favorite Artists</p>
+            <p>Bet On Your Favorite Artists, Classic Records and New Talent</p>
             <h1>
               Put your money <br></br> where your ears are.
             </h1>
             <div className='mb-56'>
               <span>
-                Clouty is the first and only platform where you can place bets
-                and <br></br> earn money on your favorite artists, events, and
-                albums. Are you <br></br> ready to put your money where your
-                ears are?
+                Music is a widely undervalued asset and Clouty unbundles it by
+                allowing partakers to trade on those underlying metrics,
+                bringing liquidity to the one-sided $50b industry. Our markets
+                update in real time.
               </span>
             </div>
-            <button className='btn btn-default'>View All Bets</button>
+            <button className='btn btn-default'>View All Markets</button>
           </div>
           <div>
             <img
@@ -107,15 +107,14 @@ const Home = ({ latestPost }) => {
                   <h1>How it works</h1>
                   <div className='content-text text-left'>
                     <span>
-                      For an artist to qualify for one of our contests, their
+                      For an artist to qualify for one of our markets, their
                       music must be on either the Big 3: Apple Music, Spotify,
-                      or Tidal. If they are only on Soundcloud and Youtube they
-                      may not qualify for certain bets. Every contestant will be
-                      notified on the results and you can earn REAL cash or
-                      tokens to use on future games. The results of the games
-                      will ONLY be validated with accurate data and credible
-                      announcements to determine each weeks winners. Our charts
-                      are powered by Nielsen Soundscan.
+                      or Tidal. If they are only on SoundCloud and YouTube they
+                      may not qualify for certain contracts. Our markets update
+                      in real time and participants will be able to trade
+                      contracts at-will earning real cash or digital currency to
+                      use on future contracts. The Alpha Data behind our markets
+                      are listed in our terms and conditions.
                     </span>
                   </div>
                 </div>
@@ -126,24 +125,23 @@ const Home = ({ latestPost }) => {
                     <div className='single-service'>
                       <div className='part-1'>
                         <div className='service-icon'>&#128200;</div>
-                        <h3 className='title text-dark'>First Week Sales</h3>
+                        <h3 className='title text-dark'>Chart Positioning</h3>
                         <p className='description'>
-                          Bet on the first week abum sales of any artist.
+                          Place a contract on the trajectory of any song&apos;s
+                          position in the Hot 100
                         </p>
-                        <a href='/games'>Place Your Bet</a>
                       </div>
                     </div>
                   </div>
                   <div className='col-md-4 col-lg-3 col-sm-6'>
                     <div className='single-service'>
                       <div className='part-1'>
-                        <div className='service-icon'>&#129518;</div>
-                        <h3 className='title text-dark'>Over / Under</h3>
+                        <div className='service-icon'>💿</div>
+                        <h3 className='title text-dark'>RIAA Certification</h3>
                         <p className='description'>
-                          Bet Over/Under on a variety of statistics, such as
-                          album sales, streams, and more.
+                          Trade on the time it will take for a record to reach
+                          Gold, Platinum or Diamond status
                         </p>
-                        <a href='#'>Place Your Bet</a>
                       </div>
                     </div>
                   </div>
@@ -156,7 +154,6 @@ const Home = ({ latestPost }) => {
                           Bet on specific predictions ranging from release
                           dates, subject content, record length and features
                         </p>
-                        <a href='#'>Place Your Bet</a>
                       </div>
                     </div>
                   </div>
@@ -169,14 +166,13 @@ const Home = ({ latestPost }) => {
                           Bet on the outcome of award show categories and
                           concert set-lists
                         </p>
-                        <a href='#'>Place Your Bet</a>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div className='col-md-12 text-center stay-tuned'>
-                <p>Stay Tuned for More ways to bet...</p>
+                <p>Stay Tuned for More ways to trade...</p>
               </div>
             </div>
           </div>
@@ -186,7 +182,6 @@ const Home = ({ latestPost }) => {
             <div className='row'>
               <div className='col-md-12 text-center'>
                 <div className='get-ready-started-content'>
-                  <p>Sign Up & Place Your Bets</p>
                   <h1>Ready to get started?</h1>
                   <div>
                     <span>
