@@ -80,7 +80,7 @@ const Wrapper = (props) => {
               <div className='banner-content'>
                 <p>Welcome to Clouty</p>
                 <h1>
-                  The 🌎&apos;s first music <br></br> betting platform.
+                  The 🌎&apos;s first music <br></br> futures exchange.
                 </h1>
                 <div>
                   <span>
@@ -143,7 +143,7 @@ const Wrapper = (props) => {
   const { data, user, className, children: content } = props;
   const title = data.title
     ? `Clouty | ${data.title}`
-    : `The 🌎's first music betting platform`;
+    : `The 🌎's first music futures exchange`;
   const cls = className ? `${className}` : '';
   const description = data.description
     ? data.description
@@ -159,7 +159,7 @@ const Wrapper = (props) => {
           <meta property='og:description' content={description} />
           <meta
             name='twitter:title'
-            content={`The 🌎's first music betting platform.`}
+            content={`The 🌎's first music futures exchange.`}
           />
           <meta name='twitter:description' content={description} />
         </Head>
@@ -178,7 +178,7 @@ const Wrapper = (props) => {
         <meta property='og:description' content={description} />
         <meta
           name='twitter:title'
-          content={`The 🌎's first music betting platform.`}
+          content={`The 🌎's first music futures exchange.`}
         />
         <meta name='twitter:description' content={description} />
       </Head>

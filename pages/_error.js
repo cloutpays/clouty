@@ -6,7 +6,7 @@ import Wrapper from '../components/layout/Wrapper';
 
 const data = {
   description: 'Make money while putting your intuition on the line.',
-  header: `The 🌎's first music betting platform.`,
+  header: `The 🌎's first music futures exchange.`,
 };
 const Home = () => {
   const handleLogout = () => {
