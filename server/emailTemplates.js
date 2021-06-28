@@ -1124,7 +1124,7 @@ export const welcomeEmailContent = {
     <h1
       style="text-align: center;display: block;margin: 0;padding: 0;color: #202020;font-family: Helvetica;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;"
     >
-      The 🌎's 1st Music Betting Platform&nbsp;
+      The 🌎's 1st Music Futures Exchange&nbsp;
     </h1>
   
     <h1
