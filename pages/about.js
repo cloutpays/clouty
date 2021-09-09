@@ -71,9 +71,9 @@ const Home = () => (
                 <div className='about-service-item'>
                   <h5>Reimagine</h5>
                   <p>
-                    We’re allowing people to “predict the weather” and bet on
+                    We’re allowing people to “predict the weather” and make
                     predictions on the forecast of their favorite artists backed
-                    by data in the music industry, starting with rap.
+                    by data in the music industry.
                   </p>
                 </div>
               </div>
@@ -118,7 +118,7 @@ const Home = () => (
         <div className='row'>
           <div className='col-md-12 text-center'>
             <div className='get-ready-started-content'>
-              <p>Sign Up & Place Your Bets</p>
+              <p>Sign Up & Start Trading</p>
               <h1>Ready to get started?</h1>
               <div>
                 <span>
