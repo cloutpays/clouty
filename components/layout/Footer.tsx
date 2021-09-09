@@ -139,6 +139,7 @@ const Footer: React.FC<DarkModeProps> = () => {
                 <img height='80' src='/static/img/new/logo-web.svg' />
                 <p className='footer-copyright-content'>
                   © Clouty {getCurrentYear}. <br />
+                  © Clouty 2021. <br />
                   Packaged with care.
                 </p>
               </div>
