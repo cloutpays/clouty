@@ -9,7 +9,7 @@ const {
   winBetApi,
   loseBetApi,
 } = require('../../server/helpers/game');
-const { userApi } = require('../../server/helpers/user');
+const { userApi, userWaitlistAddApi } = require('../../server/helpers/user');
 const { send } = require('micro');
 const {
   hookApi,
@@ -35,6 +35,8 @@ const postApi = (fn) => async (req, res) => {
         return await fn(setCreditApi(req, res));
       case 'api/user':
         return await fn(userApi(req, res));
+      case 'api/waitlist':
+        return await fn(userWaitlistAddApi(req, res));
       case 'api/winBet':
         return await fn(winBetApi(req, res));
       case 'api/loseBet':

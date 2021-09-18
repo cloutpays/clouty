@@ -1,0 +1,4 @@
+diff a/pages/dashboard/index.js b/pages/dashboard/index.js	(rejected hunks)
+@@ -21 +21 @@ const Dashboard = ({
+-  waitlist
++  waitlist,
